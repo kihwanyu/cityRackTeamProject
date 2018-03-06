@@ -55,20 +55,20 @@
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
 
 	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="views/user/rani/css/bootstrap.min.css" />
 
 	<!-- Slick -->
-	<link type="text/css" rel="stylesheet" href="css/slick.css" />
-	<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+	<link type="text/css" rel="stylesheet" href="views/user/rani/css/slick.css" />
+	<link type="text/css" rel="stylesheet" href="views/user/rani/css/slick-theme.css" />
 
 	<!-- nouislider -->
-	<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+	<link type="text/css" rel="stylesheet" href="views/user/rani/css/nouislider.min.css" />
 
 	<!-- Font Awesome Icon -->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="views/user/rani/css/font-awesome.min.css">
 
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<link type="text/css" rel="stylesheet" href="views/user/rani/css/style.css" />
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -93,7 +93,7 @@
 		<div class="container" style="display: inline-block;  ">
 			<!-- row -->
 			<div class="row">
-				<form >
+				<form action="<%=request.getContextPath()%>/login.do" method="post">
 					 <div class="col-md-6"> 
 						
 						<div class="loginForm">
@@ -105,7 +105,7 @@
 								<input class="input" type="email" name="email" placeholder="이메일 주소" >
 								<input class="input" type="password" name="password" placeholder="비밀번호">
 							
-							<button id="login" >로그인</button><br>
+							<input type="submit" id="login" value="로그인"><br>
 							<div class="searchIdPwd">
 								<h5 align="center"><a>아이디 찾기</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a>비밀번호 찾기</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a>회원가입 하기</a></h5>
 							</div>

@@ -65,7 +65,7 @@
 								<strong class="text-uppercase">마이페이지 <i class="fa fa-caret-down"></i></strong>
 							</div>
 							<div class="loginDiv">
-								<a href="#" class="text-uppercase">로그인</a> / <a href="#" class="text-uppercase">회원가입</a>
+								<a href="<%=request.getContextPath()%>/views/user/rani/login.jsp" class="text-uppercase">로그인</a> / <a href="#" class="text-uppercase">회원가입</a>
 							</div>
 							<ul class="custom-menu">
 								<li><a href="myPage_info.jsp"><i class="fa fa-user-o"></i> 내 정보</a></li>

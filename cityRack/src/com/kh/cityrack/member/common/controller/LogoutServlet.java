@@ -1,4 +1,4 @@
-package com.kh.cityrack.member.admin.controller;
+package com.kh.cityrack.member.common.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
