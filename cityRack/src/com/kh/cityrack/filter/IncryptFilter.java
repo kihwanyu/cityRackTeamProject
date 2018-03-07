@@ -15,7 +15,7 @@ import com.kh.cityrack.warpper.LoginWrapper;
 /**
  * Servlet Filter implementation class IncryptFilter
  */
-@WebFilter(filterName="incrypt", urlPatterns="*.do")
+@WebFilter(filterName="incrypt", urlPatterns="*.me")
 public class IncryptFilter implements Filter {
 
     /**
