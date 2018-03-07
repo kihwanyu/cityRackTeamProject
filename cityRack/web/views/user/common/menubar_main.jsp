@@ -15,18 +15,18 @@
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 
 	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="../jeong/css/bootstrap.min.css" />
 
 	<!-- Slick -->
-	<link type="text/css" rel="stylesheet" href="css/slick.css" />
-	<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+	<link type="text/css" rel="stylesheet" href="../jeong/css/slick.css" />
+	<link type="text/css" rel="stylesheet" href="../jeong/css/slick-theme.css" />
 
 	<!-- nouislider -->
-	<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+	<link type="text/css" rel="stylesheet" href="../jeong/css/nouislider.min.css" />
 
 	
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<link type="text/css" rel="stylesheet" href="../jeong/css/style.css" />
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -55,7 +55,7 @@
 					<!-- 로고 -->
 					<div class="header-logo">
 						<a class="logo" href="/cityRack/views/user/jeong/index.jsp">
-							<img src="./img/header-logo.png" id="header-logo">
+							<img src="../jeong/img/logo.png" ><!-- id="header-logo" -->
 						</a>
 					</div>
 					<!-- /로고 -->
@@ -164,7 +164,7 @@
 									<div class="col-md-3">
 										<div class="hidden-sm hidden-xs">
 											<a class="banner banner-1">
-												<img src="./img/logo.png" alt="">
+												<img src="../jeong/img/survey1.png" alt="">
 											</a>
 										</div>
 										<hr>
@@ -178,7 +178,7 @@
 									<div class="col-md-3">
 										<div class="hidden-sm hidden-xs">
 											<a class="banner banner-1">
-												<img src="./img/logo.png" alt="">
+												<img src="../jeong/img/survey2.png" alt="">
 											</a>
 										</div>
 										<hr>
@@ -200,6 +200,15 @@
 		<!-- /container -->
 	</div>
 	<!-- /NAVIGATION -->
+	
+	
+		<!-- jQuery Plugins -->
+	<script src="views/user/jeong/js/jquery.min.js"></script>
+	<script src="views/user/jeong/js/bootstrap.min.js"></script>
+	<script src="views/user/jeong/js/slick.min.js"></script>
+	<script src="views/user/jeong/js/nouislider.min.js"></script>
+	<script src="views/user/jeong/js/jquery.zoom.min.js"></script>
+	<script src="views/user/jeong/js/main.js"></script>
 
 </body>
 </html>
