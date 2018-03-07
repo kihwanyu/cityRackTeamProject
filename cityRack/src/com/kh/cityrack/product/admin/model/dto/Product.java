@@ -1,6 +1,7 @@
 package com.kh.cityrack.product.admin.model.dto;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class Product implements Serializable{
 	
@@ -12,6 +13,7 @@ public class Product implements Serializable{
 	private String p_code; // 상품_코드
 	private String ca_code; // 카테고리_코드
 	private String ca_name; // 카테고리_이름
+	private Date p_resisterDate; //등록일
 	private String p_8constitution; // 상품_8체질
 	private String p_name; // 상품_이름
 	private String p_pic1; // 상품_사진1
@@ -23,13 +25,14 @@ public class Product implements Serializable{
 	public Product() {
 		super();
 	}
-	
-	public Product(String p_code, String ca_code, String ca_name, String p_8constitution, String p_name, String p_pic1,
-			String p_pic2, int p_price, String p_event, double p_discount, String p_status) {
+	public Product(String p_code, String ca_code, String ca_name, Date p_resisterDate, String p_8constitution,
+			String p_name, String p_pic1, String p_pic2, int p_price, String p_event, double p_discount,
+			String p_status) {
 		super();
 		this.p_code = p_code;
 		this.ca_code = ca_code;
 		this.ca_name = ca_name;
+		this.p_resisterDate = p_resisterDate;
 		this.p_8constitution = p_8constitution;
 		this.p_name = p_name;
 		this.p_pic1 = p_pic1;
@@ -56,6 +59,12 @@ public class Product implements Serializable{
 	}
 	public void setCa_name(String ca_name) {
 		this.ca_name = ca_name;
+	}
+	public Date getP_resisterDate() {
+		return p_resisterDate;
+	}
+	public void setP_resisterDate(Date p_resisterDate) {
+		this.p_resisterDate = p_resisterDate;
 	}
 	public String getP_8constitution() {
 		return p_8constitution;
@@ -105,14 +114,15 @@ public class Product implements Serializable{
 	public void setP_status(String p_status) {
 		this.p_status = p_status;
 	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	@Override
 	public String toString() {
-		return "Product [p_code=" + p_code + ", ca_code=" + ca_code + ", ca_name=" + ca_name + ", p_8constitution="
-				+ p_8constitution + ", p_name=" + p_name + ", p_pic1=" + p_pic1 + ", p_pic2=" + p_pic2 + ", p_price="
-				+ p_price + ", p_event=" + p_event + ", p_discount=" + p_discount + "]";
+		return "Product [p_code=" + p_code + ", ca_code=" + ca_code + ", ca_name=" + ca_name + ", p_resisterDate="
+				+ p_resisterDate + ", p_8constitution=" + p_8constitution + ", p_name=" + p_name + ", p_pic1=" + p_pic1
+				+ ", p_pic2=" + p_pic2 + ", p_price=" + p_price + ", p_event=" + p_event + ", p_discount=" + p_discount
+				+ ", p_status=" + p_status + "]";
 	}
-	
-	
-	
-	
+		
 }

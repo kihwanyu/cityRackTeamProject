@@ -149,7 +149,7 @@ public class ProductInsertServlet extends HttpServlet {
 			//System.out.println("result : " + result);
 			
 			if(result > 0) {
-				/*response.sendRedirect(request.getContextPath()+"/SelectList.tn");*/
+				response.sendRedirect(request.getContextPath()+"/productGetAll.pr");
 				
 			} else {
 				//실패시 저장된 사진 삭제.

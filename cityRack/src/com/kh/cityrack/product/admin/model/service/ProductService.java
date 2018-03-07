@@ -2,6 +2,7 @@ package com.kh.cityrack.product.admin.model.service;
 
 import com.kh.cityrack.product.admin.model.dao.ProductDao;
 import com.kh.cityrack.product.admin.model.dto.Product;
+
 import static com.kh.cityrack.common.JDBCTemplet.*;
 
 import java.sql.Connection;
@@ -24,14 +25,24 @@ public class ProductService {
 		return result;
 	}
 
-	public ArrayList<Product> productGetAll() {
+	public ArrayList<Product> productGetAll(int currentPage, int limit) {
 		Connection conn = getConnection();
 		
-		ArrayList<Product> pList = new ProductDao().productGetAll(conn);
+		ArrayList<Product> pList = new ProductDao().productGetAll(conn, currentPage, limit);
 		
 		close(conn);
 		
 		return pList;
+	}
+
+	public int getListCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new ProductDao().getListCount(conn);
+		
+		close(conn);
+		
+		return listCount;
 	}
 
 }

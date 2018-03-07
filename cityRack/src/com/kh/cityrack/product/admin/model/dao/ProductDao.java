@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.cityrack.product.admin.model.dto.Product;
+
 import static com.kh.cityrack.common.JDBCTemplet.*;
+
 public class ProductDao {
 	private Properties prop = null;
 	public ProductDao(){
@@ -59,14 +61,74 @@ public class ProductDao {
 		
 		return result;
 	}
-	public ArrayList<Product> productGetAll(Connection conn) {
-		Statement stmt = null;
+	public ArrayList<Product> productGetAll(Connection conn, int currentPage, int limit) {
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Product> pList = null;
 		
+		
 		String query = prop.getProperty("productGetAll");
 		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			pList = new ArrayList<Product>();
+			
+			while(rset.next()){
+				Product p = new Product();
+				p.setP_code(String.valueOf(rset.getInt("P_CODE")));
+				p.setP_resisterDate(rset.getDate("P_RESISTERDATE"));
+				p.setCa_name(rset.getString("CA_NAME"));
+				p.setP_8constitution(rset.getString("P_8CONSTITUTION"));
+				p.setP_name(rset.getString("P_NAME"));
+				p.setP_price(rset.getInt("P_PRICE"));
+				p.setP_event(rset.getString("P_EVENT"));
+				p.setP_discount(rset.getDouble("P_DISCOUNT"));
+				p.setP_status(rset.getString("P_STATUS"));
+				pList.add(p);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
 		return pList;
+	}
+	
+	public int getListCount(Connection conn) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		int listCount = 0;
+		
+		String query = prop.getProperty("getListCount");
+		
+		try {
+			stmt = conn.createStatement();
+			
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()){
+				listCount = rset.getInt("COUNT(*)");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+			close(rset);
+		}
+		return listCount;
 	}
 
 }

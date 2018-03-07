@@ -1,5 +1,18 @@
+<%@page import="com.kh.cityrack.product.admin.model.dto.PageInfo"%>
+<%@page import="com.kh.cityrack.product.admin.model.dto.Product"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	ArrayList<Product> pList = (ArrayList<Product>)request.getAttribute("pList");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int limit = pi.getLimit();
+%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +24,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
-	@import url("css/common.css");
+	@import url("views/admin/css/common.css");
 	table {
 		border: 1px solid black;
 		text-align: center;
@@ -37,6 +50,9 @@
 		height: 50%;
 		margin: 0.05em;	
 		
+	}
+	.pagingArea {
+		margin-top: 15px;
 	}
 </style>
 </head>
@@ -98,28 +114,30 @@
 	<br>
 	<div class="tableArea" align="center">
 		<table style="width: 90%">
-				<tr>
-					<th width="7%" style="text-align: center;">상품코드</th>
-					<th width="7%" style="text-align: center;">등록일</th>
-					<th width="10%" style="text-align: center;">카테고리명</th>
-					<th width="7%" style="text-align: center;">체질명</th>
-					<th width="25%" style="text-align: center;">상품명</th>
-					<th width="7%" style="text-align: center;">가격(원)</th>
-					<th width="10%" style="text-align: center;">이벤트</th>
-					<th width="10%" style="text-align: center;">할인율(%)</th>
-					<th width="5%" style="text-align: center;">진열 상태</th>		
-					<th width="9%" style="text-align: center;">입고/폐기</th>
-				</tr>
 			<tr>
-				<td style="text-align: right;">100</td>
-				<td style="text-align: center;">2018-03-04</td>
-				<td style="text-align: left;">반찬</td>
-				<td style="text-align: left;">토양</td>
-				<td style="text-align: left;"><a href="<%= request.getContextPath()%>/views/admin/admin_productUpadate.jsp">소세지야채볶음</a></td>
-				<td style="text-align: right;">10,000</td>
-				<td style="text-align: left;">New Hot Sale</td>
-				<td style="text-align: right;">10</td>
-				<td>Y</td>
+				<th width="7%" style="text-align: center;">상품코드</th>
+				<th width="7%" style="text-align: center;">등록일</th>
+				<th width="10%" style="text-align: center;">카테고리명</th>
+				<th width="7%" style="text-align: center;">체질명</th>
+				<th width="25%" style="text-align: center;">상품명</th>
+				<th width="7%" style="text-align: center;">가격(원)</th>
+				<th width="10%" style="text-align: center;">이벤트</th>
+				<th width="10%" style="text-align: center;">할인율(%)</th>
+				<th width="5%" style="text-align: center;">진열 상태</th>		
+				<th width="9%" style="text-align: center;">입고/폐기</th>
+			</tr>
+			<%for(int i = 0 ; i < pList.size(); i++){ %>
+			<tr>
+				<td style="text-align: right;"><%=pList.get(i).getP_code() %></td>
+				<td style="text-align: center;"><%=pList.get(i).getP_resisterDate() %></td>
+				<td style="text-align: left;"><%=pList.get(i).getCa_name() %></td>
+				<td style="text-align: left;"><%=pList.get(i).getP_8constitution() %></td>
+				<td style="text-align: left;"><a href="<%= request.getContextPath()%>/views/admin/admin_productUpadate.jsp"><%=pList.get(i).getP_name() %></a></td>
+				<td style="text-align: right;"><%=pList.get(i).getP_price() %></td>
+				<td style="text-align: left;"><%=pList.get(i).getP_event() %></td>
+				<td style="text-align: right;"><%=pList.get(i).getP_discount() %></td>
+				<td style="text-align: left;"><%=pList.get(i).getP_status() %></td>
+				
 				<td>
 					<div class="statusButton">
 						<button type="button" style="font-size: 13px;" onclick="warehousing();">입고</button>
@@ -129,7 +147,48 @@
 					</div>						  
 				</td>
 			</tr>
+			<%} %>
 		</table>
+		<!-- 페이지 처리 -->
+		<% 
+				double backNextPageVal = (double)currentPage/limit;
+				int backNextpage = ((int)(backNextPageVal-0.9))*limit+1;
+				
+				double forwardNextPageVal = (double)currentPage/limit;
+				int forwardNextpage = ((int)(forwardNextPageVal+0.9))*limit+1;
+			/* (((int)((double)currentPage/limit))+0.9)*5-1;  */	
+		%>
+		<div class="pagingArea" align="center">
+			<button onclick="location.href='<%= request.getContextPath()%>/productGetAll.pr?currentPage=1'"><<</button>
+			<%if(currentPage <= 1) { %>
+			<button><</button>
+			<%} else { 
+				if(backNextpage < 1) {%>
+					<button onclick="location.href='<%= request.getContextPath()%>/productGetAll.pr?currentPage=1'"><</button>
+			<% 	} else {%>
+			
+					<button onclick="location.href='<%= request.getContextPath()%>/productGetAll.pr?currentPage=<%=backNextpage%>'"><</button>
+			<%	} %>
+			<%} %>
+			<%for(int p = startPage; p <= endPage; p++){ 
+				if(p == currentPage){
+			%>
+				<button disabled="disabled"><%=p %></button>
+			<%	} else { %>
+				<button onclick="location.href='<%= request.getContextPath()%>/productGetAll.pr?currentPage=<%=p %>'"><%=p %></button>
+			<%	} %>	
+			<%} %>
+			<%if(currentPage >= maxPage){ %>
+			<button disabled="disabled">></button>	
+			<%} else { 
+				if(forwardNextpage > maxPage) {%>
+				<button onclick="location.href='<%= request.getContextPath()%>/productGetAll.pr?currentPage=<%= maxPage%>'">></button>
+				<% } else { %>
+				<button onclick="location.href='<%= request.getContextPath()%>/productGetAll.pr?currentPage=<%= forwardNextpage%>'">></button>
+				<%} %>
+			<%} %> 
+			<button onclick="location.href='<%= request.getContextPath()%>/productGetAll.pr?currentPage=<%=maxPage%>'">>></button>
+		</div>
 		<br>
 		<div align="center">
 			<button class="resisterBt" onclick="location.href='<%=request.getContextPath()%>/views/admin/admin_productResister.jsp'">상품 등록</button>
