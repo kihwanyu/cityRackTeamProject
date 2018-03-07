@@ -13,7 +13,7 @@
 
 	<title>E-SHOP HTML Template</title>
 
-	<!-- Google font -->
+	<!-- Google font  -- >
 	
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 

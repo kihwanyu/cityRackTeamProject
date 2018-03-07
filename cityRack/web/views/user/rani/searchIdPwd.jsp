@@ -41,7 +41,7 @@
 <body>
 
 	<!-- 메뉴바 -->	
-	<%@ include file="/views/user/common/menubar_main.jsp" %>
+	<%@ include file="/views/user/common/menubar_main.jsp"  %>
 	<!-- /메뉴바 -->
 
 	<!-- 페이지 -->

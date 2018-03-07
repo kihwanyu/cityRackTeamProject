@@ -3,7 +3,7 @@
 <!DOCTYPE >
 <html>
 <head>
-<meta charset="UTF-8">
+<meta  charset="UTF-8">
 
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
