@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta  charset="UTF-8">
-<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+<meta  charset="UTF-8"> 
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,8 +25,6 @@
 	<!-- nouislider -->
 	<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
 
-	<!-- Font Awesome Icon -->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
 
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
@@ -66,13 +64,19 @@
 		color:white;
 		cursor:pointer;
 	}
-	
+	body{
+	font-family: 'Nanum Gothic', sans-serif;
+	}
 	
 </style>
 <title>Insert title here</title>
 </head>
 <body>
 
+	<!-- 메뉴바 -->
+	
+	<%@ include file="/views/user/common/menubar_main.jsp" %>
+	<!-- /메뉴바 -->
 
 	<!-- 페이지 -->
 	
@@ -92,28 +96,12 @@
 	
 	
 
-	<!-- section -->
-	<div class="section">
-		<!-- container -->
-		<div class="container">
-			<!-- row -->
-			<div class="row">
-			</div>
-			<!-- /row -->
-		</div>
-		<!-- /container -->
-	</div>
-	<!-- /section -->
+	<!-- 푸터 -->
+	<%@ include file="/views/user/common/footer.jsp" %>
+	
+	<!--/ 푸터 -->
 
 	
-
-	<!-- jQuery Plugins -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/slick.min.js"></script>
-	<script src="js/nouislider.min.js"></script>
-	<script src="js/jquery.zoom.min.js"></script>
-	<script src="js/main.js"></script>
 
 
 

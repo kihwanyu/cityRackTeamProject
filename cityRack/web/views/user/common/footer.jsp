@@ -19,12 +19,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>E-SHOP HTML Template</title>
+	
 
 	<!-- Google font -->
-	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+	
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
-
 	<!-- Bootstrap -->
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
 
@@ -35,8 +34,6 @@
 	<!-- nouislider -->
 	<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
 
-	<!-- Font Awesome Icon -->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
 
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
@@ -56,7 +53,7 @@
 }
 
 .section {
-    padding-top: 30px;
+   margin-top: 100px;
     padding-bottom: 30px;
 }
 

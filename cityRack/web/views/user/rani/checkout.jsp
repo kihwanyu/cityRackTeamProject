@@ -13,8 +13,9 @@
 
 	<title>E-SHOP HTML Template</title>
 
-	<!-- Google font -->
-	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+	<!-- Google font  -- >
+	
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 
 	<!-- Bootstrap -->
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
@@ -26,8 +27,7 @@
 	<!-- nouislider -->
 	<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
 
-	<!-- Font Awesome Icon -->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
+	
 
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
@@ -39,8 +39,24 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
+
+<style type="text/css">
+body{
+	font-family: 'Nanum Gothic', sans-serif !important;
+}
+</style>
+
+
 </head>
+
+
 <body>
+
+	<!-- 메뉴바 -->
+	
+	<%@ include file="/views/user/common/menubar_main.jsp" %>
+	<!-- /메뉴바 -->
+
 
 
 	<!-- section -->
@@ -127,8 +143,8 @@
 						
 							<div class="form-group">
 								<div class="input-checkbox">
-									<input type="checkbox" id="register">
-									<label class="font-weak" for="register">수령자의 정보와 주문자의 정보가 같습니까?</label>
+									<input type="checkbox" id="register" >
+									<label class="font-weak" for="register">수령자의 정보와 주문자의 정보가 같습니다</label>
 									
 								</div>
 							</div>
@@ -222,7 +238,10 @@
 	</div>
 	<!-- /section -->
 
+	<!-- 푸터 -->
+	<%@ include file="/views/user/common/footer.jsp" %>
 	
+	<!--/ 푸터 -->
 
 
 </body>

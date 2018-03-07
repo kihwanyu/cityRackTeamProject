@@ -5,6 +5,9 @@
 <head>
 <meta  charset="UTF-8">
 	<style type="text/css">
+	body{
+		 font-family: 'Nanum Gothic', sans-serif;
+	}
 	.inputs input{		
 		margin-bottom:5px;		
 		
@@ -14,7 +17,7 @@
 	}
 	
 	
-	.inputs button {
+	#login {
 	background:#FF720D;	
 	border:0px;
 	color:black;
@@ -36,9 +39,14 @@
 	}
 	
 	.searchIdPwd{
-		margin-top:50px;
+		margin-top:50px;	
+	}
+	
+	.searchIdPwd h5:hover{
+		cursor:pointer
 	
 	}
+	
 	.searchIdPwd h5{
 		color:darkgray;
 	}
@@ -49,26 +57,27 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>E-SHOP HTML Template</title>
+	
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 
 	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="views/user/rani/css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
 
 	<!-- Slick -->
-	<link type="text/css" rel="stylesheet" href="views/user/rani/css/slick.css" />
-	<link type="text/css" rel="stylesheet" href="views/user/rani/css/slick-theme.css" />
+	<link type="text/css" rel="stylesheet" href="css/slick.css">
+	<link type="text/css" rel="stylesheet" href="css/slick-theme.css">
 
 	<!-- nouislider -->
-	<link type="text/css" rel="stylesheet" href="views/user/rani/css/nouislider.min.css" />
+	<link type="text/css" rel="stylesheet" href="css/nouislider.min.css">
 
-	<!-- Font Awesome Icon -->
-	<link rel="stylesheet" href="views/user/rani/css/font-awesome.min.css">
+	<!-- <!-- Font Awesome Icon -->
+	<!-- <link rel="stylesheet" href="css/font-awesome.min.css"> -->
 
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="views/user/rani/css/style.css" />
+	<link type="text/css" rel="stylesheet" href="css/style.css">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -83,7 +92,7 @@
 <body>
 
 
-	
+	<%@ include file="/views/user/common/menubar_main.jsp" %>
 	
 	<!-- 로그인 -->
 	
@@ -107,7 +116,7 @@
 							
 							<input type="submit" id="login" value="로그인"><br>
 							<div class="searchIdPwd">
-								<h5 align="center"><a>아이디 찾기</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a>비밀번호 찾기</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a>회원가입 하기</a></h5>
+								<h5 align="center"><a href="searchIdPwd.jsp">아이디 찾기</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="searchIdPwd.jsp">비밀번호 찾기</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="join.jsp">회원가입 하기</a></h5>
 							</div>
 							</div>
 						</div>	
@@ -124,18 +133,12 @@
 
 	   
 	<!-- /로그인 -->
+	
+	<!-- 푸터 -->
+	<%@ include file="/views/user/common/footer.jsp" %>
+	
+	<!--/ 푸터 -->
 
-	<!-- section -->
-	<div class="section">
-		<!-- container -->
-		<div class="container">
-			<!-- row -->
-			<div class="row">
-			</div>
-			<!-- /row -->
-		</div>
-		<!-- /container -->
-	</div>
-	<!-- /section -->
+	
 </body>
 </html>

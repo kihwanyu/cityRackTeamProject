@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html >
 
 <head>
 	<meta charset="utf-8">
@@ -9,10 +9,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>E-SHOP HTML Template</title>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 
 	<!-- Bootstrap -->
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
@@ -24,9 +24,7 @@
 	<!-- nouislider -->
 	<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
 
-	<!-- Font Awesome Icon -->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-
+	
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
 
@@ -36,9 +34,17 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
+<style type="text/css">
+	#header-logo{
+	width:80%;
+	}
+	body{
+		font-family: 'Nanum Gothic', sans-serif;
+	}
+</style>
 
 </head>
-
+  
 <body>
 	<!-- HEADER -->
 	<header>
@@ -48,8 +54,8 @@
 				<div class="pull-left">
 					<!-- 로고 -->
 					<div class="header-logo">
-						<a class="logo" href="index.jsp">
-							<img src="./img/logo.png" alt="">
+						<a class="logo" href="/cityRack/views/user/jeong/index.jsp">
+							<img src="./img/header-logo.png" id="header-logo">
 						</a>
 					</div>
 					<!-- /로고 -->
