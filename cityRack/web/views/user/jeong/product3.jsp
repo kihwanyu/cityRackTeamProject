@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>E-SHOP HTML Template</title>
+	<title>cityRack_product3</title>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
@@ -42,7 +42,7 @@
 <body>
 
 	<!-- 메인용 메뉴바 -->
-	<%@ include file="menubar_main.jsp" %>
+	<%@ include file="/views/user/common/menubar_main.jsp" %>
 
 
 
@@ -99,7 +99,7 @@
 											<span class="sale">-20%</span>
 										</div>
 										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-										<img src="./img/미역초무침.png" alt="">
+										<img src="views/user/jeong/img/미역초무침.png" alt="">
 									</div>
 									<div class="product-body">
 										<h3 class="product-price">3,000</h3>
@@ -124,7 +124,7 @@
 								<div class="product product-single">
 									<div class="product-thumb">
 										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-										<img src="./img/땅콩조림.png" alt="">
+										<img src="views/user/jeong/img/땅콩조림.png" alt="">
 									</div>
 									<div class="product-body">
 										<h3 class="product-price">3,000</h3>
@@ -155,7 +155,7 @@
 											<span class="sale">-20%</span>
 										</div>
 										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-										<img src="./img/소고기장조림.png" alt="">
+										<img src="views/user/jeong/img/소고기장조림.png" alt="">
 									</div>
 									<div class="product-body">
 										<h3 class="product-price">3,000</h3>
@@ -185,7 +185,7 @@
 											<span>New</span>
 										</div>
 										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-										<img src="./img/갈치조림.png" alt="">
+										<img src="views/user/jeong/img/갈치조림.png" alt="">
 									</div>
 									<div class="product-body">
 										<h3 class="product-price">3,000</h3>
@@ -215,7 +215,7 @@
 											<span>New</span>
 										</div>
 										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-										<img src="./img/갈치조림.png" alt="">
+										<img src="views/user/jeong/img/갈치조림.png" alt="">
 									</div>
 									<div class="product-body">
 										<h3 class="product-price">3,000</h3>
@@ -243,7 +243,7 @@
 											<span>New</span>
 										</div>
 										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-										<img src="./img/갈치조림.png" alt="">
+										<img src="views/user/jeong/img/갈치조림.png" alt="">
 									</div>
 									<div class="product-body">
 										<h3 class="product-price">3,000</h3>
@@ -273,7 +273,7 @@
 											<span>New</span>
 										</div>
 										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-										<img src="./img/갈치조림.png" alt="">
+										<img src="views/user/jeong/img/갈치조림.png" alt="">
 									</div>
 									<div class="product-body">
 										<h3 class="product-price">3,000</h3>
@@ -301,7 +301,7 @@
 											<span>New</span>
 										</div>
 										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-										<img src="./img/갈치조림.png" alt="">
+										<img src="views/user/jeong/img/갈치조림.png" alt="">
 									</div>
 									<div class="product-body">
 										<h3 class="product-price">3,000</h3>
@@ -331,7 +331,7 @@
 											<span>New</span>
 										</div>
 										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-										<img src="./img/갈치조림.png" alt="">
+										<img src="views/user/jeong/img/갈치조림.png" alt="">
 									</div>
 									<div class="product-body">
 										<h3 class="product-price">3,000</h3>
@@ -389,12 +389,12 @@
 	<%@ include file="footer.jsp" %>
 
 	<!-- jQuery Plugins -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/slick.min.js"></script>
-	<script src="js/nouislider.min.js"></script>
-	<script src="js/jquery.zoom.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="views/user/jeong/js/jquery.min.js"></script>
+	<script src="views/user/jeong/js/bootstrap.min.js"></script>
+	<script src="views/user/jeong/js/slick.min.js"></script>
+	<script src="views/user/jeong/js/nouislider.min.js"></script>
+	<script src="views/user/jeong/js/jquery.zoom.min.js"></script>
+	<script src="views/user/jeong/js/main.js"></script>
 
 </body>
 

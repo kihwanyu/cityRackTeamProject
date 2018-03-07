@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>cityRack_myPage_un2</title>
+	<title>cityRack_myPage_cs</title>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
@@ -50,30 +50,14 @@
 			<!-- row -->
 			<div class="row">
 				<form id="checkout-form" class="clearfix">
-
 					<div class="col-md-12">
 						<div class="order-summary clearfix">
 							<div class="section-title">
-								<h3 class="title">탈퇴완료</h3>
-							</div>
-							<div align="center">
-								 <img src="./img/탈퇴.png" alt="">
+								<h3 class="title">이벤트</h3>
 							</div>
 							<br/>
-							<br/>
-							<div align="center">
-								<button onclick="goMain(); return false;" class="primary-btn">메인으로</button>
-							</div>
-							
-							<script>
-							
-								function goMain(){
-									location.href="#";
-								}
-								
-							</script>
-							
-							<br/>
+								 <img src="./img/ev1.png" align="middle" width="100%">
+								<img src="./img/ev2.png" align="middle" width="100%">
 							<br/>
 						</div>
 					</div>
@@ -90,12 +74,12 @@
 	<%@ include file="footer.jsp" %>
 
 	<!-- jQuery Plugins -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/slick.min.js"></script>
-	<script src="js/nouislider.min.js"></script>
-	<script src="js/jquery.zoom.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="views/user/jeong/js/jquery.min.js"></script>
+	<script src="views/user/jeong/js/bootstrap.min.js"></script>
+	<script src="views/user/jeong/js/slick.min.js"></script>
+	<script src="views/user/jeong/js/nouislider.min.js"></script>
+	<script src="views/user/jeong/js/jquery.zoom.min.js"></script>
+	<script src="views/user/jeong/js/main.js"></script>
 </body>
 
 </html>

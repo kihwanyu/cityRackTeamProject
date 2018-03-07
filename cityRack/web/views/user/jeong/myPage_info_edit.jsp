@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>E-SHOP HTML Template</title>
+	<title>cityRack_myPage_info_edit</title>
 	
 	
 
@@ -43,7 +43,7 @@
 
 <body>
 			<!-- 마이페이지용 메뉴바 -->
-	<%@ include file="menubar_myPage.jsp" %>
+	<%@ include file="/views/user/common/menubar_myPage.jsp" %>
 
 	<!-- section -->
 	<div class="section">
@@ -66,7 +66,7 @@
 									<tr>
 										<td style="font-size:12px;" align="center"><strong>비밀번호</strong></td>
 										<td colspan="3" align="center">
-											<input type="text" size="12" value=" ********">
+											<input type="text" size="12">
 											<button class="editBtn">변경하기</button>
 										</td>
 									</tr>
@@ -78,7 +78,7 @@
 										<td rowspan="3" style="font-size:12px;" align="center"><strong>주소</strong></td>
 										<td colspan="3" align="center">
 											<input type="text" size="6px" value=" 123-456" name="address" id="address1">
-											<button onclick="address();" class="editBtn">우편번호찾기</button>
+											<button onclick="address(); return false;" class="editBtn">우편번호찾기</button>
 										</td>
 									<tr >	
 										<td colspan="3" style="border-bottom:1px solid white;" align="center">
@@ -108,16 +108,16 @@
 							<br/>
 							<br/>
 							<div align="center">
+								<button onclick="before(); return false;" class="primary-btn">이전으로</button>
 								<button class="primary-btn" type="submit">수정완료</button>
-								<button onclick="unregister();" class="primary-btn">탈퇴하기</button>
 							</div>
 							
 							<script>
 							
-								function unregister(){
-									location.href="/crp/myPage_info_unregister1.jsp";
+								function before(){
+									location.href="myPage_info.jsp";	
 								}
-							
+								
 							</script>
 							
 							<br/>
@@ -132,6 +132,7 @@
 	</div>
 	<!-- /section -->
 	
+	<!-- 도로명주소 API -->
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script>
 	
@@ -152,12 +153,12 @@
 	<%@ include file="footer.jsp" %>
 
 	<!-- jQuery Plugins -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/slick.min.js"></script>
-	<script src="js/nouislider.min.js"></script>
-	<script src="js/jquery.zoom.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="views/user/jeong/js/jquery.min.js"></script>
+	<script src="views/user/jeong/js/bootstrap.min.js"></script>
+	<script src="views/user/jeong/js/slick.min.js"></script>
+	<script src="views/user/jeong/js/nouislider.min.js"></script>
+	<script src="views/user/jeong/js/jquery.zoom.min.js"></script>
+	<script src="views/user/jeong/js/main.js"></script>
 </body>
 
 </html>

@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>E-SHOP HTML Template</title>
+	<title>cityRack_myPage_question</title>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
@@ -42,7 +42,7 @@
 <body>
 
 	<!-- 마이페이지용 메뉴바 -->
-	<%@ include file="menubar_myPage.jsp" %>
+	<%@ include file="/views/user/common/menubar_myPage.jsp" %>
 
 
 
@@ -101,9 +101,18 @@
 								</table>
 							<br/>
 						<div align="center">
-							<button class="primary-btn">취소하기</button>&nbsp;
+							<button onclick="cancel(); return false;" class="primary-btn">취소하기</button>&nbsp;
 							<button class="primary-btn">등록하기</button>
 						</div>
+						
+						<script>
+						
+							function cancel(){
+								location.href="myPage_QnA.jsp";
+							}
+						
+						</script>
+						
 						</div>
 						</div>
 						<br/>
@@ -122,12 +131,12 @@
 	<%@ include file="footer.jsp" %>
 
 	<!-- jQuery Plugins -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/slick.min.js"></script>
-	<script src="js/nouislider.min.js"></script>
-	<script src="js/jquery.zoom.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="views/user/jeong/js/jquery.min.js"></script>
+	<script src="views/user/jeong/js/bootstrap.min.js"></script>
+	<script src="views/user/jeong/js/slick.min.js"></script>
+	<script src="views/user/jeong/js/nouislider.min.js"></script>
+	<script src="views/user/jeong/js/jquery.zoom.min.js"></script>
+	<script src="views/user/jeong/js/main.js"></script>
 </body>
 
 </html>

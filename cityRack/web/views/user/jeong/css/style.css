@@ -1735,6 +1735,15 @@ textarea.input {
   font-weight: 500;
 }
 
+.history-table>tbody>tr>.details>a {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.history-table {
+	width: 900px;
+}
+
 .shopping-cart-table>tbody>tr>.thumb>img {
   width: 60px;
 }
