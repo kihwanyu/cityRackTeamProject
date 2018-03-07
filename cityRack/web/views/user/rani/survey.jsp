@@ -14,7 +14,7 @@
 	<title>E-SHOP HTML Template</title>
 
 	<!-- Google font -->
-	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 
 	<!-- Bootstrap -->
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
@@ -26,9 +26,7 @@
 	<!-- nouislider -->
 	<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
 
-	<!-- Font Awesome Icon -->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-
+	
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
 
@@ -72,6 +70,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+
+	<!-- 메뉴바 -->
+	
+	<%@ include file="/views/user/common/menubar_main.jsp" %>
+	<!-- /메뉴바 -->
+
 	
 	<!-- 페이지 -->
 	
@@ -89,6 +94,11 @@
 	
 	
 	<!--/ 페이지 -->
+	
+	<!-- 푸터 -->
+	<%@ include file="/views/user/common/footer.jsp" %>
+	
+	<!--/ 푸터 -->
 	
 	
 

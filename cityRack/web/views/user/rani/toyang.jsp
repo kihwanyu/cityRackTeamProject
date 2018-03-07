@@ -17,7 +17,8 @@
 	<title>E-SHOP HTML Template</title>
 
 	<!-- Google font -->
-	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+	
+
 
 	<!-- Bootstrap -->
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
@@ -46,11 +47,19 @@
 <style>
 body{
 
-font-family: 'Nanum Gothic', sans-serif;
+font-family: 'Nanum Gothic', sans-serif !important;
 }
 </style>
 </head>
 <body>
+
+
+	<!-- 메뉴바 -->
+	
+	<%@ include file="/views/user/common/menubar_main.jsp" %>
+	<!-- /메뉴바 -->
+
+
 
 	<!-- section -->
 	<div class="section">
@@ -248,14 +257,9 @@ font-family: 'Nanum Gothic', sans-serif;
 	<!-- /section -->
 
 
-
-
-	<!-- jQuery Plugins -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/slick.min.js"></script>
-	<script src="js/nouislider.min.js"></script>
-	<script src="js/jquery.zoom.min.js"></script>
-	<script src="js/main.js"></script>
+<!-- 푸터 -->
+	<%@ include file="/views/user/common/footer.jsp" %>
+	
+	<!--/ 푸터 -->
 </body>
 </html>

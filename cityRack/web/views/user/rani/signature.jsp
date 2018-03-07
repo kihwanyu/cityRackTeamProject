@@ -19,10 +19,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>E-SHOP HTML Template</title>
+
 
 	<!-- Google font -->
-	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+	
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 
 	<!-- Bootstrap -->
@@ -35,8 +35,7 @@
 	<!-- nouislider -->
 	<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
 
-	<!-- Font Awesome Icon -->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
+
 
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
@@ -64,7 +63,7 @@ $(document).ready(function() {
 <style type="text/css">
 
 body {
-font-family: 'Nanum Gothic', sans-serif;
+font-family: 'Nanum Gothic', sans-serif !important;
 }
 .innercontainer{
   background:black;
@@ -92,7 +91,10 @@ font-family: 'Nanum Gothic', sans-serif;
 	background:black;
 	padding-left:0px;
 	border-radius:4px;
+	width:100%;
 }
+
+
 
 div.food-tab-menu{
   padding-right: 0;
@@ -332,16 +334,22 @@ overflow-y:scroll;
 <body>
 
 
+	<!-- 메뉴바 -->
+	
+	<%@ include file="/views/user/common/menubar_main.jsp" %>
+	<!-- /메뉴바 -->
+
+
 
 
 	<!-- 시그니처 -->
 	
-	<h1 align="center" style="font-weight:bold;color:#004d1a;">시그니처 도시락 </h1><br>
+	<h1 align="center" style="font-weight:bold;color:#004d1a;margin-top:50px;" >시그니처 도시락 </h1><br>
 	<h4 align="center">여러분들의 체질에 맞게, 입맞에 맞게 골라보세요!</h4><br>
 	<div class="innercontainer">
 	
-	<div class="row">
-        <div class="col-lg-5 col-md-5 col-sm-8 col-xs-9 food-tab-container">
+	<div class="row" >
+        <div class="col-lg-5 col-md-5 col-sm-8 col-xs-9 food-tab-container" style="width:100%;">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 food-tab-menu">
               <div class="list-group">
               
@@ -788,6 +796,11 @@ overflow-y:scroll;
 </div>
 	
 	<!-- /시그니처 -->
+
+<!-- 푸터 -->
+	<%@ include file="/views/user/common/footer.jsp" %>
+	
+	<!--/ 푸터 -->
 
 
 </body>

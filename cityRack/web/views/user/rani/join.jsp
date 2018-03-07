@@ -13,6 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> 
 	
 	
 	<title>E-SHOP HTML Template</title>
@@ -30,8 +31,7 @@
 	<!-- nouislider -->
 	<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
 
-	<!-- Font Awesome Icon -->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
+	
 
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
@@ -112,23 +112,24 @@
 	}
 	
 	#chk_cont1  {   
-    height: 140px;
-    
-    max-width:485px;
-    margin-left: 500px ;
+    height: 140px;    
+    width:100%;  
     width: 500px;
 
 	}
 	
-	.agree{
-		margin-left:500px;
-	}
 
 </style>
 
 
 </head>
 <body>
+
+	<!-- 메뉴바 -->
+	
+	<%@ include file="/views/user/common/menubar_main.jsp" %>
+	<!-- /메뉴바 -->
+
 
 
 	<!-- 회원가입 -->
@@ -158,21 +159,29 @@
 							<div id="sexDiv" class="join_row join_sex">
 							
 							<span class="sex">
-								<span class="gender"><input type="radio" id="man" name="sex" value="M" ><label id="manLb" for="man">남자 </label>
+								<span class="gender " id="male"><input type="radio" id="man" name="sex" value="M" ><label id="manLb" for="man">남자 </label>
 								</span>
-								<span class="gender"><input type="radio" id="woman" name="sex" value="F" ><label id="womanLb" for="woman">여자 </label></span>
+								<span class="gender " id="female"><input type="radio" id="woman" name="sex" value="F" ><label id="womanLb" for="woman">여자 </label></span>
 							</span>
 							
 						</div>
 						<script type="text/javascript">
 							$(function(){
-								$(".gender").click(function(){
+								$("#male").click(function(){
 									
-									$(this).children("input").attr("checked",true);
-									$(this).css("color", "orange");
-									$(this).siblings().css("color","#424242");
-									console.log($(this).children("input"));
+									$(this).children().attr("checked",true).css("color","orange");									
+									$(".female").children().css("color","#424242").attr("checked", false);									
+									
 								});
+								
+								$("#female").click(function(){									
+									$(this).children().attr("checked",true).css("color","orange");									
+									$(".male").children().css("color","#424242").attr("checked", false);									
+									
+								});
+								
+								
+								
 							});
 						</script>
 						
@@ -182,12 +191,12 @@
 								
 								<!-- 주소 api -->
 								<input class="input" type="text" id="sample6_postcode" placeholder="우편번호">
-								<input  class="input spans" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="border-radius:4px;border:none;"><br>
+								<input  class="input spans" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="border-radius:4px;border:none;background:#EBEBEB"><br>
 								<input  class="input" type="text" id="sample6_address" placeholder="주소">
 								<input  class="input" type="text" id="sample6_address2" placeholder="상세주소">
 								
 								
-								<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+								
 <script>
     function sample6_execDaumPostcode() {
         new daum.Postcode({
@@ -235,7 +244,7 @@
 								<!-- /주소 api -->
 								
 						</div>
-					</div>
+					
 
 				<textarea id="chk_cont1" style="margin-right:9px;resize:none;" cols="80" rows="10" readonly>
 인터넷 쇼핑몰 『주식회사 와이즈앤푸드 사이버 몰』회원 약관
@@ -453,10 +462,11 @@
 본 약관은 2017년04월26일부터 적용됩니다.
 				
 				</textarea><br>
-				<div class="agree">
+				
 	 		<input type="checkbox" id="agree" align="center"><label>위 약관에 동의합니다.</label><br>
 	 		<input type="submit" id="join" value='가입하기' style="background:#FF720D;width:300px;height:50px;border-radius:4px; border:none; font-size:20px;color:black;margin-left:110px;     margin-top: 30px;" > 
-	 			</div> 
+	 			
+	 			</div>
 				</form>
 			</div>
 			<!-- /row -->
@@ -466,7 +476,10 @@
 	<!-- /section -->
 
 
-
+	<!-- 푸터 -->
+	<%@ include file="/views/user/common/footer.jsp" %>
+	
+	<!--/ 푸터 -->
 
 
 

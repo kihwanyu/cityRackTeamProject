@@ -21,6 +21,7 @@
 
 	<!-- Bootstrap -->
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+	
 
 	<!-- Slick -->
 	<link type="text/css" rel="stylesheet" href="css/slick.css" />
@@ -46,11 +47,18 @@
 <style>
 body{
 
-font-family: 'Nanum Gothic', sans-serif;
+font-family: 'Nanum Gothic', sans-serif !important;
 }
 </style>
 </head>
 <body>
+
+
+	<!-- 메뉴바 -->
+	
+	<%@ include file="/views/user/common/menubar_main.jsp" %>
+	<!-- /메뉴바 -->
+
 
 
 	<!-- section -->
@@ -248,15 +256,10 @@ font-family: 'Nanum Gothic', sans-serif;
 	</div>
 	<!-- /section -->
 
+<!-- 푸터 -->
+	<%@ include file="/views/user/common/footer.jsp" %>
+	
+	<!--/ 푸터 -->
 
-
-
-	<!-- jQuery Plugins -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/slick.min.js"></script>
-	<script src="js/nouislider.min.js"></script>
-	<script src="js/jquery.zoom.min.js"></script>
-	<script src="js/main.js"></script>
 </body>
 </html>
