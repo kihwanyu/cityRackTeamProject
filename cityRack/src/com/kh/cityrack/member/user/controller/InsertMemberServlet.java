@@ -40,8 +40,8 @@ public class InsertMemberServlet extends HttpServlet {
 		String sex = request.getParameter("sex");
 		String bday = request.getParameter("birthday");
 		DateFormat format = new SimpleDateFormat("MMMM d, yy", Locale.ENGLISH);
-		java.util.Date date = format.parse(bday);
-		System.out.println(date); 
+		/*java.util.Date date = format.parse(bday);*/
+		/*System.out.println(date);*/ 
 		
 		String tel = request.getParameter("phone");
 		String mobile = request.getParameter("mobile");

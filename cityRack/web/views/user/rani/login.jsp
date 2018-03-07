@@ -9,7 +9,7 @@
 		 font-family: 'Nanum Gothic', sans-serif;
 	}
 	.inputs input{		
-		margin-bottom:5px;		
+		margin-bottom: 5px;		
 		
 	}
 	.inputs input:first-child{

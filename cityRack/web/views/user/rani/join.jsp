@@ -202,7 +202,7 @@
 								<input class="input" type="text" id="sample6_postcode" placeholder="우편번호" name="zipcode">
 								<input  class="input spans" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="border-radius:4px;border:none;background:#EBEBEB"><br>
 								<input  class="input" type="text" id="sample6_address" placeholder="주소" name="addr1">
-								<input  class="input" type="text" id="sample6_address2" placeholder="상세주소" name="addr2">
+								<input  class="input"  type="text" id="sample6_address2" placeholder="상세주소" name="addr2">
 								
 								
 															
