@@ -45,21 +45,7 @@
 					<th width="40%" style="text-align: center;">등급명</th>
 					<th width="30%" style="text-align: center;">할인율(%)</th>
 				</tr>
-				<tr>
-					<td style="text-align: right;">100</td>
-					<td>관리자</td>
-					<td style="text-align: right;">100</td>
-				</tr>
-				<tr>
-					<td style="text-align: right;">200</td>
-					<td>다이아몬드</td>
-					<td style="text-align: right;">5</td>
-				</tr>
-				<tr>
-					<td style="text-align: right;">300</td>
-					<td>골드</td>
-					<td style="text-align: right;">3</td>
-				</tr>
+				
 
 			</table>	
 			<br>
