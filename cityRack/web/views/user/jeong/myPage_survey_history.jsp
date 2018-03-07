@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>cityRack_myPage_QnA</title>
+	<title>cityRack_myPage_survey_history</title>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
@@ -56,65 +56,39 @@
 				<form id="checkout-form" class="clearfix">
 
 					<div class="section-title">
-						<h3 class="title">체질 Q & A</h3>
+						<h3 class="title">설문조사 히스토리</h3>
 					</div>
-							
-					<div class="col-md-q" align="center">
-						<img src="./img/q.png" alt="" width="15%">
-						<a href="#"><b>목양체질</b></a> / 
-						<a href="#"><b>목음체질</b></a> / 
-						<a href="#"><b>토양체질</b></a> / 
-						<a href="#"><b>토음체질</b></a> / 
-						<a href="#"><b>금양체질</b></a> / 
-						<a href="#"><b>금음체질</b></a> / 
-						<a href="#"><b>수양체질</b></a> / 
-						<a href="#"><b>수음체질</b></a>
-					</div>	
-					<br/>
 					<br/>
 					<br/>
 					<div class="col-md-qq">
 						<div class="order-summary clearfix">
-							<table class="question-table table">
+							<table class="history-table table" align="center">
 								<thead>
 									<tr>
 										<th class="text-center">번호</th>
-										<th colspan="2">제목</th>
-										<th class="text-center">작성자</th>
-										<th class="text-center">작성일</th>
-										<th class="text-center">답변상태</th>
+										<th class="text-center">결과</th>
+										<th class="text-center">조사종류</th>
+										<th class="text-center">조사일</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
 										<td align="center">3</td>
-										<td class="details" colspan="2">
-											<a href="#">58년 개띠..금양체질..질문드립니다..</a>
-										</td>
-										<td class="price text-center">city****@naver.com</td>
-										<td align="center">2018/02/18</td>
-										<td align="center">답변대기</td>
-										<td class="text-right"></td>
+										<td align="center">목양체질</td>
+										<td align="center">상세설문조사</td>
+										<td align="center">2018/01/10</td>
 									</tr>
 									<tr>
 										<td align="center">2</td>
-										<td class="details" colspan="2">
-											<a href="#">토음체질과 수음체질이 함께 먹으면 좋은 반찬 추천해주세요~</a>
-										</td>
-										<td class="price text-center">city****@naver.com</td>
-										<td align="center">2018/02/18</td>
-										<td align="center">답변대기</td>
-										<td class="text-right"></td>
+										<td align="center">토양체질</td>
+										<td align="center">간편설문조사</td>
+										<td align="center">2018/01/06</td>
 									</tr>
 									<tr>
 										<td align="center">1</td>
-										<td class="details" colspan="2">
-											<a href="#">목양체질입니다. 미역초무침 괜찮나요??</a>
-										</td>
-										<td class="price text-center">city****@naver.com</td>
-										<td align="center">2018/02/18</td>
-										<td align="center">답변대기</td>
-										<td class="text-right"></td>
+										<td align="center">목양체질</td>
+										<td align="center">간편설문조사</td>
+										<td align="center">2018/01/03</td>
 									</tr>																		
 								</tbody>
 							</table>
@@ -122,34 +96,16 @@
 					</div>
 				</form>
 				<br/>
-				
-				<!-- Search -->
-				<div class="question-search" align="center">
-					<form>
-						<input class="input search-input" type="text" placeholder="키워드를 입력하세요" size="60px">
-						<select class="input search-categories">
-							<option value="0">제목</option>
-							<option value="1">제목+내용</option>
-						</select>
-						<button class="search-btn"><i class="fa fa-search"></i></button>
-					</form>
-				</div>
-				<!-- /Search -->
 				<br/>
 				<br/>
 				<div align="right">
-					<button onclick="qu(); return false;" class="primary-btn">질문하기</button>
-					<button onclick="history(); return false;" class="primary-btn">내 질문내역</button>
+					<button onclick="again(); return false;" class="primary-btn">설문조사 다시하기</button>
 				</div>
 				
 				<script>
-				
-					function qu(){
-						location.href="myPage_question.jsp";
-					}
 					
-					function history(){
-						location.href="myPage_question_history.jsp";
+					function again(){
+						location.href="../rani/survey.jsp";
 					}
 				
 				</script>

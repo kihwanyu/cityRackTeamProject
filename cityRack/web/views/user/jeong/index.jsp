@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>E-SHOP HTML Template</title>
+	<title>cityRack</title>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
@@ -48,7 +48,7 @@
 				<div class="pull-left">
 					<!-- 로고 -->
 					<div class="header-logo">
-						<a class="logo" href="index.jsp">
+						<a class="logo" href="#">
 							<img src="views/user/jeong/img/logo.png" alt="">
 						</a>
 					</div>
@@ -68,10 +68,10 @@
 								<a href="<%=request.getContextPath()%>/views/user/rani/login.jsp" class="text-uppercase">로그인</a> / <a href="#" class="text-uppercase">회원가입</a>
 							</div>
 							<ul class="custom-menu">
-								<li><a href="myPage_info.jsp"><i class="fa fa-user-o"></i> 내 정보</a></li>
-								<li><a href="myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
-								<li><a href="myPage_delivery.jsp"><i class="fa fa-check"></i> 주문배송조회</a></li>
-								<li><a href="myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>
+								<li><a href="views/user/jeong/myPage_info.jsp"><i class="fa fa-user-o"></i> 내 정보</a></li>
+								<li><a href="views/user/jeong/myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
+								<li><a href="views/user/jeong/myPage_delivery.jsp"><i class="fa fa-check"></i> 주문배송조회</a></li>
+								<li><a href="views/user/jeong/myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>
 								<li><a href="#"><i class="fa fa-unlock-alt"></i> 로그아웃</a></li>
 							</ul>
 						</li>
@@ -87,7 +87,7 @@
 								<strong class="text-uppercase">장바구니</strong>
 							</div>
 							<div class="loginDiv">
-								<a href="cart.jsp" class="text-uppercase">주문하러가기</a>
+								<a href="views/user/jeong/cart.jsp" class="text-uppercase">주문하러가기</a>
 							</div>
 						</li>
 						<!-- /Cart -->
@@ -116,28 +116,28 @@
 					<span class="category-header">8체질 바로가기 <i class="fa fa-list"></i></span>
 					<ul class="category-list">
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" aria-expanded="true" href="product1.jsp">목양체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" aria-expanded="true" href="views/user/jeong/product1.jsp">목양체질<i class="fa fa-angle-right"></i></a>
 						</li>
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" aria-expanded="true" href="product2.jsp">목음체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" aria-expanded="true" href="views/user/jeong/product2.jsp">목음체질<i class="fa fa-angle-right"></i></a>
 						</li>						
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" aria-expanded="true" href="product3.jsp">수양체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" aria-expanded="true" href="views/user/jeong/product3.jsp">수양체질<i class="fa fa-angle-right"></i></a>
 						</li>						
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" aria-expanded="true" href="product4.jsp">수음체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" aria-expanded="true" href="views/user/jeong/product4.jsp">수음체질<i class="fa fa-angle-right"></i></a>
 						</li>						
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" aria-expanded="true" href="#">토양체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" aria-expanded="true" href="views/user/rani/toyang.jsp">토양체질<i class="fa fa-angle-right"></i></a>
 						</li>						
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" aria-expanded="true" href="#">토음체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" aria-expanded="true" href="views/user/rani/toeum.jsp">토음체질<i class="fa fa-angle-right"></i></a>
 						</li>						
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" aria-expanded="true" href="#">금양체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" aria-expanded="true" href="views/user/rani/keumyang.jsp">금양체질<i class="fa fa-angle-right"></i></a>
 						</li>						
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" aria-expanded="true" href="#">금음체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" aria-expanded="true" href="views/user/rani/kumeum.jsp">금음체질<i class="fa fa-angle-right"></i></a>
 						</li>	
 						<li class="type_check">
 							<a class="dropdown-toggle" aria-expanded="true">체질확인하러가기 Go!</a>
@@ -154,14 +154,14 @@
 					<ul class="menu-list">
 						<li><a href="#">전체상품보기</a></li>
 						<li><a href="#">베스트상품</a></li>
-						<li><a href="#">이벤트</a></li>
+						<li><a href="views/user/jeong/event.jsp">이벤트</a></li>
 						<li class="dropdown mega-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">설문조사 <i class="fa fa-caret-down"></i></a>
 							<div class="custom-menu" width="300px">
 								<div class="row">
 									<div class="col-md-3">
 										<div class="hidden-sm hidden-xs">
 											<a class="banner banner-1">
-												<img src="views/user/jeong/img/logo.png" alt="">
+												<img src="./img/survey1.png" alt="">
 											</a>
 										</div>
 										<hr>
@@ -169,13 +169,13 @@
 											<li><h3 class="list-links-title">간편설문조사</h3></li>
 											<li>총 20문항으로, <br/>보다 간편하게 체질을 <br/>판단합니다.</li>
 											<li><br/></li>
-											<li><a href="survey_easy.jsp">간편설문조사하기 Go!</a></li>
+											<li><a href="views/user/jeong/survey_easy.jsp">간편설문조사하기 Go!</a></li>
 										</ul>
 									</div>
 									<div class="col-md-3">
 										<div class="hidden-sm hidden-xs">
 											<a class="banner banner-1">
-												<img src="views/user/jeong/img/logo.png" alt="">
+												<img src="./img/survey2.png" alt="">
 											</a>
 										</div>
 										<hr>
@@ -183,7 +183,7 @@
 										<li><h3 class="list-links-title">상세설문조사</h3></li>
 											<li>총 65문항으로, <br/>보다 확실하게 체질을 <br/>판단합니다.</li>
 											<li><br/></li>
-											<li><a href="survey_detail.jsp">상세설문조사하기 Go!</a></li>
+											<li><a href="views/user/jeong/survey_detail.jsp">상세설문조사하기 Go!</a></li>
 										</ul>
 									</div>
 								</div>
