@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+			<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -35,7 +35,7 @@
 	<section>	
 		<div class="tableArea" align="center">
 			<h2>등급 추가</h2><br>
-			<form action="" method="get">
+			<form action="<%=request.getContextPath() %>/GradeInsert.do" method="get">
 				<table style="width: 30%">
 					<tr>
 						<td colspan="3">등급 추가</td>
@@ -43,21 +43,28 @@
 					<tr>
 						<td>등급명</td>
 						<td colspan="2">
-							<input type="text" name="garde_name">
+							<input type="text" name="grade_name">
 						</td>
 					</tr>
 					<tr>
 						<td>할인율</td>
 						<td colspan="2">
-							<input type="text" name="garde_discount">
+							<select name="grade_discount">
+							  <option value="5">5%</option>
+							  <option value="10">10%</option>
+							  <option value="15">15%</option>
+							  <option value="20">20%</option>
+							  <option value="25">25%</option>
+							  <option value="30">30%</option>
+							  <option value="35">35%</option>
+							  <option value="40">40%</option>
+							  <option value="45">45%</option>
+							  <option value="50">50%</option>
+							 
+							</select>
 						</td>
 					</tr>
-					<tr>
-						<td>비고</td>
-						<td colspan="2">
-							<textarea rows="5" cols="20" style="resize: none;" name="note"></textarea>
-						</td>
-					</tr>
+					
 					<tr>
 						<td colspan="3">
 							<div>
