@@ -84,5 +84,46 @@ public class PcategoryDao {
 		
 		return cList;
 	}
+	public int categoryUpdate(Connection conn, Pcategory pc) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("categoryUpdate");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, pc.getCa_name());
+			pstmt.setInt(2, Integer.parseInt(pc.getCa_code()));
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+	public int categoryDelete(Connection conn, String cano) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("categoryDelete");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, cano);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 
 }

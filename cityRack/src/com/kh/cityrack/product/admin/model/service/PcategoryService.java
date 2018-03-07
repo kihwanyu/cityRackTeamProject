@@ -35,4 +35,38 @@ public class PcategoryService {
 		return cList;
 	}
 
+	public int categoryUpdate(Pcategory pc) {
+		Connection conn = getConnection();
+		
+		int result = 0;
+				
+		result = new PcategoryDao().categoryUpdate(conn, pc);
+		
+		if(result > 0){
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public int categoryDelete(String cano) {
+		Connection conn = getConnection();
+				
+		int result = new PcategoryDao().categoryDelete(conn, cano);
+		
+		if(result > 0){
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
 }
