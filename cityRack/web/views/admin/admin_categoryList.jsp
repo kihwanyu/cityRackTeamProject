@@ -1,5 +1,11 @@
+<%@page import="com.kh.cityrack.product.admin.model.dto.Pcategory"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	ArrayList<Pcategory> cList = (ArrayList<Pcategory>)request.getAttribute("cList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,19 +50,12 @@
 					<th width="10%" style="text-align: center;">코드</th>
 					<th width="30%" style="text-align: center;">카테고리명</th>
 				</tr>
+				<%for(int i = 0; i < cList.size(); i++){ %>
 				<tr>
-					<td style="text-align: right;">100</td>
-					<td style="text-align: left;">관리자</td>
+					<td style="text-align: right;"><%=cList.get(i).getCa_code() %></td>
+					<td style="text-align: left;"><%=cList.get(i).getCa_name() %></td>
 				</tr>
-				<tr>
-					<td style="text-align: right;">100</td>
-					<td style="text-align: left;">관리자</td>
-				</tr>
-				<tr>
-					<td style="text-align: right;">100</td>
-					<td style="text-align: left;">관리자</td>
-				</tr>
-
+				<%} %>
 			</table>	
 			<br>
 			<div align="center">
