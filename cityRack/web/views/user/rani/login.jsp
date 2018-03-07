@@ -9,7 +9,7 @@
 		 font-family: 'Nanum Gothic', sans-serif;
 	}
 	.inputs input{		
-		margin-bottom:5px;		
+		margin-bottom: 5px;		
 		
 	}
 	.inputs input:first-child{
@@ -60,7 +60,7 @@
 	
 
 	<!-- Google font -->
-	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+	
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 
 	<!-- Bootstrap -->
