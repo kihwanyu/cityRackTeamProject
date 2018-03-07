@@ -1,5 +1,6 @@
 package com.kh.cityrack.product.admin.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.kh.cityrack.common.ProductRenamePolicy;
+import com.kh.cityrack.product.admin.model.dto.Product;
+import com.kh.cityrack.product.admin.model.service.ProductService;
 import com.oreilly.servlet.MultipartRequest;
 
 /**
@@ -34,8 +37,6 @@ public class ProductInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
 		
 		//폼전송을 multipart/form-data로 전송하는 경우에는
 		//기존처럼request.getParameter로 값을 받을 수 없다.
@@ -97,64 +98,73 @@ public class ProductInsertServlet extends HttpServlet {
 			
 			//multipartRequest객체에서 파일 외의 값도 꺼내온다.
 			String status = multipartRequest.getParameter("status");
-			String category = multipartRequest.getParameter("category");
+			String categoryNo = multipartRequest.getParameter("category");
 			String constitution = multipartRequest.getParameter("constitution");
 			String pname = multipartRequest.getParameter("pname");
 			String price = multipartRequest.getParameter("price");
-			String saleValues = multipartRequest.getParameter("saleValues");
+			String saleValues = null;
 					
 			String[] eventArr = multipartRequest.getParameterValues("event");
+			String event = "";
 			
-			
-			System.out.println("status: "+ status);
-			System.out.println("category: "+ category);
+			/*System.out.println("status: "+ status);
+			System.out.println("category: "+ categoryNo);
 			System.out.println("constitution: "+ constitution);
 			System.out.println("pname: "+ pname);
-			System.out.println("price: "+ price);
-			System.out.println("saleValues: "+ saleValues);
+			System.out.println("price: "+ price);*/
+			
+			Product p = new Product();
 			
 			for(int i = 0; i < eventArr.length; i++){
-				System.out.println("event["+i+"]:" + eventArr[i]);
+				if(eventArr[i].equals("sale")){
+					saleValues = multipartRequest.getParameter("saleValues");
+					p.setP_discount(Double.parseDouble(saleValues));
+				}
+				if(i < eventArr.length-1){
+					event += eventArr[i] + " ";
+				} else {
+					event += eventArr[i];
+				}
 			}
 			
-			/*Member m = (Member)request.getSession().getAttribute("member");
+			/*System.out.println("event: "+ event);
+			System.out.println("saleValues: "+ saleValues);*/
 			
-			String uno = String.valueOf(m.getUno());*/
 			
-			//Board 객체 생성
-			//Board b = new Board(multiTitle ,multiContent ,uno);
-			
+			p.setP_name(pname);
+			p.setP_price(Integer.parseInt(price));
+			p.setCa_code(categoryNo);
+			p.setP_8constitution(constitution);
+			p.setP_event(event);
+			p.setP_status(status);
 			// 첨부파일의 정보를 저장할 arrayList객체를 생성
-			//ArrayList<Attachment> fileList = new ArrayList<Attachment>();
 			//전송 순서를 역순으로 파일이 Enumeration에 저장되기 때문에 
 			//반복문을 역으로 수행한다.
-			/*for (int i = originFiles.size() - 1; i >= 0; i--) {
-				Attachment at = new Attachment(originFiles.get(i),saveFiles.get(i),savePath);
-				fileList.add(at);
-			}*/
+			p.setP_pic1(productFilesName.get(1));
+			p.setP_pic2(productFilesName.get(0));
 			
-			//int result = new BoardService().inserThumb(b, fileList);
+			
+			int result = new ProductService().productInsert(p);
 			
 			//System.out.println("result : " + result);
 			
-			/*if(result > 0) {
-				response.sendRedirect(request.getContextPath()+"/SelectList.tn");
+			if(result > 0) {
+				/*response.sendRedirect(request.getContextPath()+"/SelectList.tn");*/
 				
 			} else {
 				//실패시 저장된 사진 삭제.
-				for (int i = 0; i < saveFiles.size(); i++) {
+				for (int i = 0; i < productFilesName.size(); i++) {
 					//파일시스템에 저장된 이름으로 파일 객체 생성
-					File failedFile = new File(savePath + saveFiles.get(i));
+					File failedFile = new File(savePath + productFilesName.get(i));
 					
 					System.out.println(failedFile);
 					//true, false 리턴함
-					System.out.println("failedFile[" + i + "] : " + failedFile.delete());
+					//System.out.println("failedFile[" + i + "] : " + failedFile.delete());
 				}
 				// 에러 페이지 로 전달.
-				request.setAttribute("msg", "사진게시판 등록 에러");
+				request.setAttribute("msg", "상품 등록 실패");
 				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-			}*/
-			
+			}
 		}
 	}
 

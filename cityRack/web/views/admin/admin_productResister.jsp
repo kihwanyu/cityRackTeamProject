@@ -104,14 +104,14 @@
 						<tr>
 							<td style="text-align: center;">체질명</td>
 							<td>
-								<input style="margin: 5px;" type="radio" name="constitution" value="100">수음
-								<input style="margin: 5px;" type="radio" name="constitution" value="200">수양
-								<input style="margin: 5px;" type="radio" name="constitution" value="300">목음
-								<input style="margin: 5px;" type="radio" name="constitution" value="400">목양<br>
-								<input style="margin: 5px;" type="radio" name="constitution" value="500">금음
-								<input style="margin: 5px;" type="radio" name="constitution" value="600">금양
-								<input style="margin: 5px;" type="radio" name="constitution" value="700">토음
-								<input style="margin: 5px;" type="radio" name="constitution" value="800">토양							
+								<input style="margin: 5px;" type="radio" name="constitution" value="수음">수음
+								<input style="margin: 5px;" type="radio" name="constitution" value="수양">수양
+								<input style="margin: 5px;" type="radio" name="constitution" value="목음">목음
+								<input style="margin: 5px;" type="radio" name="constitution" value="목양">목양<br>
+								<input style="margin: 5px;" type="radio" name="constitution" value="금음">금음
+								<input style="margin: 5px;" type="radio" name="constitution" value="금양">금양
+								<input style="margin: 5px;" type="radio" name="constitution" value="토음">토음
+								<input style="margin: 5px;" type="radio" name="constitution" value="토양">토양							
 							</td>
 						</tr>
 						<tr>			 

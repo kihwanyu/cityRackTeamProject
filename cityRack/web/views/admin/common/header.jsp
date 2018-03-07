@@ -27,7 +27,7 @@
        		<a class="dropdown-toggle" data-toggle="dropdown" href="#">상품 관리
         	<span class="caret"></span></a>
 	        <ul class="dropdown-menu">
-		        <li><a href="<%=request.getContextPath() %>/views/admin/admin_productList.jsp">상품 정보</a></li>
+		        <li><a href="<%=request.getContextPath() %>/productGetAll.pr">상품 정보</a></li>
 		        <li><a href="<%=request.getContextPath() %>/categoryGetAll.pr">카테고리 정보</a></li>
 	        </ul>
       	</li>
