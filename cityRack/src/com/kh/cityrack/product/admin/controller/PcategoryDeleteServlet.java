@@ -37,14 +37,12 @@ public class PcategoryDeleteServlet extends HttpServlet {
 		int result = new PcategoryService().categoryDelete(cano);
 		
 		if(result > 0){
-			ArrayList<Pcategory> cList = new PcategoryService().categoryGetAll();
-			request.setAttribute("cList", cList);
-			page = "views/admin/admin_categoryList.jsp";
+			response.sendRedirect(request.getContextPath()+"/categoryGetAll.pr");
 		} else {
 			request.setAttribute("msg", "카테고리 삭제 실패");
 			page = "views/common/errorPage.jsp";
+			request.getRequestDispatcher(page).forward(request, response);
 		}
-		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**

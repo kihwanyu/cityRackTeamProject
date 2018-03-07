@@ -40,14 +40,12 @@ public class PcategoryUpdateServlet extends HttpServlet {
 		result = new PcategoryService().categoryUpdate(pc);
 		
 		if(result > 0){
-			ArrayList<Pcategory> cList = new PcategoryService().categoryGetAll();
-			request.setAttribute("cList", cList);
-			page = "views/admin/admin_categoryList.jsp";
+			response.sendRedirect(request.getContextPath()+"/categoryGetAll.pr");
 		} else {
 			request.setAttribute("msg", "카테고리 업데이트 실패");
 			page = "views/common/errorPage.jsp";
+			request.getRequestDispatcher(page).forward(request, response);
 		}
-		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**

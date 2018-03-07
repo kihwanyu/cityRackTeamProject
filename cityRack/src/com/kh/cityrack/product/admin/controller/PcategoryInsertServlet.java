@@ -39,14 +39,13 @@ public class PcategoryInsertServlet extends HttpServlet {
 		result = new PcategoryService().categoryInsert(category_name);
 		
 		if(result > 0){
-			ArrayList<Pcategory> cList = new PcategoryService().categoryGetAll();
-			request.setAttribute("cList", cList);
-			page = "views/admin/admin_categoryList.jsp";
+			response.sendRedirect(request.getContextPath()+"/categoryGetAll.pr");
 		} else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "카테고리 추가 실패");
+			request.getRequestDispatcher(page).forward(request, response);
 		}
-		request.getRequestDispatcher(page).forward(request, response);	
+			
 	}
 
 	/**
