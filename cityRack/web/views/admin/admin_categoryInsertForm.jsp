@@ -35,7 +35,7 @@
 	<section>	
 		<div class="tableArea" align="center">
 			<h2>카테고리 추가</h2><br>
-			<form action="" method="get">
+			<form action="<%=request.getContextPath() %>/PcategoryInsert.pr" method="get">
 				<table style="width: 30%">
 					<tr>
 						<td colspan="2">카테고리 추가</td>
@@ -43,30 +43,20 @@
 					<tr>
 						<td>카테고리명</td>
 						<td>
-							<input class="form-control" type="text" name="garde_name">
+							<input class="form-control" type="text" name="category_name">
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2">
 							<div>
-								<button onclick="">추가</button>&nbsp;
-								<button onclick="dropOut();">삭제</button>&nbsp;
+								<input type="submit" value="추가">&nbsp;
 							</div>
 						</td>
 					<tr>
 				</table>
 			</form>
 		</div>
-		<script type="text/javascript">
-			function dropOut(){
-				var result = window.confirm("관리자등급을 삭제하시겠습니까?");
-				if(result==true){
-					
-				} else {
-					
-				}
-			}
-		</script>
+		
 	</section>
 	<%@ include file="/views/admin/common/footer.jsp" %>
 	

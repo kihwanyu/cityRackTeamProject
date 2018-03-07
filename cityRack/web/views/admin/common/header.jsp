@@ -28,7 +28,7 @@
         	<span class="caret"></span></a>
 	        <ul class="dropdown-menu">
 		        <li><a href="<%=request.getContextPath() %>/views/admin/admin_productList.jsp">상품 정보</a></li>
-		        <li><a href="<%=request.getContextPath() %>/views/admin/admin_categoryList.jsp">카테고리 정보</a></li>
+		        <li><a href="<%=request.getContextPath() %>/categoryGetAll.pr">카테고리 정보</a></li>
 	        </ul>
       	</li>
 		<li class="menuNav"><a href="<%=request.getContextPath() %>/views/admin/admin_stockList.jsp">재고 관리</a></li>
