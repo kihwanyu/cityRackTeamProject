@@ -32,12 +32,12 @@ public class PcategoryGetAllServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		
 		ArrayList<Pcategory> cList = new PcategoryService().categoryGetAll();
 		
 		String page = "";
-		
-		System.out.println(cList);
-		
+				
 		if(cList != null){
 			request.setAttribute("cList", cList);
 			page = "views/admin/admin_categoryList.jsp";
