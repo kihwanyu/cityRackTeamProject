@@ -76,6 +76,37 @@ public class MemberDao {
 		
 		return loginUser;
 	}
+	
+	// 회원탈퇴처리용
+	public int deleteMember(Connection con, Member m) {
+		
+		// PreparedStatement 객체 선언
+		PreparedStatement pstmt = null;
+		// result값 초기화
+		int result = 0;
+		
+		//prop객체의 파일 위치에 있는 파일에서 key값이 deleteMember value값을 가져온다.
+		String query = prop.getProperty("deleteMember");		
+		
+		try {
+			
+			//Connection 객체를 통해 PreparedStatement객체를 인스턴스화 한다.
+			pstmt = con.prepareStatement(query);
+			
+			//PreparedStatement객체의 ?를 채워준다.
+			pstmt.setString(1, m.getM_email());
+				
+			//쿼리문의 결과를 result에 담는다.
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 
 
 }
