@@ -72,7 +72,8 @@
 				$(this).parent().css("background","white");
 			}).click(function() {
 				var num = $(this).parent().children().eq(0).text();
-				location.href="<%= request.getContextPath()%>/views/admin/admin_categoryInsertForm.jsp";
+				var name = $(this).parent().children().eq(1).text();
+				location.href="<%= request.getContextPath()%>/views/admin/admin_categoryUpdateForm.jsp?num="+num+"&name="+name;
 			});
 		});
 		function dropOut(){
