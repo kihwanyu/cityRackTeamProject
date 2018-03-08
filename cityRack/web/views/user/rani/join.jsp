@@ -192,7 +192,7 @@
 							});
 							
 						</script>
-						<input class="input" type="text" name="birthday" placeholder="생년월일" maxlength="7">	
+						<input class="input" type="text" name="birthday" placeholder="생년월일" maxlength="8">	
 						<p style="font-size:12px;">주민번호 앞자리 형식으로 기재해 주시기 바랍니다. 예:) 19200101 : 1920년 01월 01일 생</p>
 						<input class="input" type="text" name="phone" placeholder="전화번호 ('-'없이 숫자만 기재)" maxlength="11">
 						<input class="input" type="text" name="mobile" placeholder="휴대전화번호 ('-'없이 숫자만 기재)" maxlength="11">		
@@ -264,7 +264,7 @@
 							if($("#agree").prop("checked")){
 								$submitForm.attr("onsubmit","return true();")								
 							} else if (!($("#agree").prop("checked"))){
-								$submitForm.attr("onsubmit","return false();")			
+								$submitForm.attr("onsubmit", "return false();")			
 							}
 							
 						});	
