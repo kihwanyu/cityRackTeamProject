@@ -59,7 +59,7 @@ public class loginServlet extends HttpServlet {
 			if(loginUser.getC_name().equals("관리자")){
 				page = "views/admin/index.jsp";
 			} else {
-				page = "views/user/jeong/index.jsp" ;				
+				page = "views/user/jeong/index.jsp"  ;				
 			}
 			
 			HttpSession session = request.getSession();

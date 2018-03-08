@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta  charset="UTF-8">
-	<style type="text/css">
+	<style type="text/css" >
 	body{
 		 font-family: 'Nanum Gothic',  sans-serif;
 	}
