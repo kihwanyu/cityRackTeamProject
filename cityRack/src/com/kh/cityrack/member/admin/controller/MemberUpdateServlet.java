@@ -1,16 +1,20 @@
 package com.kh.cityrack.member.admin.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.cityrack.member.admin.model.service.MemberService;
+
 /**
  * Servlet implementation class MemberUpdateServlet
  */
-@WebServlet("/MemberUpdate.em")
+@WebServlet("/MemberUpdate.me")
 public class MemberUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,8 +30,28 @@ public class MemberUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String num = (request.getParameter("num"));
+		
+		String[] numarr = num.split(":");
+		
+		int memberCode = Integer.parseInt(numarr[0]);
+		String memberStatus = numarr[1];
+		
+		int result = new MemberService().memberUpdate(memberCode, memberStatus);
+		
+		String page = "";
+		if(result > 0){
+			page = request.getContextPath() + "/MemberGetAll.me";
+			response.sendRedirect(page);
+			return;
+		}else{
+			page = request.getContextPath() + "/views/common/errorPage.jsp";
+			request.setAttribute("msg", "회원 정보 수정 실패!");
+		}
+		
+		RequestDispatcher view = request.getRequestDispatcher(page);
+		view.forward(request, response);
+		
 	}
 
 	/**

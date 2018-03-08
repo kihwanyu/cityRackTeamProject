@@ -18,9 +18,9 @@
 		border-collapse: collapse;
 		
 	}	
-	.tableArea {
+	#memberTable {
 		width: 100%;
-		height: 500px;
+		height: 100px;
 		margin-left: auto;
 		margin-right: auto;
 	}
@@ -82,22 +82,15 @@
 		</div>
 		
 		<br>
-		<div class="tableArea" align="center">
-			<table style="width: 95%">
+		<div align="center">
+			<table id="memberTable" style="width: 40%">
 				<tr>
 					<th width="4%" style="text-align: center;">번호</th>
-					<th width="10%" style="text-align: center;">이메일</th>
 					<th width="5%" style="text-align: center;">등급</th>
-					<th width="10%" style="text-align: center;">비밀번호</th>
 					<th width="4%" style="text-align: center;">이름</th>
-					<th width="4%" style="text-align: center;">성별</th>
-					<th width="7%" style="text-align: center;">생년월일</th>
-					<th width="20%" style="text-align: center;">주소</th>
-					<th width="7%" style="text-align: center;">전화번호</th>
-					<th width="7%" style="text-align: center;">핸드폰번호</th>
-					<th width="7%" style="text-align: center;">가입일</th>
-					<th width="5%" style="text-align: center;">탈퇴여부</th>
-					<th width="5%" style="text-align: center;">강제탈퇴</th>
+					<th width="2%" style="text-align: center;">성별</th>
+					<th width="2%" style="text-align: center;">탈퇴여부</th>
+					
 				</tr>
 					
 			</table>	
@@ -146,14 +139,51 @@
 				document.getElementById('order').style.display='inline';
 			}
 		}
-		function dropOut(){
-			var result = window.confirm("홍길동님을 정말로 탈퇴시키시겠습니까?");
-			if(result==true){
-				
-			} else {
-				
-			}
-		}
+		
+		$(function() {
+			var $memberTable = $('#memberTable');
+			
+			<% for(Member m : list){%>
+			  $tr = $('<tr>');
+			  
+			  $memberCode = $('<td>').text(<%= m.getM_no()%>);
+			  $memberEmail = $('<td>').text('<%= m.getM_email()%>');
+			  $gradeName = $('<td>').text('<%= m.getC_name()%>');
+			  $memberPassword = $('<td>').text('<%= m.getM_password()%>');
+			  $memberName = $('<td>').text('<%= m.getM_name()%>');
+			  $memberGender = $('<td>').text('<%= m.getM_gender()%>');
+			  $memberBirthday = $('<td>').text('<%= m.getM_birthDay()%>');
+			  $memberAddress = $('<td>').text('<%= m.getM_address()%>');
+			  $memberTel = $('<td>').text('<%= m.getM_tel()%>');
+			  $memberPhone = $('<td>').text('<%= m.getM_phone()%>');
+			  $memberEnrollDate = $('<td>').text('<%= m.getM_enorll_date()%>');
+			  $memberState = $('<td>').text('<%= m.getM_status()%>');
+			  
+			  $tr.append($memberCode);
+			  $tr.append($gradeName);
+			  $tr.append($memberName);
+			  $tr.append($memberGender);
+			  $tr.append($memberState);
+			  
+			  $memberTable.append($tr);
+			  
+			<%}%>
+			        
+			
+				$("#memberTable td").mouseenter(function () {
+					$(this).parent().css({"background":"lightyellow","cursor":"pointer"});
+					var num = $(this).val();
+				}).mouseout(function() {
+					$(this).parent().css("background","white");
+				}).click(function() {
+					var num = $(this).parent().children().eq(0).text();
+					location.href="<%= request.getContextPath()%>/MemberGet.me?num=" + num;
+				});
+			
+			
+		});
+		
+		</script>
 	</script>
 </body>
 </html>

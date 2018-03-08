@@ -17,4 +17,29 @@ public class MemberService {
 		return list;
 	}
 
+	public Member memberGet(int memberCode) {
+		Connection conn = getConnection();
+		
+		Member m = new MemberDao().memberGet(conn, memberCode);
+		
+		close(conn);
+		return m;
+	}
+
+	public int memberUpdate(int memberCode, String memberStatus) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().memberUpdate(conn, memberCode, memberStatus);
+		
+		if(result > 0){
+			commit(conn);
+		
+		}else{
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+	}
+
 }

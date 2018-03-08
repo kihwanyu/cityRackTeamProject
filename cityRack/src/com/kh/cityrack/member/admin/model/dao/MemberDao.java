@@ -2,6 +2,7 @@ package com.kh.cityrack.member.admin.model.dao;
 
 import java.io.FileReader;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class MemberDao {
 			while(rset.next()){
 				m = new Member();
 				m.setM_no(rset.getInt("m_no"));
-				m.setM_address(rset.getString("m_email"));
+				m.setM_email(rset.getString("m_email"));
 				m.setC_name(rset.getString("c_name"));
 				m.setM_password(rset.getString("m_password"));
 				m.setM_name(rset.getString("m_name"));
@@ -64,6 +65,71 @@ public class MemberDao {
 			close(rset);
 		}
 		return list;
+	}
+	public Member memberGet(Connection conn, int memberCode) {
+		Member m = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("memberGet");
+		
+		try{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, memberCode);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				m = new Member();
+				m.setM_no(rset.getInt("m_no"));
+				m.setM_email(rset.getString("m_email"));
+				m.setC_name(rset.getString("c_name"));
+				m.setM_password(rset.getString("m_password"));
+				m.setM_name(rset.getString("m_name"));
+				m.setM_gender(rset.getString("m_gender"));
+				m.setM_birthDay(rset.getDate("m_birthDay"));
+				m.setM_address(rset.getString("m_address"));
+				m.setM_tel(rset.getString("m_tel"));
+				m.setM_phone(rset.getString("m_phone"));
+				m.setM_enorll_date(rset.getDate("m_enroll_date"));
+				m.setM_status(rset.getString("m_status"));
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(rset);
+		}
+		
+		return m;
+	}
+	public int memberUpdate(Connection conn, int memberCode, String memberStatus) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String status = null;
+		String query = prop.getProperty("memberUpdate");
+		
+		if(memberStatus.equals("Y")){
+			status = "N";
+		}else{
+			status = "Y";
+		}
+		
+		
+		try{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, status);
+			pstmt.setInt(2, memberCode);
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 }
