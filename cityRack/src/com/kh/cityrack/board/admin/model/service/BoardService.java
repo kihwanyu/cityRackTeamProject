@@ -11,7 +11,7 @@ public class BoardService {
 	public ArrayList<Board> selectList() {
 		Connection con = getConnection();
 		
-		ArrayList<Board> list = new BoardDao().selectList();
+		ArrayList<Board> list = new BoardDao().selectList(con);
 		
 		close(con);
 		
