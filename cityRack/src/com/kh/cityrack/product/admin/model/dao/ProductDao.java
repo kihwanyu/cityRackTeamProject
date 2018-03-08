@@ -131,8 +131,43 @@ public class ProductDao {
 		return listCount;
 	}
 	public Product productGet(Connection conn, String pcode) {
-		/*여기부터*/
-		return null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Product p = null;
+		
+		String query = prop.getProperty("productGet");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setInt(1, Integer.parseInt(pcode));
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				p = new Product();
+				p.setP_code(String.valueOf(rset.getInt("P_CODE")));
+				p.setCa_code(String.valueOf(rset.getInt("CA_NO")));
+				p.setP_resisterDate(rset.getDate("P_RESISTERDATE"));
+				p.setP_8constitution(rset.getString("P_8CONSTITUTION"));
+				p.setP_name(rset.getString("P_NAME"));
+				p.setP_price(rset.getInt("P_PRICE"));
+				p.setP_event(rset.getString("P_EVENT"));
+				p.setP_discount(rset.getDouble("P_DISCOUNT"));
+				p.setP_pic1(rset.getString("P_PIC1"));
+				p.setP_pic2(rset.getString("P_PIC2"));
+				p.setP_status(rset.getString("P_STATUS"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return p;
 	}
 
 }

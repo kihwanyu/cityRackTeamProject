@@ -48,6 +48,8 @@ public class FormLoadServlet extends HttpServlet {
 				
 				Product p = new ProductService().productGet(pcode);
 				
+				request.setAttribute("p", p);
+				 
 				page = "views/admin/admin_productUpadate.jsp";
 			} else {
 				
