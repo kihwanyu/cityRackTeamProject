@@ -166,7 +166,8 @@
 			</div>	
 		</div>
 		<div align="center" style="margin-top: -50px;">
-				<input class="resisterBt" type="button" value="수정하기">
+				<input class="resisterBt" type="button" value="수정하기">&nbsp;
+				<input class="resisterBt" type="button" value="삭제하기">
 		</div>
 		<div id="fileArea">
 			<input type="file" id="file1" name="file1" onchange="LoadImg1(this);">
