@@ -35,7 +35,7 @@
 	<section>	
 		<div class="tableArea" align="center">
 			<h2>등급 추가</h2><br>
-			<form action="<%=request.getContextPath() %>/GradeInsert.do" method="get">
+			<form action="<%=request.getContextPath() %>/GradeInsert.me" method="get">
 				<table style="width: 30%">
 					<tr>
 						<td colspan="3">등급 추가</td>

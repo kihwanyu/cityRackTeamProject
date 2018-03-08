@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*,com.kh.cityrack.member.admin.model.dto.*"%>
+<% 
+  ArrayList<Grade> list = (ArrayList<Grade>)request.getAttribute("list");
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,9 +30,6 @@
 		border: 1px solid black;
 		padding: 10px;
 	}
-	th {
-		background: lightgray;
-	}
 	
 </style>
 <title>등급 관리</title>
@@ -39,11 +39,12 @@
 	<section>	
 		<div class="tableArea" align="center">
 			<h2>등급 정보</h2><br>
-			<table style="width: 25%">
+			<table id="gradeTable" style="width: 25%">
 				<tr>
 					<th width="30%" style="text-align: center;">코드</th>
 					<th width="40%" style="text-align: center;">등급명</th>
 					<th width="30%" style="text-align: center;">할인율(%)</th>
+					
 				</tr>
 				
 
@@ -65,6 +66,41 @@
 				var num = $(this).parent().children().eq(0).text();
 				location.href="<%= request.getContextPath()%>/views/admin/admin_gradeUpdateForm.jsp";
 			});
+			
+			var $gradeTable = $('#gradeTable');
+			
+			
+			
+			<% for(Grade g : list){%>
+			  console.log(<%= g.getGradeCode()%>);
+			  console.log('<%= (String)g.getGradeName()%>');
+			  console.log(<%= g.getGradeDiscount()%>);
+			
+			  $tr = $('<tr>');
+			  
+			  $gradeCode = $('<td>').text(<%= g.getGradeCode()%>);  
+			  $gradeName = $('<td>').text("<%= g.getGradeName()%>");
+			  $gradeDiscount = $('<td>').text(<%= g.getGradeDiscount()%>);
+			 
+			  
+			  $tr.append($gradeCode);
+			  $tr.append($gradeName);
+			  $tr.append($gradeDiscount);
+			  
+			  $gradeTable.append($tr);
+			<%}%>
+			    
+				$(".tableArea td").mouseenter(function () {
+					$(this).parent().css({"background":"lightyellow","cursor":"pointer"});
+					var code = $(this).val();
+				}).mouseout(function() {
+					$(this).parent().css("background","white");
+				}).click(function() {
+					var num = $(this).parent().children().eq(0).text();
+					location.href="<%= request.getContextPath()%>/GradeGet.me?num=" + num;
+				});
+			
+			
 		});
 		
 		</script>
