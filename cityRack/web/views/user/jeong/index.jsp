@@ -161,7 +161,7 @@
 									<div class="col-md-3">
 										<div class="hidden-sm hidden-xs">
 											<a class="banner banner-1">
-												<img src="./img/survey1.png" alt="">
+												<img src="views/user/jeong/img/survey1.png" alt="">
 											</a>
 										</div>
 										<hr>
@@ -175,7 +175,7 @@
 									<div class="col-md-3">
 										<div class="hidden-sm hidden-xs">
 											<a class="banner banner-1">
-												<img src="./img/survey2.png" alt="">
+												<img src="views/user/jeong/img/survey2.png" alt="">
 											</a>
 										</div>
 										<hr>
@@ -293,7 +293,7 @@
 
 
 		<!-- 푸터용 메뉴바 -->
-	<%@ include file="footer.jsp" %>
+	<%@ include file="/views/user/jeong/footer.jsp" %>
 
 
 

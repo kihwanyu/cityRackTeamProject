@@ -25,18 +25,18 @@
 	
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="views/user/jeong/css/bootstrap.min.css" />
 
 	<!-- Slick -->
-	<link type="text/css" rel="stylesheet" href="css/slick.css" />
-	<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+	<link type="text/css" rel="stylesheet" href="views/user/jeong/css/slick.css" />
+	<link type="text/css" rel="stylesheet" href="views/user/jeong/css/slick-theme.css" />
 
 	<!-- nouislider -->
-	<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+	<link type="text/css" rel="stylesheet" href="views/user/jeong/css/nouislider.min.css" />
 
 
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<link type="text/css" rel="stylesheet" href="views/user/jeong/css/style.css" />
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -91,7 +91,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 						<!-- footer logo -->
 						<div class="footer-logo">
 							<a class="logo" href="#">
-		            <img src="img/logo.png" alt="" id="footer-logo">
+		            <img src="../jeong/img/logo.png" alt="" id="footer-logo">
 		          </a>
 						</div>
 						<!-- /footer logo -->
@@ -161,6 +161,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 		<!-- /container -->
 	</footer>
 	<!-- /FOOTER -->
+
+
+		<!-- jQuery Plugins -->
+	<script src="views/user/jeong/js/jquery.min.js"></script>
+	<script src="views/user/jeong/js/bootstrap.min.js"></script>
+	<script src="views/user/jeong/js/slick.min.js"></script>
+	<script src="views/user/jeong/js/nouislider.min.js"></script>
+	<script src="views/user/jeong/js/jquery.zoom.min.js"></script>
+	<script src="views/user/jeong/js/main.js"></script>
 
 
 </body>

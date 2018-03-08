@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"   %>
 <!DOCTYPE html>
 <html lang="en">
 
+
+
+
+
 <head>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,8 +56,9 @@
 		<div class="container">
 			<!-- row -->
 			<div class="row">
-				<form id="checkout-form" class="clearfix">
-
+				<form id="checkout-form" class="clearfix" 
+					action="<%= request.getContextPath() %>/withdraw.do" method="post">
+					
 					<div class="col-md-12">
 						<div class="order-summary clearfix">
 							<div class="section-title">
@@ -60,23 +68,24 @@
 							<br/>
 								 <h4 align="center">탈퇴 사유를 적어주세요.</h4>
 								 <br/>
-								 <input type="text" size="100px">
+								 <input type="text" size="100px" name="content">
+								 <input type="hidden" value=""/>
 							</div>
 							<br/>
 							<br/>
 							<div align="center">
 								<button onclick="before(); return false;" class="primary-btn">이전으로</button>
-								<button onclick="un2(); return false;" class="primary-btn">탈퇴하기</button>
-							</div>
+								<button type="button" class="primary-btn" id="deleteBtn">탈퇴하기</button>
+							</div>	
 							
 							<script>
 							
+								$("#deleteBtn").click(function(){
+									location.href = "<%= request.getContextPath() %>/withdraw.do";
+								});
+								
 								function before(){
 									location.href="myPage_info.jsp";
-								}
-							
-								function un2(){
-									location.href="myPage_info_unregister2.jsp";
 								}
 							
 							</script>

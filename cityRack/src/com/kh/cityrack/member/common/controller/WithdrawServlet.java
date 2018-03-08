@@ -1,6 +1,8 @@
 package com.kh.cityrack.member.common.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.cityrack.member.common.model.dto.Member;
+import com.kh.cityrack.member.common.model.dto.Withdraw;
 import com.kh.cityrack.member.common.model.service.WithdrawService;
+
 
 /**
  * Servlet implementation class WithdrawServlet
@@ -32,22 +36,26 @@ public class WithdrawServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		// 1. 인코딩
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
+		// 파라미터 꺼내기
+		/* 1. 유저번호
+		 * 2. 탈퇴사유
+		 *  */
+		String reason = request.getParameter("w_reason");
 				
-		// 2. 객체가져와
-		HttpSession session = request.getSession();
-		Member m = (Member) session.getAttribute("loginUser");
-				
-		// 3. 서비스로 전달
-		int result = new WithdrawService().deleteMember(m);
-				
+		// 객체생성
+		// 객체에 파라미터로 받아온 두값을 set으로 넣어
+		Withdraw w = new Withdraw();
+		
+		// 서비스 호출
+		int result = new WithdrawService().deleteMember(w);
+		
+		// 페이지
+		String page = "";
 		if(result > 0) {
-			session.invalidate();
-					
-			response.sendRedirect("index.jsp");
-		}
+			page = "views/user/jeong/myPage_info_unregister2.jsp";
+			request.getSession().invalidate();
+			response.sendRedirect(page);
+		} 
 		
 	}
 
