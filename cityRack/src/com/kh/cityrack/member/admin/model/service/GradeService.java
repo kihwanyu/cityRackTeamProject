@@ -27,7 +27,10 @@ public class GradeService {
 
 	public ArrayList<Grade> gradeGetAll() {
 		Connection conn = getConnection();
+		
 		ArrayList<Grade> list = new GradeDao().gradeGetAll(conn);
+		
+		close(conn);
 		
 		return list;
 	}
