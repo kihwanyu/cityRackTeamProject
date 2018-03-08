@@ -55,4 +55,20 @@ public class ProductService {
 		return p;
 	}
 
+	public int productUpdate(Product p) {
+		Connection conn = getConnection();
+		
+		int result = new ProductDao().productUpdate(conn, p);
+		
+		if(result > 0){
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
 }

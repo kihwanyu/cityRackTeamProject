@@ -169,5 +169,46 @@ public class ProductDao {
 		
 		return p;
 	}
+	public int productUpdate(Connection conn, Product p) {
+		PreparedStatement pstmt = null;		
+		int result = 0;
+		
+		String query = prop.getProperty("productUpdate");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setInt(1, Integer.parseInt(p.getCa_code()));
+			pstmt.setString(2, p.getP_8constitution());
+			pstmt.setString(3, p.getP_name());
+			pstmt.setInt(4, p.getP_price());
+			pstmt.setString(5, p.getP_event());
+			pstmt.setDouble(6, p.getP_discount());
+			pstmt.setString(7, p.getP_pic1());
+			pstmt.setString(8, p.getP_pic2());
+			pstmt.setString(9, p.getP_status());
+			pstmt.setInt(10, Integer.parseInt(p.getP_code()));
+			
+			result = pstmt.executeUpdate();
+			/*P_CODE
+			CA_NO
+			P_RESISTERDATE
+			P_8CONSTITUTION
+			P_NAME
+			P_PRICE
+			P_EVENT
+			P_DISCOUNT
+			P_PIC1
+			P_PIC2
+			P_STATUS*/
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 
 }
