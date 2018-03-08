@@ -32,7 +32,7 @@ public class MemberDao {
 	
 	// 회원 가입
 	public int insertMember(Connection con, Member m) {
-		PreparedStatement pstmt = null;
+		PreparedStatement pstmt =  null;
 		int result = 0;
 		String query = "insert into member values(mno.nextval, 100, ?,?,?,?,?,?,?,?,sysdate,default)";
 		/*String query = prop.getProperty("insertMember");*/

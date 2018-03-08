@@ -496,7 +496,7 @@
 				</textarea><br>
 				
 	 		<input type="checkbox" id="agree" align="center"><label>위 약관에 동의합니다.</label><br>
-	 		<input type="submit" id="join" value='가입하기' style="background:#FF720D;width:300px;height:50px;border-radius:4px; border:none; font-size:20px;color:black;margin-left:110px;     margin-top: 30px;" > 
+	 		<input type="submit" id="join" value= '가입하기' style="background:#FF720D;width:300px;height:50px;border-radius:4px; border:none; font-size:20px;color:black;margin-left:110px;     margin-top: 30px;" > 
 	 			
 	 			
 	 		

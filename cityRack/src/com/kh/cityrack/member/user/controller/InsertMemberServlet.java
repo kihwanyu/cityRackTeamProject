@@ -41,7 +41,7 @@ public class InsertMemberServlet extends HttpServlet {
 		String pwd = request.getParameter("password");
 		String name = request.getParameter("name");
 		String sex = request.getParameter("sex");
-		String bday = request.getParameter("birthday");
+		String bday = request.getParameter("birthday") ;
 		DateFormat format = new SimpleDateFormat("yyyyMMdd");
        
        java.util.Date utilDate;

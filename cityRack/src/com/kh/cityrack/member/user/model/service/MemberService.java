@@ -12,7 +12,7 @@ public class MemberService {
 		int result = 0;
 		Connection con = getConnection();
 		
-		result = new MemberDao().insertMember(con, m);
+		result = new MemberDao().insertMember(con , m);
 		
 		if(result>0) {
 			commit(con);
