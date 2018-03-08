@@ -1,5 +1,7 @@
+<%@page import="com.kh.cityrack.board.admin.model.dto.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<% Board b = (Board)request.getAttribute("b"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,11 +26,11 @@
 						<td align="center">내용</td>
 					</tr>
 				</table>
-				<table id="tableArea" width="400">
+				<table id="tableArea" class="table table-striped" width="400">
 					<tr>
 						<td width="0"></td>
 						<td align="center" width="76">글번호</td>
-						<td width="319">1</td>
+						<td width="319"></td>
 						<td width="0"></td>
 					</tr>
 					<tr height="1" bgcolor="#dddddd">
@@ -37,7 +39,7 @@
 					<tr>
 						<td width="0"></td>
 						<td align="center" width="76">조회수</td>
-						<td width="319">11</td>
+						<td width="319"></td>
 						<td width="0"></td>
 					</tr>
 					<tr height="1" bgcolor="#dddddd">
@@ -46,7 +48,7 @@
 					<tr>
 						<td width="0"></td>
 						<td align="center" width="76">추천수</td>
-						<td width="319">101</td>
+						<td width="319"></td>
 						<td width="0"></td>
 					</tr>
 					<tr height="1" bgcolor="#dddddd">
@@ -55,7 +57,7 @@
 					<tr>
 						<td width="0"></td>
 						<td align="center" width="76">이름</td>
-						<td width="319">이훈택</td>
+						<td width="319"></td>
 						<td width="0"></td>
 					</tr>
 					<tr height="1" bgcolor="#dddddd">
