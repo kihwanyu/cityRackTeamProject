@@ -1,7 +1,9 @@
 package com.kh.cityrack.member.common.model.dao;
 
+
 import com.kh.cityrack.member.common.model.dto.Member;
 import com.kh.cityrack.member.common.model.dto.Withdraw;
+
 
 import static com.kh.cityrack.common.JDBCTemplet.*;
 
@@ -54,7 +56,9 @@ public class MemberDao {
 			
 			//rset의 결과를 반복하여 객체에 저장한다. 아이디와 비밀번호가 일치하는 정보는 1개 밖에 없으므로 while문이아닌 if문으로 처리한다.
 			if (rset.next()) {
+				
 				loginUser = new Member();
+				
 				loginUser.setM_no(rset.getInt("M_NO"));
 				loginUser.setC_name(rset.getString("C_NAME"));
 				loginUser.setM_email(rset.getString("M_EMAIL"));
@@ -73,7 +77,7 @@ public class MemberDao {
 			close(pstmt);
 			close(rset);
 		}
-		
+		System.out.println("loginUser:"+loginUser);
 		
 		return loginUser;
 	}

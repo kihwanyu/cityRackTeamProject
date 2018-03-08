@@ -96,12 +96,13 @@ public class InsertMemberServlet extends HttpServlet {
 		
 		
 				
-			/*	//페이지 연결
+			//페이지 연결
 				String page = "";
 				
 				if(result>0) {
-					page = "views/common/successPage.jsp";
-					request.setAttribute("msg", "회원 가입 성공");
+					page = "views/user/jeong/index.jsp";
+					request.setAttribute("msg", "회원 가입에 성공하셨습니다.");
+				
 				} else {
 					page = "views/common/errorPage.jsp";
 					request.setAttribute("msg", "회원 가입 실패");
@@ -109,7 +110,7 @@ public class InsertMemberServlet extends HttpServlet {
 				
 				RequestDispatcher view = request.getRequestDispatcher(page);
 				view.forward(request, response);
-		*/
+		
 		
 	
 	}

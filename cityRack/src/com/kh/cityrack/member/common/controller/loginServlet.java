@@ -1,11 +1,14 @@
 package com.kh.cityrack.member.common.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.cityrack.member.common.model.dto.Member;
 import com.kh.cityrack.member.common.model.service.MemberService;
@@ -53,18 +56,24 @@ public class loginServlet extends HttpServlet {
 		
 		//loginUser가 null 일 경우 error 페이지로 보낸다.
 		if(loginUser != null){
+			if(loginUser.getC_name().equals("관리자")){
+				page = "views/admin/index.jsp";
+			} else {
+				page = "views/user/jeong/index.jsp";				
+			}
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("loginUser", loginUser);
 			request.setAttribute("loginUser", loginUser);
 			//loginUser의 등급이 관리자일 경우 관리자 페이지로 보낸다.
 			//loginUser의 등급이 나머지일 경우 유저 페이지로 보낸다.
-			if(loginUser.getC_name().equals("관리자")){
-				page = request.getContextPath() + "/views/admin/index.jsp";
-			} else {
-				page = request.getContextPath() + "/views/user/jeong/index.jsp";
-			}
+			
 		} else {
-			page = request.getContextPath()+"/views/common/errorPage.jsp";
+			page = "views/common/errorPage.jsp";
 			request.setAttribute("loginUser", loginUser);
 		}
+	
+		
 		request.getRequestDispatcher(page).forward(request, response);
 	}
 

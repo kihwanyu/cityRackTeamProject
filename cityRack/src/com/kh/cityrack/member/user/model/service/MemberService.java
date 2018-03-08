@@ -20,6 +20,8 @@ public class MemberService {
 			rollback(con);
 		}
 		
+		close(con);
+		
 		return result;
 	}
 

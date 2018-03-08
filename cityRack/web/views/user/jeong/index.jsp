@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.cityrack.member.common.model.dto.Member"%>
+<% String msg = String.valueOf(request.getAttribute("msg")); %>    
+<% Member loginUser = (Member)session.getAttribute("loginUser"); %>
 <!DOCTYPE html>
-<html lang="en">
-
+<html >
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -62,11 +63,17 @@
 								<div class="header-btns-icon">
 									<i class="fa fa-user-o"></i>
 								</div>
-								<strong class="text-uppercase">마이페이지 <i class="fa fa-caret-down"></i></strong>
+						<strong class="text-uppercase"><a href="" >마이페이지 </a><i class="fa fa-caret-down"></i> </strong>
 							</div>
+							<% if(loginUser == null){ %>
 							<div class="loginDiv">
-								<a href="<%=request.getContextPath()%>/views/user/rani/login.jsp" class="text-uppercase">로그인</a> / <a href="#" class="text-uppercase">회원가입</a>
+								<a href="#" class="text-uppercase">로그인</a> / <a href="#" class="text-uppercase">회원가입</a>
 							</div>
+							<%} else { %>
+								<div class="loginDiv">
+											<p><%=loginUser.getM_name() %>님, 환영합니다. | <a onclick="logout();" >로그아웃 </a></p>
+								</div>
+							<%} %>
 							<ul class="custom-menu">
 								<li><a href="views/user/jeong/myPage_info.jsp"><i class="fa fa-user-o"></i> 내 정보</a></li>
 								<li><a href="views/user/jeong/myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
@@ -289,12 +296,18 @@
 		<!-- /container -->
 	</div>
 	<!-- /section -->
-
-
+	
 
 		<!-- 푸터용 메뉴바 -->
 	<%@ include file="footer.jsp" %>
 
+
+<script type="text/javascript">
+	function logout(){
+		location.href="<%= request.getContextPath()%>/Logout.em";
+		
+	}
+	</script>
 
 
 	<!-- jQuery Plugins -->
