@@ -66,7 +66,7 @@
 						<!-- Account -->
 						<li class="header-account dropdown default-dropdown">
 							<div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
-								<div class="header-btns-icon">
+								<div class="header-btns-icon" >
 									<i class="fa fa-user-o"></i>
 								</div>
 								<strong class="text-uppercase"><a href="" >마이페이지 </a><i class="fa fa-caret-down"></i> </i></strong>

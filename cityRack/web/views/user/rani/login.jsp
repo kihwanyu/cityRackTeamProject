@@ -7,7 +7,7 @@
 <meta  charset="UTF-8">
 	<style type="text/css">
 	body{
-		 font-family: 'Nanum Gothic', sans-serif;
+		 font-family: 'Nanum Gothic',  sans-serif;
 	}
 	.inputs input{		
 		margin-bottom: 5px;		
