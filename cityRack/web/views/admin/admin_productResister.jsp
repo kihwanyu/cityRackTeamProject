@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	ArrayList<Pcategory> cList = new PcategoryService().categoryGetAll();
+	ArrayList<Pcategory> cList = (ArrayList<Pcategory>)request.getAttribute("cList");
 %>
 <!DOCTYPE html>
 <html>
@@ -16,7 +16,7 @@
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
-	@import url("css/common.css");
+	@import url("views/admin/css/common.css");
 	table {
 		border: 1px solid black;
 		text-align: center;
@@ -127,7 +127,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td style="text-align: center;">체질명</td>
+							<td style="text-align: center;">이벤트</td>
 							<td>
 								<input id="new" type="checkbox" name="event" value="new"> New
 								<input id="hot" type="checkbox" name="event" value="hot"> Hot

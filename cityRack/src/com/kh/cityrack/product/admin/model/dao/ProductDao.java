@@ -130,5 +130,9 @@ public class ProductDao {
 		}
 		return listCount;
 	}
+	public Product productGet(Connection conn, String pcode) {
+		/*여기부터*/
+		return null;
+	}
 
 }

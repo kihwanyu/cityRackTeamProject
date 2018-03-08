@@ -45,4 +45,14 @@ public class ProductService {
 		return listCount;
 	}
 
+	public Product productGet(String pcode) {
+		Connection conn = getConnection();
+		
+		Product p = new ProductDao().productGet(conn, pcode);
+		
+		close(conn);
+		
+		return p;
+	}
+
 }

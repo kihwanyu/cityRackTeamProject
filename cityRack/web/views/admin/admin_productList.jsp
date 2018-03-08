@@ -132,7 +132,7 @@
 				<td style="text-align: center;"><%=pList.get(i).getP_resisterDate() %></td>
 				<td style="text-align: left;"><%=pList.get(i).getCa_name() %></td>
 				<td style="text-align: left;"><%=pList.get(i).getP_8constitution() %></td>
-				<td style="text-align: left;"><a href="<%= request.getContextPath()%>/views/admin/admin_productUpadate.jsp"><%=pList.get(i).getP_name() %></a></td>
+				<td style="text-align: left;"><a href="<%= request.getContextPath()%>/ProductFormLoad.pr?formType=update&pcode=<%=pList.get(i).getP_code() %>"><%=pList.get(i).getP_name() %></a></td>
 				<td style="text-align: right;"><%=pList.get(i).getP_price() %></td>
 				<td style="text-align: left;"><%=pList.get(i).getP_event() %></td>
 				<td style="text-align: right;"><%=pList.get(i).getP_discount() %></td>
@@ -191,7 +191,7 @@
 		</div>
 		<br>
 		<div align="center">
-			<button class="resisterBt" onclick="location.href='<%=request.getContextPath()%>/views/admin/admin_productResister.jsp'">상품 등록</button>
+			<button class="resisterBt" onclick="location.href='<%=request.getContextPath()%>/ProductFormLoad.pr?formType=resister'">상품 등록</button>
 		</div>
 		<script type="text/javascript">
 		

@@ -1,5 +1,10 @@
+<%@page import="com.kh.cityrack.product.admin.model.dto.Pcategory"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	ArrayList<Pcategory> cList = (ArrayList<Pcategory>)request.getAttribute("cList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +15,7 @@
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
-	@import url("css/common.css");
+	@import url("views/admin/css/common.css");
 	table {
 		border: 1px solid black;
 		text-align: center;
@@ -75,7 +80,7 @@
 					<th width="25%" style="text-align: center; background: lightyellow">상품 코드</th>
 					<!-- 상품코드 = 카테고리 코드  -->
 					<th width="25%" style="text-align: center; background: lightyellow">
-						<input type="text" class="form-control">
+						<input type="text" class="form-control" readonly="readonly" value="">
 					</th>
 					<th width="25%" style="text-align: center; background: lightyellow">진열 상태</th>
 					<th width="25%" style="text-align: center; background: lightyellow">
@@ -92,9 +97,10 @@
 					<tr>
 						<td width="30%" style="text-align: center;">카테고리</td>
 						<td width="70%" style="text-align: left;">
-							<select class="form-control">
-								<option value="">..</option>
-								<option value="">..</option>
+							<select class="form-control" name="category">
+								<%for(int i = 0; i < cList.size(); i++){ %>
+								<option value="<%=cList.get(i).getCa_code()%>"><%=cList.get(i).getCa_name() %></option>
+								<%} %>
 							</select>
 						</td>
 					</tr>
