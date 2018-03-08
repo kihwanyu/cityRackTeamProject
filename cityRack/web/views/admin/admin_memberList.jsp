@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*,com.kh.cityrack.member.admin.model.dto.*"%>
+<% ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list"); %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,51 +99,7 @@
 					<th width="5%" style="text-align: center;">탈퇴여부</th>
 					<th width="5%" style="text-align: center;">강제탈퇴</th>
 				</tr>
-				<tr>
-					<td style="text-align: right;">100</td>
-					<td>abcd1234@naver.com</td>
-					<td>다이아몬드</td>
-					<td>asdfasdfsafdf1234354dsafsadf</td>
-					<td>홍길동</td>
-					<td>남</td>
-					<td>1994-05-26</td>
-					<td>경기도 의정부시 금오동 282-29 4층</td>
-					<td>031-000-0000</td>
-					<td>010-000-0000</td>
-					<td>2018-02-27</td>
-					<td>Y</td>
-					<td><button onclick="dropOut();">X</button></td>
-				</tr>
-				<tr>
-					<td style="text-align: right;">100</td>
-					<td>abcd1234@naver.com</td>
-					<td>다이아몬드</td>
-					<td>asdfasdfsafdf1234354dsafsadf</td>
-					<td>홍길동</td>
-					<td>남</td>
-					<td>1994-05-26</td>
-					<td>경기도 의정부시 금오동 282-29 4층</td>
-					<td>031-000-0000</td>
-					<td>010-000-0000</td>
-					<td>2018-02-27</td>
-					<td>Y</td>
-					<td><button onclick="dropOut();">X</button></td>
-				</tr>
-				<tr>
-					<td style="text-align: right;">100</td>
-					<td>abcd1234@naver.com</td>
-					<td>다이아몬드</td>
-					<td>asdfasdfsafdf1234354dsafsadf</td>
-					<td>홍길동</td>
-					<td>남</td>
-					<td>1994-05-26</td>
-					<td>경기도 의정부시 금오동 282-29 4층</td>
-					<td>031-000-0000</td>
-					<td>010-000-0000</td>
-					<td>2018-02-27</td>
-					<td>Y</td>
-					<td><button onclick="dropOut();">X</button></td>
-				</tr>
+					
 			</table>	
 		</div>	
 	</section>

@@ -11,8 +11,8 @@ public class Member implements Serializable{
 	private static final long serialVersionUID = -3800234867879954102L;
 	
 	private int m_no; // 회원_번호
-	private String m_mail; // 회원_이메일
-	private String c_code; // 등급_코드
+	private String m_email; // 회원_이메일
+	private String c_name; // 등급명
 	private String m_password; // 회원_비밀번호
 	private String m_name; // 회원_이름
 	private String m_gender; // 회원_성별
@@ -21,20 +21,20 @@ public class Member implements Serializable{
 	private String m_tel; // 회원_전화번호
 	private String m_phone; // 회원_휴대폰번호
 	private Date m_enorll_date; // 회원_가입일
-	private String m_leave_yn; // 회원_탈퇴여부
-	private String m_note; // 회원_비고
+	private String m_status; // 회원_탈퇴여부
+	
 	
 	public Member() {
 		super();
 	}
 
-	public Member(int m_no, String m_mail, String c_code, String m_password, String m_name, String m_gender,
-			Date m_birthDay, String m_address, String m_tel, String m_phone, Date m_enorll_date, String m_leave_yn,
-			String m_note) {
+	public Member(int m_no, String m_mail, String c_name, String m_password, String m_name, String m_gender,
+			Date m_birthDay, String m_address, String m_tel, String m_phone, Date m_enorll_date, String m_status)
+	{
 		super();
 		this.m_no = m_no;
-		this.m_mail = m_mail;
-		this.c_code = c_code;
+		this.m_email = m_mail;
+		this.c_name = c_name;
 		this.m_password = m_password;
 		this.m_name = m_name;
 		this.m_gender = m_gender;
@@ -43,8 +43,7 @@ public class Member implements Serializable{
 		this.m_tel = m_tel;
 		this.m_phone = m_phone;
 		this.m_enorll_date = m_enorll_date;
-		this.m_leave_yn = m_leave_yn;
-		this.m_note = m_note;
+		this.m_status = m_status;
 	}
 
 	public int getM_no() {
@@ -55,20 +54,20 @@ public class Member implements Serializable{
 		this.m_no = m_no;
 	}
 
-	public String getM_mail() {
-		return m_mail;
+	public String getM_email() {
+		return m_email;
 	}
 
-	public void setM_mail(String m_mail) {
-		this.m_mail = m_mail;
+	public void setM_email(String m_email) {
+		this.m_email = m_email;
 	}
 
-	public String getC_code() {
-		return c_code;
+	public String getC_name() {
+		return c_name;
 	}
 
-	public void setC_code(String c_code) {
-		this.c_code = c_code;
+	public void setC_name(String c_name) {
+		this.c_name = c_name;
 	}
 
 	public String getM_password() {
@@ -135,28 +134,21 @@ public class Member implements Serializable{
 		this.m_enorll_date = m_enorll_date;
 	}
 
-	public String getM_leave_yn() {
-		return m_leave_yn;
+	public String getM_status() {
+		return m_status;
 	}
 
-	public void setM_leave_yn(String m_leave_yn) {
-		this.m_leave_yn = m_leave_yn;
+	public void setM_status(String m_status) {
+		this.m_status = m_status;
 	}
 
-	public String getM_note() {
-		return m_note;
-	}
-
-	public void setM_note(String m_note) {
-		this.m_note = m_note;
-	}
 
 	@Override
 	public String toString() {
-		return "Member [m_no=" + m_no + ", m_mail=" + m_mail + ", c_code=" + c_code + ", m_password=" + m_password
+		return "Member [m_no=" + m_no + ", m_mail=" + m_email + ", c_code=" + c_name + ", m_password=" + m_password
 				+ ", m_name=" + m_name + ", m_gender=" + m_gender + ", m_birthDay=" + m_birthDay + ", m_address="
 				+ m_address + ", m_tel=" + m_tel + ", m_phone=" + m_phone + ", m_enorll_date=" + m_enorll_date
-				+ ", m_leave_yn=" + m_leave_yn + ", m_note=" + m_note + "]";
+				+ ", m_status=" + m_status + "]";
 	}
 	
 	
