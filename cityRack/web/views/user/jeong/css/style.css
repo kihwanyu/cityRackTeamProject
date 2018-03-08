@@ -150,6 +150,25 @@ hr {
   transition: 0.3s all;
 }
 
+.survey-btn {
+	
+  display: inline-block;
+  padding: 10px 15px;
+  text-transform: uppercase;
+  font-weight: 700;
+  border: none;
+  -webkit-transition: 0.3s all;
+  transition: 0.3s all;
+  color: #FFF;
+  background-color: #F8694A;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  padding: 0px;
+  border: none; 
+}
+
 .icon-btn.main-btn, .icon-btn.primary-btn {
   width: 40px;
   height: 40px;

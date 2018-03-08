@@ -140,7 +140,7 @@
 							<a class="dropdown-toggle" aria-expanded="true" href="views/user/rani/kumeum.jsp">금음체질<i class="fa fa-angle-right"></i></a>
 						</li>	
 						<li class="type_check">
-							<a class="dropdown-toggle" aria-expanded="true">체질확인하러가기 Go!</a>
+							<a class="dropdown-toggle" aria-expanded="true" href="views/user/rani/survey.jsp">체질확인하러가기 Go!</a>
 							<img src="views/user/jeong/img/help.png" height="135px" width="268px">
 						</li>							
 					</ul>
@@ -161,7 +161,7 @@
 									<div class="col-md-3">
 										<div class="hidden-sm hidden-xs">
 											<a class="banner banner-1">
-												<img src="./img/survey1.png" alt="">
+												<img src="views/user/jeong/img/survey1.png" alt="">
 											</a>
 										</div>
 										<hr>
@@ -175,7 +175,7 @@
 									<div class="col-md-3">
 										<div class="hidden-sm hidden-xs">
 											<a class="banner banner-1">
-												<img src="./img/survey2.png" alt="">
+												<img src="views/user/jeong/img/survey2.png" alt="">
 											</a>
 										</div>
 										<hr>
