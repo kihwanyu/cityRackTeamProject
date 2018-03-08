@@ -1,6 +1,7 @@
 package com.kh.cityrack.member.common.model.dao;
 
 import com.kh.cityrack.member.common.model.dto.Member;
+import com.kh.cityrack.member.common.model.dto.Withdraw;
 
 import static com.kh.cityrack.common.JDBCTemplet.*;
 
@@ -17,7 +18,7 @@ public class MemberDao {
 	//member-query.propertie 파일을 읽어 오기 위해서.
 	private Properties prop = null;
 	public MemberDao(){
-		//prop 객체 인스턴스화
+		//prop 객체 인스턴스화sdfasd
 		prop = new Properties();
 		
 		//fileName에 member-query.properties 파일의 위치를 넣어준다.
@@ -78,7 +79,7 @@ public class MemberDao {
 	}
 	
 	// 회원탈퇴처리용
-	public int deleteMember(Connection con, Member m) {
+	public int deleteMember(Connection con, Withdraw w) {
 		
 		// PreparedStatement 객체 선언
 		PreparedStatement pstmt = null;
@@ -94,9 +95,30 @@ public class MemberDao {
 			pstmt = con.prepareStatement(query);
 			
 			//PreparedStatement객체의 ?를 채워준다.
-			pstmt.setString(1, m.getM_email());
-				
+			pstmt.setInt(1, w.getM_no());	
+			
 			//쿼리문의 결과를 result에 담는다.
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	public int deleteGroup(Connection con, Withdraw w) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteGroup");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, w.getM_no());
+			pstmt.setString(2, w.getW_reason());
+			
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
