@@ -48,7 +48,7 @@
 				<div class="pull-left">
 					<!-- 로고 -->
 					<div class="header-logo">
-						<a class="logo" href="#">
+						<a class="logo" href="<%= request.getContextPath() %>">
 							<img src="views/user/jeong/img/logo.png" alt="">
 						</a>
 					</div>
