@@ -1,3 +1,4 @@
+<%@page import="com.kh.cityrack.product.admin.model.dto.Pcategory"%>
 <%@page import="com.kh.cityrack.product.admin.model.dto.PageInfo"%>
 <%@page import="com.kh.cityrack.product.admin.model.dto.Product"%>
 <%@page import="java.util.ArrayList"%>
@@ -5,6 +6,8 @@
     pageEncoding="UTF-8"%>
 <%
 	ArrayList<Product> pList = (ArrayList<Product>)request.getAttribute("pList");
+	ArrayList<Pcategory> cList = (ArrayList<Pcategory>)request.getAttribute("cList");
+			
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
@@ -54,61 +57,175 @@
 	.pagingArea {
 		margin-top: 15px;
 	}
+	.searchDiv {
+		display:  inline-block;
+		margin-left:auto;
+		margin-right:auto;
+		vertical-align: middle;
+	}
 </style>
 </head>
 <body>
 	<%@ include file="../admin/common/header.jsp" %>
 	<div align="center">
-		<h2>상품 정보</h2><br>
-		<form action="" method="get">
-			<input type="checkbox" value="new" id="new" name="new">
-			<label for="new">NEW</label>
-			&nbsp;
-			<input type="checkbox" value="sale" id="sale" name="sale">
-			<label for="new">SALE</label>
-			&nbsp;
-			<input type="checkbox" value="hot" id="hot" name="hot">
-			<label for="hot">HOT</label>
-			&nbsp;&nbsp;
-			<select id="searchCondition" name="searchCondition" onchange="selectSearch();">
-				<option value="pcode">상품코드</option>
-				<option value="pdate">등록일</option>
-				<option value="pcategory">카테고리명</option>
-				<option value="constitution">체질명</option>
-				<option value="pname">상품명</option>
-				<option value="status">진열상태</option>
-			</select>
-			&nbsp;
-			<input type="search" name="searchText" id="searchText">
-			<span id="serachDate" hidden="">
-				<input type="date" name="beforeDate" id="beforeDate"> -
-				<input type="date" name="AfterDate" id="AfterDate" > 
-			</span>
-			<select id="status" name="status" hidden="">
-				<option value="Y">Y</option>
-				<option value="N">N</option>
-			</select>
-			<select id="pcategory" name="pcategory" hidden="">
-				<option value="100">..</option>
-			</select>
-			<!-- 카테고리 테이블에있는 카테고리를 jsp를 통해 옵션값을 넣어준다. -->
-			<select id="constitution" name="constitution" hidden="">
-				<option value="100">수양</option>
-				<option value="200">수음</option>
-				<option value="300">목양</option>
-				<option value="400">목음</option>
-				<option value="500">금양</option>
-				<option value="600">금음</option>
-				<option value="700">토양</option>
-				<option value="800">토음</option>
-			</select>
-			&nbsp;
-			<select id="order" name="order">
-				<option value="asc">오름차순</option>
-				<option value="desc">내림차순</option>
-			</select>
-			&nbsp;
-			<input type="button" value="검색">
+		<h2>상품 정보</h2>
+		<form action="productSearch.pr" method="post">
+			<table style="width: 40%; border: 2px solid black; margin: 15px;">
+				<tr style="border: none">
+					<td style="border: none;">
+						<div align="left">
+							<div class="searchDiv" style="width: 18%;" align="center"> 
+								<label style="height: 100%; margin-top: 5px;" for="search_pcode">상품코드 : </label>	
+							</div>
+							<div class="searchDiv" style="width: 40%">
+								<input type="search" name="search_pcode" id="search_pcode" class="form-control">
+							</div>
+							<div class="searchDiv" style="width: 5%;" align="center"> 
+								<input type="checkbox" name="searchType" value="searchCheackedpCode">
+							</div>
+							<div class="searchDiv" style="width: 25%">
+								<select id="pcode_order" name="pcode_order" class="form-control">
+									<option value="ASC">오름차순</option>
+									<option value="DESC">내림차순</option>
+								</select>
+							</div>		
+						</div>
+					</td>	
+					
+					<td style="border: none">
+						<input type="radio" name="orderType" value="searchCheackedpCodeOrder" checked="checked">
+					</td>
+				</tr>
+				<tr style="border: none">
+					<td style="border: none;">
+						<div align="left">
+							<div class="searchDiv" style="width: 18%;" align="center"> 
+								<label for="search_rdate">등록일 : </label>
+							</div>
+							<div class="searchDiv" style="width: 36%">
+								<input type="date" name="beforeDate" id="beforeDate" class="form-control">
+							</div>
+							<div class="searchDiv" style="width: 2%;" align="center">
+								-
+							</div>
+							<div class="searchDiv" style="width: 36%">
+								<input type="date" name="afterDate" id="afterDate" class="form-control">
+							</div>
+						</div>	
+					</td>	
+					<td style="border: none">
+						<input type="checkbox" name="searchType" value="searchCheackedRdate">
+					</td>
+				</tr>
+				<tr style="border: none">
+					<td style="border: none;" colspan="2">
+						<div align="center">
+							<div class="searchDiv" style="width: 18%;" align="center"> 
+								<label for="search_pcategory">카테고리명 : </label>														
+							</div>
+							<div class="searchDiv">
+								<select id="search_pcategory" name="search_pcategory" class="form-control">
+								<%for(int i = 0 ; i < cList.size() ; i++) {%>
+									<option value="<%=cList.get(i).getCa_code()%>" class="form-control"><%=cList.get(i).getCa_name() %></option>
+								<%} %>
+							</select>
+							</div>
+							<div class="searchDiv" style="width: 5%">
+								<input type="checkbox" name="searchType" value="searchCheackedPcategory">
+							</div>
+							<div class="searchDiv" style="width: 18%;" align="center"> 
+								<label for="search_constitution">체질명 : </label>
+							</div>
+							<div class="searchDiv">
+								<select id="search_constitution" name="search_constitution" class="form-control">
+									<option value="수양">수양</option>
+									<option value="수음">수음</option>
+									<option value="목양">목양</option>
+									<option value="목음">목음</option>
+									<option value="금양">금양</option>
+									<option value="금음">금음</option>
+									<option value="토양">토양</option>
+									<option value="토음">토음</option>
+								</select>
+							</div>	
+							
+							<div class="searchDiv" style="width: 5%">
+								<input type="checkbox" name="searchType" value="searchCheackedConstitution">
+							</div>		
+						</div>
+					</td>	
+				</tr>
+				<tr style="border: none">
+					<td style="border: none;">
+						<div align="left">
+							<div class="searchDiv" style="width: 18%;" align="center"> 
+								<label for="search_pname">상품명 : </label>
+							</div>
+							<div class="searchDiv" style="width: 40%">
+								<input type="search" name="search_pname" id="search_pname" class="form-control">
+							</div>
+							<div class="searchDiv" style="width: 5%;" align="center"> 
+								<input type="checkbox" name="searchType" value="searchCheackedPname">
+							</div>
+							<div class="searchDiv" style="width: 25%">
+								<select id="pname_order" name="pname_order" class="form-control">
+									<option value="ASC">오름차순</option>
+									<option value="DESC">내림차순</option>
+								</select>
+							</div>
+						</div>
+					</td>	
+					<td style="border: none">
+						<input type="radio" name="orderType" value="searchCheackedPnameOrder">
+					</td>
+				</tr>
+				<tr style="border: none">
+					<td style="border: none;" colspan="2">
+						<div align="center">
+							<div class="searchDiv" style="width: 18%;" align="center"> 
+								<label for="search_status">진열상태 : </label>
+							</div>
+							<div class="searchDiv">
+								<select id="search_status" name="search_status" class="form-control">
+									<option value="Y">Y</option>
+									<option value="N">N</option>
+								</select>
+							</div>
+							<div class="searchDiv" style="width: 5%">
+								<input type="checkbox" name="searchType" value="searchCheackedStatus">
+							</div>
+							<div class="searchDiv" style="width: 5%;" align="center"> 
+							</div>
+							<div class="searchDiv">
+								<input type="checkbox" value="new" id="new" name="event">
+							</div>
+							<div class="searchDiv">
+								<label for="new">NEW</label>
+							</div>
+							<div class="searchDiv">
+								<input type="checkbox" value="sale" id="sale" name="event">
+							</div>
+							<div class="searchDiv">
+								<label for="new">HOT</label>
+							</div>
+							<div class="searchDiv">
+								<input type="checkbox" value="hot" id="hot" name="event">
+							</div>
+							<div class="searchDiv">
+								<label for="hot">SALE</label>
+							</div>
+							<div class="searchDiv" style="width: 5%;" align="center"> 
+								<input type="checkbox" name="searchType" value="searchCheackedEvent">
+							</div>
+							<div class="searchDiv" style="width: 5%;" align="center"> 
+							</div>
+							<div class="searchDiv" style="width: 15%">
+								<input type="submit" value="검색" class="btn btn-primary active" style="width: 100%">
+							</div>
+						</div>
+					</td>	
+				</tr>
+			</table>			
 		</form>
 	</div>
 	<br>
