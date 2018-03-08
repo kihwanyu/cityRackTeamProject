@@ -10,7 +10,7 @@ import static com.kh.cityrack.common.JDBCTemplet.*;
 
 public class WithdrawService {
 
-	// 회원 탈퇴
+	// 회원 탈퇴asd
 	public int deleteMember(Withdraw w) {
 		
 		Connection con = getConnection();
