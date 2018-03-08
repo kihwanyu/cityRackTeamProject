@@ -50,8 +50,6 @@
 		<div class="container">
 			<!-- row -->
 			<div class="row">
-				<form id="survey_detail-form" class="clearfix">
-
 					<div class="col-survey">
 						<div class="section-title">
 							<h3 class="title">상세설문조사</h3>
@@ -155,8 +153,30 @@
 						</div>
 						
 						<!-- 1번부터 7번까지의 평균값 -->
-						<input type="text" id="avg1" width="30px" placeholder="avg1" readOnly>
-						<br/>
+						<button type="button" class="survey-btn" onclick="test();">확인</button>
+						<input type="text" id="check1">
+
+						<script>
+						
+							function test(){
+								
+								var avg1 = 0;
+								var sum1 = 0;
+								
+								for(var i = 1; i <= 7; i++){
+									
+									var check = $("input[name=dq"+i+"]:checked").val();
+									sum1 += check;
+								}
+								
+								avg1 = sum1/7;
+								document.getElementById("check1").value = avg1;
+							};						
+						
+						</script>
+						<br/><br/>
+						
+						
 						
 						<div class="survey_radio">
 							<input type="radio" name="dq8" id="q8_very" value="5" checked> 
@@ -239,7 +259,7 @@
 						
 						<!-- 8번부터 13번까지의 평균값 -->
 						<input type="text" id="avg2" width="30px" placeholder="avg2" readOnly>
-						<br/>
+						<br/><br/>
 						
 						
 						
@@ -364,7 +384,7 @@
 						
 						<!-- 14번부터 22번까지의 평균값 -->
 						<input type="text" id="avg3" width="30px" placeholder="avg3" readOnly>
-						<br/>
+						<br/><br/>
 						
 						<div class="survey_radio">
 							<input type="radio" name="dq23" id="q23_very" value="5" checked> 
@@ -435,7 +455,7 @@
 						
 						<!-- 23번부터 27번까지의 평균값 -->
 						<input type="text" id="avg4" width="30px" placeholder="avg4" readOnly>
-						<br/>
+						<br/><br/>
 						
 						
 						
@@ -585,7 +605,7 @@
 						
 						<!-- 28번부터 38번까지의 평균값 -->
 						<input type="text" id="avg5" width="30px" placeholder="avg5" readOnly>
-						<br/>
+						<br/><br/>
 						
 						
 						
@@ -735,7 +755,7 @@
 						
 						<!-- 39번부터 49번까지의 평균값 -->
 						<input type="text" id="avg6" width="30px" placeholder="avg6" readOnly>
-						<br/>
+						<br/><br/>
 						
 						
 						<div class="survey_radio">
@@ -833,7 +853,7 @@
 						
 						<!-- 50번부터 56번까지의 평균값 -->
 						<input type="text" id="avg7" width="30px" placeholder="avg7" readOnly>
-						<br/>
+						<br/><br/>
 						
 						
 						<div class="survey_radio">
@@ -944,7 +964,7 @@
 						
 						<!-- 57번부터 65번까지의 평균값 -->
 						<input type="text" id="avg8" width="30px" placeholder="avg8" readOnly>
-						<br/>
+						<br/><br/>
 						
 						
 						
@@ -953,9 +973,7 @@
 							<button class="primary-btn" type="submit">완료</button>
 							<button class="primary-btn" type="reset">취소</button>
 						</div>
-
 					</div>
-				</form>
 			</div>
 			<!-- /row -->
 		</div>
