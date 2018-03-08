@@ -65,7 +65,7 @@
 					<ul class="header-btns" >
 						<!-- Account -->
 						<li class="header-account dropdown default-dropdown">
-							<div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
+							<div class="dropdown-toggle" role="button"  data-toggle="dropdown" aria-expanded="true">
 								<div class="header-btns-icon" >
 									<i class="fa fa-user-o"></i>
 								</div>
