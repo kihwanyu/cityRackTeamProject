@@ -42,7 +42,7 @@ public class WithdrawServlet extends HttpServlet {
 		 *  */
 		String reason = request.getParameter("w_reason");
 				
-		// 객체생성  asd
+		// 객체생성  asdsdf
 		// 객체에 파라미터로 받아온 두값을 set으로 넣어
 		Withdraw w = new Withdraw();
 		

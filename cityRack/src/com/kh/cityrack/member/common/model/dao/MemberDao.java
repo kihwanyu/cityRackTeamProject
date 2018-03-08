@@ -18,7 +18,7 @@ public class MemberDao {
 	//member-query.propertie 파일을 읽어 오기 위해서.
 	private Properties prop = null;
 	public MemberDao(){
-		//prop 객체 인스턴스화sdf
+		//prop 객체 인스턴스화sdfasd
 		prop = new Properties();
 		
 		//fileName에 member-query.properties 파일의 위치를 넣어준다.

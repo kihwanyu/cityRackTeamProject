@@ -9,7 +9,7 @@ public class Withdraw implements Serializable{
 	 */
 	private static final long serialVersionUID = 2598590760723053425L;
 	
-	private int w_no; // 탈퇴정보_번호asd
+	private int w_no; // 탈퇴정보_번호asdasd
 	private int m_no; // 회원_번호
 	private Date w_date; // 탈퇴정보_탈퇴일자
 	private String w_reason; // 탈퇴정보_탈퇴사유
