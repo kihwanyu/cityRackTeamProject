@@ -14,7 +14,7 @@ import com.kh.cityrack.member.admin.model.service.GradeService;
 /**
  * Servlet implementation class GradeInsertServlet
  */
-@WebServlet("/GradeInsert.do")
+@WebServlet("/GradeInsert.me")
 public class GradeInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -41,8 +41,9 @@ public class GradeInsertServlet extends HttpServlet {
 		String page = "";
 		
 		if(result > 0) {
-			response.sendRedirect(request.getContextPath() + "/views/admin/admin_gradeList.jsp");
+			response.sendRedirect(request.getContextPath() + "/GradeGetAll.me");
 			return;
+			
 		}else {
 			page = request.getContextPath() + "views/common/errorPage.jsp";
 			request.setAttribute("msg", "등급 추가 실패!");
