@@ -54,7 +54,8 @@
 						<div class="section-title">
 							<h3 class="title">상세설문조사</h3>
 							<p>총 65문항으로, 디테일하게 체질을 판단합니다. 체질설문조사 특성상 중복된 질문을 포함합니다.
-							<br/>언제나(매우)는 5점 / 평소에(상당히)는 4점 / 때로는(조금)은 3점 / 매우적다(약간)은 2점 / 해당없다(원래아님)은 1점을 선택해주세요.</p>
+							<br/>언제나(매우)는 5점 / 평소에(상당히)는 4점 / 때로는(조금)은 3점 / 매우적다(약간)은 2점 / 해당없다(원래아님)은 1점을 선택해주세요.
+							<br/><br/><strong>보기를 선택하신 후, 단락마다의 확인 버튼을 꼭! 눌러주세요.</strong></p>
 						</div>
 						<br/>
 
@@ -153,30 +154,30 @@
 						</div>
 						
 						<!-- 1번부터 7번까지의 평균값 -->
-						<button type="button" class="survey-btn" onclick="test();">확인</button>
-						<input type="text" id="check1">
+						<button type="button" class="survey-btn" onclick="test1();">확인</button>
+						<input type="text" id="check1" >
 
 						<script>
 						
-							function test(){
+							 function test1(){
 								
 								var avg1 = 0;
 								var sum1 = 0;
 								
-								for(var i = 1; i <= 7; i++){
+								 for(var i = 1; i <= 7; i++){ 
 									
 									var check = $("input[name=dq"+i+"]:checked").val();
-									sum1 += check;
-								}
+									var checkVal = Number(check);
+
+									sum1 += checkVal;
+							 	} 
 								
 								avg1 = sum1/7;
 								document.getElementById("check1").value = avg1;
-							};						
-						
+							};		
+							
 						</script>
 						<br/><br/>
-						
-						
 						
 						<div class="survey_radio">
 							<input type="radio" name="dq8" id="q8_very" value="5" checked> 
@@ -258,7 +259,29 @@
 						</div>
 						
 						<!-- 8번부터 13번까지의 평균값 -->
-						<input type="text" id="avg2" width="30px" placeholder="avg2" readOnly>
+						<button type="button" class="survey-btn" onclick="test2();">확인</button>
+						<input type="text" id="check2" >
+
+						<script>
+						
+							 function test2(){
+								
+								var avg = 0;
+								var sum = 0;
+								
+								 for(var i = 8; i <= 13; i++){ 
+									
+									var check = $("input[name=dq"+i+"]:checked").val();
+									var checkVal = Number(check);
+
+									sum += checkVal;
+							 	} 
+								
+								avg = sum/6;
+								document.getElementById("check2").value = avg;
+							};		
+							
+						</script>
 						<br/><br/>
 						
 						
@@ -383,7 +406,29 @@
 						</div>
 						
 						<!-- 14번부터 22번까지의 평균값 -->
-						<input type="text" id="avg3" width="30px" placeholder="avg3" readOnly>
+						<button type="button" class="survey-btn" onclick="test3();">확인</button>
+						<input type="text" id="check3" >
+
+						<script>
+						
+							 function test3(){
+								
+								var avg = 0;
+								var sum = 0;
+								
+								 for(var i = 14; i <= 22; i++){ 
+									
+									var check = $("input[name=dq"+i+"]:checked").val();
+									var checkVal = Number(check);
+
+									sum += checkVal;
+							 	} 
+								
+								avg = sum/9;
+								document.getElementById("check3").value = avg;
+							};		
+							
+						</script>
 						<br/><br/>
 						
 						<div class="survey_radio">
@@ -454,7 +499,29 @@
 						
 						
 						<!-- 23번부터 27번까지의 평균값 -->
-						<input type="text" id="avg4" width="30px" placeholder="avg4" readOnly>
+						<button type="button" class="survey-btn" onclick="test4();">확인</button>
+						<input type="text" id="check4" >
+
+						<script>
+						
+							 function test4(){
+								
+								var avg = 0;
+								var sum = 0;
+								
+								 for(var i = 23; i <= 27; i++){ 
+									
+									var check = $("input[name=dq"+i+"]:checked").val();
+									var checkVal = Number(check);
+
+									sum += checkVal;
+							 	} 
+								
+								avg = sum/5;
+								document.getElementById("check4").value = avg;
+							};		
+							
+						</script>
 						<br/><br/>
 						
 						
@@ -604,7 +671,29 @@
 						</div>
 						
 						<!-- 28번부터 38번까지의 평균값 -->
-						<input type="text" id="avg5" width="30px" placeholder="avg5" readOnly>
+						<button type="button" class="survey-btn" onclick="test5();">확인</button>
+						<input type="text" id="check5" >
+
+						<script>
+						
+							 function test5(){
+								
+								var avg = 0;
+								var sum = 0;
+								
+								 for(var i = 28; i <= 38; i++){ 
+									
+									var check = $("input[name=dq"+i+"]:checked").val();
+									var checkVal = Number(check);
+
+									sum += checkVal;
+							 	} 
+								
+								avg = sum/11;
+								document.getElementById("check5").value = avg;
+							};		
+							
+						</script>
 						<br/><br/>
 						
 						
@@ -754,8 +843,31 @@
 						</div>
 						
 						<!-- 39번부터 49번까지의 평균값 -->
-						<input type="text" id="avg6" width="30px" placeholder="avg6" readOnly>
+						<button type="button" class="survey-btn" onclick="test6();">확인</button>
+						<input type="text" id="check6" >
+
+						<script>
+						
+							 function test6(){
+								
+								var avg = 0;
+								var sum = 0;
+								
+								 for(var i = 39; i <= 49; i++){ 
+									
+									var check = $("input[name=dq"+i+"]:checked").val();
+									var checkVal = Number(check);
+
+									sum += checkVal;
+							 	} 
+								
+								avg = sum/11;
+								document.getElementById("check6").value = avg;
+							};		
+							
+						</script>
 						<br/><br/>
+						
 						
 						
 						<div class="survey_radio">
@@ -852,7 +964,29 @@
 						
 						
 						<!-- 50번부터 56번까지의 평균값 -->
-						<input type="text" id="avg7" width="30px" placeholder="avg7" readOnly>
+						<button type="button" class="survey-btn" onclick="test7();">확인</button>
+						<input type="text" id="check7" >
+
+						<script>
+						
+							 function test7(){
+								
+								var avg = 0;
+								var sum = 0;
+								
+								 for(var i = 50; i <= 56; i++){ 
+									
+									var check = $("input[name=dq"+i+"]:checked").val();
+									var checkVal = Number(check);
+
+									sum += checkVal;
+							 	} 
+								
+								avg = sum/7;
+								document.getElementById("check7").value = avg;
+							};		
+							
+						</script>
 						<br/><br/>
 						
 						
@@ -922,6 +1056,19 @@
 						<strong>인삼을 먹고 효과를 보았다.</strong>
 						</div>
 						<div class="survey_radio">
+							<input type="radio" name="dq62" id="q62_very" value="5" checked> 
+							<label for="q62_very">5</label> &nbsp;&nbsp;
+							<input type="radio" name="dq62" id="q62_usually" value="4"> 
+							<label for="q62_usually">4</label> &nbsp;&nbsp;
+							<input type="radio" name="dq62" id="q62_sometimes" value="3"> 
+							<label for="q62_sometimes">3</label> &nbsp;&nbsp;
+							<input type="radio" name="dq62" id="q62_little" value="2"> 
+							<label for="q62_little">2</label> &nbsp;&nbsp;
+							<input type="radio" name="dq62" id="q62_n/a" value="1"> 
+							<label for="q62_n/a">1</label> &nbsp;&nbsp;  
+						<strong>맥주를 마시면 십중팔구는 설사를 한다.</strong>
+						</div>
+						<div class="survey_radio">
 							<input type="radio" name="dq63" id="q63_very" value="5" checked> 
 							<label for="q62_very">5</label> &nbsp;&nbsp;
 							<input type="radio" name="dq63" id="q63_usually" value="4"> 
@@ -963,16 +1110,50 @@
 						
 						
 						<!-- 57번부터 65번까지의 평균값 -->
-						<input type="text" id="avg8" width="30px" placeholder="avg8" readOnly>
+						<button type="button" class="survey-btn" onclick="test8();">확인</button>
+						<input type="text" id="check8" >
+
+						<script>
+						
+							 function test8(){
+								
+								var avg = 0;
+								var sum = 0;
+								
+								 for(var i = 57; i <= 65; i++){ 
+									
+									var check = $("input[name=dq"+i+"]:checked").val();
+									var checkVal = Number(check);
+
+									sum += checkVal;
+							 	} 
+								
+								avg = sum/9;
+								document.getElementById("check8").value = avg;
+							};		
+							
+						</script>
 						<br/><br/>
 						
-						
-						
-						
 						<div align="right">
-							<button class="primary-btn" type="submit">완료</button>
-							<button class="primary-btn" type="reset">취소</button>
+							<button class="primary-btn" type="submit" onclick="goResult();">완료</button>
+							<button class="primary-btn" type="reset" onclick="goMain();">메인으로</button>
 						</div>
+						
+						<script>
+						
+							function goResult(){
+								
+								location.href="myPage_result.jsp";
+							}	
+							
+							function goMain(){
+								
+								location.href="<%= request.getContextPath() %>";
+							}							
+						
+						</script>
+						
 					</div>
 			</div>
 			<!-- /row -->

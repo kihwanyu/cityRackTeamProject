@@ -52,7 +52,6 @@
 			<!-- row -->
 			<div class="row">
 				<form id="checkout-form" class="clearfix">
-
 					<div class="col-md-12">
 						<div class="order-summary clearfix">
 							<div class="section-title">
@@ -93,8 +92,8 @@
 									<tr>
 										<td style="font-size:12px;" align="center"><strong>휴대폰</strong></td>
 										<td colspan="3" align="center">
-											<input type="text" size="16px" value=" 010 - 1234 - 5678">&nbsp;
-											<button class="editBtn">변경하기</button>
+											<input type="text" size="16px" value=" 010 - 1234 - 5678" id="phoneText">&nbsp;
+											<button class="editBtn" onclick="phone();">변경하기</button>
 										</td>
 									</tr>
 									<tr>
@@ -108,11 +107,40 @@
 							<br/>
 							<br/>
 							<div align="center">
-								<button onclick="before(); return false;" class="primary-btn">이전으로</button>
-								<button class="primary-btn" type="submit">수정완료</button>
+								<button class="primary-btn" onclick="before(); return false;">이전으로</button>
+								<button class="primary-btn" type="submit" onclick="confirm();">수정완료</button>
 							</div>
 							
 							<script>
+							
+								
+								function phone(){
+									
+									var input = prompt('Message');
+							           
+									alert("휴대폰 번호를 '" + input + "'(으)로 수정합니다.");
+									
+									document.getElementById("phoneText").value = input;
+									
+
+								}
+							
+							
+							
+								function confirm(){
+									
+									var bool = confirm('수정하시겠습니까?');
+									alert(bool);
+								}
+							
+							
+							
+							
+							
+							
+							
+							
+							
 							
 								function before(){
 									location.href="myPage_info.jsp";	
