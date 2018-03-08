@@ -58,18 +58,7 @@
 	<%@ include file="/views/admin/common/footer.jsp" %>
 	<script type="text/javascript">
 		$(function() {
-			$(".tableArea td").mouseenter(function () {
-				$(this).parent().css({"background":"lightyellow","cursor":"pointer"});
-			}).mouseout(function() {
-				$(this).parent().css("background","white");
-			}).click(function() {
-				var num = $(this).parent().children().eq(0).text();
-				location.href="<%= request.getContextPath()%>/views/admin/admin_gradeUpdateForm.jsp";
-			});
-			
 			var $gradeTable = $('#gradeTable');
-			
-			
 			
 			<% for(Grade g : list){%>
 			  console.log(<%= g.getGradeCode()%>);
