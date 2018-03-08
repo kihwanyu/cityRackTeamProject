@@ -228,7 +228,7 @@
 				</div>
 			<div align="center" style="margin-top: -50px;">
 					<input class="resisterBt" type="submit" value="수정하기">&nbsp;
-					<input class="resisterBt" type="button" value="삭제하기">
+					<input class="resisterBt" type="button" value="삭제하기" onclick="location.href='<%=request.getContextPath()%>/productDelete.pr?pcode=<%=p.getP_code()%>'">
 			</div>
 			<div id="fileArea">
 				<input type="file" id="file1" name="file1" onchange="LoadImg1(this);" value="<%=request.getContextPath()%>/product_download_imgFiles/<%=p.getP_pic1()%>">

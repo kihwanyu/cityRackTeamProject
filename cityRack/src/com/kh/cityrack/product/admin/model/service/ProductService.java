@@ -71,4 +71,18 @@ public class ProductService {
 		return result;
 	}
 
+	public int productDelete(String pcode) {
+		Connection conn = getConnection();
+		
+		int result = new ProductDao().productDelete(conn, pcode);
+		
+		if(result > 0){			
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
+
 }
