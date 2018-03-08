@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.cityrack.product.admin.model.dto.Product;
+import com.kh.cityrack.product.admin.model.dto.ProductSearch;
 
 import static com.kh.cityrack.common.JDBCTemplet.*;
 
@@ -229,6 +230,95 @@ public class ProductDao {
 		
 		
 		return result;
+	}
+	public ArrayList<Product> productSearchGetAll(Connection conn, int currentPage, int limit, ProductSearch pSearch, String[] searchTypeArr, String orderType) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Product> pList = null;
+		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("SELECT RNUM, P_CODE, P_RESISTERDATE ,CA_NAME, P_8CONSTITUTION, P_NAME, P_PRICE, P_EVENT, P_DISCOUNT, P_STATUS "
+				+ "FROM(SELECT ROWNUM RNUM, P_CODE, P_RESISTERDATE ,CA_NAME, P_8CONSTITUTION, P_NAME, P_PRICE, P_EVENT, P_DISCOUNT, P_STATUS "
+				+ "FROM(SELECT P.P_CODE, P.P_RESISTERDATE ,C.CA_NAME, P.P_8CONSTITUTION, P.P_NAME, P.P_PRICE,P.P_EVENT, P.P_DISCOUNT, P.P_STATUS "
+				+ "FROM PRODUCT P JOIN CATEGORY C ON(P.CA_NO=C.CA_NO) WHERE ");
+		
+		for(int i = 0; i < searchTypeArr.length; i++){
+			switch (searchTypeArr[i]) {
+			case "searchCheackedpCode":
+				sb.append("P.P_CODE=?");
+				break;
+			case "searchCheackedRdate": 
+				sb.append("P.P_RESISTERDATE BETWEEN ? AND ?");
+				break;
+			case "searchCheackedPcategory":
+				sb.append("C.CA_NAME=?");
+				break;
+			case "searchCheackedConstitution":
+				sb.append("P.P_8CONSTITUTION=?");
+				break;
+			case "searchCheackedPname":
+				sb.append("P.P_NAME=?");
+				break;
+			case "searchCheackedStatus":
+				sb.append("P.P_EVENT=?");
+				break;
+			default: //searchCheackedEvent
+				sb.append("P.P_STATUS=?");
+				break;
+			}
+			if(i < searchTypeArr.length-1) {
+				sb.append(" AND ");
+			} 
+		}
+		sb.append(" ORDER BY ");
+			
+		if(orderType.equals("searchCheackedPname")){
+			sb.append("P.P_NAME " + pSearch.getPname_order());
+		}
+		else {
+			sb.append("P.P_CODE " + pSearch.getPcode_order());
+		}
+			
+		sb.append(")) WHERE RNUM BETWEEN ? AND ?");
+		
+		System.out.println(sb.toString());
+		
+		/*try {
+			pstmt = conn.prepareStatement(query);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			pList = new ArrayList<Product>();
+			
+			while(rset.next()){
+				Product p = new Product();
+				p.setP_code(String.valueOf(rset.getInt("P_CODE")));
+				p.setP_resisterDate(rset.getDate("P_RESISTERDATE"));
+				p.setCa_name(rset.getString("CA_NAME"));
+				p.setP_8constitution(rset.getString("P_8CONSTITUTION"));
+				p.setP_name(rset.getString("P_NAME"));
+				p.setP_price(rset.getInt("P_PRICE"));
+				p.setP_event(rset.getString("P_EVENT"));
+				p.setP_discount(rset.getDouble("P_DISCOUNT"));
+				p.setP_status(rset.getString("P_STATUS"));
+				pList.add(p);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}*/
+		return pList;
 	}
 
 }

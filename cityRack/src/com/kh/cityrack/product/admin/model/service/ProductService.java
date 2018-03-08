@@ -2,6 +2,7 @@ package com.kh.cityrack.product.admin.model.service;
 
 import com.kh.cityrack.product.admin.model.dao.ProductDao;
 import com.kh.cityrack.product.admin.model.dto.Product;
+import com.kh.cityrack.product.admin.model.dto.ProductSearch;
 
 import static com.kh.cityrack.common.JDBCTemplet.*;
 
@@ -83,6 +84,14 @@ public class ProductService {
 		}
 		
 		return result;
+	}
+
+	public ArrayList<Product> productSearchGetAll(int currentPage, int limit, ProductSearch pSearch, String[] searchTypeArr, String orderType) {
+		Connection conn = getConnection();
+		
+		ArrayList<Product> pList = new ProductDao().productSearchGetAll(conn, currentPage, limit, pSearch, searchTypeArr, orderType);
+					
+		return pList;
 	}
 
 }
