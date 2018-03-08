@@ -5,7 +5,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" >
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
@@ -202,13 +202,13 @@
 	<!-- /NAVIGATION -->
 	
 	
-		<!-- jQuery Plugins -->
-	<script src="views/user/jeong/js/jquery.min.js"></script>
+	<!-- 	<!-- jQuery Plugins -->
+	<!-- <script src="views/user/jeong/js/jquery.min.js"></script>
 	<script src="views/user/jeong/js/bootstrap.min.js"></script>
 	<script src="views/user/jeong/js/slick.min.js"></script>
 	<script src="views/user/jeong/js/nouislider.min.js"></script>
 	<script src="views/user/jeong/js/jquery.zoom.min.js"></script>
-	<script src="views/user/jeong/js/main.js"></script>
+	<script src="views/user/jeong/js/main.js"></script>  -->
 
 </body>
 </html>
