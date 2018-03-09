@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import com.kh.cityrack.member.admin.model.dao.MemberDao;
 import com.kh.cityrack.member.admin.model.dto.Member;
+import com.kh.cityrack.member.admin.model.dto.Withdraw;
+
 import static com.kh.cityrack.common.JDBCTemplet.*;
 
 public class MemberService {
@@ -26,20 +28,42 @@ public class MemberService {
 		return m;
 	}
 
-	public int memberUpdate(int memberCode, String memberStatus) {
+	public int memberUpdate(int memberCode, String memberStatus, String withdrawReason) {
 		Connection conn = getConnection();
+		int result1 = 0;
+		int result2 = 0;
+		int existence = 0;
 		
-		int result = new MemberDao().memberUpdate(conn, memberCode, memberStatus);
+		existence = new MemberDao().checkWithdraw(conn, memberCode);
+		System.out.println(existence);
 		
-		if(result > 0){
-			commit(conn);
-		
+		if(existence == 0){
+			result1 = new MemberDao().withdrawMemberInsert(conn, memberCode, withdrawReason);
 		}else{
-			rollback(conn);
+			result1 = new MemberDao().withdrawMemberUpdate(conn, memberCode, withdrawReason);
 		}
 		
+		if(result1 > 0){
+			result2 = new MemberDao().memberUpdate(conn, memberCode, memberStatus);
+			
+			if(result1 > 0 && result2 > 0){
+				commit(conn);
+			}else{
+				rollback(conn);
+			}
+		}
+		
+		
 		close(conn);
-		return result;
+		return result1 + result2;
+	}
+
+	public ArrayList<Withdraw> withdrawMemberGetAll() {
+		Connection conn = getConnection();
+		ArrayList<Withdraw> list = new MemberDao().withdrawMemberGetAll(conn);
+		
+		close(conn);
+		return list;
 	}
 
 }

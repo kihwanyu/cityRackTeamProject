@@ -32,6 +32,9 @@
 	th {
 		background: lightgray;
 	}
+	#withdrawReasonArea{
+	  margin-top:20px;
+	}
 </style>
 <title>회원 관리</title>
 </head>
@@ -63,30 +66,69 @@
 			</table>	
 		</div>
 		<div align="center" style="margin-top:10px">
-	      <button id="signout" class="btn btn-default" data-toggle="modal" data-target="#myModal" display="inline-block">탈퇴처리</button>
-	      <button id="rollback" class="btn btn-default" data-toggle="modal" data-target="#myModal" display="inline-block">탈퇴취소</button>
+	      <button id="signout" class="btn btn-default" data-toggle="modal" data-target="#signoutModal" display="inline-block">탈퇴처리</button>
+	      <button id="rollback" class="btn btn-default" data-toggle="modal" data-target="#rollbackModal" display="inline-block">탈퇴취소</button>
 	    </div>  
-	    <div id="myModal" class="modal fade" role="dialog">
+	    
+	    <div id="signoutModal" class="modal fade" role="dialog">
           <div class="modal-dialog modal-sm">
 
             <!-- Modal content-->
            <div class="modal-content">
             <div class="modal-header" align="center">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <%if(m.getM_status().equals("N")) {%>
-              <h4 class="modal-title">정말 탈퇴처리하시겠습니까?</h4>
-              <%}else{ %>
-              <h4 class="modal-title">정말 탈퇴취소하시겠습니까?</h4>
-              <%} %>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>              
+              <h4 class="modal-title">정말 탈퇴처리하시겠습니까?</h4>            
             </div>
             <div class="modal-body" align="center">
-              <button onclick="changeStatus();" class="btn btn-default" data-dismiss="modal">&nbsp;&nbsp;&nbsp;예&nbsp;&nbsp;&nbsp;</button>
+              <button data-toggle="modal" data-target="#signoutModal2" class="btn btn-default" data-dismiss="modal">&nbsp;&nbsp;&nbsp;예&nbsp;&nbsp;&nbsp;</button>
               <button class="btn btn-default" data-dismiss="modal">아니오</button>
             </div>
             
            </div>
 
          </div>	
+        </div>
+        
+        <div id="rollbackModal" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-sm">
+
+            <!-- Modal content-->
+           <div class="modal-content">
+            <div class="modal-header" align="center">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">정말 탈퇴취소하시겠습니까?</h4>
+            </div>
+            <div class="modal-body" align="center">
+              <button onclick="withdrawer();" class="btn btn-default" data-dismiss="modal">&nbsp;&nbsp;&nbsp;계속&nbsp;&nbsp;&nbsp;</button>
+              <button class="btn btn-default" data-dismiss="modal">아니오</button>
+            </div>
+            
+           </div>
+
+         </div>	
+        </div>
+        
+        <div id="signoutModal2" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-sm">
+
+            <!-- Modal content-->
+           <div class="modal-content">
+            <div class="modal-header" align="center">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4>탈퇴 사유를 입력해주세요</h4>
+              <textarea class="form-control" rows="5" id="withdrawReasonArea"></textarea>
+              
+            </div>
+            <div class="modal-body" align="center">
+              <button onclick="withdrawer();" class="btn btn-default" data-dismiss="modal">&nbsp;&nbsp;&nbsp;계속&nbsp;&nbsp;&nbsp;</button>
+              <button class="btn btn-default" data-dismiss="modal">취소</button>
+            </div>
+            
+           </div>
+
+         </div>	
+        </div>
+        
 	</section>
 	<%@ include file="/views/admin/common/footer.jsp" %>
 	<script>
@@ -136,10 +178,12 @@
 		
 		
 	});
-		function changeStatus(){
+		function withdrawer(){
+			
+			$withdrawReason = $('#withdrawReasonArea').val();
 			$memberCode = '<%= m.getM_no()%>';
 			$memberState = '<%= m.getM_status()%>';
-			location.href="<%= request.getContextPath()%>/MemberUpdate.me?num=" + $memberCode + ":" + $memberState;
+			location.href="<%= request.getContextPath()%>/MemberUpdate.me?num=" + $memberCode + ":" + $memberState + ":" + $withdrawReason;
 		}
 	
 	</script>

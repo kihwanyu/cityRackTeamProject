@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.cityrack.member.admin.model.dto.Member;
+import com.kh.cityrack.member.admin.model.dto.Withdraw;
+
 import static com.kh.cityrack.common.JDBCTemplet.*;
 
 public class MemberDao {
@@ -120,6 +122,108 @@ public class MemberDao {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, status);
 			pstmt.setInt(2, memberCode);
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	public ArrayList<Withdraw> withdrawMemberGetAll(Connection conn) {
+		ArrayList<Withdraw> list = null;
+		Statement stmt = null;
+		ResultSet rset = null;
+		Withdraw w = null;
+		String query = prop.getProperty("withdrawMemberGetAll");
+		
+		try{
+			stmt = conn.createStatement();
+			
+			rset = stmt.executeQuery(query);
+			
+			list = new ArrayList<Withdraw>();
+			
+			while(rset.next()){
+				w = new Withdraw();
+				w.setMemberCode(rset.getInt("m_no"));
+				w.setMemberName(rset.getString("m_name"));
+				w.setWithdrawDate(rset.getDate("w_date"));
+				w.setWithdrawReason(rset.getString("w_reason"));
+				
+				list.add(w);
+			}
+		
+		
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(stmt);
+			close(rset);
+		}
+		return list;
+	}
+	
+	public int checkWithdraw(Connection conn, int memberCode) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int existence = 0;
+		
+		String query = prop.getProperty("checkWithdraw");
+		
+		try{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, memberCode);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				existence = 1;
+			}else{
+				existence = 0;
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(rset);
+		}
+		return existence;
+	}
+	
+	public int withdrawMemberInsert(Connection conn, int memberCode, String withdrawReason) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("withdrawMemberInsert");
+		
+		try{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, memberCode);
+			pstmt.setString(2, withdrawReason);
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int withdrawMemberUpdate(Connection conn, int memberCode, String withdrawReason) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("withdrawMemberUpdate");
+		
+		try{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, withdrawReason);
 			
 			result = pstmt.executeUpdate();
 			

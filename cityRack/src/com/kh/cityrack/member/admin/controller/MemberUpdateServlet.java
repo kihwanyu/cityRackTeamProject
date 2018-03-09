@@ -36,16 +36,23 @@ public class MemberUpdateServlet extends HttpServlet {
 		
 		int memberCode = Integer.parseInt(numarr[0]);
 		String memberStatus = numarr[1];
+		String withdrawReason = null;
 		
-		int result = new MemberService().memberUpdate(memberCode, memberStatus);
+		if(memberStatus.equals("N")){
+			withdrawReason = numarr[2];
+		}else{
+			withdrawReason = "복구됨";
+		}
+		
+		int result = new MemberService().memberUpdate(memberCode, memberStatus, withdrawReason);
 		
 		String page = "";
-		if(result > 0){
+		if(result == 2){
 			page = request.getContextPath() + "/MemberGetAll.me";
 			response.sendRedirect(page);
 			return;
 		}else{
-			page = request.getContextPath() + "/views/common/errorPage.jsp";
+			page ="/views/common/errorPage.jsp";
 			request.setAttribute("msg", "회원 정보 수정 실패!");
 		}
 		

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*,com.kh.cityrack.member.admin.model.dto.*"%>
+<% ArrayList<Withdraw> list = (ArrayList<Withdraw>)request.getAttribute("list"); %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,7 @@
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 
 <style>
-	@import url("css/common.css");
+	@import url("views/admin/css/common.css");
 	table {
 		border: 1px solid black;
 		text-align: center;
@@ -60,35 +61,14 @@
 		</div>
 		<br>
 		<div class="tableArea" align="center">
-			<table style="width: 70%">
+			<table id="withdrawMemberTable" style="width: 40%">
 				<tr>
 					<th width="10%" style="text-align: center;">번호</th>
-					<th width="30%" style="text-align: center;">이메일</th>
+					<th width="10%" style="text-align: center;">이름</th>
 					<th width="20%" style="text-align: center;">탈퇴날짜</th>
-					<th width="30%" style="text-align: center;">탈퇴사유</th>
-					<th width="30%" style="text-align: center;">취소</th>
+					<th width="40%" style="text-align: center;">탈퇴사유</th>
 				</tr>
-				<tr>
-					<td style="text-align: right;">1</td>
-					<td>asd0526@naver.com</td>
-					<td>2018-02-28</td>
-					<td>재가입</td>
-					<td><button onclick="dropOut();">취소</button></td>
-				</tr>
-				<tr>
-					<td style="text-align: right;">2</td>
-					<td>asd0516@naver.com</td>
-					<td>2018-02-28</td>
-					<td>관리자 임의 탈퇴</td>
-					<td><button onclick="dropOut();">취소</button></td>
-				</tr>
-				<tr>
-					<td style="text-align: right;">3</td>
-					<td>asd0326@naver.com</td>
-					<td>2018-02-28</td>
-					<td>그냥.</td>
-					<td><button onclick="dropOut();">취소</button></td>
-				</tr>
+				
 			</table>	
 			
 		</div>
@@ -106,14 +86,30 @@
 				document.getElementById('serachDate').style.display='inline';
 			} 
 		}
-		function dropOut(){
-			var result = window.confirm("홍길동님의 탈퇴를 정말로 취소시키시겠습니까?");
-			if(result==true){
-				
-			} else {
-				
-			}
-		}
+		
+		$(function(){
+			var $withdrawMemberTable = $('#withdrawMemberTable');
+		
+			
+			<% for(Withdraw w : list){%>
+			  $tr = $('<tr>');
+			  
+			  $memberCode = $('<td>').text(<%=w.getMemberCode()%>);
+			  $memberName = $('<td>').text('<%=w.getMemberName()%>');
+			  $withdrawDate = $('<td>').text('<%=w.getWithdrawDate()%>');
+			  $withdrawReason = $('<td>').text('<%=w.getWithdrawReason()%>');
+			  
+			  $tr.append($memberCode);
+			  $tr.append($memberName);
+			  $tr.append($withdrawDate);
+			  $tr.append($withdrawReason);
+			  
+			  $withdrawMemberTable.append($tr);
+			  
+			<%}%>
+			
+		});
+		
 	</script>
 </body>
 </html>
