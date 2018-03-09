@@ -71,7 +71,7 @@ public class ProductService {
 		
 		return result;
 	}
-
+//
 	public int productDelete(String pcode) {
 		Connection conn = getConnection();
 		

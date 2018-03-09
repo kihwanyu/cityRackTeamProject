@@ -378,7 +378,7 @@
 				} 
 		 	}
 			 */
-			
+			/*  */
 			$('#search_pcode').val(search_pcode);
 			$('#beforeDate').val(beforeDate);
 			$('#afterDate').val(afterDate);

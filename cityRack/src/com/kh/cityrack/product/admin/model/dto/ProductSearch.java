@@ -111,7 +111,7 @@ public class ProductSearch implements Serializable{
 	public void setSearch_status(String search_status) {
 		this.search_status = search_status;
 	}
-
+	//
 	public String getEvent() {
 		return event;
 	}

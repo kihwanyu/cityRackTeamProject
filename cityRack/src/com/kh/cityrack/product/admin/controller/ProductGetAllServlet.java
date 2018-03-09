@@ -81,7 +81,7 @@ public class ProductGetAllServlet extends HttpServlet {
 		ArrayList<Product> pList = null;
 		
 		pList = new ProductService().productGetAll(currentPage, limit);
-		
+		//
 		String page = "";
 		
 		if(pList != null){

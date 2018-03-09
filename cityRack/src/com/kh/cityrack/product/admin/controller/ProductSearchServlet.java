@@ -129,7 +129,7 @@ public class ProductSearchServlet extends HttpServlet {
 		
 		//전체 목록 갯수를 리턴 받음
 		int listCount = new ProductService().getListSearchCount(pSearch, searchTypeArr, orderType);
-		
+		/**/
 		//총 페이지수 계산
 		//예를 들면, 목록 수가 123개 이면 13페이지가 필요함.
 		//짜투리 목록 최소 1개일 때, 1page로 처리하기 위해서 

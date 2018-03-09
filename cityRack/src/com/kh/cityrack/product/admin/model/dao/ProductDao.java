@@ -16,6 +16,7 @@ import com.kh.cityrack.product.admin.model.dto.ProductSearch;
 import static com.kh.cityrack.common.JDBCTemplet.*;
 
 public class ProductDao {
+/**/
 	private Properties prop = null;
 	public ProductDao(){
 		//prop 객체 인스턴스화
