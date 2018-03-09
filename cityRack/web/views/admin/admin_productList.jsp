@@ -248,7 +248,7 @@
 				<th width="10%" style="text-align: center;">이벤트</th>
 				<th width="10%" style="text-align: center;">할인율(%)</th>
 				<th width="5%" style="text-align: center;">진열 상태</th>		
-				<th width="9%" style="text-align: center;">입고/폐기</th>
+				<th width="9%" style="text-align: center;">입고/출고</th>
 			</tr>
 			<%for(int i = 0 ; i < pList.size(); i++){ %>
 			<tr>
@@ -264,10 +264,10 @@
 				
 				<td>
 					<div class="statusButton">
-						<button type="button" style="font-size: 13px;" onclick="warehousing();">입고</button>
+						<button type="button" style="font-size: 13px;" onclick="warehousing(<%=pList.get(i).getP_code()%>);">입고</button>
 					</div>
 					<div class="statusButton">
-						<button type="button" style="font-size: 13px;" onclick="release();">폐기</button>
+						<button type="button" style="font-size: 13px;" onclick="release(<%=pList.get(i).getP_code()%>);">출고</button>
 					</div>						  
 				</td>
 			</tr>
@@ -507,11 +507,13 @@
 			console.log($("input[name='currentPage']").val())
 			formObj.submit();
 		});
-		function warehousing(){
-			location.href = "<%=request.getContextPath()%>/views/admin/admin_warehousingResister.jsp";
+		function warehousing(pcode){			
+			<%-- location.href = "<%=request.getContextPath()%>/views/admin/admin_warehousingResister.jsp"; --%>
+			location.href = "<%=request.getContextPath()%>warehousingResister?pcode=" + num;
 		}
-		function release(){
-			location.href = "<%=request.getContextPath()%>/views/admin/admin_releaseResister.jsp";
+		function release(pcode){
+			<%-- location.href = "<%=request.getContextPath()%>/views/admin/admin_releaseResister.jsp"; --%>
+			location.href = "<%=request.getContextPath()%>releaseResister?pcode=" + num;
 		}
 		</script>
 	</div>

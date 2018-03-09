@@ -10,7 +10,7 @@
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
-	@import url("css/common.css");
+	@import url("views/admin/css/common.css");
 	table {
 		border: 1px solid black;
 		text-align: center;

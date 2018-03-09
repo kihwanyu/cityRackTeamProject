@@ -31,7 +31,7 @@
 		        <li><a href="<%=request.getContextPath() %>/categoryGetAll.pr">카테고리 정보</a></li>
 	        </ul>
       	</li>
-		<li class="menuNav"><a href="<%=request.getContextPath() %>/views/admin/admin_stockList.jsp">재고 관리</a></li>
+		<li class="menuNav"><a href="<%=request.getContextPath() %>/stockGetAll.pr">재고 관리</a></li>
 		<li class="menuNav"><a href="<%=request.getContextPath() %>/views/admin/admin_orderList.jsp">주문 관리</a></li>
 		<li class="menuNav">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">배송 관리
