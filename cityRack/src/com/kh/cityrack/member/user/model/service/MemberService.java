@@ -23,4 +23,14 @@ public class MemberService {
 		return result;
 	}
 
+	// 회원 여부 체크  - ID, 비번 체크
+	public Member checkLoginUser(String name, String emailOrPhone, String key) {
+		Connection con = getConnection();
+		
+		Member loginUser = new MemberDao().checkLoginUser(con, name, emailOrPhone, key);
+		
+		
+		return loginUser;
+	}
+
 }
