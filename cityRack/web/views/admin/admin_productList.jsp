@@ -68,7 +68,11 @@
 	<%@ include file="../admin/common/header.jsp" %>
 	<div align="center">
 		<h2>상품 정보</h2>
-		<form action="productSearch.pr" method="post" id="SearchForm">
+		<form role="search" action="productSearch.pr" method="post" id="SearchForm">
+			<!-- 검색 페이징 처리용 -->
+			<%if(searchBoolean){ %>
+				<input type="hidden" name="currentPage" value="<%=currentPage%>"> 
+			<%} %>
 			<table style="width: 40%; border: 2px solid black; margin: 15px;">
 				<tr style="border: none">
 					<td style="border: none;">
@@ -80,7 +84,7 @@
 								<input type="search" name="search_pcode" id="search_pcode" class="form-control">
 							</div>
 							<div class="searchDiv" style="width: 5%;" align="center"> 
-								<input type="checkbox" name="searchType" value="searchCheackedpCode">
+								<input id="searchCheackedpCode" type="checkbox" name="searchType" value="searchCheackedpCode">
 							</div>
 							<div class="searchDiv" style="width: 25%">
 								<select id="pcode_order" name="pcode_order" class="form-control">
@@ -92,7 +96,7 @@
 					</td>	
 					
 					<td style="border: none">
-						<input type="radio" name="orderType" value="searchCheackedpCodeOrder" checked="checked">
+						<input type="radio" id="searchCheackedpCodeOrder" name="orderType" value="searchCheackedpCodeOrder">
 					</td>
 				</tr>
 				<tr style="border: none">
@@ -113,7 +117,7 @@
 						</div>	
 					</td>	
 					<td style="border: none">
-						<input type="checkbox" name="searchType" value="searchCheackedRdate">
+						<input id="searchCheackedRdate" type="checkbox" name="searchType" value="searchCheackedRdate">
 					</td>
 				</tr>
 				<tr style="border: none">
@@ -130,7 +134,7 @@
 							</select>
 							</div>
 							<div class="searchDiv" style="width: 5%">
-								<input type="checkbox" name="searchType" value="searchCheackedPcategory">
+								<input type="checkbox" id="searchCheackedPcategory" name="searchType" value="searchCheackedPcategory">
 							</div>
 							<div class="searchDiv" style="width: 18%;" align="center"> 
 								<label for="search_constitution">체질명 : </label>
@@ -149,7 +153,7 @@
 							</div>	
 							
 							<div class="searchDiv" style="width: 5%">
-								<input type="checkbox" name="searchType" value="searchCheackedConstitution">
+								<input id="searchCheackedConstitution" type="checkbox" name="searchType" value="searchCheackedConstitution">
 							</div>		
 						</div>
 					</td>	
@@ -164,7 +168,7 @@
 								<input type="search" name="search_pname" id="search_pname" class="form-control">
 							</div>
 							<div class="searchDiv" style="width: 5%;" align="center"> 
-								<input type="checkbox" name="searchType" value="searchCheackedPname">
+								<input type="checkbox" id="searchCheackedPname" name="searchType" value="searchCheackedPname">
 							</div>
 							<div class="searchDiv" style="width: 25%">
 								<select id="pname_order" name="pname_order" class="form-control">
@@ -175,7 +179,7 @@
 						</div>
 					</td>	
 					<td style="border: none">
-						<input type="radio" name="orderType" value="searchCheackedPnameOrder">
+						<input type="radio" id="searchCheackedPnameOrder" name="orderType" value="searchCheackedPnameOrder">
 					</td>
 				</tr>
 				<tr style="border: none">
@@ -191,7 +195,7 @@
 								</select>
 							</div>
 							<div class="searchDiv" style="width: 5%">
-								<input type="checkbox" name="searchType" value="searchCheackedStatus">
+								<input type="checkbox" id="searchCheackedStatus" name="searchType" value="searchCheackedStatus">
 							</div>
 							<div class="searchDiv" style="width: 5%;" align="center"> 
 							</div>
@@ -202,19 +206,20 @@
 								<label for="new">NEW</label>
 							</div>
 							<div class="searchDiv">
-								<input type="checkbox" value="sale" id="sale" name="event">
-							</div>
-							<div class="searchDiv">
-								<label for="new">HOT</label>
-							</div>
-							<div class="searchDiv">
 								<input type="checkbox" value="hot" id="hot" name="event">
 							</div>
 							<div class="searchDiv">
-								<label for="hot">SALE</label>
+								<label for="hot">HOT</label>
 							</div>
+							<div class="searchDiv">
+								<input type="checkbox" value="sale" id="sale" name="event">
+							</div>
+							<div class="searchDiv">
+								<label for="sale">SALE</label>
+							</div>
+							
 							<div class="searchDiv" style="width: 5%;" align="center"> 
-								<input type="checkbox" name="searchType" value="searchCheackedEvent">
+								<input type="checkbox" id="searchCheackedEvent" name="searchType" value="searchCheackedEvent">
 							</div>
 							<div class="searchDiv" style="width: 5%;" align="center"> 
 							</div>
@@ -278,7 +283,7 @@
 			/* (((int)((double)currentPage/limit))+0.9)*5-1;  */	
 		%>
 		<%if(!searchBoolean){%>
-		<h3>검색 안한 페이징</h3>
+		<!-- <h3>검색 안한 페이징</h3> -->
 		<div class="pagingArea" align="center">
 			<button onclick="location.href='<%= request.getContextPath()%>/productGetAll.pr?currentPage=1'"><<</button>
 			<%if(currentPage <= 1) { %>
@@ -311,17 +316,18 @@
 			<button onclick="location.href='<%= request.getContextPath()%>/productGetAll.pr?currentPage=<%=maxPage%>'">>></button>
 		</div>
 		<%} else {%>
-		<h3>검색한 페이징</h3>
+		
+		<!-- <h3>검색한 페이징</h3> -->
 		<div class="pagingArea" align="center">
-			<button onclick="location.href='<%= request.getContextPath()%>/productSearch.pr?currentPage=1'"><<</button>
+			<button id="firstPage"><<</button>
 			<%if(currentPage <= 1) { %>
 			<button><</button>
 			<%} else { 
 				if(backNextpage < 1) {%>
-					<button onclick="location.href='<%= request.getContextPath()%>/productGetAll.pr?currentPage=1'"><</button>
+					<button id="firstPage"><</button>
 			<% 	} else {%>
 			
-					<button onclick="location.href='<%= request.getContextPath()%>/productGetAll.pr?currentPage=<%=backNextpage%>'"><</button>
+					<button id="nextPageLeft"><</button>
 			<%	} %>
 			<%} %>
 			<%for(int p = startPage; p <= endPage; p++){ 
@@ -329,19 +335,19 @@
 			%>
 				<button disabled="disabled"><%=p %></button>
 			<%	} else { %>
-				<button onclick="location.href='<%= request.getContextPath()%>/productGetAll.pr?currentPage=<%=p %>'"><%=p %></button>
+				<button id="selectPage" value="<%=p %>"><%=p %></button>
 			<%	} %>	
 			<%} %>
 			<%if(currentPage >= maxPage){ %>
 			<button disabled="disabled">></button>	
 			<%} else { 
 				if(forwardNextpage > maxPage) {%>
-				<button onclick="location.href='<%= request.getContextPath()%>/productGetAll.pr?currentPage=<%= maxPage%>'">></button>
+				<button id="endPage" >></button>
 				<% } else { %>
-				<button onclick="location.href='<%= request.getContextPath()%>/productGetAll.pr?currentPage=<%= forwardNextpage%>'">></button>
+				<button id="nextPageRight">></button>
 				<%} %>
 			<%} %> 
-			<button onclick="location.href='<%= request.getContextPath()%>/productGetAll.pr?currentPage=<%=maxPage%>'">>></button>
+			<button id="endPage">>></button>
 		</div>
 		<%} %>
 		<br>
@@ -362,23 +368,34 @@
 			var search_pcategory = localStorage.getItem("search_pcategory");
 			var search_constitution = localStorage.getItem("search_constitution");
 			var search_status = localStorage.getItem("search_status");
-			
-			
-			/* if(searchType != null){
+						
+			if(searchType != null){
 				var searchTypeArr = searchType.split(" ");
-				for(var i = 0; i < searchTypeArr.length; i++){
-					$('#searchType input:checkbox[name='+searchTypeArr[i]+']').attr("checked", true);
-				}
+				var searchTypeSize = 0;
+					$('input:checkbox[name="searchType"]').each(function() {
+						 
+					if(this.value === searchTypeArr[searchTypeSize]){ //값 비교
+					       this.checked = true; //checked 처리
+					       searchTypeSize++;
+					}
+					
+					});
+					searchTypeSize = 0; 
 			}
 			
-		 	if(event != null){
-		 		var eventArr = event.split(" "); 
-		 		for(var i = 0; eventArr.length; i++){
-					$('#event input:checkbox[name='+eventArr[i]+']').attr("checked", true);
-				} 
-		 	}
-			 */
-			/*  */
+			if(event != null){
+			var eventArr = event.split(" "); 
+			var eventSize = 0;
+				$('input:checkbox[name="event"]').each(function() {
+					 
+				if(this.value == eventArr[eventSize]){ //값 비교
+				       this.checked = true; //checked 처리
+				       eventSize++;
+				}
+				
+				});
+				eventSize = 0; 
+			} 
 			$('#search_pcode').val(search_pcode);
 			$('#beforeDate').val(beforeDate);
 			$('#afterDate').val(afterDate);
@@ -392,9 +409,9 @@
 			
 			
 			
-			$('#orderType input:radio[name='+orderType+']').attr("checked", true);
-			
-			
+			$('input:radio[name=orderType]:input[value=' + orderType + ']').attr("checked", true);
+
+			console.log(orderType);
 			
 			$("#rsetBtn").click(function(){
 				localStorage.clear();
@@ -447,9 +464,9 @@
 				localStorage.setItem("pcode_order", pcode_order);
 				localStorage.setItem("pname_order", pname_order);
 				localStorage.setItem("search_pcode", search_pcode);
-				localStorage.setItem("search_pname	", search_pname);
-				localStorage.setItem("afterDate", beforeDate);
-				localStorage.setItem("beforeDate", afterDate);
+				localStorage.setItem("search_pname", search_pname);
+				localStorage.setItem("afterDate", afterDate);
+				localStorage.setItem("beforeDate", beforeDate);
 				localStorage.setItem("search_pcategory", search_pcategory);
 				localStorage.setItem("search_constitution", search_constitution);
 				localStorage.setItem("search_status", search_status);			
@@ -458,6 +475,38 @@
 			
 		});	
 		
+		var formObj = $("form[role='search']");
+		
+		console.log(formObj);
+		
+		$("#StartPage").on("click", function(){
+			$("input[name='currentPage']").val(1);
+			console.log($("input[name='currentPage']").val())
+			formObj.submit();
+		});
+		$("#nextPageLeft").on("click", function(){
+			$("input[name='currentPage']").val(<%=backNextpage%>);
+			console.log($("input[name='currentPage']").val())
+			formObj.submit();
+		});
+		$("#nextPageRight").on("click", function(){
+			$("input[name='currentPage']").val(<%= forwardNextpage%>);
+			console.log($("input[name='currentPage']").val())
+			formObj.submit();
+		});
+		
+		$("#endPage").on("click", function(){
+			$("input[name='currentPage']").val(<%= maxPage%>);
+			console.log($("input[name='currentPage']").val())
+			formObj.submit();
+		});
+		$("#selectPage").on("click", function(){
+			var selectPage = $(this).val();
+			console.log(selectPage);
+			$("input[name='currentPage']").val(selectPage);
+			console.log($("input[name='currentPage']").val())
+			formObj.submit();
+		});
 		function warehousing(){
 			location.href = "<%=request.getContextPath()%>/views/admin/admin_warehousingResister.jsp";
 		}
