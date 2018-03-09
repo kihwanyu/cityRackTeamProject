@@ -4,6 +4,7 @@
 <!DOCTYPE html >
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
@@ -47,7 +48,7 @@
 
 	<!-- 페이지 -->
 	
-	<form>
+	<form id="idForm" action="<%=request.getContextPath()%>/searchId.em" method="post">
 	<div class=container>
 	<div class=row>
 			<!-- 아이디 찾기 -->
@@ -67,7 +68,7 @@
 			<!-- /아이디 찾기 -->	
 	</form>
 	
-	<form action="<%=request.getContextPath()%>/searchPwd.em" method="post">
+	<form id="pwdForm"  action="<%=request.getContextPath()%>/searchPwd.em" method="post" >
 			<!-- 비밀번호 찾기 -->
 			<div class="col-md-6">
 			
@@ -78,22 +79,52 @@
 			<input class="input" type="text" name="namePwd" id="namePwd" placeholder="이름을 입력해주세요.">
 			<input class="input" type="text" name="emailPwd" id="emailPwd" placeholder="가입하신 이메일을 입력해주세요.">
 			
-			<button type="submit" align="center" class="submitBtn">
+			<button type="submit" align="center" class="submitBtn" >
 				임시 비밀번호 발급
 			</button>
 			<p>* 가입하신 이메일로 임시 비밀번호를 발급하여 보내드립니다.</p>
+			<p id="#reportResult"></p>
+			
 			</div>
 			
 			
 			<!-- /비밀번호 찾기 -->
 			
 			<script type="text/javascript">
-				$(".submitBtn").click(function(){
-					alert(<%=alert %> );
-				});
-				
-			</script>
+					
 			
+			 $("#pwdForm").submit(function(event) {
+
+			      /* stop form from submitting normally */
+			      event.preventDefault();
+
+			      /* get the action attribute from the <form action=""> element */
+			      var $form = $( this ),
+			      url = $form.attr( 'action' );
+
+			      /* Send the data using post with element id name and name2*/
+			      var posting = $.post( url, { name: $('#namePwd').val(), email: $('#emailPwd').val() } );
+
+			      /* Alerts the results */
+			      posting.done(function( data ) {
+			        alert(data);
+			      });
+			    });
+		
+			/*  $(".submitBtn").click(function(){
+				$.ajax({
+					url:"searchPwd.em",
+					type:"post",
+					success:function(data){						
+						alert(data);
+						alert('object');
+					}, 
+					error:function(data){
+						alert(data);
+					}
+				});
+			});  */
+			</script>
 			
 	</form>
 	<!-- row -->

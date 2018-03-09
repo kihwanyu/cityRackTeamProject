@@ -1,6 +1,8 @@
 package com.kh.cityrack.member.common.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -18,13 +20,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+
+import com.google.gson.Gson;
 import com.kh.cityrack.member.user.model.dto.Member;
 import com.kh.cityrack.member.user.model.service.MemberService;
 
 /**
  * Servlet implementation class SearchPwdServlet
  */
-@WebServlet("/searchPwdServlet.em")
+@WebServlet("/searchPwd.em")
 public class SearchPwdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -46,26 +50,46 @@ public class SearchPwdServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//입력한 이름과 이메일을 가지고 온다.
-		String name = request.getParameter("namePwd");
-		String email = request.getParameter("emailPwd");
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
 		String key="pwd"; //아이디 찾기와 같은 서비스, Dao를 이용하므로 비밀번호 찾기임을 알려주는 키.
-		
+		String alert=""; //보낼 알림 메세지
 			
+		/*System.out.println("name : "+ name);
+		System.out.println("email : " + email);*/
+		
+		
 		
 		//멤버 객체 로그인 유저 생성		
 		Member loginUser = new MemberService().checkLoginUser(name, email, key);
 		
-		//받아온 loginUser의 값에 따라 보낼 페이지 설정
-		String page = "";
+		//받아온 loginUser의 값에 따라 보낼 alert 메세지 설정
 		
 		if(loginUser !=null) {
 			connectEmail(email); //아래 메일 보내는 메소드 실행
-			request.setAttribute("alert", "임시 비밀번호가 발송되었습니다.");
+			
+			
+			//비밀번호 새로 만든 것을 수정 서비스, DAO를 통해 수정.
+			//향후 코드 작성.
+			
+			
+			alert = "임시 비밀번호가 메일로 발송되었습니다.";
+		
+			
 		} else {
-			request.setAttribute("alert", "해당하는 회원 정보가 없습니다.");
-		}
-				
-		request.getRequestDispatcher(page).forward(request, response);
+			alert = "해당하는 회원 정보가 없습니다.";			
+		}	
+		
+		response.setContentType("application/json");
+		response.setCharacterEncoding("utf-8");
+		
+		new Gson().toJson(alert, response.getWriter());
+		
+		
+		/*String page = "/views/user/rani/searchIdPwd.jsp";
+		request.getRequestDispatcher(page).forward(request, response); */
+		
+		
 	}
 
 	/**
@@ -81,9 +105,9 @@ public class SearchPwdServlet extends HttpServlet {
 			String host="smtp.gmail.com"; // smtp 서버
 			String subject="새로 발급된 비밀번호 입니다."; // 보내는 제목 설정
 			String fromName="관리자"; // 보내는 이름 설정
-			String from="구글계정"; // 보내는 사람(구글계정)
+			String from="ctradm119@gmail.com"; // 보내는 사람(구글계정)
 			String authNum=authNum(); // 인증번호 위한 난수 발생부분
-			String content="새 비밀번호는  ["+authNum+"] 입니다."; // 이메일 내용 설정
+			String content="새 비밀번호는  ["+authNum+"] 입니다. 반드시 로그인해서 비밀번호를 재설정해주시기 바랍니다."; // 이메일 내용 설정
 			
 	        // SMTP 이용하기 위해 설정해주는 설정값들
 			try{
@@ -102,7 +126,7 @@ public class SearchPwdServlet extends HttpServlet {
 	           = Session.getInstance(props,new javax.mail.Authenticator(){
 				    protected PasswordAuthentication getPasswordAuthentication(){
 					    return new PasswordAuthentication
-	                                        ("구글계정","계정비밀번호"); // gmail계정
+	                                        ("ctradm119@gmail.com","cityrackadmin"); // gmail계정
 				}
 			});
 			
