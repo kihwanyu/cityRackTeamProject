@@ -36,6 +36,7 @@ public class ProductSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		ProductSearch pSearch = new ProductSearch();
 		
 		String[] searchTypeArr = request.getParameterValues("searchType");
@@ -80,6 +81,7 @@ public class ProductSearchServlet extends HttpServlet {
 				break;
 			case "searchCheackedPname":
 				search_pname = request.getParameter("search_pname").trim();
+				
 				pSearch.setSearch_pname(search_pname);	
 				break;
 			case "searchCheackedStatus":
@@ -102,6 +104,7 @@ public class ProductSearchServlet extends HttpServlet {
 				pSearch.setPcode_order(pcode_order);
 			} else {
 				pname_order = request.getParameter("pname_order");
+				System.out.println("pname_order : " + pname_order);
 				pSearch.setPname_order(pname_order);
 			}
 			

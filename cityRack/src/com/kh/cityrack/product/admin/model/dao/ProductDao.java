@@ -238,7 +238,6 @@ public class ProductDao {
 		ArrayList<Product> pList = null;
 		
 		StringBuilder sb = new StringBuilder();
-		int qnum = 0;
 		
 		sb.append("SELECT RNUM, P_CODE, P_RESISTERDATE ,CA_NAME, P_8CONSTITUTION, P_NAME, P_PRICE, P_EVENT, P_DISCOUNT, P_STATUS "
 				+ "FROM(SELECT ROWNUM RNUM, P_CODE, P_RESISTERDATE ,CA_NAME, P_8CONSTITUTION, P_NAME, P_PRICE, P_EVENT, P_DISCOUNT, P_STATUS "
@@ -249,31 +248,24 @@ public class ProductDao {
 			switch (searchTypeArr[i]) {
 			case "searchCheackedpCode":
 				sb.append("P.P_CODE=?");
-				qnum+=1;
 				break;
 			case "searchCheackedRdate": 
 				sb.append("P.P_RESISTERDATE BETWEEN ? AND ?");
-				qnum+=2;
 				break;
 			case "searchCheackedPcategory":
 				sb.append("C.CA_NAME=?");
-				qnum+=1;
 				break;
 			case "searchCheackedConstitution":
 				sb.append("P.P_8CONSTITUTION=?");
-				qnum+=1;
 				break;
 			case "searchCheackedPname":
 				sb.append("P.P_NAME LIKE ?");
-				qnum+=1;
 				break;
 			case "searchCheackedStatus":
 				sb.append("P.P_STATUS=?");
-				qnum+=1;
 				break;
 			default: //searchCheackedEvent
 				sb.append("P.P_EVENT=?");
-				qnum+=1;
 				break;
 			}
 			if(i < searchTypeArr.length-1) {
@@ -282,15 +274,14 @@ public class ProductDao {
 		}
 		sb.append(" ORDER BY ");
 		System.out.println("DAO orderType : " + orderType);
-		if(orderType.equals("searchCheackedPname")){
-			sb.append("P.P_NAME " + pSearch.getPname_order());
+		if(orderType.equals("searchCheackedpCodeOrder")){
+			sb.append("P.P_CODE " + pSearch.getPcode_order());
 		}
 		else {
-			sb.append("P.P_CODE " + pSearch.getPcode_order());
+			sb.append("P.P_NAME " + pSearch.getPname_order());
 		}
 			
 		sb.append(")) WHERE RNUM BETWEEN ? AND ?");
-		System.out.println("qnum:" + qnum);
 		System.out.println(sb.toString());
 		
 		try {
@@ -299,32 +290,43 @@ public class ProductDao {
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
 			
-			for(int i = 0; i < qnum; i++){
+			int j = 1;
+			
+			for(int i = 0; i < searchTypeArr.length; i++){
+				
+				System.out.println("i : "+i);
 				switch (searchTypeArr[i]) {
 				case "searchCheackedpCode":
-					pstmt.setInt(i+1, Integer.parseInt(pSearch.getSearch_pcode()));
+					pstmt.setInt(j, Integer.parseInt(pSearch.getSearch_pcode()));
+					j++;
 					break;
 				case "searchCheackedRdate": 
-					pstmt.setDate(i+1, pSearch.getBeforeDate());
-					i++;
-					pstmt.setDate(i+1, pSearch.getAfterDate());
+					pstmt.setDate(j, pSearch.getBeforeDate());
+					System.out.println(pSearch.getBeforeDate());
+					j++;
+					pstmt.setDate(j, pSearch.getAfterDate());
+					System.out.println(pSearch.getAfterDate());
+					j++;
 					break;
 				case "searchCheackedPcategory":
-					pstmt.setString(i+1, pSearch.getSearch_pcname());
-					System.out.println(pSearch.getSearch_pcname());
+					pstmt.setString(j, pSearch.getSearch_pcname());
+					j++;
 					break;
 				case "searchCheackedConstitution":
-					pstmt.setString(i+1, pSearch.getSearch_constitution());
+					pstmt.setString(j, pSearch.getSearch_constitution());
+					j++;
 					break;
 				case "searchCheackedPname":
-					pstmt.setString(i+1, "%"+pSearch.getSearch_pname()+"%");
-					System.out.println("%"+pSearch.getSearch_pname()+"%");
+					pstmt.setString(j, "%"+pSearch.getSearch_pname()+"%");
+					j++;
 					break;
 				case "searchCheackedStatus":
-					pstmt.setString(i+1, pSearch.getSearch_status());
+					pstmt.setString(j, pSearch.getSearch_status());
+					j++;
 					break;
 				default: //searchCheackedEvent
-					pstmt.setString(i+1, pSearch.getEvent());
+					pstmt.setString(j, pSearch.getEvent());
+					j++;
 					break;
 				}
 				if(i < searchTypeArr.length-1) {
@@ -332,8 +334,9 @@ public class ProductDao {
 				} 
 			}
 			
-			pstmt.setInt(++qnum, startRow);
-			pstmt.setInt(++qnum, endRow);
+			pstmt.setInt(j, startRow);
+			j++;
+			pstmt.setInt(j, endRow);
 			
 			rset = pstmt.executeQuery();
 			
@@ -368,39 +371,31 @@ public class ProductDao {
 		int pListCount = 0;
 		
 		StringBuilder sb = new StringBuilder();
-		int qnum = 0;
 		
-		sb.append("SELECT COUNT(*) FROM PRODUCT WHERE ");
-		
+		sb.append("SELECT COUNT(*) FROM PRODUCT P JOIN CATEGORY C ON(P.CA_NO=C.CA_NO) WHERE ");
+				
 		for(int i = 0; i < searchTypeArr.length; i++){
 			switch (searchTypeArr[i]) {
 			case "searchCheackedpCode":
 				sb.append("P.P_CODE=?");
-				qnum+=1;
 				break;
 			case "searchCheackedRdate": 
 				sb.append("P.P_RESISTERDATE BETWEEN ? AND ?");
-				qnum+=2;
 				break;
 			case "searchCheackedPcategory":
 				sb.append("C.CA_NAME=?");
-				qnum+=1;
 				break;
 			case "searchCheackedConstitution":
 				sb.append("P.P_8CONSTITUTION=?");
-				qnum+=1;
 				break;
 			case "searchCheackedPname":
 				sb.append("P.P_NAME LIKE ?");
-				qnum+=1;
 				break;
 			case "searchCheackedStatus":
 				sb.append("P.P_STATUS=?");
-				qnum+=1;
 				break;
 			default: //searchCheackedEvent
 				sb.append("P.P_EVENT=?");
-				qnum+=1;
 				break;
 			}
 			if(i < searchTypeArr.length-1) {
@@ -408,38 +403,46 @@ public class ProductDao {
 			} 
 		}
 		
-		System.out.println("qnum:" + qnum);
 		System.out.println(sb.toString());
 		
 		try {
+			int j = 1;
+			
 			pstmt = conn.prepareStatement(sb.toString());
-						
-			for(int i = 0; i < qnum; i++){
+					
+			for(int i = 0; i < searchTypeArr.length; i++){
+				
+				//switch case문으로 할 시 날짜에서 searchTypeArr을 한개 초과한 값을 꺼내는 오류 발생
 				switch (searchTypeArr[i]) {
 				case "searchCheackedpCode":
-					pstmt.setInt(i+1, Integer.parseInt(pSearch.getSearch_pcode()));
+					pstmt.setInt(j, Integer.parseInt(pSearch.getSearch_pcode()));
+					j++;
 					break;
 				case "searchCheackedRdate": 
-					pstmt.setDate(i+1, pSearch.getBeforeDate());
-					i++;
-					pstmt.setDate(i+1, pSearch.getAfterDate());
+					pstmt.setDate(j, pSearch.getBeforeDate());
+					j++;
+					pstmt.setDate(j, pSearch.getAfterDate());
+					j++;
 					break;
 				case "searchCheackedPcategory":
-					pstmt.setString(i+1, pSearch.getSearch_pcname());
-					System.out.println(pSearch.getSearch_pcname());
+					pstmt.setString(j, pSearch.getSearch_pcname());
+					j++;
 					break;
 				case "searchCheackedConstitution":
-					pstmt.setString(i+1, pSearch.getSearch_constitution());
+					pstmt.setString(j, pSearch.getSearch_constitution());
+					j++;
 					break;
 				case "searchCheackedPname":
-					pstmt.setString(i+1, "%"+pSearch.getSearch_pname()+"%");
-					System.out.println("%"+pSearch.getSearch_pname()+"%");
+					pstmt.setString(j, "%"+pSearch.getSearch_pname()+"%");
+					j++;
 					break;
 				case "searchCheackedStatus":
-					pstmt.setString(i+1, pSearch.getSearch_status());
+					pstmt.setString(j, pSearch.getSearch_status());
+					j++;
 					break;
 				default: //searchCheackedEvent
-					pstmt.setString(i+1, pSearch.getEvent());
+					pstmt.setString(j, pSearch.getEvent());
+					j++;
 					break;
 				}
 				if(i < searchTypeArr.length-1) {
