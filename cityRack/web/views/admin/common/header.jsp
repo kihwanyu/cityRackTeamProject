@@ -42,7 +42,7 @@
 	        </ul>
       	</li>
 		<li class="menuNav"><a href="<%=request.getContextPath() %>/views/admin/admin_paymentSearch.jsp">결제 관리</a></li>
-		<li class="menuNav"><a href="<%=request.getContextPath() %>/views/admin/admin_boardList.jsp">게시판 관리</a></li>		
+		<li class="menuNav"><a href="<%=request.getContextPath() %>/selectList.bo">게시판 관리</a></li>		
 	</ul>
 </nav>
 </div>
