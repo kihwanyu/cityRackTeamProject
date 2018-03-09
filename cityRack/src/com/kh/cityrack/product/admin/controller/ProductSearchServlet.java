@@ -48,7 +48,7 @@ public class ProductSearchServlet extends HttpServlet {
 		String pcode_order = "";
 		Date beforeDate = null;
 		Date afterDate = null;
-		int search_pcno = 0;
+		String search_pcname = "";
 		String search_constitution = "";
 		String search_pname = "";
 		String pname_order = "";
@@ -58,10 +58,10 @@ public class ProductSearchServlet extends HttpServlet {
 		pSearch.setEvent(event);
 		
 		for(int i = 0; i < searchTypeArr.length; i++){
+			System.out.println(searchTypeArr[i]);
 			switch (searchTypeArr[i]) {
 			case "searchCheackedpCode":
 				search_pcode = request.getParameter("search_pcode").trim();
-				pcode_order = request.getParameter("pcode_order");
 				pSearch.setSearch_pcode(search_pcode);
 				break;
 			case "searchCheackedRdate": 
@@ -71,8 +71,8 @@ public class ProductSearchServlet extends HttpServlet {
 				pSearch.setAfterDate(afterDate);
 				break;
 			case "searchCheackedPcategory":
-				search_pcno= Integer.parseInt(request.getParameter("search_pcategory"));
-				pSearch.setSearch_pcno(search_pcno);
+				search_pcname= request.getParameter("search_pcategory");
+				pSearch.setSearch_pcname(search_pcname);
 				break;
 			case "searchCheackedConstitution":
 				search_constitution = request.getParameter("search_constitution");
@@ -80,7 +80,6 @@ public class ProductSearchServlet extends HttpServlet {
 				break;
 			case "searchCheackedPname":
 				search_pname = request.getParameter("search_pname").trim();
-				pname_order = request.getParameter("pname_order");
 				pSearch.setSearch_pname(search_pname);	
 				break;
 			case "searchCheackedStatus":
@@ -98,11 +97,12 @@ public class ProductSearchServlet extends HttpServlet {
 				pSearch.setEvent(event.trim());
 				break;
 			}
-			
-			if(orderType.equals("searchCheackedPnameOrder")){
-				pSearch.setPname_order(pname_order);
-			} else {
+			if(orderType.equals("searchCheackedpCodeOrder")){
+				pcode_order = request.getParameter("pcode_order");
 				pSearch.setPcode_order(pcode_order);
+			} else {
+				pname_order = request.getParameter("pname_order");
+				pSearch.setPname_order(pname_order);
 			}
 			
 		}
@@ -128,7 +128,7 @@ public class ProductSearchServlet extends HttpServlet {
 		limit = 3;
 		
 		//전체 목록 갯수를 리턴 받음
-		int listCount = new ProductService().getListCount();
+		int listCount = new ProductService().getListSearchCount(pSearch, searchTypeArr, orderType);
 		
 		//총 페이지수 계산
 		//예를 들면, 목록 수가 123개 이면 13페이지가 필요함.
@@ -154,11 +154,14 @@ public class ProductSearchServlet extends HttpServlet {
 		
 		pList = new ProductService().productSearchGetAll(currentPage, limit, pSearch, searchTypeArr, orderType);
 		
+		System.out.println("pList : " + pList);
+		
 		String page = "";
 		
 		if(pList != null){
 			ArrayList<Pcategory> cList = new PcategoryService().categoryGetAll();
 			
+			request.setAttribute("searchBoolean", true);
 			request.setAttribute("pList", pList);
 			request.setAttribute("pi", pi);
 			request.setAttribute("cList", cList);

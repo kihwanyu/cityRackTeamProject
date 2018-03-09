@@ -7,7 +7,7 @@
 <%
 	ArrayList<Product> pList = (ArrayList<Product>)request.getAttribute("pList");
 	ArrayList<Pcategory> cList = (ArrayList<Pcategory>)request.getAttribute("cList");
-			
+	boolean searchBoolean =  (Boolean)request.getAttribute("searchBoolean");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
@@ -24,7 +24,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
 	@import url("views/admin/css/common.css");
@@ -69,7 +68,7 @@
 	<%@ include file="../admin/common/header.jsp" %>
 	<div align="center">
 		<h2>상품 정보</h2>
-		<form action="productSearch.pr" method="post">
+		<form action="productSearch.pr" method="post" id="SearchForm">
 			<table style="width: 40%; border: 2px solid black; margin: 15px;">
 				<tr style="border: none">
 					<td style="border: none;">
@@ -126,7 +125,7 @@
 							<div class="searchDiv">
 								<select id="search_pcategory" name="search_pcategory" class="form-control">
 								<%for(int i = 0 ; i < cList.size() ; i++) {%>
-									<option value="<%=cList.get(i).getCa_code()%>" class="form-control"><%=cList.get(i).getCa_name() %></option>
+									<option value="<%=cList.get(i).getCa_name() %>" class="form-control"><%=cList.get(i).getCa_name() %></option>
 								<%} %>
 							</select>
 							</div>
@@ -182,7 +181,7 @@
 				<tr style="border: none">
 					<td style="border: none;" colspan="2">
 						<div align="center">
-							<div class="searchDiv" style="width: 18%;" align="center"> 
+							<div class="searchDiv" style="width: 15%;" align="center"> 
 								<label for="search_status">진열상태 : </label>
 							</div>
 							<div class="searchDiv">
@@ -219,8 +218,11 @@
 							</div>
 							<div class="searchDiv" style="width: 5%;" align="center"> 
 							</div>
-							<div class="searchDiv" style="width: 15%">
-								<input type="submit" value="검색" class="btn btn-primary active" style="width: 100%">
+							<div class="searchDiv" style="width: 10%">
+								<input type="submit" id="SearchBtn" value="검색" class="btn btn-primary active" style="width: 100%">
+							</div>
+							<div class="searchDiv" style="width: 10%;">
+								<input type="reset" id="rsetBtn" value="초기화" class="btn btn-primary active" style="width: 100%">
 							</div>
 						</div>
 					</td>	
@@ -275,6 +277,8 @@
 				int forwardNextpage = ((int)(forwardNextPageVal+0.9))*limit+1;
 			/* (((int)((double)currentPage/limit))+0.9)*5-1;  */	
 		%>
+		<%if(!searchBoolean){%>
+		<h3>검색 안한 페이징</h3>
 		<div class="pagingArea" align="center">
 			<button onclick="location.href='<%= request.getContextPath()%>/productGetAll.pr?currentPage=1'"><<</button>
 			<%if(currentPage <= 1) { %>
@@ -306,58 +310,154 @@
 			<%} %> 
 			<button onclick="location.href='<%= request.getContextPath()%>/productGetAll.pr?currentPage=<%=maxPage%>'">>></button>
 		</div>
+		<%} else {%>
+		<h3>검색한 페이징</h3>
+		<div class="pagingArea" align="center">
+			<button onclick="location.href='<%= request.getContextPath()%>/productSearch.pr?currentPage=1'"><<</button>
+			<%if(currentPage <= 1) { %>
+			<button><</button>
+			<%} else { 
+				if(backNextpage < 1) {%>
+					<button onclick="location.href='<%= request.getContextPath()%>/productGetAll.pr?currentPage=1'"><</button>
+			<% 	} else {%>
+			
+					<button onclick="location.href='<%= request.getContextPath()%>/productGetAll.pr?currentPage=<%=backNextpage%>'"><</button>
+			<%	} %>
+			<%} %>
+			<%for(int p = startPage; p <= endPage; p++){ 
+				if(p == currentPage){
+			%>
+				<button disabled="disabled"><%=p %></button>
+			<%	} else { %>
+				<button onclick="location.href='<%= request.getContextPath()%>/productGetAll.pr?currentPage=<%=p %>'"><%=p %></button>
+			<%	} %>	
+			<%} %>
+			<%if(currentPage >= maxPage){ %>
+			<button disabled="disabled">></button>	
+			<%} else { 
+				if(forwardNextpage > maxPage) {%>
+				<button onclick="location.href='<%= request.getContextPath()%>/productGetAll.pr?currentPage=<%= maxPage%>'">></button>
+				<% } else { %>
+				<button onclick="location.href='<%= request.getContextPath()%>/productGetAll.pr?currentPage=<%= forwardNextpage%>'">></button>
+				<%} %>
+			<%} %> 
+			<button onclick="location.href='<%= request.getContextPath()%>/productGetAll.pr?currentPage=<%=maxPage%>'">>></button>
+		</div>
+		<%} %>
 		<br>
 		<div align="center">
 			<button class="resisterBt" onclick="location.href='<%=request.getContextPath()%>/ProductFormLoad.pr?formType=resister'">상품 등록</button>
 		</div>
 		<script type="text/javascript">
-		
-		function selectSearch() {
-			var selection = document.getElementById('searchCondition').value;
-			if(selection=='pcode'){
-				document.getElementById('searchText').style.display='inline';
-				document.getElementById('serachDate').style.display='none';
-				document.getElementById('status').style.display='none';
-				document.getElementById('constitution').style.display='none';
-				document.getElementById('pcategory').style.display='none';
-				document.getElementById('order').style.display='inline';
-			} if(selection=='pdate'){
-				document.getElementById('searchText').style.display='none';
-				document.getElementById('serachDate').style.display='inline';
-				document.getElementById('status').style.display='none';
-				document.getElementById('constitution').style.display='none';
-				document.getElementById('pcategory').style.display='none';
-				document.getElementById('order').style.display='inline';
-			} else if(selection=='pcategory') {
-				document.getElementById('searchText').style.display='none';
-				document.getElementById('serachDate').style.display='none';
-				document.getElementById('status').style.display='none';
-				document.getElementById('constitution').style.display='none';
-				document.getElementById('pcategory').style.display='inline';
-				document.getElementById('order').style.display='none';
-			} else if(selection=='constitution') {
-				document.getElementById('searchText').style.display='none';
-				document.getElementById('serachDate').style.display='none';
-				document.getElementById('status').style.display='none';
-				document.getElementById('constitution').style.display='inline';
-				document.getElementById('pcategory').style.display='none';
-				document.getElementById('order').style.display='none';
-			} else if(selection=='pname') {
-				document.getElementById('searchText').style.display='inline';
-				document.getElementById('serachDate').style.display='none';
-				document.getElementById('status').style.display='none';
-				document.getElementById('constitution').style.display='none';
-				document.getElementById('pcategory').style.display='none';
-				document.getElementById('order').style.display='inline';
-			} else {
-				document.getElementById('searchText').style.display='none';
-				document.getElementById('serachDate').style.display='none';
-				document.getElementById('status').style.display='inline';
-				document.getElementById('constitution').style.display='none';                        
-				document.getElementById('pcategory').style.display='none';
-				document.getElementById('order').style.display='none';
+		$(function(){	
+			var searchType = localStorage.getItem("searchType");
+			var orderType = localStorage.getItem("orderType");
+			var event = localStorage.getItem("event");
+			var pcode_order = localStorage.getItem("pcode_order");
+			var pname_order = localStorage.getItem("pname_order");
+			var search_pname = localStorage.getItem("search_pname");
+			var search_pcode = localStorage.getItem("search_pcode");
+			var afterDate = localStorage.getItem("afterDate");
+			var beforeDate = localStorage.getItem("beforeDate");
+			var search_pcategory = localStorage.getItem("search_pcategory");
+			var search_constitution = localStorage.getItem("search_constitution");
+			var search_status = localStorage.getItem("search_status");
+			
+			
+			/* if(searchType != null){
+				var searchTypeArr = searchType.split(" ");
+				for(var i = 0; i < searchTypeArr.length; i++){
+					$('#searchType input:checkbox[name='+searchTypeArr[i]+']').attr("checked", true);
+				}
 			}
-		}
+			
+		 	if(event != null){
+		 		var eventArr = event.split(" "); 
+		 		for(var i = 0; eventArr.length; i++){
+					$('#event input:checkbox[name='+eventArr[i]+']').attr("checked", true);
+				} 
+		 	}
+			 */
+			
+			$('#search_pcode').val(search_pcode);
+			$('#beforeDate').val(beforeDate);
+			$('#afterDate').val(afterDate);
+			$('#search_pname').val(search_pname);
+			
+			$('#search_constitution option[value='+search_constitution+']').attr('selected', 'selected');
+			$('#search_pcategory option[value='+search_pcategory+']').attr('selected', 'selected');
+			$('#pcode_order option[value='+pcode_order+']').attr('selected', 'selected');
+			$('#pname_order option[value='+pname_order+']').attr('selected', 'selected');
+			$('#search_status option[value='+search_status+']').attr('selected', 'selected');
+			
+			
+			
+			$('#orderType input:radio[name='+orderType+']').attr("checked", true);
+			
+			
+			
+			$("#rsetBtn").click(function(){
+				localStorage.clear();
+			});
+			
+			$("#SearchForm").submit(function(){
+				var i = $(":checkbox[name='searchType']:checked").length;
+
+				var searchType = "";
+				$(":checkbox[name='searchType']:checked").each(function(i,e){
+			       if(searchType == ""){
+			    	   searchType = e.value;
+			        }else{
+			        	searchType += " "+e.value;
+			        }
+				});
+				
+				var orderType = $(":radio[name='orderType']:checked").val();
+				
+				var i = $(":checkbox[name='event']:checked").length;
+				
+				var event = "";
+				$(":checkbox[name='event']:checked").each(function(i,e){
+			       if(event == ""){
+			    	   event = e.value;
+			        }else{
+			        	event += " "+e.value;
+			        }
+				});
+
+				var search_pcategory = $("select[name='search_pcategory']").val();
+				
+				var search_pcode = $("input[name='search_pcode']").val();
+				var pcode_order = $("select[name='pcode_order']").val();
+				var pname_order = $("select[name='pname_order']").val();
+				
+				
+				var beforeDate = $("input[name='beforeDate']").val();
+				var afterDate = $("input[name='afterDate']").val();
+				
+				var search_pcategory = $("select[name='search_pcategory']").val();
+				var search_constitution = $("select[name='search_constitution']").val();
+				
+				var search_pname = $("input[name='search_pname']").val();
+				var search_status =$("select[name='search_status']").val();
+				
+				localStorage.setItem("searchType", searchType);
+				localStorage.setItem("orderType", orderType);
+				localStorage.setItem("event", event);
+				localStorage.setItem("pcode_order", pcode_order);
+				localStorage.setItem("pname_order", pname_order);
+				localStorage.setItem("search_pcode", search_pcode);
+				localStorage.setItem("search_pname	", search_pname);
+				localStorage.setItem("afterDate", beforeDate);
+				localStorage.setItem("beforeDate", afterDate);
+				localStorage.setItem("search_pcategory", search_pcategory);
+				localStorage.setItem("search_constitution", search_constitution);
+				localStorage.setItem("search_status", search_status);			
+			});
+			
+			
+		});	
+		
 		function warehousing(){
 			location.href = "<%=request.getContextPath()%>/views/admin/admin_warehousingResister.jsp";
 		}
