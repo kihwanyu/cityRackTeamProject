@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% 
-
-/* String str = request.getParameter("사랑해");
-System.out.println(str); */
-
-%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +9,7 @@ System.out.println(str); */
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>cityRack_myPage_cs</title>
+	<title>cityRack_ingredient</title>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
@@ -59,13 +53,25 @@ System.out.println(str); */
 					<div class="col-md-12">
 						<div class="order-summary clearfix">
 							<div class="section-title">
-								<h3 class="title">고객센터</h3>
+								<h3 class="title">회사소개</h3>
 							</div>
 							<br/>
+							<br/>
+							<br/>
 							<div align="center">
-								 <img src="./img/고객센터.png" width="50%">
-								<img src="./img/help.png" align="middle">
+								 <img src="./img/company1.png" width="100%">
 							</div>
+							<div>
+								<img src="./img/company1.png" width="100%">
+							</div>
+							<div>
+								<img src="./img/company1.png" width="100%">
+							</div>
+							<div>
+								<img src="./img/company1.png" width="100%">
+							</div>
+							<br/>
+							<br/>
 							<br/>
 						</div>
 					</div>

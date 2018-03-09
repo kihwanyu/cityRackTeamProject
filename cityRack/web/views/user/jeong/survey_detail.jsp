@@ -1138,6 +1138,7 @@
 						<div align="right">
 							<button class="primary-btn" type="submit" onclick="goResult();">완료</button>
 							<button class="primary-btn" type="reset" onclick="goMain();">메인으로</button>
+							<input type="text" id="end">
 						</div>
 						
 						<script>
@@ -1148,9 +1149,25 @@
 							}	
 							
 							function goMain(){
+								<%-- location.href="<%= request.getContextPath() %>/views/user/jeong/myPage_cs.jsp?사랑해="+ "사랑해"; --%>
 								
-								location.href="<%= request.getContextPath() %>";
-							}							
+								
+								$("#end").each(function(){
+									
+									for(){
+										
+									}
+									
+								});
+								
+								
+								
+								
+								
+								
+							}	
+							
+							
 						
 						</script>
 						
