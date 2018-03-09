@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% String alert = (String)request.getAttribute("alert"); %>    
 <!DOCTYPE html >
 <html>
 <head>
@@ -58,7 +59,7 @@
 			
 			<input class="input" type="text" name="nameId" id="nameId" placeholder="이름을 입력해주세요.">
 			<input class="input" type="tel" name="phoneId" id="phoneId" placeholder="전화번호를 입력해주세요(-제외)">
-			<button type="submit">
+			<button type="submit" class="submitBtn">
 				아이디 찾기
 			</button>
 			</div>
@@ -66,10 +67,9 @@
 			<!-- /아이디 찾기 -->	
 	</form>
 	
-	<form>
+	<form action="<%=request.getContextPath()%>/searchPwd.em" method="post">
 			<!-- 비밀번호 찾기 -->
 			<div class="col-md-6">
-			
 			
 			<div class="section-title">
 				<h3 class="title">임시 비밀번호 발급</h3>
@@ -78,7 +78,7 @@
 			<input class="input" type="text" name="namePwd" id="namePwd" placeholder="이름을 입력해주세요.">
 			<input class="input" type="text" name="emailPwd" id="emailPwd" placeholder="가입하신 이메일을 입력해주세요.">
 			
-			<button type="submit" align="center">
+			<button type="submit" align="center" class="submitBtn">
 				임시 비밀번호 발급
 			</button>
 			<p>* 가입하신 이메일로 임시 비밀번호를 발급하여 보내드립니다.</p>
@@ -86,6 +86,13 @@
 			
 			
 			<!-- /비밀번호 찾기 -->
+			
+			<script type="text/javascript">
+				$(".submitBtn").click(function(){
+					alert(<%=alert %> );
+				});
+				
+			</script>
 			
 			
 	</form>
