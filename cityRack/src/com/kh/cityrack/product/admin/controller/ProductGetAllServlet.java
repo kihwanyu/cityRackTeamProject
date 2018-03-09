@@ -81,12 +81,12 @@ public class ProductGetAllServlet extends HttpServlet {
 		ArrayList<Product> pList = null;
 		
 		pList = new ProductService().productGetAll(currentPage, limit);
-		
+		//
 		String page = "";
 		
 		if(pList != null){
 			ArrayList<Pcategory> cList = new PcategoryService().categoryGetAll();
-			
+			request.setAttribute("searchBoolean", false);
 			request.setAttribute("pList", pList);
 			request.setAttribute("pi", pi);
 			request.setAttribute("cList", cList);

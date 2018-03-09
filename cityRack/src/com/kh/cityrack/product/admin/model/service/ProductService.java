@@ -71,7 +71,7 @@ public class ProductService {
 		
 		return result;
 	}
-
+//
 	public int productDelete(String pcode) {
 		Connection conn = getConnection();
 		
@@ -92,6 +92,16 @@ public class ProductService {
 		ArrayList<Product> pList = new ProductDao().productSearchGetAll(conn, currentPage, limit, pSearch, searchTypeArr, orderType);
 					
 		return pList;
+	}
+
+	public int getListSearchCount(ProductSearch pSearch, String[] searchTypeArr, String orderType) {
+		Connection conn = getConnection();
+		
+		int listCount = new ProductDao().getListSearchCount(conn, pSearch, searchTypeArr);
+		
+		close(conn);
+		
+		return listCount;
 	}
 
 }
