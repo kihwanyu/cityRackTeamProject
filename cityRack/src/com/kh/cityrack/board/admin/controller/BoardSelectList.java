@@ -37,12 +37,15 @@ public class BoardSelectList extends HttpServlet {
 		
 		System.out.println("list :" + list);
 		String page = "";
+		
+		System.out.println(list);
 		if(list != null){
 			page = "views/admin/admin_boardList.jsp";
 			request.setAttribute("list", list);
 			
 		}else{
-			
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "게시판 조회 실패");
 		}
 		
 		RequestDispatcher view = request.getRequestDispatcher(page);

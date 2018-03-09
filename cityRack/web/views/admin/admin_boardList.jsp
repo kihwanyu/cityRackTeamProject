@@ -39,15 +39,15 @@
 				</tr>
 			</thead>
 			<tbody>
+					<%System.out.println(list); %>
 				<% for(Board b : list){ %>
 				<tr>
-					<input type="hidden" value="<%= b.getBo_no()%>">
+					<td><%= b.getBo_no() %></td>
 					<td><%= b.getBo_title() %></td>
-					<td>null</td>
-					<td><%= b.getBo_title() %></td>
+					<td><%= b.getM_email() %></td>
 					<td><%= b.getBo_date() %></td>
 					<td><%= b.getBo_hit() %></td>
-					<td>Y</td>
+					<td></td>
 				</tr>
 				<% } %>
 			</tbody>

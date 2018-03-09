@@ -18,4 +18,14 @@ public class BoardService {
 		return list;
 	}
 
+	public int insertBoard(Board b) {
+		Connection con = getConnection();
+				
+		int result = new BoardDao().insertBoard(con, b);
+		if(result > 0)commit(con);
+		else rollback(con);
+		
+		return result;
+	}
+
 }
