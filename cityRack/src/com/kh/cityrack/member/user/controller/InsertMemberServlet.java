@@ -96,20 +96,20 @@ public class InsertMemberServlet extends HttpServlet {
 		
 		
 				
-			/*	//페이지 연결
-				String page = "";
+			//페이지 연결
+			String page = "";
 				
 				if(result>0) {
-					page = "views/common/successPage.jsp";
+					page = "";
 					request.setAttribute("msg", "회원 가입 성공");
 				} else {
-					page = "views/common/errorPage.jsp";
+					page = "views/user/common/errorPage.jsp";
 					request.setAttribute("msg", "회원 가입 실패");
 				}
 				
 				RequestDispatcher view = request.getRequestDispatcher(page);
 				view.forward(request, response);
-		*/
+		
 		
 	
 	}

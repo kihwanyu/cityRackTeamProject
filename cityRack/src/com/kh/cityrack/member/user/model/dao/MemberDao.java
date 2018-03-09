@@ -13,18 +13,20 @@ import static com.kh.cityrack.common.JDBCTemplet.*;
 
 public class MemberDao {
 	
-	private Properties prop; 
+	private Properties prop = null; 
 	
 	public MemberDao() {
-		/*String fileName = MemberDao.class.getResource("/sql/member/member-query.properties").getPath();		
-		
+		prop= new Properties();
+		String fileName = MemberDao.class.getResource("/sql/user/member/member-query.properties").getPath();		
+		System.out.println(fileName);
+	
 		try {
 			prop.load(new FileReader(fileName));
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		*/
+		}		
 	}
 
 	
@@ -34,8 +36,8 @@ public class MemberDao {
 	public int insertMember(Connection con, Member m) {
 		PreparedStatement pstmt =  null;
 		int result = 0;
-		String query = "insert into member values(mno.nextval, 100, ?,?,?,?,?,?,?,?,sysdate,default)";
-		/*String query = prop.getProperty("insertMember");*/
+		
+		String query = prop.getProperty("insertMember");
 		
 				/*M_NO
 				C_NO
