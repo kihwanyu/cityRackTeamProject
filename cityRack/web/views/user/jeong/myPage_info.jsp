@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.cityrack.member.user.model.dto.Member" %>
+
+<%
+	Member loginUser = (Member)session.getAttribute("loginUser");
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,22 +64,31 @@
 							<div class="section-title">
 								<h3 class="title">내 정보</h3>
 							</div>
+							<h2><%= loginUser.getM_name() %>님 환영합니다!</h2>
 							<table class="infoTable" align="center" width="400px" style="border:2px solid orange;">
 									<tr>
-										<td style="font-size:12px;" align="center">&nbsp;&nbsp;아이디</td>
-										<td colspan="3" align="center"><label>city@naver.com</label></td>
+										<td style="font-size:12px;" align="center">&nbsp;&nbsp;이메일</td>
+										<td colspan="3" align="center">
+											<input type="text" name="email" value="<%= loginUser.getM_mail() %>" readonly>
+										</td>
 									</tr>
 									<tr>
 										<td style="font-size:12px;" align="center">&nbsp;&nbsp;비밀번호</td>
-										<td colspan="3" align="center"><label>********</label></td>
+										<td colspan="3" align="center">
+											<input type="text" name="password" value="<%= loginUser.getM_password() %>" readonly>
+										</td>
 									</tr>
 									<tr>
 										<td style="font-size:12px;" align="center">&nbsp;&nbsp;이름</td>
-										<td colspan="3" align="center"><label>시티락</label></td>
+										<td colspan="3" align="center">
+											<input type="text" name="name" value="<%= loginUser.getM_name() %>" readonly>
+										</td>
 									</tr>									
 									<tr>
 										<td rowspan="2" width="200px" style="font-size:12px;" align="center">&nbsp;&nbsp;주소</td>
-										<td colspan="3" style="border-bottom:1px solid white;" align="center"><label>서울 강남구 테헤란로14길 6</label></td>
+										<td colspan="3" style="border-bottom:1px solid white;" align="center">
+											<input type="text" name="address" value="<%= loginUser.getM_address() %>" readonly>
+										</td>
 									</tr>						
 									<tr>
 										<td colspan="3" align="center"><label>남도빌딩 2층</label></td>
@@ -82,8 +96,16 @@
 									</tr>		
 									<tr>
 										<td style="font-size:12px;" align="center">&nbsp;&nbsp;휴대폰</td>
-										<td colspan="3" align="center"><label>010-1234-5678</label></td>
-									</tr>	
+										<td colspan="3" align="center">
+											<input type="text" name="phone" value="<%= loginUser.getM_phone() %>" readonly>
+										</td>
+									</tr>
+									<tr>
+										<td style="font-size:12px;" align="center">&nbsp;&nbsp;전화번호</td>
+										<td colspan="3" align="center">
+											<input type="text" name="tel" value="<%= loginUser.getM_tel() %>" readonly>
+										</td>
+									</tr>		
 							</table>
 							<br/>
 							<br/>

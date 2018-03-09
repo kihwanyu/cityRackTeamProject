@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.cityrack.member.user.model.dto.Member, 
+    							com.kh.cityrack.question.user.model.dto.Question" %>
+
+<%
+	Member loginUser = (Member)session.getAttribute("loginUser");
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,13 +64,40 @@
 							</div>
 							<br/>
 							<br/>
-							<h3 align="center">ㅇㅇㅇ님의 체질을 알려드립니다!</h3>
+							<h3 align="center"><%= loginUser.getM_name() %>님의 체질을 알려드립니다!</h3>
 							<br/>
 							<br/>
+							
 							<div align="center">
-								<img src="./img/체질.png" alt="" height="300px">
-								<img src="./img/목양.png" alt="" height="300px">
+							
+								<% 
+								
+								Question q = new Question();
+							
+								String result = q.getQ_8constitution();	
+								
+								switch(result){ 
+								
+									case "목양체질" : %>
+									
+										<img src="./img/체질.png" alt="" height="300px">
+										<img src="./img/목양.png" alt="" height="300px">
+									
+									<% break;
+									
+									case "목음체질" : %>
+									
+										<img src="./img/체질.png" alt="" height="300px">
+										<img src="./img/목양.png" alt="" height="300px">
+									
+									<% break;
+								} 
+								
+								%>
+							
 							</div>
+							
+							
 							<br/>
 							<br/>
 							<br/>
