@@ -1,6 +1,7 @@
 package com.kh.cityrack.product.admin.model.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import com.kh.cityrack.product.admin.model.dao.StockDao;
 import com.kh.cityrack.product.admin.model.dto.Stock;
@@ -38,6 +39,15 @@ public class StockService {
 		close(conn);
 		
 		return result;
+	}
+
+	public ArrayList<Stock> productGetAll(int currentPage, int limit) {
+		return null;
+	}
+
+	public int getListCount() {
+		
+		return 0;
 	}
 
 }

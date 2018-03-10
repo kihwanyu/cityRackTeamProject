@@ -1,5 +1,11 @@
+<%@page import="com.kh.cityrack.product.admin.model.dto.Stock"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	ArrayList<Stock> sList = (ArrayList<Stock>)request.getAttribute("sList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,35 +63,16 @@
 		
 		<br>
 		<div class="tableArea" align="center">
-			<table style="width: 40%">
+			<table style="width: 30%">
 				<tr>
-					<th width="15%" style="text-align: center;">상품번호</th>
-					<th width="15%" style="text-align: center;">상품명</th>
-					<th width="10%" style="text-align: center;">입고량(개)</th>
-					<th width="10%" style="text-align: center;">폐기량(개)</th>
-					<th width="10%" style="text-align: center;">재고량(개)</th>
+					<th width="30%" style="text-align: center;">상품번호</th>
+					<th width="70%" style="text-align: center;">상품명</th>
 				</tr>
 				<tr>
 					<td style="text-align: left;">BB2300</td>
 					<td style="text-align: left;">main_도시락1</td>
-					<td style="text-align: right;">200</td>
-					<td style="text-align: right;">100</td>
-					<td style="text-align: right;">100</td>
 				</tr>
-				<tr>
-					<td style="text-align: left;">AA1200</td>
-					<td style="text-align: left;">main_도시락2</td>
-					<td style="text-align: right;">150</td>
-					<td style="text-align: right;">100</td>
-					<td style="text-align: right;">50</td>
-				</tr>
-				<tr>
-					<td style="text-align: left;">CC0123</td>
-					<td style="text-align: left;">main_도시락1</td>
-					<td style="text-align: right;">100</td>
-					<td style="text-align: right;">70</td>
-					<td style="text-align: right;">30</td>
-				</tr>
+				
 			</table>	
 		</div>	
 	</section>
