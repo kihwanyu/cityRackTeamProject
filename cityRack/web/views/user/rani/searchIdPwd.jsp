@@ -56,10 +56,8 @@
 			<div class="section-title">
 				<h3 class="title">아이디 찾기</h3>
 			</div>
-			
-			
 			<input class="input" type="text" name="nameId" id="nameId" placeholder="이름을 입력해주세요.">
-			<input class="input" type="tel" name="phoneId" id="phoneId" placeholder="전화번호를 입력해주세요(-제외)">
+			<input class="input" type="tel" name="phoneId" id="phoneId" placeholder="가입하신 휴대전화 번호를 입력해주세요(-제외)">
 			<button type="submit" class="submitBtn">
 				아이디 찾기
 			</button>
@@ -67,6 +65,34 @@
 			
 			<!-- /아이디 찾기 -->	
 	</form>
+	
+	<script type="text/javascript">
+	 $("#idForm").submit(function(event) {
+
+	      /* stop form from submitting normally */
+	      event.preventDefault();
+
+	      /* get the action attribute from the <form action=""> element */
+	      var $form = $( this ),
+	      url = $form.attr( 'action' );
+
+	      /* Send the data using post with element id name and name2*/
+	      var posting = $.post( url, { name: $('#nameId').val(), phone: $('#phoneId').val() } );
+
+	    
+	      /* Alerts the results */
+	      posting.done(function( data ) {
+	    	  
+	    	 alert("회원님의 아이디는 "+data+"입니다.");
+	    	 
+	      });
+	      
+	      posting.fail(function(data){
+	    	  alert(data);
+	      });
+	    });
+	</script>
+	
 	
 	<form id="pwdForm"  action="<%=request.getContextPath()%>/searchPwd.em" method="post" >
 			<!-- 비밀번호 찾기 -->
@@ -111,19 +137,8 @@
 			      });
 			    });
 		
-			/*  $(".submitBtn").click(function(){
-				$.ajax({
-					url:"searchPwd.em",
-					type:"post",
-					success:function(data){						
-						alert(data);
-						alert('object');
-					}, 
-					error:function(data){
-						alert(data);
-					}
-				});
-			});  */
+				
+			 
 			</script>
 			
 	</form>
