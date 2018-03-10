@@ -264,10 +264,10 @@
 				
 				<td>
 					<div class="statusButton">
-						<button type="button" style="font-size: 13px;" onclick="warehousing(<%=pList.get(i).getP_code()%>);">입고</button>
+						<input type="button" style="font-size: 13px;" value="입고" onclick="warehousing(<%=pList.get(i).getP_code()%>);">
 					</div>
 					<div class="statusButton">
-						<button type="button" style="font-size: 13px;" onclick="release(<%=pList.get(i).getP_code()%>);">출고</button>
+						<input type="button" style="font-size: 13px;" value="출고" onclick="release(<%=pList.get(i).getP_code()%>);">
 					</div>						  
 				</td>
 			</tr>
@@ -508,12 +508,10 @@
 			formObj.submit();
 		});
 		function warehousing(pcode){			
-			<%-- location.href = "<%=request.getContextPath()%>/views/admin/admin_warehousingResister.jsp"; --%>
-			location.href = "<%=request.getContextPath()%>warehousingResister?pcode=" + num;
+			location.href = "<%=request.getContextPath()%>/views/admin/admin_warehousingResister.jsp?pcode=" + pcode;
 		}
 		function release(pcode){
-			<%-- location.href = "<%=request.getContextPath()%>/views/admin/admin_releaseResister.jsp"; --%>
-			location.href = "<%=request.getContextPath()%>releaseResister?pcode=" + num;
+			location.href = "<%=request.getContextPath()%>/views/admin/admin_releaseResister.jsp?pcode=" + pcode;
 		}
 		</script>
 	</div>
