@@ -74,8 +74,6 @@ public class StockInsertServlet extends HttpServlet {
 				request.setAttribute("msg", "재고가 부족합니다.");
 				request.getRequestDispatcher(page).forward(request, response);
 			}
-			
-		
 	}
 
 	/**
