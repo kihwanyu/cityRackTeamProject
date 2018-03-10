@@ -28,7 +28,7 @@ public class MemberService {
 		Connection con = getConnection();
 		
 		Member loginUser = new MemberDao().checkLoginUser(con, name, emailOrPhone, key);
-		
+		close(con);
 		
 		return loginUser;
 	}

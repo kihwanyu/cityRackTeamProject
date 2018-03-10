@@ -94,10 +94,13 @@ public class MemberDao {
 			String query = "";
 			
 			switch(key) {
-			case "id":query= prop.getProperty("checkID");
-			case "pwd":query= prop.getProperty("checkPwd");
+			case "id": query= prop.getProperty("checkID");break;
+			case "pwd": query= prop.getProperty("checkPwd");break;
 			}
 			
+			
+			System.out.println(query);
+			System.out.println(key);
 			
 			try {
 				//Connection 객체를 통해 PreparedStatement객체를 인스턴스화 한다.

@@ -1,4 +1,4 @@
-package com.kh.cityrack.member.common.controller;
+package com.kh.cityrack.member.user.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
