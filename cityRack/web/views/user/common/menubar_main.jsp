@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.cityrack.member.common.model.dto.Member"%>
+    pageEncoding="UTF-8" import="com.kh.cityrack.member.user.model.dto.Member"%>
 <% String msg = String.valueOf(request.getAttribute("msg")); %>    
 <% Member loginUser = (Member)session.getAttribute("loginUser"); %>
 <!DOCTYPE html>

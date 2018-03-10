@@ -40,14 +40,19 @@ public class MemberDao {
 		Member loginUser = null;
 		//prop객체의 파일 위치에 있는 파일에서 key값이 login value값을 가져온다.
 		String query = prop.getProperty("login");
+		System.out.println("login query : " + query);
+		
+		System.out.println("MemberDao password : " + m.getM_password());
 		
 		try {
 			//Connection 객체를 통해 PreparedStatement객체를 인스턴스화 한다.
 			pstmt = conn.prepareStatement(query);
 			
+			
 			//PreparedStatement객체의 ?를 채워준다.
 			pstmt.setString(1, m.getM_email());
 			pstmt.setString(2, m.getM_password());
+			
 			
 			//쿼리문의 결과를 ResultSet으로 받는다.
 			rset = pstmt.executeQuery();
@@ -64,6 +69,8 @@ public class MemberDao {
 				loginUser.setM_birthDay(rset.getDate("M_BIRTHDAY"));
 				loginUser.setM_address(rset.getString("M_ADDRESS"));
 				loginUser.setM_phone(rset.getString("M_PHONE"));
+				
+				System.out.println("MemberDao loginUser : " + loginUser);
 			}
 			
 		} catch (SQLException e) {

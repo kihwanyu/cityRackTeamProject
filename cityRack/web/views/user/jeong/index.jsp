@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.cityrack.member.common.model.dto.Member"%>
-<% String msg = String.valueOf(request.getAttribute("msg")); %>    
 <% Member loginUser = (Member)session.getAttribute("loginUser"); %>
 <!DOCTYPE html>
 <html >
@@ -66,15 +65,15 @@
 								</div>
 								<strong class="text-uppercase">마이페이지 <i class="fa fa-caret-down"></i></strong>
 							</div>
-							<% if(loginUser == null){ %>
+							<% if(loginUser == null){ %> 
 							<div class="loginDiv">
 								<a href="views/user/rani/login.jsp" class="text-uppercase">로그인</a> / <a href="views/user/rani/join.jsp" class="text-uppercase">회원가입</a>
 							</div>
 							<%} else { %>
 								<div class="loginDiv">
-											<p><%=loginUser.getM_name() %>님, 환영합니다. | <a onclick="logout();" >로그아웃 </a></p>
+											<p><%-- <%=loginUser.getM_name() %>님, 환영합니다. |  --%><a onclick="logout();" >로그아웃 </a></p>
 								</div>
-							<%} %>
+							<%} %> 
 							<ul class="custom-menu">
 								<li><a href="views/user/jeong/myPage_info.jsp"><i class="fa fa-user-o"></i> 내 정보</a></li>
 								<li><a href="views/user/jeong/myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>

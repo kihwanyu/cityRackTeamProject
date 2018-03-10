@@ -116,17 +116,17 @@
 	<!-- /HEADER -->
 
 	<!-- NAVIGATION -->
-	<div id="navigation">
-		<!-- container -->
+<!-- 	<div id="navigation">
+		container
 		<div class="container">
 			<div id="responsive-nav">
-				<!-- category nav -->
+				category nav
 				<div class="category-nav">
 					<span class="category-header">마이페이지</span>
 				</div>
-				<!-- /카테고리 메뉴바 -->
+				/카테고리 메뉴바
 
-				<!-- 메뉴 네비게이터 -->
+				메뉴 네비게이터
 				<div class="menu-nav">
 					<ul class="menu-list">
 						<li><a href="myPage_cart.jsp">장바구니</a></li>
@@ -137,11 +137,11 @@
 						<li><a href="myPage_cs.jsp">고객센터</a></li>
 					</ul>
 				</div>
-				<!-- 메뉴 네비게이터 -->
+				메뉴 네비게이터
 			</div>
 		</div>
-		<!-- /container -->
-	</div>
+		/container
+	</div> -->
 	<!-- /NAVIGATION -->
 	
 	<script type="text/javascript">

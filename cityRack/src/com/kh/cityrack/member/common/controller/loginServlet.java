@@ -51,29 +51,35 @@ public class loginServlet extends HttpServlet {
 				//MemberDao login메소드 호출
 				loginUser = new MemberService().login(m);
 			
-				System.out.println(loginUser);
+				System.out.println("login.do loginUsr : " + loginUser);
 				
 				//loginUser가 null 일 경우 error 페이지로 보낸다.
 				if(loginUser != null){
 					if(loginUser.getC_name().equals("관리자")){
 						page = "views/admin/index.jsp";
+						HttpSession session = request.getSession();
+						session.setAttribute("loginUser", loginUser);
+						
+						response.sendRedirect(page);
 					} else {
-						page = "views/user/jeong/index.jsp"  ;				
+						page = "views/user/jeong/index.jsp";		
+						HttpSession session = request.getSession();
+						session.setAttribute("loginUser", loginUser);
+						
+						response.sendRedirect(page);
 					}
 					
-					HttpSession session = request.getSession();
-					session.setAttribute("loginUser", loginUser);
-					request.setAttribute("loginUser", loginUser) ;
 					//loginUser의 등급이 관리자일 경우 관리자 페이지로 보낸다.
 					//loginUser의 등급이 나머지일 경우 유저 페이지로 보낸다.
+					
 					
 				} else {
 					page = "views/common/errorPage.jsp";
 					request.setAttribute("loginUser", loginUser);
+					request.getRequestDispatcher(page).forward(request, response);
 				}
 			
 				
-				request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**

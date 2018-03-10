@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.cityrack.member.common.model.dto.Member" %>
+
+<%
+	Member loginUser = (Member)session.getAttribute("loginUser");
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,7 +48,7 @@
 
 <body>
 			<!-- 마이페이지용 메뉴바 -->
-	<%@ include file="/views/user/common/menubar_myPage.jsp" %>
+<%-- 	<%@ include file="/views/user/common/menubar_myPage.jsp" %> --%>
 
 	<!-- section -->
 	<div class="section">
@@ -51,16 +56,20 @@
 		<div class="container">
 			<!-- row -->
 			<div class="row">
-				<form id="checkout-form" class="clearfix">
+				<form id="checkout-form" class="clearfix"
+					 action="<%= request.getContextPath() %>/updateMember.do" method="post">
 					<div class="col-md-12">
 						<div class="order-summary clearfix">
 							<div class="section-title">
 								<h3 class="title">내 정보 수정</h3>
 							</div>
+							<h2><%= loginUser.getM_name() %>님의 정보를 수정합니다.</h2>
 							<table class="infoTable" align="center" width="450px">
 									<tr>
-										<td style="font-size:12px;" align="center"><strong>아이디</strong></td>
-										<td colspan="3" align="center"><label>city@naver.com</label></td>
+										<td style="font-size:12px;" align="center"><strong>이메일</strong></td>
+										<td colspan="3" align="center">
+											<input type="text" name="email" value="<%= loginUser.getM_email() %>" readonly>
+										</td>
 									</tr>
 									<tr>
 										<td style="font-size:12px;" align="center"><strong>비밀번호</strong></td>
@@ -71,7 +80,9 @@
 									</tr>
 									<tr>
 										<td style="font-size:12px;" align="center"><strong>이름</strong></td>
-										<td colspan="3" align="center"><label>시티락</label></td>
+										<td colspan="3" align="center">
+											<input type="text" name="userName" value="<%= loginUser.getM_name() %>">
+										</td>
 									</tr>									
 									<tr >
 										<td rowspan="3" style="font-size:12px;" align="center"><strong>주소</strong></td>
@@ -92,14 +103,14 @@
 									<tr>
 										<td style="font-size:12px;" align="center"><strong>휴대폰</strong></td>
 										<td colspan="3" align="center">
-											<input type="text" size="16px" value=" 010 - 1234 - 5678" id="phoneText">&nbsp;
+											<input type="tel" name="phone" value="<%= loginUser.getM_phone() %>">&nbsp;
 											<button class="editBtn" onclick="phone();">변경하기</button>
 										</td>
 									</tr>
 									<tr>
 										<td style="font-size:12px;" align="center"><strong>전화번호</strong></td>
 										<td colspan="3" align="center">
-											<input type="text" size="16px" value=" 02 - 1234 - 5678">&nbsp;
+											<input type="tel" name="tel" value="<%= loginUser.getM_tel() %>">&nbsp;
 											<button class="editBtn">변경하기</button>
 										</td>
 									</tr>		
@@ -132,11 +143,6 @@
 									var bool = confirm('수정하시겠습니까?');
 									alert(bool);
 								}
-							
-							
-							
-							
-							
 							
 							
 							

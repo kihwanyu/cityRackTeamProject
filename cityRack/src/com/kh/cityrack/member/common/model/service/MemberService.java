@@ -13,6 +13,8 @@ public class MemberService {
 		
 		Member loginUser = new MemberDao().login(conn, m);
 		
+		close(conn);
+		
 		return loginUser;
 	}
 

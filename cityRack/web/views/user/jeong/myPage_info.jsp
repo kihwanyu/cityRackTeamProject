@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.cityrack.member.common.model.dto.Member" %>
+<%
+	Member loginUser = (Member)session.getAttribute("loginUser");
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +46,114 @@
 <body>
 
 	<!-- 마이페이지용 메뉴바 -->
-	<%@ include file="/views/user/common/menubar_myPage.jsp" %>
+	 <%-- <%@ include file="/views/user/common/menubar_myPage.jsp" %> --%>
+	
+	
+	<!-- HEADER -->
+	<header>
+		<!-- header -->
+		<div id="header">
+			<div class="container">
+				<div class="pull-left">
+					<!-- 로고 -->
+					<div class="header-logo">
+						<a class="logo" href="index.jsp">
+							<img src="./img/logo.png" alt="">
+						</a>
+					</div>
+					<!-- /로고 -->
+				</div>
+				<div class="pull-right">
+					<ul class="header-btns">
+						<!-- Account -->
+						<li class="header-account dropdown default-dropdown">
+							<div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
+								<div class="header-btns-icon">
+									<i class="fa fa-user-o"></i>
+								</div>
+								<strong class="text-uppercase">마이페이지 <i class="fa fa-caret-down"></i></strong>
+							</div>
+							<% if(loginUser == null){ %>
+							<div class="loginDiv">
+								<a href="views/user/rani/login.jsp" class="text-uppercase">로그인</a> / <a href="views/user/rani/join.jsp" class="text-uppercase">회원가입</a>
+							</div>
+							<%} else { %>
+								<div class="loginDiv">
+									<p><%=loginUser.getM_name() %>님, 환영합니다. | <a onclick="logout();" >로그아웃 </a></p>
+											
+								</div>
+							<%} %>
+							<ul class="custom-menu">
+								<li><a href="myPage_info.jsp"><i class="fa fa-user-o"></i> 내 정보</a></li>
+								<li><a href="myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
+								<li><a href="myPage_delivery.jsp"><i class="fa fa-check"></i> 주문배송조회</a></li>
+								<li><a href="myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>
+								<li><a href="#"><i class="fa fa-unlock-alt"></i> 로그아웃</a></li>
+							</ul>
+						</li>
+						<!-- /Account -->
+
+						<!-- 장바구니 -->
+						<li class="header-cart dropdown default-dropdown">
+							<div class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+								<div class="header-btns-icon">
+									<i class="fa fa-shopping-cart"></i>
+									<span class="qty">3</span>
+								</div>
+								<strong class="text-uppercase">장바구니</strong>
+							</div>
+							<div class="loginDiv">
+								<a href="cart.jsp" class="text-uppercase">주문하러가기</a>
+							</div>
+						</li>
+						<!-- /Cart -->
+
+						<!-- Mobile nav toggle-->
+						<li class="nav-toggle">
+							<button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
+						</li>
+						<!-- / Mobile nav toggle -->
+					</ul>
+				</div>
+			</div>
+			<!-- header -->
+		</div>
+		<!-- container -->
+	</header>
+	<!-- /HEADER -->
+	
+	
+	
+	
+	
+		<!-- NAVIGATION -->
+	<div id="navigation">
+		<!-- container -->
+		<div class="container">
+			<div id="responsive-nav">
+				<!-- category nav -->
+				<div class="category-nav">
+					<span class="category-header">마이페이지</span>
+				</div>
+				<!-- /카테고리 메뉴바 -->
+
+				<!-- 메뉴 네비게이터 -->
+				<div class="menu-nav">
+					<ul class="menu-list">
+						<li><a href="myPage_cart.jsp">장바구니</a></li>
+						<li><a href="myPage_delivery.jsp">주문배송조회</a></li>
+						<li><a href="myPage_QnA.jsp">체질 Q / A</a></li>
+						<li><a href="myPage_info.jsp">내 정보</a></li>
+						<li><a href="myPage_result.jsp">설문조사조회</a></li>
+						<li><a href="myPage_cs.jsp">고객센터</a></li>
+					</ul>
+				</div>
+				<!-- 메뉴 네비게이터 -->
+			</div>
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /NAVIGATION -->
 	
 	
 
@@ -52,29 +163,39 @@
 		<div class="container">
 			<!-- row -->
 			<div class="row">
-				<form id="checkout-form" class="clearfix">
+				<form id="updateform" class="clearfix" method="post">
 
 					<div class="col-md-12">
 						<div class="order-summary clearfix">
 							<div class="section-title">
 								<h3 class="title">내 정보</h3>
 							</div>
+							<h2><%= loginUser.getM_name() %>님 환영합니다!</h2>
 							<table class="infoTable" align="center" width="400px" style="border:2px solid orange;">
 									<tr>
-										<td style="font-size:12px;" align="center">&nbsp;&nbsp;아이디</td>
-										<td colspan="3" align="center"><label>city@naver.com</label></td>
+										<td style="font-size:12px;" align="center">&nbsp;&nbsp;이메일</td>
+										<td colspan="3" align="center">
+											<input type="text" name="email" value="<%= loginUser.getM_email() %>" readonly>
+										</td>
 									</tr>
 									<tr>
-										<td style="font-size:12px;" align="center">&nbsp;&nbsp;비밀번호</td>
-										<td colspan="3" align="center"><label>********</label></td>
+										<td style="font-size:12px;" align="center">&nbsp;&nbsp;비밀번호(입력)</td>
+										<td colspan="3" align="center">
+											<input type="text" name="password" id="password">
+											
+										</td>
 									</tr>
 									<tr>
 										<td style="font-size:12px;" align="center">&nbsp;&nbsp;이름</td>
-										<td colspan="3" align="center"><label>시티락</label></td>
+										<td colspan="3" align="center">
+											<input type="text" name="name" value="<%= loginUser.getM_name() %>" readonly>
+										</td>
 									</tr>									
 									<tr>
 										<td rowspan="2" width="200px" style="font-size:12px;" align="center">&nbsp;&nbsp;주소</td>
-										<td colspan="3" style="border-bottom:1px solid white;" align="center"><label>서울 강남구 테헤란로14길 6</label></td>
+										<td colspan="3" style="border-bottom:1px solid white;" align="center">
+											<input type="text" name="address" value="<%= loginUser.getM_address() %>" readonly>
+										</td>
 									</tr>						
 									<tr>
 										<td colspan="3" align="center"><label>남도빌딩 2층</label></td>
@@ -82,20 +203,54 @@
 									</tr>		
 									<tr>
 										<td style="font-size:12px;" align="center">&nbsp;&nbsp;휴대폰</td>
-										<td colspan="3" align="center"><label>010-1234-5678</label></td>
-									</tr>	
+										<td colspan="3" align="center">
+											<input type="text" name="phone" value="<%= loginUser.getM_phone() %>" readonly>
+										</td>
+									</tr>
+									<tr>
+										<td style="font-size:12px;" align="center">&nbsp;&nbsp;전화번호</td>
+										<td colspan="3" align="center">
+											<input type="text" name="tel" value="<%= loginUser.getM_tel() %>" readonly>
+										</td>
+									</tr>		
 							</table>
 							<br/>
 							<br/>
 							<div align="center">
-								<button onclick="edit(); return false;" class="primary-btn">내 정보 수정하기</button>
+								<strong>* 정보 수정을 원하시면 비밀번호를 한 번 더 입력하신 후, 수정하기 버튼을 눌러주세요.</strong>
+								<br/><br/><br/>
+								<button onclick="edit($('form')); return false;" class="primary-btn">내 정보 수정하기</button>
 								<button onclick="un1(); return false;" class="primary-btn">탈퇴하기</button>
 							</div>
 							
 							<script>
-							
-								 function edit(){
-									location.href="myPage_info_edit.jsp";
+
+								function edit(form){
+									
+									var temp = document.getElementById("password").value; // 입력한 비번
+									var pwd1 = "<%= loginUser.getM_password() %>"; // 진짜 비번
+									var pwd2; // 암호화된 입력한 비번
+									
+									$.ajax({
+										url: "<%= request.getContextPath() %>/equlsPwd.do",
+										type: "post",
+										data: {"temp": temp},
+										success: function(data){
+											pwd2 = temp;	
+										},
+										error: function(msg){
+										}
+									});
+									
+									if(pwd1 === pwd2) {
+
+										location.href="myPage_info_edit.jsp";
+										
+									} else {
+										
+										alert("으아아아ㅏㅏ악");
+										
+									}
 								}
 								 
 								 function un1(){
