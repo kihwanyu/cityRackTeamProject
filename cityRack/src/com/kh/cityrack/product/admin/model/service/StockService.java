@@ -41,13 +41,25 @@ public class StockService {
 		return result;
 	}
 
-	public ArrayList<Stock> productGetAll(int currentPage, int limit) {
-		return null;
-	}
-
 	public int getListCount() {
 		
-		return 0;
+		Connection conn = getConnection();
+		
+		int result = new StockDao().stockGetList(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public ArrayList<Stock> stockGetAll(int currentPage, int limit) {
+		Connection conn = getConnection();
+		
+		ArrayList<Stock> slist = new StockDao().stockGetAll(conn, currentPage, limit);
+		
+		close(conn);
+		
+		return slist;
 	}
 
 }
