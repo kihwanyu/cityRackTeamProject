@@ -145,15 +145,21 @@ public class StockDao{
 	public ArrayList<Stock> stockGetAll(Connection conn, int currentPage, int limit) {
 		ArrayList<Stock> slist = new ArrayList<Stock>();
 		
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		String query = prop.getProperty("getStockGetAll");
 		
 		try {
-			stmt = conn.createStatement();
+			pstmt = conn.prepareStatement(query);
 			
-			rset = stmt.executeQuery(query);
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
 			
 			while (rset.next()) {
 				Stock s = new Stock();
@@ -167,7 +173,7 @@ public class StockDao{
 			e.printStackTrace();
 		} finally {
 			close(rset);
-			close(stmt);
+			close(pstmt);
 		}
 		
 		
