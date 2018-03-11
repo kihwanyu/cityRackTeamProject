@@ -1,3 +1,4 @@
+<%@page import="com.kh.cityrack.product.admin.model.dto.PageInfo"%>
 <%@page import="com.kh.cityrack.product.admin.model.dto.Stock"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -5,6 +6,13 @@
     
 <%
 	ArrayList<Stock> sList = (ArrayList<Stock>)request.getAttribute("sList");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int limit = pi.getLimit();
 %>
 <!DOCTYPE html>
 <html>
@@ -68,13 +76,54 @@
 					<th width="30%" style="text-align: center;">상품번호</th>
 					<th width="70%" style="text-align: center;">상품명</th>
 				</tr>
+				<%for(int i = 0 ; i < sList.size(); i++){ %>
 				<tr>
-					<td style="text-align: left;">BB2300</td>
-					<td style="text-align: left;">main_도시락1</td>
+					<td id="pcode" style="text-align: right;"><%=sList.get(i).getPcode() %></td>
+					<td id="pname" style="text-align: left;"><%=sList.get(i).getPname() %></td>
 				</tr>
-				
+				<%} %>
 			</table>	
 		</div>	
+		<!-- 페이지 처리 -->
+		<% 
+				double backNextPageVal = (double)currentPage/limit;
+				int backNextpage = ((int)(backNextPageVal-0.9))*limit+1;
+				
+				double forwardNextPageVal = (double)currentPage/limit;
+				int forwardNextpage = ((int)(forwardNextPageVal+0.9))*limit+1;
+			/* (((int)((double)currentPage/limit))+0.9)*5-1;  */	
+		%>
+		<div class="pagingArea" align="center">
+			<button onclick="location.href='<%= request.getContextPath()%>/stockGetAll.pr?currentPage=1'"><<</button>
+			<%if(currentPage <= 1) { %>
+			<button><</button>
+			<%} else { 
+				if(backNextpage < 1) {%>
+					<button onclick="location.href='<%= request.getContextPath()%>/stockGetAll.pr?currentPage=1'"><</button>
+			<% 	} else {%>
+			
+					<button onclick="location.href='<%= request.getContextPath()%>/stockGetAll.pr?currentPage=<%=backNextpage%>'"><</button>
+			<%	} %>
+			<%} %>
+			<%for(int p = startPage; p <= endPage; p++){ 
+				if(p == currentPage){
+			%>
+				<button disabled="disabled"><%=p %></button>
+			<%	} else { %>
+				<button onclick="location.href='<%= request.getContextPath()%>/stockGetAll.pr?currentPage=<%=p %>'"><%=p %></button>
+			<%	} %>	
+			<%} %>
+			<%if(currentPage >= maxPage){ %>
+			<button disabled="disabled">></button>	
+			<%} else { 
+				if(forwardNextpage > maxPage) {%>
+				<button onclick="location.href='<%= request.getContextPath()%>/stockGetAll.pr?currentPage=<%= maxPage%>'">></button>
+				<% } else { %>
+				<button onclick="location.href='<%= request.getContextPath()%>/stockGetAll.pr?currentPage=<%= forwardNextpage%>'">></button>
+				<%} %>
+			<%} %> 
+			<button onclick="location.href='<%= request.getContextPath()%>/stockGetAll.pr?currentPage=<%=maxPage%>'">>></button>
+		</div>
 	</section>
 	<script type="text/javascript">
 	$(function() {
@@ -83,8 +132,8 @@
 		}).mouseout(function() {
 			$(this).parent().css("background","white");
 		}).click(function() {
-			var num = $(this).parent().children().eq(0).text();
-			location.href="<%= request.getContextPath()%>/views/admin/admin_stockDetails.jsp";
+			var pcode = $(this).parent().children().eq(0).text();
+			location.href="<%= request.getContextPath()%>/stockDetails.pr?pcode="+pcode;
 		});
 	});
 	</script>

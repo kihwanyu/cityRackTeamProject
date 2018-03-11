@@ -76,7 +76,7 @@ public class StockGetAllServlet extends HttpServlet {
 				
 		ArrayList<Stock> sList = null;
 		
-		sList = new StockService().productGetAll(currentPage, limit);
+		sList = new StockService().stockGetAll(currentPage, limit);
 		//
 		String page = "";
 		
