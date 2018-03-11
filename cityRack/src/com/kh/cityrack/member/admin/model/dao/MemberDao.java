@@ -224,6 +224,7 @@ public class MemberDao {
 		try{
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, withdrawReason);
+			pstmt.setInt(2, memberCode);
 			
 			result = pstmt.executeUpdate();
 			

@@ -183,7 +183,7 @@
 			$withdrawReason = $('#withdrawReasonArea').val();
 			$memberCode = '<%= m.getM_no()%>';
 			$memberState = '<%= m.getM_status()%>';
-			location.href="<%= request.getContextPath()%>/MemberUpdate.me?num=" + $memberCode + ":" + $memberState + ":" + $withdrawReason;
+			location.href="<%= request.getContextPath()%>/MemberUpdate.me?memberCode=" + $memberCode + "&memberState=" + $memberState + "&withdrawReason=" + $withdrawReason;
 		}
 	
 	</script>
