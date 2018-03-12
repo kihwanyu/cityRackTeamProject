@@ -81,6 +81,9 @@ public class StockGetAllServlet extends HttpServlet {
 		String page = "";
 		
 		if(sList != null){
+			Boolean searchBloolean = false;
+			request.setAttribute("searchBoolean", searchBloolean);
+			
 			request.setAttribute("sList", sList);
 			request.setAttribute("pi", pi);
 			page = "views/admin/admin_stockList.jsp";

@@ -7,6 +7,8 @@
 <%
 	ArrayList<Stock> sList = (ArrayList<Stock>)request.getAttribute("sList");
 	String pcode = (String)request.getAttribute("pcode");
+	String pname = (String)request.getAttribute("pname");
+	
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
@@ -14,6 +16,9 @@
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 	int limit = pi.getLimit();
+	
+	int sAmount = (Integer)request.getAttribute("sAmount");
+	int rAmount = (Integer)request.getAttribute("rAmount");
 %>
 <!DOCTYPE html>
 <html>
@@ -84,7 +89,7 @@
 		<div class="tableArea" align="center">
 			<table style="width: 40%">
 				<tr>
-					<td colspan="6" style="text-align: center; font-size: 20px; background: lightyellow;">상품명 : main_도시락1</td>
+					<td colspan="6" style="text-align: center; font-size: 20px; background: lightyellow;">상품명 : <%=pname %></td>
 				</tr>
 				<tr>
 					<th width="10%" style="text-align: center;">재고번호</th>
@@ -116,15 +121,15 @@
 				/* (((int)((double)currentPage/limit))+0.9)*5-1;  */	
 			%>
 			<div class="pagingArea" align="center">
-				<button onclick="location.href='<%= request.getContextPath()%>/stockDetails.pr?currentPage=1&pcode=<%=pcode%>'"><<</button>
+				<button onclick="location.href='<%= request.getContextPath()%>/stockDetails.pr?currentPage=1&pcode=<%=pcode%>&pname=<%=pname%>'"><<</button>
 				<%if(currentPage <= 1) { %>
 				<button><</button>
 				<%} else { 
 					if(backNextpage < 1) {%>
-						<button onclick="location.href='<%= request.getContextPath()%>/stockDetails.pr?currentPage=1&pcode=<%=pcode%>'"><</button>
+						<button onclick="location.href='<%= request.getContextPath()%>/stockDetails.pr?currentPage=1&pcode=<%=pcode%>&pname=<%=pname%>'"><</button>
 				<% 	} else {%>
 				
-						<button onclick="location.href='<%= request.getContextPath()%>/stockDetails.pr?currentPage=<%=backNextpage%>&pcode=<%=pcode%>'"><</button>
+						<button onclick="location.href='<%= request.getContextPath()%>/stockDetails.pr?currentPage=<%=backNextpage%>&pcode=<%=pcode%>&pname=<%=pname%>'"><</button>
 				<%	} %>
 				<%} %>
 				<%for(int p = startPage; p <= endPage; p++){ 
@@ -132,19 +137,19 @@
 				%>
 					<button disabled="disabled"><%=p %></button>
 				<%	} else { %>
-					<button onclick="location.href='<%= request.getContextPath()%>/stockDetails.pr?currentPage=<%=p %>&pcode=<%=pcode%>'"><%=p %></button>
+					<button onclick="location.href='<%= request.getContextPath()%>/stockDetails.pr?currentPage=<%=p %>&pcode=<%=pcode%>&pname=<%=pname%>'"><%=p %></button>
 				<%	} %>	
 				<%} %>
 				<%if(currentPage >= maxPage){ %>
 				<button disabled="disabled">></button>	
 				<%} else { 
 					if(forwardNextpage > maxPage) {%>
-					<button onclick="location.href='<%= request.getContextPath()%>/stockDetails.pr?currentPage=<%= maxPage%>&pcode=<%=pcode%>'">></button>
+					<button onclick="location.href='<%= request.getContextPath()%>/stockDetails.pr?currentPage=<%= maxPage%>&pcode=<%=pcode%>&pname=<%=pname%>'">></button>
 					<% } else { %>
-					<button onclick="location.href='<%= request.getContextPath()%>/stockDetails.pr?currentPage=<%= forwardNextpage%>&pcode=<%=pcode%>'">></button>
+					<button onclick="location.href='<%= request.getContextPath()%>/stockDetails.pr?currentPage=<%= forwardNextpage%>&pcode=<%=pcode%>&pname=<%=pname%>'">></button>
 					<%} %>
 				<%} %> 
-				<button onclick="location.href='<%= request.getContextPath()%>/stockDetails.pr?currentPage=<%=maxPage%>&pcode=<%=pcode%>'">>></button>
+				<button onclick="location.href='<%= request.getContextPath()%>/stockDetails.pr?currentPage=<%=maxPage%>&pcode=<%=pcode%>&pname=<%=pname%>'">>></button>
 			</div>
 			<br>
 			<div class="tableArea" align="center">
@@ -154,11 +159,11 @@
 					</tr>
 					<tr>
 						<td>입고량</td>
-						<td>50</td>
+						<td><%=sAmount %></td>
 						<td>출고량</td>
-						<td>50</td>
+						<td><%=rAmount %></td>
 						<td>재고량</td>
-						<td>0</td>
+						<td><%=sAmount-rAmount %></td>
 					</tr>
 				</table>
 			</div>

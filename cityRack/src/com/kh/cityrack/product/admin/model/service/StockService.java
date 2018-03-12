@@ -82,6 +82,36 @@ public class StockService {
 		return slist;
 	}
 
+	public int stockGetAmountSum(String pcode, String division) {
+		Connection conn = getConnection();
+		int result = new StockDao().stockGetAmountSum(conn, pcode, division);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public int getSearchListCount(String searchText) {
+		Connection conn = getConnection();
+		
+		int result = new StockDao().stockSearchListCount(conn ,searchText);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public ArrayList<Stock> getStockSearchList(int currentPage, int limit, String searchCondition ,String searchText, String order) {
+		Connection conn = getConnection();
+		
+		ArrayList<Stock> slist = new StockDao().getStockSearchList(conn, currentPage, limit,searchCondition, searchText, order);
+		
+		close(conn);
+		
+		return slist;
+	}
+
+
 	
 
 }

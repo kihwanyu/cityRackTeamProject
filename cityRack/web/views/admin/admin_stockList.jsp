@@ -52,7 +52,7 @@
 	<section>
 		<div align="center">
 			<h2>재고 정보</h2><br>
-			<form action="" method="get">
+			<form action="<%=request.getContextPath() %>/StockSearch.pr" method="get">
 				<select id="searchCondition" name="searchCondition">
 					<option value="product_code">상품코드</option>
 					<option value="product_name">상품명</option>
@@ -61,11 +61,11 @@
 				<input type="search" name="searchText" id="searchText">
 				&nbsp;
 				<select id="order" name="order">
-					<option value="asc">오름차순</option>
-					<option value="desc">내림차순</option>
+					<option value="ASC">오름차순</option>
+					<option value="DESC">내림차순</option>
 				</select>
 				&nbsp;
-				<input type="button" value="검색">
+				<input type="submit" value="검색">
 			</form>
 		</div>
 		
@@ -73,7 +73,7 @@
 		<div class="tableArea" align="center">
 			<table style="width: 30%">
 				<tr>
-					<th width="30%" style="text-align: center;">상품번호</th>
+					<th width="30%" style="text-align: center;">상품코드</th>
 					<th width="70%" style="text-align: center;">상품명</th>
 				</tr>
 				<%for(int i = 0 ; i < sList.size(); i++){ %>
@@ -133,7 +133,8 @@
 			$(this).parent().css("background","white");
 		}).click(function() {
 			var pcode = $(this).parent().children().eq(0).text();
-			location.href="<%= request.getContextPath()%>/stockDetails.pr?pcode="+pcode;
+			var pname = $(this).parent().children().eq(1).text();
+			location.href="<%= request.getContextPath()%>/stockDetails.pr?pcode="+pcode+"&pname="+pname;
 		});
 	});
 	</script>
