@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.cityrack.product.admin.model.dto.Stock;
+
+import oracle.net.aso.p;
+
 import static com.kh.cityrack.common.JDBCTemplet.*;
 public class StockDao{
 	private Properties prop = null;
@@ -252,6 +255,113 @@ public class StockDao{
 		
 		return slist;
 	}
-	
+
+	public int stockGetAmountSum(Connection conn, String pcode, String division) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int result = 0;
+		
+		String query = prop.getProperty("stockGetAmountSum");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, pcode);
+			pstmt.setString(2, division);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				result = rset.getInt(1);			
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int stockSearchListCount(Connection conn ,String searchText) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int result = 0;
+		
+		String query = prop.getProperty("stockSearchListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%"+searchText+"%");
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				result = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+	public ArrayList<Stock> getStockSearchList(Connection conn, int currentPage, int limit, String searchCondition, String searchText,
+			String order) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		Stock s = null;
+		ArrayList<Stock> slist = null;
+		
+		String query =  "";
+		
+		if(searchCondition.equals("상품코드")){
+			query = prop.getProperty("getStockSearchListCode");
+		} else {
+			query = prop.getProperty("getStockSearchListName");
+		}
+		
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			if(searchCondition.equals("상품코드")){
+				pstmt.setString(1, searchText);
+			} else {
+				pstmt.setString(1, "%"+searchText+"%");
+				pstmt.setString(2, order);
+				pstmt.setInt(3, startRow);
+				pstmt.setInt(4, endRow);
+			}
+
+			rset = pstmt.executeQuery();
+			
+			slist = new ArrayList<Stock>();
+			
+			while (rset.next()) {
+				s = new Stock();
+				s.setPcode(rset.getString("P_CODE"));
+				s.setPname(rset.getString("P_NAME"));
+				
+				slist.add(s);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return slist;
+	}
 	
 }
