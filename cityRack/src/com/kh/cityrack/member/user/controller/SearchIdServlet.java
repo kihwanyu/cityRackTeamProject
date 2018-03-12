@@ -55,7 +55,7 @@ public class SearchIdServlet extends HttpServlet {
 			
 					
 		} else {
-			alert = "해당하는 회원 정보가 없습니다.";		
+			alert =  "해당하는 회원 정보가 없습니다.";		
 			response.setContentType("application/json");
 			response.setCharacterEncoding("utf-8");
 			
