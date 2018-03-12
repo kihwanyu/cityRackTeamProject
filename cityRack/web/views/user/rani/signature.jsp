@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*" %>
-<%@page import="com.kh.cityrack.product.admin.model.dto.Product"%>
-<%@page import="com.kh.cityrack.product.admin.model.dto.Pcategory"%>
+<%@page import="com.kh.cityrack.product.user.model.dto.Product"%>
+<%@page import="com.kh.cityrack.product.user.model.dto.Pcategory"%>
 <!DOCTYPE html>
 <%	ArrayList<Product> pList = (ArrayList<Product>)request.getAttribute("pList");
 	ArrayList<Pcategory> cList = (ArrayList<Pcategory>)request.getAttribute("cList"); 
@@ -353,11 +353,11 @@ overflow-y:scroll;
 	<!-- 시그니처 -->
 	
 	<form action="<%=request.getContextPath() %>/getProducts.pr" method="post" id="getAllProducts">
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		$(function(){
 			$("#getAllProducts").submit();
 		})
-	</script>
+	</script> -->
 	<h1 align="center" style="font-weight:bold;color:#004d1a;margin-top:50px;" >시그니처 도시락 </h1><br>
 	<h4 align="center">여러분들의 체질에 맞게, 입맞에 맞게 골라보세요!</h4><br>
 	<div class="innercontainer">
@@ -366,22 +366,16 @@ overflow-y:scroll;
         <div class="col-lg-5 col-md-5 col-sm-8 col-xs-9 food-tab-container" style="width:100%;">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 food-tab-menu">
               <div class="list-group">
+             	 <a href="#" class="list-group-item active text-center">
+                  <%=cList.get(0).getCa_name() %>
+                </a>
+              <% for(int i = 1; i<cList.size();i++) {%>
+                	  <a href="#" class="list-group-item text-center">
+              	 <%=cList.get(i).getCa_name() %>
+                </a>
+               <%} %> 
               
-                <a href="#" class="list-group-item active text-center">
-                  
-                </a>
-                <a href="#" class="list-group-item text-center">
-              	 
-                </a>
-                <a href="#" class="list-group-item text-center">
-                
-                </a>
-                <a href="#" class="list-group-item text-center">
-   			     
-                </a>
-                <a href="#" class="list-group-item text-center">
-  		        
-                </a>
+               
               </div>
             </div>
             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 food-tab">
@@ -391,86 +385,41 @@ overflow-y:scroll;
                       <div class="tableArea" >
                   	<table class="foodtable"  >
                   	
-                  		<tr>
-                  			<td>
-                  			  <img alt="" src="img/crabpickle.jpg" class="foodimg">
-                  			  <br><br>
-                  			  <p class="foodname" name="foodname" value="간장게장"><a data-toggle="popover" data-content="Some content inside the popover">간장 게장</a></p>
-                  			  <p class="foodprice">2,000 원</p><br>
-                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
-                  			</td>
-                  			<td> 
-                  			<img alt="" src="img/crabpickle.jpg" class="foodimg">
-                  			<br><br>
-                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
-                  			  <p class="foodprice">2,000 원</p><br>
-                  			    <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
-                  			</td>
-           					
-                  		</tr>
-                  		<tr>
-                  			<td>  
-                  			<img alt="" src="img/crabpickle.jpg" class="foodimg">
-                  			<br><br>
-                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
-                  			  <p class="foodprice">2,000 원</p><br>
-                  			    <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
-                  			</td>
-                  			<td> 
-                  			 <img alt="" src="img/crabpickle.jpg" class="foodimg">
-                  			 <br><br>
-                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
-                  			  <p class="foodprice">2,000 원</p><br>
-                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
-                  			 </td>
-           					
-           				
-           					
-                  		</tr>
-                  		<tr>
-                  			<td>  
-                  			<img alt="" src="img/crabpickle.jpg" class="foodimg">
-                  			<br><br>
-                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
-                  			  <p class="foodprice">2,000 원</p><br>
-                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
-                  			</td>
+                  		<%for(int i = 0; i<cList.size();i++){ 
+                  			for(int j =0; j<pList.size();j++){
+                  			if((cList.get(i).getCa_name()).equals(pList.get(j).getCa_code())){ %>
+                  			
+	                  		<tr>
+	                  			<td>
+	                  			  <img alt="" src="product_download_imgFiles/<%=pList.get(j).getP_pic1() %>" class="foodimg">
+	                  			  <br><br>
+	                  			  <p class="foodname" name="foodname" value="<%=pList.get(j).getP_name() %>"><%=pList.get(j).getP_name() %><a data-toggle="popover" data-content="<%=pList.get(j).getP_8constitution() %>"></a></p>
+	                  			   <p class="foodprice"><%=pList.get(j).getP_price() %> 원</p><br> 
+	                  			  <input type="hidden" name="fooodname" value="<%=pList.get(j).getP_name() %>"> <input type="hidden" name="fooodprice" value="<%=pList.get(j).getP_price() %>">
+	                  			</td>
+	                			<%-- <%if( pList.get(j+1)!=null ) {%>
+	                  			<td>
+	                  			  <img alt="" src="product_download_imgFiles/<%=pList.get(j+1).getP_pic1() %>" class="foodimg">
+	                  			  <br><br>
+	                  			  <p class="foodname" name="foodname" value="<%=pList.get(j+1).getP_name() %>"><%=pList.get(j+1).getP_name() %><a data-toggle="popover" data-content="<%=pList.get(j+1).getP_8constitution() %>"></a></p>
+	                  			  <p class="foodprice"><%=pList.get(j).getP_price() %> 원</p><br>
+	                  			  <input type="hidden" name="fooodname" value="<%=pList.get(j+1).getP_name() %>"> <input type="hidden" name="fooodprice" value="<%=pList.get(j+1).getP_price() %>">
+	                  			</td>     					
                   		
-           					<td>
-           					  <img alt="" src="img/crabpickle.jpg" class="foodimg">
-           					  <br><br>
-                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
-                  			  <p class="foodprice">2,000 원</p><br>
-                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
-           					 </td>
-           				
-           					
-                  		</tr>               	
-                  		<tr>
-                  			<td>
-							 <img alt="" src="img/crabpickle.jpg" class="foodimg">
-							 <br><br>
-                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
-                  			  <p class="foodprice">2,000 원</p><br>
-                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
-							</td>
-                  			<td>
-                  			  <img alt="" src="img/crabpickle.jpg" class="foodimg">
-                  			  <br><br>
-                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
-                  			  <p class="foodprice">2,000 원</p><br>
-                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
-                  			 </td>
-                  		</tr>               	
-                  		
+                  				<%} %> --%>
+                  				</tr>
+                  			<%} 
+                  			} 
+                  		} %>
+                  		         	
                   		
                   	</table>
-                  <!-- 	
-                  	<script>
+                   	
+                  <script>
 							$(document).ready(function(){
 							    $('[data-toggle="popover"]').popover();   
 							});
-					</script> -->
+					</script>  
                    </div>  
                   
                     
@@ -479,78 +428,6 @@ overflow-y:scroll;
                 <div class="select-tab-content">
                      <div class="tableArea" >
                   	<table class="foodtable"  >
-                  		<tr>
-                  			<td>
-                  			  <img alt="" src="img/crabpickle.jpg" class="foodimg">
-                  			  <br><br>
-                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
-                  			  <p class="foodprice">2,000 원</p><br>
-                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
-                  			</td>
-                  			<td> 
-                  			<img alt="" src="img/crabpickle.jpg" class="foodimg">
-                  			<br><br>
-                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
-                  			  <p class="foodprice">2,000 원</p><br>
-                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
-                  			</td>
-           					
-                  		</tr>
-                  		<tr>
-                  			<td>  
-                  			<img alt="" src="img/crabpickle.jpg" class="foodimg">
-                  			<br><br>
-                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
-                  			  <p class="foodprice">2,000 원</p><br>
-                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
-                  			</td>
-                  			<td> 
-                  			 <img alt="" src="img/crabpickle.jpg" class="foodimg">
-                  			 <br><br>
-                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
-                  			  <p class="foodprice">2,000 원</p><br>
-                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
-                  			 </td>
-           					
-           				
-           					
-                  		</tr>
-                  		<tr>
-                  			<td>  
-                  			<img alt="" src="img/crabpickle.jpg" class="foodimg">
-                  			<br><br>
-                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
-                  			  <p class="foodprice">2,000 원</p><br>
-                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
-                  			</td>
-                  		
-           					<td>
-           					  <img alt="" src="img/crabpickle.jpg" class="foodimg">
-           					  <br><br>
-                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
-                  			  <p class="foodprice">2,000 원</p><br>
-                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
-           					 </td>
-           				
-           					
-                  		</tr>               	
-                  		<tr>
-                  			<td>
-							 <img alt="" src="img/crabpickle.jpg" class="foodimg">
-							 <br><br>
-                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
-                  			  <p class="foodprice">2,000 원</p><br>
-                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
-							</td>
-                  			<td>
-                  			  <img alt="" src="img/crabpickle.jpg" class="foodimg">
-                  			  <br><br>
-                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
-                  			  <p class="foodprice">2,000 원</p><br>
-                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
-                  			 </td>
-                  		</tr>               	
-                  		
                   		
                   	</table>
                    </div>  
