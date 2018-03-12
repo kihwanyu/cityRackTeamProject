@@ -5,6 +5,7 @@ ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
 int currentPage = Integer.parseInt((String)request.getAttribute("currentPage"));
 int startPage = Integer.parseInt((String)request.getAttribute("startPage"));
 int endPage = Integer.parseInt((String)request.getAttribute("endPage"));
+int totalPage = Integer.parseInt((String)request.getAttribute("totalPage"));
 %>    
 <!DOCTYPE html>
 <html>
@@ -50,24 +51,23 @@ int endPage = Integer.parseInt((String)request.getAttribute("endPage"));
 	<section>
 		<div align="center">
 			<h2>회원 정보</h2><br>
-			<form action="" method="get">
+			<form action="<%=request.getContextPath()%>/MemberSearch.me" method="get">
 				<input type="radio" value="m" id="male" name="gender" checked="checked">
 				<label for="male">남성</label>
 				&nbsp;
-				<input type="radio" value=" female" id=" female" name="gender">
+				<input type="radio" value=" f" id=" female" name="gender">
 				<label for=" female">여성</label>
 				&nbsp;&nbsp;
 				<select id="searchCondition" name="searchCondition" onchange="selectSearch();">
 					<option value="email">이메일</option>
 					<option value="name">이름</option>
 					<option value="birthday">생년월일</option>
-					<option value="status">탈퇴여부</option>
 					<option value="grade">등급</option>
 					<option value="enrollDate">가입일</option>
 				</select>
 				&nbsp;
 				<input type="search" name="searchText" id="searchText">
-				<span id="serachDate" hidden="">
+				<span id="serachDate">
 					<input type="date" name="beforeDate" id="beforeDate"> -
 					<input type="date" name="AfterDate" id="AfterDate" > 
 				</span>
@@ -81,13 +81,8 @@ int endPage = Integer.parseInt((String)request.getAttribute("endPage"));
 					<option value="silver">실버</option>
 					<option value="bronze">브론즈</option>		
 				</select>
-				&nbsp;
-				<select id="order" name="order">
-					<option value="asc">오름차순</option>
-					<option value="desc">내림차순</option>
-				</select>
-				&nbsp;
-				<input type="button" value="검색">
+				
+				<input type="submit" value="검색">
 			</form>
 		</div>
 		
@@ -102,12 +97,19 @@ int endPage = Integer.parseInt((String)request.getAttribute("endPage"));
 					<th width="2%" style="text-align: center;">탈퇴여부</th>
 					
 				</tr>
-					
+
 			</table>	
 		</div>	
 	</section>
+	
 	<div class="paging" align="center">
-	  <button onclick="location.href='<%= request.getContextPath() %>/MemberGetAll.me?currentPage=<%= startPage%>'"><<</button>
+	  <button onclick="location.href='<%= request.getContextPath() %>/MemberGetAll.me?currentPage=<%= 1%>'"><<</button>
+	  <% if(startPage == 1){%>
+	  <button onclick="location.href='<%= request.getContextPath() %>/MemberGetAll.me?currentPage=<%= startPage%>'"><</button>
+	  <%}else{ %>
+	  <button onclick="location.href='<%= request.getContextPath() %>/MemberGetAll.me?currentPage=<%= startPage-10%>'"><</button>
+	  <%} %>
+	  
 	  <%for(int p = startPage; p <= endPage; p++){ 
 	  if(p == currentPage){ %>
 		 <button disabled style="background:black; color:white"><%= p%></button>
@@ -115,8 +117,10 @@ int endPage = Integer.parseInt((String)request.getAttribute("endPage"));
 	  <button id="index"onclick="location.href='<%= request.getContextPath() %>/MemberGetAll.me?currentPage=<%= p%>'"><%= p %></button>
 	  <%}
 	  }%>
-	  <button onclick="location.href='<%= request.getContextPath() %>/MemberGetAll.me?currentPage=<%= endPage%>'">>></button>
+	  <button onclick="location.href='<%= request.getContextPath() %>/MemberGetAll.me?currentPage=<%= endPage+1%>'">></button>
+	  <button onclick="location.href='<%= request.getContextPath() %>/MemberGetAll.me?currentPage=<%= totalPage%>'">>></button>
 	</div>
+	
 	<%@ include file="/views/admin/common/footer.jsp" %>
 	<script type="text/javascript">
 		
@@ -168,16 +172,9 @@ int endPage = Integer.parseInt((String)request.getAttribute("endPage"));
 			  $tr = $('<tr>');
 			  
 			  $memberCode = $('<td>').text(<%= m.getM_no()%>);
-			  $memberEmail = $('<td>').text('<%= m.getM_email()%>');
 			  $gradeName = $('<td>').text('<%= m.getC_name()%>');
-			  $memberPassword = $('<td>').text('<%= m.getM_password()%>');
 			  $memberName = $('<td>').text('<%= m.getM_name()%>');
 			  $memberGender = $('<td>').text('<%= m.getM_gender()%>');
-			  $memberBirthday = $('<td>').text('<%= m.getM_birthDay()%>');
-			  $memberAddress = $('<td>').text('<%= m.getM_address()%>');
-			  $memberTel = $('<td>').text('<%= m.getM_tel()%>');
-			  $memberPhone = $('<td>').text('<%= m.getM_phone()%>');
-			  $memberEnrollDate = $('<td>').text('<%= m.getM_enorll_date()%>');
 			  $memberState = $('<td>').text('<%= m.getM_status()%>');
 			  
 			  $tr.append($memberCode);
@@ -189,8 +186,7 @@ int endPage = Integer.parseInt((String)request.getAttribute("endPage"));
 			  $memberTable.append($tr);
 			  
 			<%}%>
-			        
-			
+				
 				$("#memberTable td").mouseenter(function () {
 					$(this).parent().css({"background":"lightyellow","cursor":"pointer"});
 					var num = $(this).val();

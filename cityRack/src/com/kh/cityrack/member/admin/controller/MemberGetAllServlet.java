@@ -59,7 +59,7 @@ public class MemberGetAllServlet extends HttpServlet {
 		}
 		
 		//현재 페이지가 총 페이지보다 클 경우 치환 
-		if(totalPage > currentPage){
+		if(totalPage < currentPage){
 			currentPage = totalPage;
 		}
 		
@@ -83,6 +83,7 @@ public class MemberGetAllServlet extends HttpServlet {
 			request.setAttribute("currentPage", String.valueOf(currentPage));
 			request.setAttribute("startPage", String.valueOf(startPage));
 			request.setAttribute("endPage", String.valueOf(endPage));
+			request.setAttribute("totalPage", String.valueOf(totalPage));
 		}else{
 			page = "/views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시판 불러오기 실패!");
