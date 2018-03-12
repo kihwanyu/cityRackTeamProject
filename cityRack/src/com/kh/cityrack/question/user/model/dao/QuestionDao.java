@@ -11,7 +11,7 @@ import java.util.Properties;
 
 import com.kh.cityrack.member.user.model.dao.MemberDao;
 import com.kh.cityrack.question.user.model.dto.Question;
-
+/*sdf*/
 public class QuestionDao {
 	
 	//Properties 객체 선언

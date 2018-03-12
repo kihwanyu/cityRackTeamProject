@@ -26,7 +26,7 @@ public class MemberService {
 	}
 
 
-
+/*sdfsd*/
 	// 회원 여부 체크  - ID, 비번 체크용
 	public Member checkLoginUser(String name, String emailOrPhone, String key) {
 		Connection con = getConnection();
