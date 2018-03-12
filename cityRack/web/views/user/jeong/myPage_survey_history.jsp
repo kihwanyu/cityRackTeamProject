@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.cityrack.member.common.model.dto.Member" %>
+
+<%
+	Member loginUser = (Member)session.getAttribute("loginUser");
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,7 +46,7 @@
 
 <body>
 		<!-- 마이페이지용 메뉴바 -->
-	<%@ include file="/views/user/common/menubar_myPage.jsp" %>
+	<%-- <%@ include file="/views/user/common/menubar_myPage.jsp" %> --%>
 
 
 

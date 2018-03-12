@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.cityrack.member.common.model.dto.Member" %>
+
+<%
+	Member loginUser = (Member) session.getAttribute("loginUser");
+%>
+<!-- sdfs -->
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- asd -->
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,7 +47,7 @@
 
 <body>
 	<!-- 메인용 메뉴바 -->
-	<%@ include file="/views/user/common/menubar_main.jsp" %>
+	<%-- <%@ include file="/views/user/common/menubar_main.jsp" %> --%>
 
 	<!-- section -->
 	<div class="section">
@@ -1134,39 +1139,78 @@
 							
 						</script>
 						<br/><br/>
-						
-						<div align="right">
-							<button class="primary-btn" type="submit" onclick="goResult();">완료</button>
-							<button class="primary-btn" type="reset" onclick="goMain();">메인으로</button>
-							<input type="text" id="end">
-						</div>
-						
+						<form id="result-form" class="clearfix"
+								action="<%=request.getContextPath()%>/8result" method="post">
+							<div align="right">
+								<input type="text" id="mNo" name="mNo" value="<%= loginUser.getM_no() %>">
+								<input type="text" id="conResult" name="conResult">
+								<button class="primary-btn" type="button" onclick="goResult();">완료</button>
+								<button class="primary-btn" type="button" onclick="goMain();">메인으로</button>
+							</div>
+						</form>
 						<script>
 						
 							function goResult(){
 								
-								location.href="myPage_result.jsp";
-							}	
-							
-							function goMain(){
-								<%-- location.href="<%= request.getContextPath() %>/views/user/jeong/myPage_cs.jsp?사랑해="+ "사랑해"; --%>
-								
-								
-								$("#end").each(function(){
+								// 8개의 평균값 비교하고 해당 체질명 구해서 결과를 result에 저장
+								$(function(){
 									
-									for(){
-										
+									var check1 = $("#check1").val();
+									var check2 = $("#check2").val();
+									var check3 = $("#check3").val();
+									var check4 = $("#check4").val();
+									var check5 = $("#check5").val();
+									var check6 = $("#check6").val();
+									var check7 = $("#check7").val();
+									var check8 = $("#check8").val();
+									var conResult = "";
+									
+									var arr = [check1, check2, check3, check4,
+													check5, check6, check7, check8];
+	
+									console.log(arr);
+									console.log(check1);
+									var max = 0;
+
+									for (var i = 0; i < arr.length; i++) {
+
+										if (arr[i] > max) {
+											max = arr[i];
+										}
 									}
+									console.log	("가장 큰 수는 : " + max);
+									
+									switch(max){
+									case check1 : conResult = "목양"; break;
+									case check2 : conResult = "목음"; break;
+									case check3 : conResult = "토양"; break;
+									case check4 : conResult = "토음"; break;
+									case check5 : conResult = "금양"; break;
+									case check6 : conResult = "금음"; break;
+									case check7 : conResult = "수양"; break;
+									case check8 : conResult = "수음"; break;
+									}
+									
+									console.log("체질결과 : " + conResult);
+									
+									// 체질결과 담아주기
+									document.getElementById("conResult").value = conResult;
 									
 								});
 								
+
+								// question테이블의 Q_8CONSTITUTION에 결과저장을 위해 서블릿으로 보내기려고 submit~~
+								$("#result-form").submit();
 								
-								
-								
-								
+								<%-- location.href="<%= request.getContextPath() %>/views/user/jeong/myPage_cs.jsp?사랑해="+ "사랑해"; --%>
 								
 							}	
 							
+							
+							function goMain(){
+								
+								location.href="<%= request.getContextPath()%>";
+							}	
 							
 						
 						</script>

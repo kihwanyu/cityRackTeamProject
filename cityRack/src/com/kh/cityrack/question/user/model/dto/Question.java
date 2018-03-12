@@ -1,7 +1,7 @@
 package com.kh.cityrack.question.user.model.dto;
 
 import java.io.Serializable;
-
+/*sdf*/
 // 설문조사
 public class Question implements Serializable{
 	/**
