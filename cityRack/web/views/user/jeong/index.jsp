@@ -77,7 +77,7 @@
 							<%} %>
 							<ul class="custom-menu">
 								<li><a href="views/user/jeong/myPage_info.jsp"><i class="fa fa-user-o"></i> 내 정보</a></li>
-								<li><a href="views/user/jeong/myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
+								<li><a href="<%=request.getContextPath() %>/selectList.bo"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
 								<li><a href="views/user/jeong/myPage_delivery.jsp"><i class="fa fa-check"></i> 주문배송조회</a></li>
 								<li><a href="views/user/jeong/myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>
 								<li><a href="#"><i class="fa fa-unlock-alt"></i> 로그아웃</a></li>

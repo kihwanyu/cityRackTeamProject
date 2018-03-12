@@ -88,7 +88,7 @@ public class SelectBoardList extends HttpServlet {
 		
 		String page = "";
 		if(list != null){
-			page = "views/board/boardList.jsp";
+			page = "views/user/jeong/myPage_QnA.jsp";
 			request.setAttribute("list", list);
 			request.setAttribute("pi", pi);
 		}else{

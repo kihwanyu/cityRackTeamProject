@@ -51,21 +51,18 @@ public class BoardDao {
 		ArrayList<Board> list = null;
 		
 		String query = prop.getProperty("selectList");
-		
+		System.out.println(query);
 		try {
 			pstmt = con.prepareStatement(query);
-			
+			rset = pstmt.executeQuery();
 			//조회 시작할 행 번호와 마지막 행 번호 계산
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
-			
-			rset = pstmt.executeQuery();
-			
 			list = new ArrayList<Board>();
 			
-		/*	BO_NO
+			/*BO_NO
 			BO_PNO
 			BO_DIVISION
 			BO_CATEGORY
@@ -79,15 +76,15 @@ public class BoardDao {
 				Board b = new Board();
 				
 				b.setBo_no(rset.getInt("bo_no"));
-				b.setBo_pno(rset.getInt("bo_pno"));
-				b.setBo_division(rset.getString("bo_division"));
-				b.setBo_category(rset.getString("bo_category"));
-				b.setM_no(rset.getInt("m_no"));
+				//b.setBo_pno(rset.getInt("bo_pno"));
+				//b.setBo_division(rset.getString("bo_division"));
+				//b.setBo_category(rset.getString("bo_category"));
+				b.setM_no(rset.getInt("M_NAME"));
 				b.setBo_date(rset.getDate("bo_date"));
 				b.setBo_title(rset.getString("bo_title"));
-				b.setBo_content(rset.getString("bo_content"));
-				b.setBo_hit(rset.getInt("bo_hit"));
-				b.setBo_recomm(rset.getInt("bo_recomm"));
+				//b.setBo_content(rset.getString("bo_content"));
+				//b.setBo_hit(rset.getInt("bo_hit"));
+				//b.setBo_recomm(rset.getInt("bo_recomm"));
 				
 				list.add(b);
 				
