@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*" %>
+<%@page import="com.kh.cityrack.product.admin.model.dto.Product"%>
+<%@page import="com.kh.cityrack.product.admin.model.dto.Pcategory"%>
 <!DOCTYPE html>
+<%	ArrayList<Product> pList = (ArrayList<Product>)request.getAttribute("pList");
+	ArrayList<Pcategory> cList = (ArrayList<Pcategory>)request.getAttribute("cList"); 
+	
+	System.out.println("pList :" + pList);
+	System.out.println("cList :" + cList);
+	%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -344,6 +352,12 @@ overflow-y:scroll;
 
 	<!-- 시그니처 -->
 	
+	<form action="<%=request.getContextPath() %>/getProducts.pr" method="post" id="getAllProducts">
+	<script type="text/javascript">
+		$(function(){
+			$("#getAllProducts").submit();
+		})
+	</script>
 	<h1 align="center" style="font-weight:bold;color:#004d1a;margin-top:50px;" >시그니처 도시락 </h1><br>
 	<h4 align="center">여러분들의 체질에 맞게, 입맞에 맞게 골라보세요!</h4><br>
 	<div class="innercontainer">
@@ -354,19 +368,19 @@ overflow-y:scroll;
               <div class="list-group">
               
                 <a href="#" class="list-group-item active text-center">
-                  	밥  / 면 류
+                  
                 </a>
                 <a href="#" class="list-group-item text-center">
-              	  고 기 류
+              	 
                 </a>
                 <a href="#" class="list-group-item text-center">
-                	나 물 류
+                
                 </a>
                 <a href="#" class="list-group-item text-center">
-   			           장 아 찌 류
+   			     
                 </a>
                 <a href="#" class="list-group-item text-center">
-  		              해 물 류
+  		        
                 </a>
               </div>
             </div>
@@ -381,14 +395,16 @@ overflow-y:scroll;
                   			<td>
                   			  <img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			  <br><br>
-                  			  <p class="foodname"><a data-toggle="popover" data-content="Some content inside the popover">간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a data-toggle="popover" data-content="Some content inside the popover">간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			</td>
                   			<td> 
                   			<img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			<br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			    <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			</td>
            					
                   		</tr>
@@ -396,14 +412,16 @@ overflow-y:scroll;
                   			<td>  
                   			<img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			<br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			    <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			</td>
                   			<td> 
                   			 <img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			 <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			 </td>
            					
            				
@@ -413,15 +431,17 @@ overflow-y:scroll;
                   			<td>  
                   			<img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			<br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			</td>
                   		
            					<td>
            					  <img alt="" src="img/crabpickle.jpg" class="foodimg">
            					  <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
            					 </td>
            				
            					
@@ -430,25 +450,27 @@ overflow-y:scroll;
                   			<td>
 							 <img alt="" src="img/crabpickle.jpg" class="foodimg">
 							 <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
 							</td>
                   			<td>
                   			  <img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			  <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			 </td>
                   		</tr>               	
                   		
                   		
                   	</table>
-                  	
+                  <!-- 	
                   	<script>
 							$(document).ready(function(){
 							    $('[data-toggle="popover"]').popover();   
 							});
-							</script>
+					</script> -->
                    </div>  
                   
                     
@@ -461,14 +483,16 @@ overflow-y:scroll;
                   			<td>
                   			  <img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			  <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			</td>
                   			<td> 
                   			<img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			<br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			</td>
            					
                   		</tr>
@@ -476,14 +500,16 @@ overflow-y:scroll;
                   			<td>  
                   			<img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			<br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			</td>
                   			<td> 
                   			 <img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			 <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			 </td>
            					
            				
@@ -493,15 +519,17 @@ overflow-y:scroll;
                   			<td>  
                   			<img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			<br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			</td>
                   		
            					<td>
            					  <img alt="" src="img/crabpickle.jpg" class="foodimg">
            					  <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
            					 </td>
            				
            					
@@ -510,14 +538,16 @@ overflow-y:scroll;
                   			<td>
 							 <img alt="" src="img/crabpickle.jpg" class="foodimg">
 							 <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
 							</td>
                   			<td>
                   			  <img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			  <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="fooodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			 </td>
                   		</tr>               	
                   		
@@ -535,14 +565,16 @@ overflow-y:scroll;
                   			<td>
                   			  <img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			  <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			</td>
                   			<td> 
                   			<img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			<br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			</td>
            					
                   		</tr>
@@ -550,14 +582,16 @@ overflow-y:scroll;
                   			<td>  
                   			<img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			<br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			</td>
                   			<td> 
                   			 <img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			 <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			 </td>
            					
            				
@@ -567,15 +601,17 @@ overflow-y:scroll;
                   			<td>  
                   			<img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			<br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			</td>
                   		
            					<td>
            					  <img alt="" src="img/crabpickle.jpg" class="foodimg">
            					  <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
            					 </td>
            				
            					
@@ -584,14 +620,16 @@ overflow-y:scroll;
                   			<td>
 							 <img alt="" src="img/crabpickle.jpg" class="foodimg">
 							 <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
 							</td>
                   			<td>
                   			  <img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			  <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			 </td>
                   		</tr>               	
                   		
@@ -609,14 +647,16 @@ overflow-y:scroll;
                   			<td>
                   			  <img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			  <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			</td>
                   			<td> 
                   			<img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			<br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			</td>
            					
                   		</tr>
@@ -624,14 +664,16 @@ overflow-y:scroll;
                   			<td>  
                   			<img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			<br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			</td>
                   			<td> 
                   			 <img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			 <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			 </td>
            					
            				
@@ -641,15 +683,17 @@ overflow-y:scroll;
                   			<td>  
                   			<img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			<br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			</td>
                   		
            					<td>
            					  <img alt="" src="img/crabpickle.jpg" class="foodimg">
            					  <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
            					 </td>
            				
            					
@@ -658,14 +702,16 @@ overflow-y:scroll;
                   			<td>
 							 <img alt="" src="img/crabpickle.jpg" class="foodimg">
 							 <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
 							</td>
                   			<td>
                   			  <img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			  <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			 </td>
                   		</tr>               	
                   		
@@ -683,14 +729,16 @@ overflow-y:scroll;
                   			<td>
                   			  <img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			  <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			</td>
                   			<td> 
                   			<img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			<br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			</td>
            					
                   		</tr>
@@ -698,14 +746,16 @@ overflow-y:scroll;
                   			<td>  
                   			<img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			<br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			</td>
                   			<td> 
                   			 <img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			 <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			 </td>
            					
            				
@@ -715,15 +765,18 @@ overflow-y:scroll;
                   			<td>  
                   			<img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			<br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			</td>
                   		
            					<td>
            					  <img alt="" src="img/crabpickle.jpg" class="foodimg">
            					  <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
            					 </td>
            				
            					
@@ -732,14 +785,16 @@ overflow-y:scroll;
                   			<td>
 							 <img alt="" src="img/crabpickle.jpg" class="foodimg">
 							 <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
 							</td>
                   			<td>
                   			  <img alt="" src="img/crabpickle.jpg" class="foodimg">
                   			  <br><br>
-                  			  <p class="foodname"><a>간장 게장</a></p>
+                  			  <p class="foodname" name="foodname" value="간장게장"><a>간장 게장</a></p>
                   			  <p class="foodprice">2,000 원</p><br>
+                  			  <input type="hidden" name="foodname" value="간장게장"> <input type="hidden" name="fooodprice" value="2000">
                   			 </td>
                   		</tr>               	
                   		
@@ -751,53 +806,97 @@ overflow-y:scroll;
   </div>
   
   </div>
+  </form>
    <!-- 선택 토핑  -->
+  <form id="selectSignature" action="<%=request.getContextPath()%>/cart.em" method="post" onsubmit="return false;" > 
   <div class="selectFood">
-  	<br><h3 align="center">선택하신 토핑</h3><br>
+  	<br><h3 align="center" id="title" value="선택하신 토핑">선택하신 토핑</h3><br>
   	<table class="selectFoodTable">
   		<tr id="thisStays"></tr>
-  		<tr></tr>
+  		
   	</table>
   	</div>
+  
     <!-- /선택 토핑  -->
     
     <div class="buttons" >
     		<button class="btns" id="clearAll">초기화 하기</button>
-    		<button class="btns">주문하기</button>
+    		<button class="btns" id="submitBtn" onclick="confirmThis();">장바구니에 담기</button>
     </div>
     
     <script type="text/javascript">
-  		var tdata;
-  		$(function(){
+  		var tdata="";
+  		
   				
   			$(".foodimg").click(function(){
+  				//이미지를 선택하면 선택한 토핑 푸드 테이블의 끝에서 첫번째 tr에 td를 추가한다.
+  				//그리고 선택한 이미지의 td에 있는 내용을 전부 복사하여 붙여 넣는다.
   				$(".selectFoodTable").find("tr:nth-last-child(1)").append("<td class='tdata'></td>");
   				$(this).parent().children().clone(true).appendTo($(".selectFoodTable").find("tr:nth-last-child(1)").find("td:nth-last-child(1)"));
 	  		
+  				//tdata에 td의 개수를 담는다.
 	  			tdata = $(".tdata").length;
 	  			//console.log("얍 : " + tdata);
 	  			
+	  			//td가 4개 배수 단위로 넘어가면 tr을 새로 생성한다.
 	  			if(tdata % 4 == 0){
 					$(".selectFoodTable").append("<tr></tr>");
 				}
 	  			
   			});
   			
-  			
+  			//초기화 function 
   			$("#clearAll").click(function(){
   				$(".selectFoodTable").find("td").remove();
   	     		$(".selectFoodTable").find("tr").not("#thisStays").remove();
   	     		//console.log( "다시 " + tdata);
   	     	});
   			
-  		});
+  	 	 
+  		
+  			function confirmThis(){
+    			var answer = confirm('고르신 토핑으로 만든 시그니처 도시락을 장바구니에 담으시겠습니까?');
+    			// '예'를 클릭하면 form을 submit한다.
+    			if(answer == true){
+					 var $submitForm = $("#selectSignature");
+					//$submitForm.attr("onsubmit","return true();");	 
+					//console.log( $("#selectSignature").attr( 'action' ));
+					/* console.log($(".selectFoodTable").find("td").children("p").eq(0).text());
+					console.log($(".selectFoodTable").find("td").children("p").eq(1).text());
+					 */
+					 
+					 
+					 var data = {};
+					 for(var i = 1; i<=$(".tdata").length;i++){
+						 data["foodname"+ i] = $(".selectFoodTable").find("td").children("p").eq(0).text();
+						 data["foodprice"+ i] = $(".selectFoodTable").find("td").children("p").eq(1).text();
+					 }
+					 
+					// console.log(data);
+					
+					   $.ajax({
+					    type: "POST",
+					    url:   $("#selectSignature").attr( 'action' ) ,
+					   	data: data/* {foodname:$(".selectFoodTable").find("td").children("p").eq(0).text() , foodprice:$(".selectFoodTable").find("td").children("p").eq(1).text()}*/ ,
+					   	success:function(data){
+					   		alert('장바구니에 담겼습니다.');
+					   	}
+					   	
+					});   
+		    	} 
+  			}
+  			
+  		
+  		
   	</script>
+    
+  </form>
     
 </div>
 	
 	<!-- /시그니처 -->
 
-<!-- 푸터 -->
+	<!-- 푸터 -->
 	<%@ include file="/views/user/common/footer.jsp" %>
 	
 	<!--/ 푸터 -->

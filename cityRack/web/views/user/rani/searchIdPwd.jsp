@@ -14,7 +14,7 @@
 	}
 	
 	.section-title{
-		width:100%;
+		width:100% ;
 		margin-top:100px !important;	
   	  	position: relative;
     	border-bottom: 1px solid #DADADA;
