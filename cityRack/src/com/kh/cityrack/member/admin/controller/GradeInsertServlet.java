@@ -36,7 +36,7 @@ public class GradeInsertServlet extends HttpServlet {
 		System.out.println(gradeName);
 		System.out.println(gradeDiscount);
 		
-		int result = new GradeService().gradeInsert(gradeName, gradeDiscount);
+		int result = new GradeService().gradeInsert(gradeName, gradeDiscount);df
 		
 		String page = "";
 		
