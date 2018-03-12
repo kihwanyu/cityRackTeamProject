@@ -49,7 +49,7 @@ public class MemberSearchServlet extends HttpServlet {
 			
 		}else if(searchCondition.equals("grade")){
 			String grade = request.getParameter("grade");
-			System.out.println(grade);f
+			System.out.println(grade);ff
 			
 		}else if(searchCondition.equals("enrollDate")){
 			String afterDate = request.getParameter("afterDate");
