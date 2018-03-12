@@ -46,8 +46,10 @@ public class ProductDao {
 				p = new Product();
 				
 				p.setP_name(rset.getString("p_name"));
-				p.setP_name(rset.getString("p_price"));
+				p.setP_price(rset.getInt("p_price"));
 				p.setP_8constitution(rset.getString("p_8constitution"));
+				p.setCa_code(rset.getString("ca_name"));
+				p.setP_pic1(rset.getString("p_pic1"));
 				
 				pList.add(p);
 			}

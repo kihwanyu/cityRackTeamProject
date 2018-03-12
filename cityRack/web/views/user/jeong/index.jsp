@@ -160,6 +160,9 @@
 				<div class="menu-nav">
 					<span class="menu-header">메뉴 <i class="fa fa-bars"></i></span>
 					<ul class="menu-list">
+						<li ><a href="<%=request.getContextPath() %>/getProducts.pr">시그니처 도시락</a></li>
+						
+						
 						<li><a href="#">전체상품보기</a></li>
 						<li><a href="#">베스트상품</a></li>
 						<li><a href="views/user/jeong/event.jsp">이벤트</a></li>

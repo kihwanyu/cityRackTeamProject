@@ -21,7 +21,7 @@ public class PcategoryDao {
 		prop = new Properties();
 				
 		//fileName에 member-query.properties 파일의 위치를 넣어준다.
-		String fileName = PcategoryDao.class.getResource("/sql/admin/product/product-query.properties").getPath();
+		String fileName = PcategoryDao.class.getResource("/sql/user/product/product-query.properties").getPath();
 			
 		try {
 			//prop객체에 member-query.properties 파일위치를 넣어준다.
@@ -41,6 +41,7 @@ public class PcategoryDao {
 		Pcategory cat = null;
 		
 		String query = prop.getProperty("selectAllCategory");
+		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -55,6 +56,10 @@ public class PcategoryDao {
 				cList.add(cat);
 				
 			}
+			
+			System.out.println("cList @DAO" + cList);
+			
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
