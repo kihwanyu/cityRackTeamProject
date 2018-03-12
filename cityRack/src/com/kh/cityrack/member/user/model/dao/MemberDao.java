@@ -11,7 +11,7 @@ import java.util.Properties;
 import com.kh.cityrack.member.user.model.dto.Member;
 
 import static com.kh.cityrack.common.JDBCTemplet.*;
-/*sdfs*/
+/*sdfs*//*sdf*/
 public class MemberDao {
 
 	private Properties prop = null; 

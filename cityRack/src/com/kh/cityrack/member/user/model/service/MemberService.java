@@ -6,7 +6,7 @@ import com.kh.cityrack.member.user.model.dao.MemberDao;
 import com.kh.cityrack.member.user.model.dto.Member;
 import static com.kh.cityrack.common.JDBCTemplet.*;
 public class MemberService {
-
+	/*sdf*/
 	// 회원 가입
 	public int insertMember(Member m) {
 		int result = 0;

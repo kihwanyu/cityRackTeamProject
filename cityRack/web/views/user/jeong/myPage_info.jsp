@@ -3,7 +3,7 @@
 <%
 	Member loginUser = (Member)session.getAttribute("loginUser");
 %>
-<!-- sdfsd -->
+<!-- sdfsd --><!-- asd -->
 <!DOCTYPE html>
 <html lang="en">
 

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import com.kh.cityrack.member.user.model.dto.Member;
 import com.kh.cityrack.member.user.model.service.MemberService;
 
-/*sdf*/
+/*sdf*//*sdf*/
 @WebServlet("/updateMember.do")
 public class UpdateMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

@@ -6,7 +6,7 @@
 <%
 	Member loginUser = (Member) session.getAttribute("loginUser");
 %>
-<!-- sdfs -->
+<!-- sdfs --><!-- asd -->
 
 <head>
 

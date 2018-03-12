@@ -6,7 +6,7 @@
 	//String[] address = loginUser.getM_address().split(", ");
 	
 %>
-<!-- sdfs -->
+<!-- sdfs --><!-- asd -->
 <!DOCTYPE html>
 <html lang="en">
 

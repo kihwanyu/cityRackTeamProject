@@ -9,7 +9,7 @@ import com.kh.cityrack.member.common.model.dto.Withdraw;
 import static com.kh.cityrack.common.JDBCTemplet.*;
 
 public class WithdrawService {
-/*sdfs*/
+/*sdfs*//*sdf*/
 	// 회원 탈퇴
 	public int deleteMember(Withdraw w, Member m) {
 		

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.cityrack.member.user.model.service.MemberService;
-/*sdf*/
+/*sdf*//*sdf*/
 @WebServlet("/equalsPwd.do")
 public class EqualsPasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

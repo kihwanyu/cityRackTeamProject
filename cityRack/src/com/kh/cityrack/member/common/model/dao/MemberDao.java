@@ -12,7 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
-/*sdfs*/
+/*sdfs*//*sdf*/
 public class MemberDao {
 	//Properties 객체 선언
 	//member-query.propertie 파일을 읽어 오기 위해서.
