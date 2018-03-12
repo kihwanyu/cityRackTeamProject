@@ -1,6 +1,7 @@
 package com.kh.cityrack.product.admin.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -16,14 +17,14 @@ import com.kh.cityrack.product.admin.model.service.StockService;
 /**
  * Servlet implementation class StockSearchServlet
  */
-@WebServlet("/StockSearch.pr")
-public class StockSearchListServlet extends HttpServlet {
+@WebServlet("/StockDetailSearch.pr")
+public class StockDetailSearchListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public StockSearchListServlet() {
+    public StockDetailSearchListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,8 +33,23 @@ public class StockSearchListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String searchCondition = request.getParameter("searchCondition");
-		String searchText = request.getParameter("searchText");
+		String beforeDateStr = request.getParameter("beforeDate");
+		String afterDateStr = request.getParameter("afterDate");
+		
+		Date beforeDate = null;
+		Date afterDate = null;
+		
+		String pcode = request.getParameter("pcode");
+		String pname = request.getParameter("pname");
+		
+		if(beforeDateStr != null){
+			beforeDate = java.sql.Date.valueOf(beforeDateStr);
+		}
+		
+		if(afterDateStr != null){
+			afterDate = java.sql.Date.valueOf(afterDateStr);
+		}
+		
 		String order = request.getParameter("order");
 		
 		int currentPage; // 현재 페이지를 표시할 변수
@@ -56,9 +72,8 @@ public class StockSearchListServlet extends HttpServlet {
 		
 		limit = 3;
 		
-		if(searchCondition.equals("product_code")){
 			//전체 목록 갯수를 리턴 받음
-			int listCount = 1;
+			int listCount = new StockService().getDetailSearchListCount(beforeDate, afterDate, pcode);
 			
 			System.out.println("listCount : " + listCount);
 			
@@ -84,50 +99,38 @@ public class StockSearchListServlet extends HttpServlet {
 					
 			
 			
-			sList = new StockService().getStockSearchList(currentPage, limit,searchCondition, searchText, order);
+			sList = new StockService().getStockSearchList(currentPage, limit, beforeDate, afterDate, order, pcode);
 			//
 			
 			
-		} else {
-			//전체 목록 갯수를 리턴 받음
-			int listCount = new StockService().getSearchListCount(searchText);
-			
-			System.out.println("listCount : " + listCount);
-			
-			//총 페이지수 계산
-			//예를 들면, 목록 수가 123개 이면 13페이지가 필요함.
-			//짜투리 목록 최소 1개일 때, 1page로 처리하기 위해서 
-			//전체 목록 / limit + 0.9
-			maxPage = (int) ((double)listCount / limit + 0.9);
-			
-			//현제 페이지에 보여줄 시작 페이지 수 ( 10개 씩 보여주게 할 경우 )
-			//아래쪽 페이지 수가 10개씩 보여주게 한 다면 
-			//1, 11, 21, 31...
-			startPage = ((int)((double)currentPage / limit + 0.9) - 1) * limit + 1;
-			
-			//목록 아래 보여질 마지막 페이지수 (10, 20, 30, ...)
-			endPage = startPage + limit - 1;
-			
-			if(maxPage < endPage){
-				endPage = maxPage;
-			}
-			
-			pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
-								
-			sList = new StockService().getStockSearchList(currentPage, limit,searchCondition, searchText, order);
-			//
-			
-		}
 		if(sList != null){
+			int sAmount = new StockService().stockSearchGetAmountSum(pcode, beforeDate, afterDate,"입고");
+			int rAmount = new StockService().stockSearchGetAmountSum(pcode, beforeDate, afterDate,"출고");
+			
+			request.setAttribute("sAmount", sAmount);
+			request.setAttribute("rAmount", rAmount);
+			
+			
 			Boolean searchBloolean = true;
 			request.setAttribute("searchBloolean", searchBloolean);
+			
+			request.setAttribute("beforeDate", beforeDateStr);
+			request.setAttribute("afterDate", afterDateStr);
+			
+			
 			request.setAttribute("order", order);
-			request.setAttribute("searchText", searchText);
-			request.setAttribute("searchCondition", searchCondition);
+			
+			request.setAttribute("pname", pname);
+			request.setAttribute("pcode", pcode);
+			
+			
 			request.setAttribute("sList", sList);
 			request.setAttribute("pi", pi);
 			
-			page = "views/admin/admin_stockList.jsp";
+			System.out.println("sList : " + sList);
+			System.out.println("pi : " + pi);
+			
+			page = "views/admin/admin_stockDetails.jsp";
 		} else {
 			request.setAttribute("msg", "재고 목록 조회 실패");
 			page = "views/common/errorPage.jsp";

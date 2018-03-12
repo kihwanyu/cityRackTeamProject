@@ -6,6 +6,13 @@
     
 <%
 	ArrayList<Stock> sList = (ArrayList<Stock>)request.getAttribute("sList");
+
+	Boolean searchBloolean = (Boolean)request.getAttribute("searchBloolean");
+	System.out.println(searchBloolean);
+	String order = (String)request.getAttribute("order");
+	String searchText = (String)request.getAttribute("searchText");
+	String searchCondition = (String)request.getAttribute("searchCondition");
+	
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
@@ -53,17 +60,49 @@
 		<div align="center">
 			<h2>재고 정보</h2><br>
 			<form action="<%=request.getContextPath() %>/StockSearch.pr" method="get">
+				<%if(!searchBloolean){ %>
 				<select id="searchCondition" name="searchCondition">
 					<option value="product_code">상품코드</option>
 					<option value="product_name">상품명</option>
 				</select>
+				<%} else {
+					if(searchCondition.equals("product_code")) {%>
+					<select id="searchCondition" name="searchCondition">
+						<option value="product_code" selected="selected">상품코드</option>
+						<option value="product_name">상품명</option>
+					</select>
+					<%} else {%>
+					<select id="searchCondition" name="searchCondition">
+						<option value="product_code">상품코드</option>
+						<option value="product_name" selected="selected">상품명</option>
+					</select>
+					<%}
+				}%>
 				&nbsp;
+				<%if(!searchBloolean){ %>
 				<input type="search" name="searchText" id="searchText">
+				<%} else {%>
+				<input type="search" name="searchText" id="searchText" value="<%=searchText%>">
+				<%} %>
 				&nbsp;
+				<%if(!searchBloolean){ %>
 				<select id="order" name="order">
 					<option value="ASC">오름차순</option>
 					<option value="DESC">내림차순</option>
 				</select>
+				<%} else { 
+					if(order.equals("ASC")){%>
+					<select id="order" name="order">
+						<option value="ASC" selected="selected">오름차순</option>
+						<option value="DESC">내림차순</option>
+					</select>
+				<%	} else {%>
+					<select id="order" name="order">
+						<option value="ASC">오름차순</option>
+						<option value="DESC" selected="selected">내림차순</option>
+					</select>
+				<%	}
+				}%>
 				&nbsp;
 				<input type="submit" value="검색">
 			</form>
@@ -93,6 +132,7 @@
 				int forwardNextpage = ((int)(forwardNextPageVal+0.9))*limit+1;
 			/* (((int)((double)currentPage/limit))+0.9)*5-1;  */	
 		%>
+		<%if(!searchBloolean){ %>
 		<div class="pagingArea" align="center">
 			<button onclick="location.href='<%= request.getContextPath()%>/stockGetAll.pr?currentPage=1'"><<</button>
 			<%if(currentPage <= 1) { %>
@@ -117,13 +157,46 @@
 			<button disabled="disabled">></button>	
 			<%} else { 
 				if(forwardNextpage > maxPage) {%>
-				<button onclick="location.href='<%= request.getContextPath()%>/stockGetAll.pr?currentPage=<%= maxPage%>'">></button>
+				<button onclick="location.href='<%= request.getContextPath()%>/StockSearch.pr?currentPage=<%= maxPage%>&order=<%=order%>&searchText=<%=searchText%>&searchCondition=<%=searchCondition%>'">></button>
 				<% } else { %>
-				<button onclick="location.href='<%= request.getContextPath()%>/stockGetAll.pr?currentPage=<%= forwardNextpage%>'">></button>
+				<button onclick="location.href='<%= request.getContextPath()%>/StockSearch.pr?currentPage=<%= forwardNextpage%>&order=<%=order%>&searchText=<%=searchText%>&searchCondition=<%=searchCondition%>'">></button>
 				<%} %>
 			<%} %> 
-			<button onclick="location.href='<%= request.getContextPath()%>/stockGetAll.pr?currentPage=<%=maxPage%>'">>></button>
+			<button onclick="location.href='<%= request.getContextPath()%>/StockSearch.pr?currentPage=<%=maxPage%>&order=<%=order%>&searchText=<%=searchText%>&searchCondition=<%=searchCondition%>'">>></button>
 		</div>
+		<%} else { %>
+		<div class="pagingArea" align="center">
+			<button onclick="location.href='<%= request.getContextPath()%>/StockSearch.pr?currentPage=1&order=<%=order%>&searchText=<%=searchText%>&searchCondition=<%=searchCondition%>'"><<</button>
+			<%if(currentPage <= 1) { %>
+			<button><</button>
+			<%} else { 
+				if(backNextpage < 1) {%>
+					<button onclick="location.href='<%= request.getContextPath()%>/StockSearch.pr?currentPage=1&order=<%=order%>&searchText=<%=searchText%>&searchCondition=<%=searchCondition%>'"><</button>
+			<% 	} else {%>
+			
+					<button onclick="location.href='<%= request.getContextPath()%>/StockSearch.pr?currentPage=<%=backNextpage%>&order=<%=order%>&searchText=<%=searchText%>&searchCondition=<%=searchCondition%>'"><</button>
+			<%	} %>
+			<%} %>
+			<%for(int p = startPage; p <= endPage; p++){ 
+				if(p == currentPage){
+			%>
+				<button disabled="disabled"><%=p %></button>
+			<%	} else { %>
+				<button onclick="location.href='<%= request.getContextPath()%>/StockSearch.pr?currentPage=<%=p %>&order=<%=order%>&searchText=<%=searchText%>&searchCondition=<%=searchCondition%>'"><%=p %></button>
+			<%	} %>	
+			<%} %>
+			<%if(currentPage >= maxPage){ %>
+			<button disabled="disabled">></button>	
+			<%} else { 
+				if(forwardNextpage > maxPage) {%>
+				<button onclick="location.href='<%= request.getContextPath()%>/StockSearch.pr?currentPage=<%= maxPage%>&order=<%=order%>&searchText=<%=searchText%>&searchCondition=<%=searchCondition%>'">></button>
+				<% } else { %>
+				<button onclick="location.href='<%= request.getContextPath()%>/StockSearch.pr?currentPage=<%= forwardNextpage%>&order=<%=order%>&searchText=<%=searchText%>&searchCondition=<%=searchCondition%>'">></button>
+				<%} %>
+			<%} %> 
+			<button onclick="location.href='<%= request.getContextPath()%>/StockSearch.pr?currentPage=<%=maxPage%>&order=<%=order%>&searchText=<%=searchText%>&searchCondition=<%=searchCondition%>'">>></button>
+		</div>
+		<%} %>
 	</section>
 	<script type="text/javascript">
 	$(function() {

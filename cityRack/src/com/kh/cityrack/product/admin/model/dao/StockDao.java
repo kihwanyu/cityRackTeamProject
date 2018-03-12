@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -325,10 +326,14 @@ public class StockDao{
 		
 		String query =  "";
 		
-		if(searchCondition.equals("상품코드")){
+		if(searchCondition.equals("product_code")){
 			query = prop.getProperty("getStockSearchListCode");
 		} else {
-			query = prop.getProperty("getStockSearchListName");
+			if(order.equals("ASC")){
+				query = prop.getProperty("getStockSearchListNameASC");
+			} else {
+				query = prop.getProperty("getStockSearchListNameDESC");
+			}
 		}
 		
 		int startRow = (currentPage - 1) * limit + 1;
@@ -336,13 +341,12 @@ public class StockDao{
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			if(searchCondition.equals("상품코드")){
+			if(searchCondition.equals("product_code")){
 				pstmt.setString(1, searchText);
 			} else {
 				pstmt.setString(1, "%"+searchText+"%");
-				pstmt.setString(2, order);
-				pstmt.setInt(3, startRow);
-				pstmt.setInt(4, endRow);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
 			}
 
 			rset = pstmt.executeQuery();
@@ -362,6 +366,118 @@ public class StockDao{
 		}
 		
 		return slist;
+	}
+
+	public int getDetailSearchListCount(Connection conn, Date beforeDate, Date afterDate, String pcode) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int result = 0;
+		
+		String query = prop.getProperty("getDetailSearchListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+
+			pstmt.setString(1, pcode);
+			pstmt.setDate(2, beforeDate);
+			pstmt.setDate(3, afterDate);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				result = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public ArrayList<Stock> getStockSearchList(Connection conn, int currentPage, int limit, Date beforeDate,
+			Date afterDate, String order, String pcode) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		Stock s = null;
+		ArrayList<Stock> slist = null;
+		
+		String query =  "";
+		
+		if(order.equals("ASC")){
+			query = prop.getProperty("getStockDetailSearchListRdateASC");
+		} else {
+			query = prop.getProperty("getStockDetailSearchListRdateDESC");
+		}
+		
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, pcode);
+			pstmt.setDate(2, beforeDate);
+			pstmt.setDate(3, afterDate);
+			pstmt.setInt(4, startRow);
+			pstmt.setInt(5, endRow);
+
+			rset = pstmt.executeQuery();
+			
+			slist = new ArrayList<Stock>();
+			
+			while (rset.next()) {
+				s = new Stock();
+				s.setScode(rset.getInt("S_NO"));
+				s.setDivsion(rset.getString("S_DIVISION"));
+				s.setResisterDate(rset.getDate("S_RESISTERDATE"));
+				s.setSelflife(rset.getDate("S_SELFLIFE"));
+				s.setAmount(rset.getInt("S_AMOUNT"));
+				s.setNote(rset.getString("S_NOTE"));
+				
+				slist.add(s);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return slist;
+	}
+
+	public int stockGetAmountSum(Connection conn, String pcode, Date beforeDate, Date afterDate, String division) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int result = 0;
+		
+		String query = prop.getProperty("stockSearchGetAmountSum");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, pcode);
+			pstmt.setDate(2, beforeDate);
+			pstmt.setDate(3, afterDate);
+			pstmt.setString(4, division);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				result = rset.getInt(1);			
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
 	}
 	
 }

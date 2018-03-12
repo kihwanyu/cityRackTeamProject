@@ -82,7 +82,7 @@ public class StockGetAllServlet extends HttpServlet {
 		
 		if(sList != null){
 			Boolean searchBloolean = false;
-			request.setAttribute("searchBoolean", searchBloolean);
+			request.setAttribute("searchBloolean", searchBloolean);
 			
 			request.setAttribute("sList", sList);
 			request.setAttribute("pi", pi);

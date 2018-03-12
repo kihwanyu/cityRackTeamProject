@@ -1,6 +1,7 @@
 package com.kh.cityrack.product.admin.model.service;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import com.kh.cityrack.product.admin.model.dao.StockDao;
@@ -109,6 +110,36 @@ public class StockService {
 		close(conn);
 		
 		return slist;
+	}
+
+	public int getDetailSearchListCount(Date beforeDate, Date afterDate, String pcode) {
+		Connection conn = getConnection();
+		
+		int result = new StockDao().getDetailSearchListCount(conn, beforeDate, afterDate, pcode);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public ArrayList<Stock> getStockSearchList(int currentPage, int limit, Date beforeDate, Date afterDate,
+			String order, String pcode) {
+		Connection conn = getConnection();
+		
+		ArrayList<Stock> sList = new StockDao().getStockSearchList(conn, currentPage, limit, beforeDate, afterDate, order, pcode);
+		
+		close(conn);
+		
+		return sList;
+	}
+
+	public int stockSearchGetAmountSum(String pcode ,Date beforeDate, Date afterDate, String division) {
+		Connection conn = getConnection();
+		int result = new StockDao().stockGetAmountSum(conn, pcode, beforeDate, afterDate, division);
+		
+		close(conn);
+		
+		return result;
 	}
 
 
