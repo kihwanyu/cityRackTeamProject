@@ -2,6 +2,7 @@ package com.kh.cityrack.product.admin.model.dao;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -44,7 +45,7 @@ public class StockDao{
 				pstmt.setString(2, s.getPcode());
 				pstmt.setDate(3, s.getSelflife());
 				pstmt.setInt(4, s.getAmount());
-				pstmt.setString(5, s.getnote());
+				pstmt.setString(5, s.getNote());
 				
 				result = pstmt.executeUpdate();
 			} catch (SQLException e) {
@@ -62,7 +63,7 @@ public class StockDao{
 				pstmt.setString(1, s.getDivsion());
 				pstmt.setString(2, s.getPcode());
 				pstmt.setInt(3, s.getAmount());
-				pstmt.setString(4, s.getnote());
+				pstmt.setString(4, s.getNote());
 				
 				result = pstmt.executeUpdate();
 			} catch (SQLException e) {
@@ -176,6 +177,77 @@ public class StockDao{
 			close(pstmt);
 		}
 		
+		return slist;
+	}
+
+	public int getDetailListCount(Connection conn, String pcode) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int result = 0;
+		
+		String query = prop.getProperty("getDetailListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, pcode);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				result = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public ArrayList<Stock> stockDetailListGetAll(Connection conn, int currentPage, int limit, String pcode) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		ArrayList<Stock> slist = null;
+		Stock s = null;
+		
+		String query = prop.getProperty("stockDetailListGetAll");
+		
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, pcode);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			slist = new ArrayList<Stock>();
+			
+			while(rset.next()){
+				s = new Stock();
+				s.setScode(rset.getInt("S_NO"));
+				s.setDivsion(rset.getString("S_DIVISION"));
+				s.setResisterDate(rset.getDate("S_RESISTERDATE"));
+				s.setSelflife(rset.getDate("S_SELFLIFE"));
+				s.setAmount(rset.getInt("S_AMOUNT"));
+				s.setNote(rset.getString("S_NOTE"));
+				
+				slist.add(s);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
 		
 		
 		return slist;

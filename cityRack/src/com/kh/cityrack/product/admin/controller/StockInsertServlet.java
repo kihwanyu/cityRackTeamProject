@@ -52,7 +52,7 @@ public class StockInsertServlet extends HttpServlet {
 			
 			s.setPcode(pcode);
 			s.setDivsion(divsion);
-			s.setnote(note);
+			s.setNote(note);
 			s.setAmount(amount);
 			
 			int p_total = 0;
