@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*" %>
+<%@page import="com.kh.cityrack.product.admin.model.dto.Product"%>
+<%@page import="com.kh.cityrack.product.admin.model.dto.Pcategory"%>
 <!DOCTYPE html>
+<%	ArrayList<Product> pList = (ArrayList<Product>)request.getAttribute("pList");
+	ArrayList<Pcategory> cList = (ArrayList<Pcategory>)request.getAttribute("cList"); 
+	
+	System.out.println("pList :" + pList);
+	System.out.println("cList :" + cList);
+	%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -344,6 +352,12 @@ overflow-y:scroll;
 
 	<!-- 시그니처 -->
 	
+	<form action="<%=request.getContextPath() %>/getProducts.pr" method="post" id="getAllProducts">
+	<script type="text/javascript">
+		$(function(){
+			$("#getAllProducts").submit();
+		})
+	</script>
 	<h1 align="center" style="font-weight:bold;color:#004d1a;margin-top:50px;" >시그니처 도시락 </h1><br>
 	<h4 align="center">여러분들의 체질에 맞게, 입맞에 맞게 골라보세요!</h4><br>
 	<div class="innercontainer">
@@ -354,19 +368,19 @@ overflow-y:scroll;
               <div class="list-group">
               
                 <a href="#" class="list-group-item active text-center">
-                  	밥  / 면 류
+                  
                 </a>
                 <a href="#" class="list-group-item text-center">
-              	  고 기 류
+              	 
                 </a>
                 <a href="#" class="list-group-item text-center">
-                	나 물 류
+                
                 </a>
                 <a href="#" class="list-group-item text-center">
-   			           장 아 찌 류
+   			     
                 </a>
                 <a href="#" class="list-group-item text-center">
-  		              해 물 류
+  		        
                 </a>
               </div>
             </div>
@@ -792,6 +806,7 @@ overflow-y:scroll;
   </div>
   
   </div>
+  </form>
    <!-- 선택 토핑  -->
   <form id="selectSignature" action="<%=request.getContextPath()%>/cart.em" method="post" onsubmit="return false;" > 
   <div class="selectFood">
