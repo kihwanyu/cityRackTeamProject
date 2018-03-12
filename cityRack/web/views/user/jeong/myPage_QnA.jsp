@@ -1,5 +1,17 @@
+<%@page import="com.kh.cityrack.board.user.model.dto.PageInfo"%>
+<%@page import="com.kh.cityrack.board.user.model.dto.Board"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -106,21 +118,37 @@
 										<td align="center">답변대기</td>
 										<td class="text-right"></td>
 									</tr>
-									<tr>
-										<td align="center">1</td>
-										<td class="details" colspan="2">
-											<a href="#">목양체질입니다. 미역초무침 괜찮나요??</a>
-										</td>
-										<td class="price text-center">city****@naver.com</td>
-										<td align="center">2018/02/18</td>
-										<td align="center">답변대기</td>
-										<td class="text-right"></td>
-									</tr>																		
+																											
 								</tbody>
 							</table>
 						</div>
 					</div>
 				</form>
+				<%-- 페이지 처리 --%>
+		<div class="pagingArea" align="center">
+			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=1'"><<</button>
+			<% if(currentPage <= 1){ %>
+			<button disabled><</button>
+			<% }else{ %>
+			<button onclick="location.href='<%=request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage -1 %>'"><</button>
+			<% } %>
+			
+			<% for(int p = startPage; p <= endPage; p++){ 
+					if(p == currentPage){
+			%>
+						<button disabled><%= p %></button>
+			<%      }else{ %>
+						<button onclick="location.href='<%=request.getContextPath() %>/selectList.bo?currentPage=<%= p %>'"><%= p %></button>
+			<%      } %>
+			<% } %>
+			
+			<% if(currentPage >= maxPage){ %>
+			<button disabled>></button>
+			<% }else{ %>
+			<button onclick="location.href='<%=request.getContextPath()%>/selectList.bo?currentPage=<%=currentPage + 1%>'">></button>
+			<% } %>
+			<button onclick="location.href='<%=request.getContextPath() %>/selectList.bo?curruntPage=<%=maxPage%>'">>></button>
+		</div>
 				<br/>
 				
 				<!-- Search -->

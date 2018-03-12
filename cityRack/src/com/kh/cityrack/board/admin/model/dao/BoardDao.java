@@ -2,6 +2,7 @@ package com.kh.cityrack.board.admin.model.dao;
 
 import java.io.FileReader;
 
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
@@ -15,13 +16,10 @@ import java.util.Properties;
 import com.kh.cityrack.board.admin.model.dto.Board;
 import com.kh.cityrack.member.admin.model.dao.MemberDao;
 import com.kh.cityrack.member.admin.model.dto.Member;
-import com.kh.jsp.board.model.dao.BoardDao;
+
 
 import static com.kh.cityrack.common.JDBCTemplet.*;
-import static com.kh.jsp.common.JDBCTemplet.close;
-import static com.kh.jsp.common.JDBCTemplet.commit;
-import static com.kh.jsp.common.JDBCTemplet.getConnection;
-import static com.kh.jsp.common.JDBCTemplet.rollback;
+
 
 public class BoardDao {
 private Properties prop = new Properties();
@@ -73,6 +71,7 @@ private Properties prop = new Properties();
 		
 		return list;
 	}
+	//게시판 글작성 메소드
 	public int insertBoard(Connection con, Board b) {
 		PreparedStatement pstmt = null;
 		
