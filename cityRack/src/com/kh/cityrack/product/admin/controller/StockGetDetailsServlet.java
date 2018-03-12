@@ -25,7 +25,6 @@ public class StockGetDetailsServlet extends HttpServlet {
      */
     public StockGetDetailsServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -93,6 +92,10 @@ public class StockGetDetailsServlet extends HttpServlet {
 			request.setAttribute("sList", sList);
 			request.setAttribute("pname", pname);
 			request.setAttribute("pcode", pcode);
+			
+			Boolean searchBloolean = false;
+			request.setAttribute("searchBloolean", searchBloolean);
+			
 			request.setAttribute("sAmount", sAmount);
 			request.setAttribute("rAmount", rAmount);
 			request.setAttribute("pi", pi);
