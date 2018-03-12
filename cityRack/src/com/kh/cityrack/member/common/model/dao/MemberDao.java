@@ -12,7 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
-
+/*sdfs*/
 public class MemberDao {
 	//Properties 객체 선언
 	//member-query.propertie 파일을 읽어 오기 위해서.
@@ -40,14 +40,19 @@ public class MemberDao {
 		Member loginUser = null;
 		//prop객체의 파일 위치에 있는 파일에서 key값이 login value값을 가져온다.
 		String query = prop.getProperty("login");
+		System.out.println("login query : " + query);
+		
+		System.out.println("MemberDao password : " + m.getM_password());
 		
 		try {
 			//Connection 객체를 통해 PreparedStatement객체를 인스턴스화 한다.
 			pstmt = conn.prepareStatement(query);
 			
+			
 			//PreparedStatement객체의 ?를 채워준다.
 			pstmt.setString(1, m.getM_email());
 			pstmt.setString(2, m.getM_password());
+			
 			
 			//쿼리문의 결과를 ResultSet으로 받는다.
 			rset = pstmt.executeQuery();
@@ -64,6 +69,9 @@ public class MemberDao {
 				loginUser.setM_birthDay(rset.getDate("M_BIRTHDAY"));
 				loginUser.setM_address(rset.getString("M_ADDRESS"));
 				loginUser.setM_phone(rset.getString("M_PHONE"));
+				loginUser.setM_tel(rset.getString("M_TEL"));
+				
+				System.out.println("MemberDao loginUser : " + loginUser);
 			}
 			
 		} catch (SQLException e) {
@@ -78,8 +86,8 @@ public class MemberDao {
 		return loginUser;
 	}
 	
-	// 회원탈퇴처리용
-	public int deleteMember(Connection con, Withdraw w) {
+	// 회원탈퇴처리용 (탈퇴여부 Y로)
+	public int deleteMember(Connection con, Member m) {
 		
 		// PreparedStatement 객체 선언
 		PreparedStatement pstmt = null;
@@ -87,7 +95,9 @@ public class MemberDao {
 		int result = 0;
 		
 		//prop객체의 파일 위치에 있는 파일에서 key값이 deleteMember value값을 가져온다.
-		String query = prop.getProperty("deleteMember");		
+		String query = prop.getProperty("deleteMember");
+		
+		System.out.println("MemberDao's query(Y) : " + query);
 		
 		try {
 			
@@ -95,7 +105,7 @@ public class MemberDao {
 			pstmt = con.prepareStatement(query);
 			
 			//PreparedStatement객체의 ?를 채워준다.
-			pstmt.setInt(1, w.getM_no());	
+			pstmt.setInt(1, m.getM_no());	
 			
 			//쿼리문의 결과를 result에 담는다.
 			result = pstmt.executeUpdate();
@@ -108,11 +118,14 @@ public class MemberDao {
 		
 		return result;
 	}
+	
+	// 회원탈퇴처리용 (탈퇴테이블로 이유랑 탈퇴일 같은거 insert)
 	public int deleteGroup(Connection con, Withdraw w) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
 		String query = prop.getProperty("deleteGroup");
+		System.out.println("MemberDao's query(reason) : " + query);
 		
 		try {
 			pstmt = con.prepareStatement(query);

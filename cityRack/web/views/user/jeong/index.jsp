@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.cityrack.member.common.model.dto.Member"%>
-<% String msg = String.valueOf(request.getAttribute("msg")); %>    
 <% Member loginUser = (Member)session.getAttribute("loginUser"); %>
 <!DOCTYPE html>
 <html >
@@ -66,18 +65,18 @@
 								</div>
 								<strong class="text-uppercase">마이페이지 <i class="fa fa-caret-down"></i></strong>
 							</div>
-							<% if(loginUser == null){ %>
+							<% if(loginUser == null){ %> 
 							<div class="loginDiv">
 								<a href="views/user/rani/login.jsp" class="text-uppercase">로그인</a> / <a href="views/user/rani/join.jsp" class="text-uppercase">회원가입</a>
 							</div>
 							<%} else { %>
 								<div class="loginDiv">
-											<p><%=loginUser.getM_name() %>님, 환영합니다. | <a onclick="logout();" >로그아웃 </a></p>
+											<p><%-- <%=loginUser.getM_name() %>님, 환영합니다. |  --%><a onclick="logout();" >로그아웃 </a></p>
 								</div>
-							<%} %>
+							<%} %> 
 							<ul class="custom-menu">
 								<li><a href="views/user/jeong/myPage_info.jsp"><i class="fa fa-user-o"></i> 내 정보</a></li>
-								<li><a href="<%=request.getContextPath() %>/selectList.bo"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
+								<li><a href="views/user/jeong/myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
 								<li><a href="views/user/jeong/myPage_delivery.jsp"><i class="fa fa-check"></i> 주문배송조회</a></li>
 								<li><a href="views/user/jeong/myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>
 								<li><a href="#"><i class="fa fa-unlock-alt"></i> 로그아웃</a></li>
@@ -160,9 +159,6 @@
 				<div class="menu-nav">
 					<span class="menu-header">메뉴 <i class="fa fa-bars"></i></span>
 					<ul class="menu-list">
-						<li ><a href="<%=request.getContextPath() %>/getProducts.pr">시그니처 도시락</a></li>
-						
-						
 						<li><a href="#">전체상품보기</a></li>
 						<li><a href="#">베스트상품</a></li>
 						<li><a href="views/user/jeong/event.jsp">이벤트</a></li>
@@ -197,6 +193,33 @@
 											<li><a href="views/user/jeong/survey_detail.jsp">상세설문조사하기 Go!</a></li>
 										</ul>
 									</div>
+									<div class="col-md-3">
+										<div class="hidden-sm hidden-xs">
+											<a class="banner banner-1">
+												<img src="views/user/jeong/img/survey2.png" alt="">
+											</a>
+										</div>
+										<hr>
+										<ul class="list-links">
+										<li><h3 class="list-links-title">설문조사결과</h3></li>
+											<li>기존의 설문조사 결과로 <br/>체질의 특성과 음식을<br/>추천해드립니다.</li>
+											<li><br/></li>
+											<li>
+												<!-- <a href="views/user/jeong/myPage_result.jsp">설문조사결과보기 Go!</a> -->
+												<button type="button" onclick="goResult(); return false;" class="primary-btn">설문조사결과보기 Go!</button>
+											</li>
+										</ul>
+									</div>
+								<script>
+											
+										function goResult(){
+											
+											alert("으갸갸ㅑ갸갸");
+											// 회원번호도 넘기기
+											location.href="<%= request.getContextPath()%>/selectCon&mNo=<%= loginUser.getM_no() %>";
+										}	
+												
+								</script>
 								</div>
 							</div>
 						</li>
@@ -272,7 +295,7 @@
 					</div>
 				</div>
 				<!-- /banner -->
-
+			
 				<!-- banner -->
 				<div class="col-md-4 col-sm-6">
 					<a class="banner banner-1" href="#">
@@ -301,11 +324,13 @@
 	</div>
 	<!-- /section -->
 
-<script type="text/javascript">
-	function logout(){
-		location.href="<%= request.getContextPath()%>/Logout.em";
-		
-	}
+	<script type="text/javascript">
+	
+		function logout(){
+			location.href="<%= request.getContextPath()%>/Logout.em";
+			
+		}
+	
 	</script>
 
 		<!-- 푸터용 메뉴바 -->

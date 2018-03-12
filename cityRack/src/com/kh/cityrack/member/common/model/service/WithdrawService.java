@@ -9,21 +9,24 @@ import com.kh.cityrack.member.common.model.dto.Withdraw;
 import static com.kh.cityrack.common.JDBCTemplet.*;
 
 public class WithdrawService {
-
-	// 회원 탈퇴asdas
-	public int deleteMember(Withdraw w) {
+/*sdfs*/
+	// 회원 탈퇴
+	public int deleteMember(Withdraw w, Member m) {
 		
 		Connection con = getConnection();
 
 		int result = 0;
-		
-		result = new MemberDao().deleteMember(con, w);
 				
+		// 탈퇴여부 Y용
+		result = new MemberDao().deleteMember(con, m);
+			
+		// 탈퇴사유용
+		result = new MemberDao().deleteGroup(con, w);
+			
+		System.out.println("withdrawService's result : " + result); 
+
+		
 		if(result > 0) {
-			commit(con);
-			
-			result = new MemberDao().deleteGroup(con, w);
-			
 			commit(con);
 		} else {
 			rollback(con);
