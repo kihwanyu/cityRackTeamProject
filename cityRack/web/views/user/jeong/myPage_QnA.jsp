@@ -98,16 +98,19 @@
 									</tr>
 								</thead>
 								<tbody>
+									<% System.out.println(list); %>
+									<% for(Board b : list){ %>
 									<tr>
-										<td align="center">3</td>
+										<td align="center"><%=b.getBo_no() %></td>
 										<td class="details" colspan="2">
-											<a href="#">58년 개띠..금양체질..질문드립니다..</a>
+											<a href="#"><%=b.getBo_title() %></a>
 										</td>
-										<td class="price text-center">city****@naver.com</td>
-										<td align="center">2018/02/18</td>
+										<td class="price text-center"></td>
+										<td align="center"><%=b.getBo_date() %></td>
 										<td align="center">답변대기</td>
 										<td class="text-right"></td>
 									</tr>
+									<% } %>
 									<tr>
 										<td align="center">2</td>
 										<td class="details" colspan="2">
@@ -125,7 +128,7 @@
 					</div>
 				</form>
 				<%-- 페이지 처리 --%>
-		<div class="pagingArea" align="center">
+		 <div class="pagingArea" align="center">
 			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=1'"><<</button>
 			<% if(currentPage <= 1){ %>
 			<button disabled><</button>
