@@ -18,9 +18,9 @@
        		<a class="dropdown-toggle" data-toggle="dropdown" href="#">회원 관리
         	<span class="caret"></span></a>
 	        <ul class="dropdown-menu">
-	          <li><a href="<%=request.getContextPath() %>/views/admin/admin_memberList.jsp">회원 정보</a></li>
+	          <li><a href="<%=request.getContextPath() %>/MemberGetAll.me">회원 정보</a></li>
 	          <li><a href="<%=request.getContextPath() %>/GradeGetAll.me">등급 정보</a></li>
-	          <li><a href="<%=request.getContextPath() %>/views/admin/admin_memberWithdrawList.jsp">회원 탈퇴 정보</a></li>
+	          <li><a href="<%=request.getContextPath() %>/WithdrawMemberGetAll.me">회원 탈퇴 정보</a></li>
 	        </ul>
       	</li>
 		<li class="menuNav">

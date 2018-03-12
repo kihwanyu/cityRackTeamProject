@@ -30,19 +30,15 @@ public class MemberUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String num = (request.getParameter("num"));
+		int memberCode = Integer.parseInt(request.getParameter("memberCode"));
+		String memberStatus = request.getParameter("memberState");
+		String withdrawReason = request.getParameter("withdrawReason"); 
 		
-		String[] numarr = num.split(":");
 		
-		int memberCode = Integer.parseInt(numarr[0]);
-		String memberStatus = numarr[1];
-		String withdrawReason = null;
-		
-		if(memberStatus.equals("N")){
-			withdrawReason = numarr[2];
-		}else{
-			withdrawReason = "복구됨";
+		if(memberStatus.equals("Y")){
+			withdrawReason = "--";
 		}
+			
 		
 		int result = new MemberService().memberUpdate(memberCode, memberStatus, withdrawReason);
 		
