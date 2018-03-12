@@ -27,17 +27,24 @@ public class MemberDao {
 		}
 		
 	}
-	public ArrayList<Member> memberGetAll(Connection conn) {
+	public ArrayList<Member> memberGetAll(Connection conn, int currentPage) {
 		ArrayList<Member> list = null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		Member m = null;
 		String query = prop.getProperty("memberGetAll");
+		System.out.println(currentPage);
+		int listCount = 10;
+		int startList = ((currentPage - 1)) * listCount + 1;
+	    int endList = startList + listCount - 1; 
+		
 		
 		try{
-			stmt = conn.createStatement();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, startList);
+			pstmt.setInt(2, endList);
 			
-			rset = stmt.executeQuery(query);
+			rset = pstmt.executeQuery();
 			
 			list = new ArrayList<Member>();
 			
@@ -63,7 +70,7 @@ public class MemberDao {
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
-			close(stmt);
+			close(pstmt);
 			close(rset);
 		}
 		return list;
@@ -232,6 +239,29 @@ public class MemberDao {
 			e.printStackTrace();
 		}finally{
 			close(pstmt);
+		}
+		
+		return result;
+	}
+	public int getTotalCount(Connection conn) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("getTotalCount");
+		int result = 0;
+		
+		try{
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()){
+				result = rset.getInt("totalcount");
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(stmt);
 		}
 		
 		return result;

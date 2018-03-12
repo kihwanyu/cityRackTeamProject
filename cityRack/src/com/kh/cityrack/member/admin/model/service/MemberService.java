@@ -11,9 +11,9 @@ import static com.kh.cityrack.common.JDBCTemplet.*;
 
 public class MemberService {
 
-	public ArrayList<Member> memberGetAll() {
+	public ArrayList<Member> memberGetAll(int currentPage) {
 		Connection conn = getConnection();
-		ArrayList<Member> list = new MemberDao().memberGetAll(conn);
+		ArrayList<Member> list = new MemberDao().memberGetAll(conn, currentPage);
 		
 		close(conn);
 		return list;
@@ -64,6 +64,15 @@ public class MemberService {
 		
 		close(conn);
 		return list;
+	}
+
+	public int getTotalCount() {
+		Connection conn = getConnection();
+		
+		int totalCount = new MemberDao().getTotalCount(conn);
+		
+		close(conn);
+		return totalCount;
 	}
 
 }

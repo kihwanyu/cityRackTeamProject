@@ -33,13 +33,56 @@ public class MemberGetAllServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Member> list = new MemberService().memberGetAll();
+		//ArrayList<Member> list = new MemberService().memberGetAll();
+		int totalCount = new MemberService().getTotalCount();
+		int totalPage;
+		int listCount = 10;
+		int pageCount = 10;
+		int startPage; 
+		int endPage;
+		
+		
+		//현재 페이지 초기값 1
+		int currentPage = 1;
+		
+		//넘겨받은 현재 페이지로 초기화 
+		if(request.getParameter("currentPage") != null){
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		//총 페이지 수 설정
+		totalPage = totalCount/listCount;
+		
+		//여유분 인덱스추가
+		if(totalCount%listCount > 0){
+			totalPage++;
+		}
+		
+		//현재 페이지가 총 페이지보다 클 경우 치환 
+		if(totalPage > currentPage){
+			currentPage = totalPage;
+		}
+		
+		//시작 페이지와 끝페이지 설정
+		startPage = ((currentPage - 1) / pageCount) * pageCount + 1;
+		endPage = startPage + pageCount - 1;
+		
+		//끝페이지가 총 페이지보다 클 경우 치환
+		if(endPage > totalPage){
+			endPage = totalPage;
+		}
+		
+		ArrayList<Member> list = new MemberService().memberGetAll(currentPage);
 		System.out.println(list);
+		
 		
 		String page = "";
 		if(list != null){
 			page = "/views/admin/admin_memberList.jsp";
 			request.setAttribute("list", list);
+			request.setAttribute("currentPage", String.valueOf(currentPage));
+			request.setAttribute("startPage", String.valueOf(startPage));
+			request.setAttribute("endPage", String.valueOf(endPage));
 		}else{
 			page = "/views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시판 불러오기 실패!");
@@ -47,6 +90,7 @@ public class MemberGetAllServlet extends HttpServlet {
 		
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
+		
 	}
 		
 	

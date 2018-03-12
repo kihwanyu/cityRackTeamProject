@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*,com.kh.cityrack.member.admin.model.dto.*"%>
-<% ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list"); %>    
+<%
+ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+int currentPage = Integer.parseInt((String)request.getAttribute("currentPage"));
+int startPage = Integer.parseInt((String)request.getAttribute("startPage"));
+int endPage = Integer.parseInt((String)request.getAttribute("endPage"));
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +24,7 @@
 		
 	}	
 	#memberTable {
-		width: 100%;
+		width: 90%;
 		height: 100px;
 		margin-left: auto;
 		margin-right: auto;
@@ -31,6 +36,11 @@
 	}
 	th {
 		background: lightgray;
+	}
+	.paging{
+	  align:center;
+	  margin-top:20px;
+	  
 	}
 </style>
 <title>회원 관리</title>
@@ -96,6 +106,17 @@
 			</table>	
 		</div>	
 	</section>
+	<div class="paging" align="center">
+	  <button onclick="location.href='<%= request.getContextPath() %>/MemberGetAll.me?currentPage=<%= startPage%>'"><<</button>
+	  <%for(int p = startPage; p <= endPage; p++){ 
+	  if(p == currentPage){ %>
+		 <button disabled style="background:black; color:white"><%= p%></button>
+	  <%}else{%>
+	  <button id="index"onclick="location.href='<%= request.getContextPath() %>/MemberGetAll.me?currentPage=<%= p%>'"><%= p %></button>
+	  <%}
+	  }%>
+	  <button onclick="location.href='<%= request.getContextPath() %>/MemberGetAll.me?currentPage=<%= endPage%>'">>></button>
+	</div>
 	<%@ include file="/views/admin/common/footer.jsp" %>
 	<script type="text/javascript">
 		
