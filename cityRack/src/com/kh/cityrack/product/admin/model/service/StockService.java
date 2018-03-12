@@ -62,4 +62,26 @@ public class StockService {
 		return slist;
 	}
 
+	public int getDetailListCount(String pcode) {
+		Connection conn = getConnection();
+		
+		int result = new StockDao().getDetailListCount(conn, pcode);
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	public ArrayList<Stock> stockDetailListGetAll(int currentPage, int limit, String pcode) {
+		Connection conn = getConnection();
+		
+		ArrayList<Stock> slist = new StockDao().stockDetailListGetAll(conn ,currentPage, limit, pcode);
+		
+		close(conn);
+		
+		return slist;
+	}
+
+	
+
 }
