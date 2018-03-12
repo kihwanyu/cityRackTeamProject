@@ -12,7 +12,7 @@
 	String order = (String)request.getAttribute("order");
 	String searchText = (String)request.getAttribute("searchText");
 	String searchCondition = (String)request.getAttribute("searchCondition");
-	
+	/*  */
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();

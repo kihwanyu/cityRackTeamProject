@@ -25,7 +25,6 @@ public class StockGetDetailsServlet extends HttpServlet {
      */
     public StockGetDetailsServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

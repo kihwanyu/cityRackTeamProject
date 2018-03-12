@@ -25,7 +25,6 @@ public class StockSearchListServlet extends HttpServlet {
      */
     public StockSearchListServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
