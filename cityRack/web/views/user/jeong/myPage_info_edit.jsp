@@ -3,6 +3,8 @@
 
 <%
 	Member loginUser = (Member)session.getAttribute("loginUser");
+	//String[] address = loginUser.getM_address().split(", ");
+	
 %>
 
 <!DOCTYPE html>
@@ -64,6 +66,9 @@
 								<h3 class="title">내 정보 수정</h3>
 							</div>
 							<h2><%= loginUser.getM_name() %>님의 정보를 수정합니다.</h2>
+							
+							<h4 align="center">* 변경하ㄴ	</h4>
+							
 							<table class="infoTable" align="center" width="450px">
 									<tr>
 										<td style="font-size:12px;" align="center"><strong>이메일</strong></td>
@@ -74,44 +79,44 @@
 									<tr>
 										<td style="font-size:12px;" align="center"><strong>비밀번호</strong></td>
 										<td colspan="3" align="center">
-											<input type="text" size="12">
-											<button class="editBtn">변경하기</button>
+											<input type="text" size="12" id="password">
 										</td>
 									</tr>
 									<tr>
 										<td style="font-size:12px;" align="center"><strong>이름</strong></td>
 										<td colspan="3" align="center">
-											<input type="text" name="userName" value="<%= loginUser.getM_name() %>">
+											<input type="text" name="name" value="<%= loginUser.getM_name() %>" readonly>
 										</td>
 									</tr>									
 									<tr >
 										<td rowspan="3" style="font-size:12px;" align="center"><strong>주소</strong></td>
 										<td colspan="3" align="center">
-											<input type="text" size="6px" value=" 123-456" name="address" id="address1">
-											<button onclick="address(); return false;" class="editBtn">우편번호찾기</button>
+											<input type="text" id="sample6_postcode" >
+											<%-- <input type="text" id="sample6_postcode" placeholder="<%= address[0] %>"> --%>
+											<button type="button" class="editBtn" onclick="sample6_execDaumPostcode()">우편번호 찾기</button><br>
 										</td>
 									<tr >	
 										<td colspan="3" style="border-bottom:1px solid white;" align="center">
-											<input type="text" size="30px" value=" 서울 강남구 테헤란로14길 6" name="address" id="address2">
+											<input type="text" id="sample6_address">
+											<%-- <input type="text" id="sample6_address" placeholder="<%= address[1] %>"> --%>
 										</td>
 									</tr>
 									<tr >
 										<td colspan="3" align="center">
-											<input type="text" size="30px" value=" 남도빌딩 2층" name="address" id="address3">
+											<input type="text" id="sample6_address2">
+											<%-- <input type="text" id="sample6_address2" placeholder="<%= address[2] %>"> --%>
 										</td>
 									</tr>								
 									<tr>
 										<td style="font-size:12px;" align="center"><strong>휴대폰</strong></td>
 										<td colspan="3" align="center">
-											<input type="tel" name="phone" value="<%= loginUser.getM_phone() %>">&nbsp;
-											<button class="editBtn" onclick="phone();">변경하기</button>
+											<input type="text" name="phone" value="<%= loginUser.getM_phone() %>">&nbsp;
 										</td>
 									</tr>
 									<tr>
 										<td style="font-size:12px;" align="center"><strong>전화번호</strong></td>
 										<td colspan="3" align="center">
-											<input type="tel" name="tel" value="<%= loginUser.getM_tel() %>">&nbsp;
-											<button class="editBtn">변경하기</button>
+											<input type="text" name="tel" value="<%= loginUser.getM_tel() %>">&nbsp;
 										</td>
 									</tr>		
 							</table>
@@ -124,28 +129,54 @@
 							
 							<script>
 							
-								
-								function phone(){
-									
-									var input = prompt('Message');
-							           
-									alert("휴대폰 번호를 '" + input + "'(으)로 수정합니다.");
-									
-									document.getElementById("phoneText").value = input;
-									
+							 function sample6_execDaumPostcode() {
+								 new daum.Postcode({
+							            oncomplete: function(data) {
+							                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-								}
-							
-							
-							
+							                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+							                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+							                var fullAddr = ''; // 최종 주소 변수
+							                var extraAddr = ''; // 조합형 주소 변수
+
+							                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+							                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+							                    fullAddr = data.roadAddress;
+
+							                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+							                    fullAddr = data.jibunAddress;
+							                }
+
+							                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+							                if(data.userSelectedType === 'R'){
+							                    //법정동명이 있을 경우 추가한다.
+							                    if(data.bname !== ''){
+							                        extraAddr += data.bname;
+							                    }
+							                    // 건물명이 있을 경우 추가한다.
+							                    if(data.buildingName !== ''){
+							                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+							                    }
+							                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+							                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+							                }
+
+							                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+							                document.getElementById('sample6_postcode').value = data.zonecode; //5자리 새우편번호 사용
+							                document.getElementById('sample6_address').value = fullAddr;
+
+							                // 커서를 상세주소 필드로 이동한다.
+							                document.getElementById('sample6_address2').focus();
+							            }
+							        }).open();
+							    }
+							 
+															
 								function confirm(){
 									
-									var bool = confirm('수정하시겠습니까?');
-									alert(bool);
+									alert("수고");
+									
 								}
-							
-							
-							
 							
 							
 								function before(){

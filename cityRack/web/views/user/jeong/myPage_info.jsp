@@ -170,7 +170,7 @@
 							<div class="section-title">
 								<h3 class="title">내 정보</h3>
 							</div>
-							<h2><%= loginUser.getM_name() %>님 환영합니다!</h2>
+							<h2><%= loginUser.getM_name() %>님, 환영합니다!</h2>
 							<table class="infoTable" align="center" width="400px" style="border:2px solid orange;">
 									<tr>
 										<td style="font-size:12px;" align="center">&nbsp;&nbsp;이메일</td>
@@ -192,15 +192,15 @@
 										</td>
 									</tr>									
 									<tr>
-										<td rowspan="2" width="200px" style="font-size:12px;" align="center">&nbsp;&nbsp;주소</td>
+										<td width="200px" style="font-size:12px;" align="center">&nbsp;&nbsp;주소</td>
 										<td colspan="3" style="border-bottom:1px solid white;" align="center">
-											<input type="text" name="address" value="<%= loginUser.getM_address() %>" readonly>
+											<input type="text" width="500px" name="address" value="<%= loginUser.getM_address() %>" readonly>
 										</td>
 									</tr>						
-									<tr>
+									<!-- <tr>
 										<td colspan="3" align="center"><label>남도빌딩 2층</label></td>
 									
-									</tr>		
+									</tr> -->		
 									<tr>
 										<td style="font-size:12px;" align="center">&nbsp;&nbsp;휴대폰</td>
 										<td colspan="3" align="center">
@@ -217,44 +217,62 @@
 							<br/>
 							<br/>
 							<div align="center">
-								<strong>* 정보 수정을 원하시면 비밀번호를 한 번 더 입력하신 후, 수정하기 버튼을 눌러주세요.</strong>
+								<strong>* 정보 수정 또는 탈퇴를 원하시면 비밀번호를 한 번 더 입력하신 후, <br/>
+										원하시는 버튼을 눌러주세요.</strong>
 								<br/><br/><br/>
 								<button onclick="edit($('form')); return false;" class="primary-btn">내 정보 수정하기</button>
-								<button onclick="un1(); return false;" class="primary-btn">탈퇴하기</button>
+								<button onclick="un1($('form')); return false;" class="primary-btn">탈퇴하기</button>
 							</div>
 							
 							<script>
-
+							console.log("<%= loginUser.getM_tel() %>");
+							
+							
 								function edit(form){
 									
-									var temp = document.getElementById("password").value; // 입력한 비번
+									var password = document.getElementById("password").value; // 입력한 비번
 									var pwd1 = "<%= loginUser.getM_password() %>"; // 진짜 비번
 									var pwd2; // 암호화된 입력한 비번
-									
+									var userId = "<%= loginUser.getM_email() %>";
 									$.ajax({
-										url: "<%= request.getContextPath() %>/equlsPwd.do",
+										url: "<%= request.getContextPath() %>/equalsPwd.do",
 										type: "post",
-										data: {"temp": temp},
+										data: {"userId": userId,
+											"password": password},
 										success: function(data){
-											pwd2 = temp;	
+											if(data === "success"){
+												pwd2 = password;
+												console.log(pwd2);
+												location.href="myPage_info_edit.jsp";
+											}else {
+												alert("비밀번호를 확인해주세요.");
+											}	
 										},
 										error: function(msg){
 										}
 									});
 									
-									if(pwd1 === pwd2) {
-
-										location.href="myPage_info_edit.jsp";
-										
-									} else {
-										
-										alert("으아아아ㅏㅏ악");
-										
-									}
 								}
 								 
-								 function un1(){
-									 location.href="myPage_info_unregister1.jsp";
+								 function un1(form){
+									 	var password = document.getElementById("password").value; // 입력한 비번
+										var pwd1 = "<%= loginUser.getM_password() %>"; // 진짜 비번
+										var userId = "<%= loginUser.getM_email() %>";
+										$.ajax({
+											url: "<%= request.getContextPath() %>/equalsPwd.do",
+											type: "post",
+											data: {"userId": userId,
+												"password": password},
+											success: function(data){
+												if(data === "success"){
+													location.href="myPage_info_unregister1.jsp";
+												}else {
+													alert("비밀번호를 확인해주세요.");
+												}	
+											},
+											error: function(msg){
+											}
+										});
 								 }
 								
 							</script>

@@ -62,4 +62,15 @@ public class MemberService {
 		return result;
 	}
 
+
+	public String passwordCheck(String userId, String password) {
+		Connection con = getConnection();
+		
+		String result = new MemberDao().passwordCheck(con, userId, password);
+		
+		close(con);
+		
+		return result;
+	}
+
 }

@@ -245,4 +245,36 @@ public class MemberDao {
 		return result;
 	}
 
+
+
+
+	// 회원정보 수정할때 비번체크
+	public String passwordCheck(Connection con, String userId, String password) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String result = null;
+		
+		String query = prop.getProperty("passwordCheck");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				if(password.equals(rset.getString(1))){
+					result = rset.getString(1);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }
