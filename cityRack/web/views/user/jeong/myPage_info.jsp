@@ -136,6 +136,10 @@
 					<span class="category-header">마이페이지</span>
 				</div>
 				<!-- /카테고리 메뉴바 -->
+				
+				
+				
+				
 
 				<!-- 메뉴 네비게이터 -->
 				<div class="menu-nav">

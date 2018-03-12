@@ -34,4 +34,21 @@ public class QuestionService {
 		return result;
 	}
 
+	// 체질조사결과 가져오기
+	public int selectConstitution(Question q) {
+		
+		Connection con = getConnection();
+
+		int result = 0;
+		
+		result = new QuestionDao().selectConstitution(con, q);
+		
+		System.out.println("QuestionService's select result : " + result);
+		
+		close(con);
+		
+		return result;
+	
+	}
+
 }

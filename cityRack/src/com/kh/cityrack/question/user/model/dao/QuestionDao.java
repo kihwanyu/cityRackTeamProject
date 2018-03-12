@@ -66,5 +66,38 @@ public class QuestionDao {
 		
 		return result;
 	}
+	
+	// 체질 조사결과 가져오기
+	public int selectConstitution(Connection con, Question q) {
+
+		// PreparedStatement 객체 선언
+		PreparedStatement pstmt = null;
+		// result값 초기화
+		int result = 0;
+		
+		//prop객체의 파일 위치에 있는 파일에서 key값이 selectCon value값을 가져온다.
+		String query = prop.getProperty("selectCon");
+		
+		System.out.println("QuestionDao's query(select) : " + query);
+		
+		try {
+			
+			//Connection 객체를 통해 PreparedStatement객체를 인스턴스화 한다.
+			pstmt = con.prepareStatement(query);
+			
+			//PreparedStatement객체의 ?를 채워준다.
+			pstmt.setInt(1, q.getM_no());	
+			
+			//쿼리문의 결과를 result에 담는다.
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 
 }

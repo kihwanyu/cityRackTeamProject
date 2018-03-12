@@ -193,6 +193,33 @@
 											<li><a href="views/user/jeong/survey_detail.jsp">상세설문조사하기 Go!</a></li>
 										</ul>
 									</div>
+									<div class="col-md-3">
+										<div class="hidden-sm hidden-xs">
+											<a class="banner banner-1">
+												<img src="views/user/jeong/img/survey2.png" alt="">
+											</a>
+										</div>
+										<hr>
+										<ul class="list-links">
+										<li><h3 class="list-links-title">설문조사결과</h3></li>
+											<li>기존의 설문조사 결과로 <br/>체질의 특성과 음식을<br/>추천해드립니다.</li>
+											<li><br/></li>
+											<li>
+												<!-- <a href="views/user/jeong/myPage_result.jsp">설문조사결과보기 Go!</a> -->
+												<button type="button" onclick="goResult(); return false;" class="primary-btn">설문조사결과보기 Go!</button>
+											</li>
+										</ul>
+									</div>
+								<script>
+											
+										function goResult(){
+											
+											alert("으갸갸ㅑ갸갸");
+											// 회원번호도 넘기기
+											location.href="<%= request.getContextPath()%>/selectCon&mNo=<%= loginUser.getM_no() %>";
+										}	
+												
+								</script>
 								</div>
 							</div>
 						</li>
@@ -268,7 +295,7 @@
 					</div>
 				</div>
 				<!-- /banner -->
-
+			
 				<!-- banner -->
 				<div class="col-md-4 col-sm-6">
 					<a class="banner banner-1" href="#">
@@ -297,11 +324,13 @@
 	</div>
 	<!-- /section -->
 
-<script type="text/javascript">
-	function logout(){
-		location.href="<%= request.getContextPath()%>/Logout.em";
-		
-	}
+	<script type="text/javascript">
+	
+		function logout(){
+			location.href="<%= request.getContextPath()%>/Logout.em";
+			
+		}
+	
 	</script>
 
 		<!-- 푸터용 메뉴바 -->

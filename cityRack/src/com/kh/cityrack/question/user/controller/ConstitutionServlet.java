@@ -43,6 +43,7 @@ public class ConstitutionServlet extends HttpServlet {
 		// 페이지
 		String page = "";
 		if(result > 0) {
+			request.setAttribute("conResult", conResult);
 			page = "views/user/jeong/myPage_result.jsp";
 			response.sendRedirect(page);
 		} 

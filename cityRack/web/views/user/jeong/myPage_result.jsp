@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.cityrack.member.user.model.dto.Member, 
+    pageEncoding="UTF-8" import="com.kh.cityrack.member.common.model.dto.Member, 
     							com.kh.cityrack.question.user.model.dto.Question" %>
 
 <%
@@ -72,9 +72,7 @@
 							
 								<% 
 								
-								Question q = new Question();
-							
-								String conResult = q.getQ_8constitution();	
+								String conResult = request.getParameter("conResult");
 								
 								switch(conResult){ 
 								
