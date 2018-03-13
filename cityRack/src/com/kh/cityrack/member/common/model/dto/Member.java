@@ -22,13 +22,15 @@ public class Member implements Serializable{
 	private String m_phone; // 회원_휴대폰번호
 	private Date m_enorll_date; // 회원_가입일
 	private String m_stuts; // 회원_탈퇴여부
+	private String q_8constitution; //회원체질
 	
 	public Member() {
 		super();
 	}
 
 	public Member(int m_no, String m_mail, String c_name, String m_password, String m_name, String m_gender,
-			Date m_birthDay, String m_address, String m_tel, String m_phone, Date m_enorll_date, String m_stuts) {
+			Date m_birthDay, String m_address, String m_tel, String m_phone, Date m_enorll_date, String m_stuts,
+			String q_8constitution) {
 		super();
 		this.m_no = m_no;
 		this.m_email = m_mail;
@@ -42,6 +44,7 @@ public class Member implements Serializable{
 		this.m_phone = m_phone;
 		this.m_enorll_date = m_enorll_date;
 		this.m_stuts = m_stuts;
+		this.q_8constitution = q_8constitution;
 	}
 
 	public int getM_no() {
@@ -139,13 +142,21 @@ public class Member implements Serializable{
 	public void setM_stuts(String m_stuts) {
 		this.m_stuts = m_stuts;
 	}
+	
+	public String getQ_8constitution() {
+		return q_8constitution;
+	}
+
+	public void setQ_8constitution(String q_8constitution) {
+		this.q_8constitution = q_8constitution;
+	}
 
 	@Override
 	public String toString() {
 		return "Member [m_no=" + m_no + ", m_mail=" + m_email + ", c_name=" + c_name + ", m_password=" + m_password
 				+ ", m_name=" + m_name + ", m_gender=" + m_gender + ", m_birthDay=" + m_birthDay + ", m_address="
 				+ m_address + ", m_tel=" + m_tel + ", m_phone=" + m_phone + ", m_enorll_date=" + m_enorll_date
-				+ ", m_stuts=" + m_stuts + "]";
+				+ ", m_stuts=" + m_stuts +  ", q_8constitution=" + q_8constitution + "]";
 	}
 
 	

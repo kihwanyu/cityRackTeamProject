@@ -70,6 +70,7 @@ public class MemberDao {
 				loginUser.setM_address(rset.getString("M_ADDRESS"));
 				loginUser.setM_phone(rset.getString("M_PHONE"));
 				loginUser.setM_tel(rset.getString("M_TEL"));
+				loginUser.setQ_8constitution(rset.getString("Q_8CONSTITUTION"));
 				
 				System.out.println("MemberDao loginUser : " + loginUser);
 			}
