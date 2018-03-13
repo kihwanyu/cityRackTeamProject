@@ -479,5 +479,43 @@ public class StockDao{
 		
 		return result;
 	}
+
+	public ArrayList<Stock> getStockTodayList(Connection conn, String standard) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("getStockTodaywList");
+		
+		ArrayList<Stock> sTodayList = null;
+		Stock s = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, standard);
+			rset = pstmt.executeQuery();
+			
+			sTodayList = new ArrayList<Stock>();
+			
+			while (rset.next()) {
+				s = new Stock();
+				s.setScode(rset.getInt("S_NO"));
+				s.setDivsion(rset.getString("S_DIVISION"));
+				s.setPcode(rset.getString("P_CODE"));
+				s.setPname(rset.getString("P_NAME"));
+				s.setNote(rset.getString("S_NOTE"));
+				s.setAmount(rset.getInt("S_AMOUNT"));
+				
+				sTodayList.add(s);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return sTodayList;
+	}
 	
 }

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <header>
 	<div>	
 		<div id="logout" align="right">
@@ -13,7 +12,7 @@
 <div align="center">
 <nav class="navbar navbar-inverse" id="menubar" style="width: 99%">
 	<ul class="nav navbar-nav">
-		<li class="menuNav"><a href="<%=request.getContextPath() %>/index.jsp" class="home" style="color: white;">HOME</a></li>
+		<li class="menuNav"><a href="<%=request.getContextPath() %>/views/admin/index.jsp" class="home" style="color: white;">HOME</a></li>
 		<li class="menuNav">
        		<a class="dropdown-toggle" data-toggle="dropdown" href="#">회원 관리
         	<span class="caret"></span></a>

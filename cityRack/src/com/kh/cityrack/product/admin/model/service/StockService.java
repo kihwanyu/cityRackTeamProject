@@ -142,6 +142,16 @@ public class StockService {
 		return result;
 	}
 
+	public ArrayList<Stock> StockTodayList(String standard) {
+		Connection conn = getConnection();
+		
+		ArrayList<Stock> stodayList = new StockDao().getStockTodayList(conn, standard);
+		
+		close(conn);
+		
+		return stodayList;
+	}
+
 
 	
 
