@@ -332,9 +332,19 @@
 				<div class="col-md-4 col-sm-6">
 					<a class="banner banner-1" href="#">
 						<img src="views/user/jeong/img/banner11.png" alt="">
-						<div class="banner-caption text-center">
+						<div class="banner-caption text-center" 
+							onclick="location.href='<%= request.getContextPath() %>/views/user/jeong/ingredient.jsp';">
 							<h2 class="white-color">재료이야기</h2>
 						</div>
+						<script>
+							
+							$("#ingre").click(function(){
+								
+								location.href="<%= request.getContextPath() %>/views/user/jeong/ingredient.jsp";
+							});
+							
+						
+						</script>
 					</a>
 				</div>
 				<!-- /banner -->
