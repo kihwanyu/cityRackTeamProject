@@ -74,10 +74,10 @@ searchWord = "&gender=" + gender + "&searchCondition=" + searchCondition + "&sea
 		<div align="center">
 			<h2>회원 정보</h2><br>
 			<form action="<%=request.getContextPath()%>/MemberSearch.me" method="get">
-				<input type="radio" value="m" id="male" name="gender" checked="checked">
+				<input type="radio" value="M" id="male" name="gender" checked="checked">
 				<label for="male">남성</label>
 				&nbsp;
-				<input type="radio" value=" f" id=" female" name="gender">
+				<input type="radio" value="F" id=" female" name="gender">
 				<label for=" female">여성</label>
 				&nbsp;&nbsp;
 				<select id="searchCondition" name="searchCondition" onchange="selectSearch();">
@@ -98,10 +98,11 @@ searchWord = "&gender=" + gender + "&searchCondition=" + searchCondition + "&sea
 					<option value="N">N</option>
 				</select>
 				<select id="grade" name="grade" hidden="">
-					<option value="diamond">다이아몬드</option>
-					<option value="gold">골드</option>
-					<option value="silver">실버</option>
-					<option value="bronze">브론즈</option>		
+				    <option value="--">--</option>
+					<option value="다이아몬드">다이아몬드</option>
+					<option value="골드">골드</option>
+					<option value="실버">실버</option>
+					<option value="브론즈">브론즈</option>		
 				</select>
 				
 				<input type="submit" value="검색">
@@ -145,7 +146,7 @@ searchWord = "&gender=" + gender + "&searchCondition=" + searchCondition + "&sea
 	  }%>
 	  
 	  <!-- 현재 페이지가 끝페이지면 더이상 페이지 넘어가지 않게 처리 -->
-	  <%if(currentPage != endPage){ %>
+	  <%if(currentPage != totalPage){ %>
 	  <button onclick="location.href='<%= request.getContextPath() %>/MemberSearch.me?currentPage=<%= endPage+1%><%= searchWord%>'">></button>
 	  <%}else{ %>
 	  <button onclick="location.href='<%= request.getContextPath() %>/MemberSearch.me?currentPage=<%= endPage%><%= searchWord%>'">></button>
