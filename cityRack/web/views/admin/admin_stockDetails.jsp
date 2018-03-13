@@ -216,7 +216,7 @@
 					<button onclick="location.href='<%= request.getContextPath()%>/StockDetailSearch.pr?currentPage=<%=p %>&pcode=<%=pcode%>&pname=<%=pname%>&beforeDate=<%=beforeDate%>&afterDate=<%=afterDate%>&order=<%=order%>'"><%=p %></button>
 				<%	} %>	
 				<%} %>
-				<!--  -->
+				<!--                                                                                                       -->
 				<%if(currentPage >= maxPage){ %>
 				<button disabled="disabled">></button>	
 				<%} else { 
