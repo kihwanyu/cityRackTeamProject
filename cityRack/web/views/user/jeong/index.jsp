@@ -3,7 +3,7 @@
 <% Member loginUser = (Member)session.getAttribute("loginUser"); %>
 <!DOCTYPE html>
 <html >
-<!-- asd -->
+<!-- asd --><!-- sd -->
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -215,8 +215,28 @@
 										function goResult(){
 											
 											alert("으갸갸ㅑ갸갸");
-											// 회원번호도 넘기기
-											location.href="<%= request.getContextPath()%>/selectCon&mNo=<%= loginUser.getM_no() %>";
+											
+											// 로그인은 되어있는데
+											if(loginUser != null){
+												// 설문조사 한 경우와 안해서 결과가 없는 경우
+												if(){
+													// 회원번호도 넘기기
+													location.href="<%= request.getContextPath()%>/selectCon?mNo=" + "<%= loginUser.getM_no() %>";
+													location.href="<%= request.getContextPath() %>/views/user/jeong/myPage_cs.jsp?사랑해="+ "사랑해";
+													
+												} else {
+													// 설문조사 먼저 하라구 알림창
+													alert("먼저 체질 설문조사를 진행해주세요.");
+												}
+
+											} else {
+												// 로그인 후 이용할 수 있는 서비스라고
+												alert("로그인 후 이용하실 수 있는 서비스입니다.");
+											}
+											
+											
+											
+											
 										}	
 												
 								</script>

@@ -9,7 +9,7 @@ import java.sql.Connection;
 
 import com.kh.cityrack.question.user.model.dao.QuestionDao;
 import com.kh.cityrack.question.user.model.dto.Question;
-/*sdf*//*sdf*/
+/*sdf*//*sdf*//* sd */
 public class QuestionService {
 
 	// 체질 설문조사결과 insert
