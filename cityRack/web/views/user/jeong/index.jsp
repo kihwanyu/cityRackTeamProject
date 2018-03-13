@@ -161,6 +161,7 @@
 					<ul class="menu-list">
 						<li><a href="#">전체상품보기</a></li>
 						<li><a href="#">베스트상품</a></li>
+						<li><a href="<%=request.getContextPath() %>/getProducts.pr">시그니처 도시락</a></li>
 						<li><a href="views/user/jeong/event.jsp">이벤트</a></li>
 						<li class="dropdown mega-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">설문조사 <i class="fa fa-caret-down"></i></a>
 							<div class="custom-menu" width="300px">
@@ -212,7 +213,7 @@
 									</div>
 								<script>
 											
-										function goResult(){
+										<%-- function goResult(){
 											
 											alert("으갸갸ㅑ갸갸");
 											
@@ -237,7 +238,7 @@
 											
 											
 											
-										}	
+										}	 --%>
 												
 								</script>
 								</div>
