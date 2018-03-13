@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.cityrack.member.common.model.dto.Member, 
-    							com.kh.cityrack.question.user.model.dto.Question" %>
+    pageEncoding="UTF-8" import="com.kh.cityrack.member.common.model.dto.Member" %>
 
 <%
 	Member loginUser = (Member)session.getAttribute("loginUser");
@@ -21,20 +20,20 @@
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
 
 	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/bootstrap.min.css" />
 
 	<!-- Slick -->
-	<link type="text/css" rel="stylesheet" href="css/slick.css" />
-	<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/slick.css" />
+	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/slick-theme.css" />
 
 	<!-- nouislider -->
-	<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/nouislider.min.css" />
 
 	<!-- Font Awesome Icon -->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/font-awesome.min.css">
 
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/style.css" />
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,8 +45,8 @@
 </head>
 
 <body>
-		<!-- 마이페이지용 메뉴바 -->
-	<%-- <%@ include file="/cityrack/views/user/common/menubar_myPage.jsp" %> --%>
+			<!-- 마이페이지용 메뉴바 -->
+	<%@ include file="/views/user/common/menubar_myPage.jsp" %>
 
 	<!-- section -->
 	<div class="section">
@@ -72,14 +71,12 @@
 							
 								<% 
 								
-								String conResult = request.getParameter("conResult");
-								
-								switch(conResult){ 
+								switch(loginUser.getQ_8constitution()){ 
 								
 									case "목양" : %>
 									
-										<img src="./img/체질.png" alt="" height="300px">
-										<img src="./img/목양.png" alt="" height="300px">
+										<img src="views/user/jeong/img/체질.png" alt="" height="300px">
+										<img src="views/user/jeong/img/목양.png" alt="" height="300px">
 										</div>
 							
 										<br/>
@@ -122,11 +119,11 @@
 							<script>
 							
 								function history(){
-									location.href="myPage_survey_history.jsp";	
+									location.href="<%= request.getContextPath() %>/views/user/jeong/myPage_survey_history.jsp";	
 								}
 								
 								function again(){
-									location.href="../rani/survey.jsp";
+									location.href="<%= request.getContextPath() %>/views/user/rani/survey.jsp";
 								}
 							
 							</script>
@@ -148,12 +145,12 @@
 	<%@ include file="footer.jsp" %>
 
 	<!-- jQuery Plugins -->
-	<script src="views/user/jeong/js/jquery.min.js"></script>
-	<script src="views/user/jeong/js/bootstrap.min.js"></script>
-	<script src="views/user/jeong/js/slick.min.js"></script>
-	<script src="views/user/jeong/js/nouislider.min.js"></script>
-	<script src="views/user/jeong/js/jquery.zoom.min.js"></script>
-	<script src="views/user/jeong/js/main.js"></script>
+	<script src="<%= request.getContextPath() %>/views/user/jeong/js/jquery.min.js"></script>
+	<script src="<%= request.getContextPath() %>/views/user/jeong/views/user/jeong/js/bootstrap.min.js"></script>
+	<script src="<%= request.getContextPath() %>/views/user/jeong/views/user/jeong/js/slick.min.js"></script>
+	<script src="<%= request.getContextPath() %>/views/user/jeong/views/user/jeong/js/nouislider.min.js"></script>
+	<script src="<%= request.getContextPath() %>/views/user/jeong/views/user/jeong/js/jquery.zoom.min.js"></script>
+	<script src="<%= request.getContextPath() %>/views/user/jeong/views/user/jeong/js/main.js"></script>
 </body>
 
 </html>

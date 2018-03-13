@@ -221,16 +221,19 @@
 										function goResult(){
 											
 										
-										 <% 	Question q = new Question();
+										 <% 	
 										
 											// 로그인은 되어있는데
 											if(loginUser != null){
+												System.out.println(loginUser.getM_no());
+												System.out.println(loginUser.getQ_8constitution());
 												// 설문조사 한경우
 												 if(loginUser.getQ_8constitution() != null){ 
 												
 												 %>
 													 /* 회원번호도 넘기기 */
 													location.href="<%= request.getContextPath()%>/selectCon?mNo=" + "<%= loginUser.getM_no() %>";
+													request.setAttribute(q_8constitution);
 													<%-- location.href="<%= request.getContextPath() %>/views/user/jeong/myPage_cs.jsp?사랑해="+ "사랑해"; --%>
 													
 											<%	
