@@ -46,7 +46,7 @@
 
 
 
-	<!-- section -->
+	<!-- section1 -->
 	<div class="section">
 		<!-- container -->
 		<div class="container">
@@ -81,6 +81,14 @@
 												<option value="60">금음체질</option>
 												<option value="70">수양체질</option>
 												<option value="80">수음체질</option>
+											</select>
+										</td>
+										<td width="40px" height="40px"><strong>구분</strong></td>
+										<td>
+											<select name="division">
+												<option>------------</option>
+												<option value="게시글">게시글</option>
+												<option value="답글">답글</option>
 											</select>
 										</td>
 									</tr>
