@@ -50,6 +50,7 @@ public class ProductDao {
 				p.setP_8constitution(rset.getString("p_8constitution"));
 				p.setCa_code(rset.getString("ca_name"));
 				p.setP_pic1(rset.getString("p_pic1"));
+				p.setP_sale_check(rset.getString("p_status"));
 				
 				pList.add(p);
 			}

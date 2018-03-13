@@ -20,7 +20,8 @@ public class Product implements Serializable{
 	private String p_sale_check; // 상품_SALE
 	private String p_hit_check; // 상품_HIT
 	private double p_discount; // 상품_할인율
-	private String p_note; // 상품_비고
+	private String p_status; //상품 진열 상태
+	private int p_stock; // 상품_재고
 	
 	public Product() {
 		super();
@@ -28,7 +29,7 @@ public class Product implements Serializable{
 
 	public Product(String p_code, String ca_code, String p_8constitution, String p_name, String p_pic1, String p_pic2,
 			int p_price, String p_new_check, String p_sale_check, String p_hit_check, double p_discount,
-			String p_note) {
+			String p_status, int p_stock) {
 		super();
 		this.p_code = p_code;
 		this.ca_code = ca_code;
@@ -41,7 +42,8 @@ public class Product implements Serializable{
 		this.p_sale_check = p_sale_check;
 		this.p_hit_check = p_hit_check;
 		this.p_discount = p_discount;
-		this.p_note = p_note;
+		this.p_status = p_status;
+		this.p_stock = p_stock;
 	}
 
 	public String getP_code() {
@@ -132,12 +134,19 @@ public class Product implements Serializable{
 		this.p_discount = p_discount;
 	}
 
-	public String getP_note() {
-		return p_note;
+	public String getP_status() {
+		return p_status;
 	}
 
-	public void setP_note(String p_note) {
-		this.p_note = p_note;
+	public void setP_note(String p_status) {
+		this.p_status = p_status;
+	}
+	
+	public int getP_stock() {
+		return p_stock;
+	}
+	public void setP_stock(int p_stock) {
+		this.p_stock = p_stock;
 	}
 
 	@Override
@@ -145,7 +154,7 @@ public class Product implements Serializable{
 		return "Product [p_code=" + p_code + ", ca_code=" + ca_code + ", p_8constitution=" + p_8constitution
 				+ ", p_name=" + p_name + ", p_pic1=" + p_pic1 + ", p_pic2=" + p_pic2 + ", p_price=" + p_price
 				+ ", p_new_check=" + p_new_check + ", p_sale_check=" + p_sale_check + ", p_hit_check=" + p_hit_check
-				+ ", p_discount=" + p_discount + ", p_note=" + p_note + "]";
+				+ ", p_discount=" + p_discount + ", p_note=" + p_status + p_stock+"]";
 	}
 	
 	
