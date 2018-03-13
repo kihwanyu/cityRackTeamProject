@@ -205,26 +205,20 @@ public class OrderDao {
 		
 		for(int i = 0; i < searchTypeArr.length; i++){
 			switch (searchTypeArr[i]) {
-			case "searchCheackedpCode":
-				sb.append("P.P_CODE=?");
+			case "searchCheackedOono":
+				sb.append("O.O_ONO=?");
 				break;
-			case "searchCheackedRdate": 
-				sb.append("P.P_RESISTERDATE BETWEEN ? AND ?");
+			case "searchCheackedEmail": 
+				sb.append("M.M_EMAIL LIKE ?");
 				break;
-			case "searchCheackedPcategory":
-				sb.append("C.CA_NAME=?");
-				break;
-			case "searchCheackedConstitution":
-				sb.append("P.P_8CONSTITUTION=?");
+			case "searchCheackedOdate":
+				sb.append("O.O_ORDERDATE BETWEEN ? AND ?");
 				break;
 			case "searchCheackedPname":
 				sb.append("P.P_NAME LIKE ?");
 				break;
-			case "searchCheackedStatus":
-				sb.append("P.P_STATUS=?");
-				break;
-			default: //searchCheackedEvent
-				sb.append("P.P_EVENT=?");
+			default: //searchCheackedStatus
+				sb.append("O.O_STATE=?");
 				break;
 			}
 			if(i < searchTypeArr.length-1) {
@@ -255,24 +249,28 @@ public class OrderDao {
 			for(int i = 0; i < searchTypeArr.length; i++){
 				switch (searchTypeArr[i]) {
 				case "searchCheackedOono":
-					sb.append("O.O_ONO=?");
+					pstmt.setInt(j, Integer.parseInt(oSearch.getSearch_oono()));
+					j++;
 					break;
 				case "searchCheackedEmail": 
-					sb.append("M.M_EMAIL LIKE ?");
+					pstmt.setString(j, "%"+oSearch.getSearch_email()+"%");
+					j++;
 					break;
 				case "searchCheackedOdate":
-					sb.append("O.O_ORDERDATE BETWEEN ? AND ?");
+					pstmt.setDate(j, oSearch.getBeforeDate());
+					j++;
+					pstmt.setDate(j, oSearch.getAfterDate());
+					j++;
 					break;
 				case "searchCheackedPname":
-					sb.append("P.P_NAME LIKE ?");
+					pstmt.setString(j, "%"+oSearch.getSearch_pname()+"%");
+					j++;
 					break;
 				default: //searchCheackedStatus
-					sb.append("O.O_STATE=?");
+					pstmt.setString(j, oSearch.getSearch_status());
+					j++;
 					break;
 				}
-				if(i < searchTypeArr.length-1) {
-					sb.append(" AND ");
-				} 
 			}
 			
 			pstmt.setInt(j, startRow);

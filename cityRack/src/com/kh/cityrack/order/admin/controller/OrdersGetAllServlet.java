@@ -81,8 +81,8 @@ public class OrdersGetAllServlet extends HttpServlet {
 		String page = "";
 		
 		if(oList != null){
-			//Boolean searchBloolean = false;
-			//request.setAttribute("searchBloolean", searchBloolean);
+			Boolean searchBoolean = false;
+			request.setAttribute("searchBoolean", searchBoolean);
 			
 			request.setAttribute("oList", oList);
 			request.setAttribute("pi", pi);
