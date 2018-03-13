@@ -293,8 +293,6 @@ public class ProductDao {
 			int j = 1;
 			
 			for(int i = 0; i < searchTypeArr.length; i++){
-				
-				System.out.println("i : "+i);
 				switch (searchTypeArr[i]) {
 				case "searchCheackedpCode":
 					pstmt.setInt(j, Integer.parseInt(pSearch.getSearch_pcode()));
@@ -329,9 +327,6 @@ public class ProductDao {
 					j++;
 					break;
 				}
-				if(i < searchTypeArr.length-1) {
-					sb.append(" AND ");
-				} 
 			}
 			
 			pstmt.setInt(j, startRow);

@@ -22,6 +22,7 @@
 	String email_order = "";
 	String pname_order = "";
 	
+	System.out.println(searchBoolean);
 	
 	if(searchBoolean){
 		searchTypeArr = (String[])request.getParameterValues("searchTypeArr");
