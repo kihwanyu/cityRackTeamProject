@@ -1,6 +1,10 @@
 package com.kh.cityrack.board.user.model.service;
 
 import static com.kh.cityrack.common.JDBCTemplet.*;
+import static com.kh.jsp.common.JDBCTemplet.close;
+import static com.kh.jsp.common.JDBCTemplet.commit;
+import static com.kh.jsp.common.JDBCTemplet.getConnection;
+import static com.kh.jsp.common.JDBCTemplet.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -8,7 +12,7 @@ import java.util.ArrayList;
 import com.kh.cityrack.board.user.model.dao.BoardDao;
 import com.kh.cityrack.board.user.model.dto.Board;
 public class BoardService {
-
+	//페이징 카운트
 	public int getListCount() {
 		Connection con = getConnection();
 		
@@ -18,7 +22,7 @@ public class BoardService {
 		
 		return listCount;
 	}
-	
+	//문의글 목록 메소드
 	public ArrayList<Board> selectList(int currentPage, int limit) {
 		Connection con = getConnection();
 		
@@ -27,6 +31,19 @@ public class BoardService {
 		close(con);
 		
 		return list;
+	}
+	//문의글작성
+	public int insertBoard(Board b) {
+		Connection con = getConnection();
+		
+		int result = new BoardDao().insertBoard(con, b);
+		
+		if(result > 0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
 	}
 
 }
