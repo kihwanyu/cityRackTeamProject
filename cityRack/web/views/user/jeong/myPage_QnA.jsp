@@ -27,20 +27,20 @@
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
 
 	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="views/user/jeong/css/bootstrap.min.css" />
 
 	<!-- Slick -->
-	<link type="text/css" rel="stylesheet" href="css/slick.css" />
-	<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+	<link type="text/css" rel="stylesheet" href="views/user/jeong/css/slick.css" />
+	<link type="text/css" rel="stylesheet" href="views/user/jeong/css/slick-theme.css" />
 
 	<!-- nouislider -->
-	<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+	<link type="text/css" rel="stylesheet" href="views/user/jeong/css/nouislider.min.css" />
 
 	<!-- Font Awesome Icon -->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="views/user/jeong/css/font-awesome.min.css">
 
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<link type="text/css" rel="stylesheet" href="views/user/jeong/css/style.css" />
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -105,9 +105,9 @@
 										<td class="details" colspan="2">
 											<a href="#"><%=b.getBo_title() %></a>
 										</td>
-										<td class="price text-center"></td>
+										<td class="price text-center"><%=b.getM_name() %></td>
 										<td align="center"><%=b.getBo_date() %></td>
-										<td align="center">답변대기</td>
+										<td align="center"><%=b.getBo_status() %></td>
 										<td class="text-right"></td>
 									</tr>
 									<% } %>
@@ -169,7 +169,7 @@
 				<br/>
 				<br/>
 				<div align="right">
-					<button onclick="qu(); return false;" class="primary-btn">질문하기</button>
+					<button onclick="location.href='views/user/jeong/myPage_question.jsp'" class="primary-btn">질문하기</button>
 					<button onclick="history(); return false;" class="primary-btn">내 질문내역</button>
 				</div>
 				

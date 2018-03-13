@@ -52,7 +52,7 @@
 		<div class="container">
 			<!-- row -->
 			<div class="row">
-				<form id="checkout-form" class="clearfix">
+				<form id="checkout-form" action="<%= request.getContextPath() %>/insertBoard.bo" class="clearfix" method="post">
 					<div class="col-md-12">
 						<div class="order-summary clearfix">
 							<div class="section-title">
@@ -102,7 +102,7 @@
 							<br/>
 						<div align="center">
 							<button onclick="cancel(); return false;" class="primary-btn">취소하기</button>&nbsp;
-							<button class="primary-btn">등록하기</button>
+							<input type="submit" class="primary-btn" value="등록하기">
 						</div>
 						
 						<script>
