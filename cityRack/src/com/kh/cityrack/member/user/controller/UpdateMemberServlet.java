@@ -37,10 +37,12 @@ public class UpdateMemberServlet extends HttpServlet {
 		String mPassword = request.getParameter("M_PASSWORD");
 		String mName = request.getParameter("M_NAME");
 		String bday = request.getParameter("M_BIRTHDAY") ;
-		/*DateFormat df = new SimpleDateFormat("yyyyMMdd");*/
-		String mAddress = request.getParameter("M_ADDRESS");
+		String zip = request.getParameter("zipcode");
+		String addr1 = request.getParameter("addr1");
+		String addr2 = request.getParameter("addr2");
 		String mPhone = request.getParameter("M_PHONE");
 		String mTel = request.getParameter("M_TEL");
+		String mAddress = addr1 +", " + addr2 + ", "+ zip;
 		
 		// 3. member 객체 생성해서 넘기기
 		Member m = new Member();

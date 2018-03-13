@@ -33,7 +33,8 @@ public class MemberService {
 
 		Member loginUser = new MemberDao().checkLoginUser(con, name, emailOrPhone, key);
 
-
+		close(con);
+		
 		return loginUser;
 	}
 
