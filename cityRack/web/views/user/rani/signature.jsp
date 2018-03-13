@@ -385,7 +385,7 @@ overflow-y:scroll;
                       <div class="tableArea" >
                   	<table class="foodtable"  >
                   	
-            		<% int row = 0; %>
+            		<% int row = 0; %> 
                   	<% for(int i = 0; i<pList.size();i++){  %>
                   	<% if( row % 2 == 0 ){%>
                   		 <tr>
