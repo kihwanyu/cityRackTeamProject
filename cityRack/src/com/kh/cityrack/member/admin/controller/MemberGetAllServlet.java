@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.cityrack.member.admin.model.dao.MemberDao;
 import com.kh.cityrack.member.admin.model.dto.Member;
+import com.kh.cityrack.member.admin.model.dto.Search;
 import com.kh.cityrack.member.admin.model.service.MemberService;
 
 /**
@@ -75,7 +76,6 @@ public class MemberGetAllServlet extends HttpServlet {
 		ArrayList<Member> list = new MemberService().memberGetAll(currentPage);
 		System.out.println(list);
 		
-		
 		String page = "";
 		if(list != null){
 			page = "/views/admin/admin_memberList.jsp";
@@ -84,9 +84,10 @@ public class MemberGetAllServlet extends HttpServlet {
 			request.setAttribute("startPage", String.valueOf(startPage));
 			request.setAttribute("endPage", String.valueOf(endPage));
 			request.setAttribute("totalPage", String.valueOf(totalPage));
+			
 		}else{
 			page = "/views/common/errorPage.jsp";
-			request.setAttribute("msg", "게시판 불러오기 실패!");
+			request.setAttribute("msg", "회원정보 조회 실패!");
 		}
 		
 		RequestDispatcher view = request.getRequestDispatcher(page);

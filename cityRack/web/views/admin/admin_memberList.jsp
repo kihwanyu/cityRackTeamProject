@@ -6,6 +6,23 @@ int currentPage = Integer.parseInt((String)request.getAttribute("currentPage"));
 int startPage = Integer.parseInt((String)request.getAttribute("startPage"));
 int endPage = Integer.parseInt((String)request.getAttribute("endPage"));
 int totalPage = Integer.parseInt((String)request.getAttribute("totalPage"));
+
+Search search = null;
+String searchWord = null;
+
+if(request.getAttribute("search") != null){
+search = (Search)request.getAttribute("search");
+String gender = search.getGender();
+String searchCondition = search.getSearchCondition();
+String searchText = search.getSearchText();
+String beforeDate = search.getBeforeDate();
+String afterDate = search.getAfterDate();
+String grade = search.getGrade();
+String status = search.getStatus();
+
+searchWord = "&gender=" + gender + "&searchCondition=" + searchCondition + "&searchText=" + searchText + "&beforeDate=" + beforeDate + "&afterDate=" + afterDate + "&grade=" + grade + "&status=" + status;  
+}
+
 %>    
 <!DOCTYPE html>
 <html>
@@ -43,6 +60,11 @@ int totalPage = Integer.parseInt((String)request.getAttribute("totalPage"));
 	  margin-top:20px;
 	  
 	}
+	.paging2{
+	  align:center;
+	  margin-top:20px;
+	  
+	}
 </style>
 <title>회원 관리</title>
 </head>
@@ -69,7 +91,7 @@ int totalPage = Integer.parseInt((String)request.getAttribute("totalPage"));
 				<input type="search" name="searchText" id="searchText">
 				<span id="serachDate">
 					<input type="date" name="beforeDate" id="beforeDate"> -
-					<input type="date" name="AfterDate" id="AfterDate" > 
+					<input type="date" name="afterDate" id="afterDate" > 
 				</span>
 				<select id="status" name="status" hidden="">
 					<option value="Y">Y</option>
@@ -102,7 +124,39 @@ int totalPage = Integer.parseInt((String)request.getAttribute("totalPage"));
 		</div>	
 	</section>
 	
+	<% if(search != null){ %>
+	
+	
 	<div class="paging" align="center">
+	  <button onclick="location.href='<%= request.getContextPath() %>/MemberSearch.me?currentPage=<%= 1%><%= searchWord%>'"><<</button>
+	  
+	  <% if(startPage == 1){%>
+	  <button onclick="location.href='<%= request.getContextPath() %>/MemberSearch.me?currentPage=<%= startPage%><%= searchWord%>'"><</button>
+	  <%}else{ %>
+	  <button onclick="location.href='<%= request.getContextPath() %>/MemberSearch.me?currentPage=<%= startPage-10%><%= searchWord%>'"><</button>
+	  <%} %>
+	  
+	  <%for(int p = startPage; p <= endPage; p++){ 
+	  if(p == currentPage){ %>
+		 <button disabled style="background:black; color:white"><%= p%></button>
+	    <%}else{ %>
+	  <button id="index"onclick="location.href='<%= request.getContextPath() %>/MemberSearch.me?currentPage=<%= p%><%= searchWord%>'"><%= p %></button>
+	  <%}
+	  }%>
+	  
+	  <!-- 현재 페이지가 끝페이지면 더이상 페이지 넘어가지 않게 처리 -->
+	  <%if(currentPage != endPage){ %>
+	  <button onclick="location.href='<%= request.getContextPath() %>/MemberSearch.me?currentPage=<%= endPage+1%><%= searchWord%>'">></button>
+	  <%}else{ %>
+	  <button onclick="location.href='<%= request.getContextPath() %>/MemberSearch.me?currentPage=<%= endPage%><%= searchWord%>'">></button>
+	  <%} %>
+	  
+	  <button onclick="location.href='<%= request.getContextPath() %>/MemberSearch.me?currentPage=<%= totalPage%><%= searchWord%>'">>></button>
+	</div>
+	
+	
+	<%}else{%>
+	<div class="paging2" align="center">
 	  <button onclick="location.href='<%= request.getContextPath() %>/MemberGetAll.me?currentPage=<%= 1%>'"><<</button>
 	  <% if(startPage == 1){%>
 	  <button onclick="location.href='<%= request.getContextPath() %>/MemberGetAll.me?currentPage=<%= startPage%>'"><</button>
@@ -120,6 +174,8 @@ int totalPage = Integer.parseInt((String)request.getAttribute("totalPage"));
 	  <button onclick="location.href='<%= request.getContextPath() %>/MemberGetAll.me?currentPage=<%= endPage+1%>'">></button>
 	  <button onclick="location.href='<%= request.getContextPath() %>/MemberGetAll.me?currentPage=<%= totalPage%>'">>></button>
 	</div>
+	<%} %>
+	
 	
 	<%@ include file="/views/admin/common/footer.jsp" %>
 	<script type="text/javascript">
@@ -131,42 +187,42 @@ int totalPage = Integer.parseInt((String)request.getAttribute("totalPage"));
 				document.getElementById('serachDate').style.display='none';
 				document.getElementById('status').style.display='none';
 				document.getElementById('grade').style.display='none';
-				document.getElementById('order').style.display='inline';
+				
 			} else if(selection=='name') {
 				document.getElementById('searchText').style.display='inline';
 				document.getElementById('serachDate').style.display='none';
 				document.getElementById('status').style.display='none';
 				document.getElementById('grade').style.display='none';
-				document.getElementById('order').style.display='inline';
+				
 			} else if(selection=='birthday') {
 				document.getElementById('searchText').style.display='none';
 				document.getElementById('serachDate').style.display='inline';
 				document.getElementById('status').style.display='none';
 				document.getElementById('grade').style.display='none';
-				document.getElementById('order').style.display='inline';
+				
 			} else if(selection=='status'){
 				document.getElementById('searchText').style.display='none';
 				document.getElementById('serachDate').style.display='none';
 				document.getElementById('status').style.display='inline';
 				document.getElementById('grade').style.display='none';
-				document.getElementById('order').style.display='none';
+				
 			} else if(selection=='grade'){
 				document.getElementById('searchText').style.display='none';
 				document.getElementById('serachDate').style.display='none';
 				document.getElementById('status').style.display='none';
 				document.getElementById('grade').style.display='inline';
-				document.getElementById('order').style.display='none';
 			} else {
 				document.getElementById('searchText').style.display='none';
 				document.getElementById('serachDate').style.display='inline';
 				document.getElementById('status').style.display='none';
 				document.getElementById('grade').style.display='none';
-				document.getElementById('order').style.display='inline';
+			
 			}
 		}
 		
 		$(function() {
 			var $memberTable = $('#memberTable');
+			document.getElementById('serachDate').style.display='none';
 			
 			<% for(Member m : list){%>
 			  $tr = $('<tr>');
@@ -197,6 +253,11 @@ int totalPage = Integer.parseInt((String)request.getAttribute("totalPage"));
 					location.href="<%= request.getContextPath()%>/MemberGet.me?num=" + num;
 				});
 			
+			<%if(search != null){%>	
+			if('<%=search.getSearchText()%>' != null){
+				$('#searchText').attr('placeholder', '<%=search.getSearchText()%>');
+			}	
+			<%}%>
 			
 		});
 		
