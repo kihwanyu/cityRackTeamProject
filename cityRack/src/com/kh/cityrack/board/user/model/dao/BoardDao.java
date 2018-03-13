@@ -110,7 +110,7 @@ public class BoardDao {
 		int result = 0;
 		
 		String query = prop.getProperty("insertBoard");
-		
+		//
 		System.out.println("insertBoard query:" + query);
 		try {
 			pstmt = con.prepareStatement(query);

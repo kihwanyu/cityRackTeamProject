@@ -46,7 +46,7 @@
 
 
 
-	<!-- section -->
+	<!-- section1 -->
 	<div class="section">
 		<!-- container -->
 		<div class="container">

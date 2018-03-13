@@ -44,7 +44,7 @@ public class InsertBoard extends HttpServlet {
 		System.out.println("division:"+division);
 		//System.out.println("writer:" + writer);
 		//작성자 가져오기 멤버연결안되있어서 나중에
-
+//
 		Board b = new Board();
 		b.setBo_category(category);
 		b.setBo_title(title);

@@ -127,7 +127,7 @@
 						</div>
 					</div>
 				</form>
-				<%-- 페이지 처리 --%>
+				<%-- 페이지 처리d --%>
 		 <div class="pagingArea" align="center">
 			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=1'"><<</button>
 			<% if(currentPage <= 1){ %>
