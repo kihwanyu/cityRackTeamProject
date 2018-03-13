@@ -504,21 +504,24 @@ overflow-y:scroll;
 					console.log($(".selectFoodTable").find("td").children("p").eq(1).text());
 					 */
 					 
-					 
+					 console.log($(".tdata").length);
 					 var data = {};
-					 for(var i = 1; i<=$(".tdata").length;i++){
-						 data["foodname"+ i] = $(".selectFoodTable").find("td").children("p").eq(0).text();
-						 data["foodprice"+ i] = $(".selectFoodTable").find("td").children("p").eq(1).text();
+					 for(var i = 0; i<$(".tdata").length;i++){
+						 data["foodname"+ i] = $(".selectFoodTable").find("td").eq(i).children("p").eq(0).text();
+						 data["foodprice"+ i] = $(".selectFoodTable").find("td").eq(i).children("p").eq(1).text();
 					 }
 					 
-					// console.log(data);
+					 console.log(data);
 					
 					   $.ajax({
 					    type: "POST",
 					    url:   $("#selectSignature").attr( 'action' ) ,
 					   	data: data/* {foodname:$(".selectFoodTable").find("td").children("p").eq(0).text() , foodprice:$(".selectFoodTable").find("td").children("p").eq(1).text()}*/ ,
 					   	success:function(data){
-					   		alert('장바구니에 담겼습니다.');
+					   		var goCart= confirm('장바구니에 담겼습니다. 장바구니 페이지로 이동하겠습니까?');
+					   		if(goCart == true){					   		
+					   			location.href='views/user/jeong/cart.jsp';
+					   		} 
 					   	}
 					   	
 					});   
