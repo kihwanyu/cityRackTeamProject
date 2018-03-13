@@ -93,13 +93,12 @@
 						<li class="header-cart dropdown default-dropdown">
 							<div class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 								<div class="header-btns-icon">
-									<i class="fa fa-shopping-cart"></i>
-									<span class="qty">3</span>
+																
 								</div>
 								<strong class="text-uppercase">장바구니</strong>
 							</div>
 							<div class="loginDiv">
-								<a href="views/user/jeong/cart.jsp" class="text-uppercase">주문하러가기</a>
+								<a href="<%=request.getContextPath() %>/selectCart.ct" class="text-uppercase">주문하러가기</a>
 							</div>
 						</li>
 						<!-- /Cart -->

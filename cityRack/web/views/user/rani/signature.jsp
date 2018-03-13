@@ -447,7 +447,7 @@ overflow-y:scroll;
   </div>
   </form>
    <!-- 선택 토핑  -->
-  <form id="selectSignature" action="<%=request.getContextPath() %>/cart.em" method="post" onsubmit="return false;" > 
+  <form id="selectSignature" action="<%=request.getContextPath() %>/insertCart.em" method="post" onsubmit="return false;" > 
   <div class="selectFood">
   	<br><h3 align="center" id="title" value="선택하신 토핑">선택하신 토핑</h3><br>
   	<table class="selectFoodTable">

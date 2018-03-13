@@ -1,15 +1,21 @@
 package com.kh.cityrack.product.user.model.service;
 
 import java.sql.Connection;
+import java.util.HashMap;
 import java.util.Map;
 
 import com.kh.cityrack.product.user.model.dao.CartDao;
+import com.kh.cityrack.product.user.model.dto.Product;
 
 import static com.kh.cityrack.common.JDBCTemplet.*;
 
 public class CartService {
 
-	public void selectCar() {
+	public HashMap<Product, Integer> selectCart() {
+		Connection con = getConnection();
+		HashMap<Product, Integer> hmap = new CartDao().selectCart(con);
+		
+		return hmap;
 		
 	}
 	
