@@ -114,7 +114,12 @@ public class BoardDao {
 		System.out.println("insertBoard query:" + query);
 		try {
 			pstmt = con.prepareStatement(query);
-			
+			System.out.println("division:"+b.getBo_division());
+			pstmt.setString(1, b.getBo_division());
+			pstmt.setString(2, b.getBo_category());
+			pstmt.setInt(3, b.getM_no());
+			pstmt.setString(4, b.getBo_title());
+			pstmt.setString(5, b.getBo_content());
 			/*BO_NO
 			BO_PNO
 			BO_DIVISION

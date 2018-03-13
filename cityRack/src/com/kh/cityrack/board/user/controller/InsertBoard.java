@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.cityrack.board.user.model.dto.Board;
 import com.kh.cityrack.board.user.model.service.BoardService;
+import com.kh.cityrack.member.admin.model.dto.Member;
 
 /**
  * Servlet implementation class InsertBoard
@@ -34,22 +35,24 @@ public class InsertBoard extends HttpServlet {
 		String category = request.getParameter("category");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-
+		String division = request.getParameter("division");
+		//String writer = String.valueOf(((Member)(request.getSession().getAttribute("loginUser"))).getM_no());
+		
 		System.out.println("category:"+category);
 		System.out.println("title:"+title);
 		System.out.println("content:"+content);
-
+		System.out.println("division:"+division);
+		//System.out.println("writer:" + writer);
 		//작성자 가져오기 멤버연결안되있어서 나중에
-		//String writer = String.valueOf(((Member)(request.getSession().getAttribute("loginUser"))).getUno());
 
 		Board b = new Board();
 		b.setBo_category(category);
 		b.setBo_title(title);
 		b.setBo_content(content);
-
+		b.setBo_division(division);
 		int result = new BoardService().insertBoard(b);
 		
-		
+		System.out.println("result:"+result);
 		String page = "";
 		if(result > 0){
 			response.sendRedirect(request.getContextPath() + "/selectList.bo");
