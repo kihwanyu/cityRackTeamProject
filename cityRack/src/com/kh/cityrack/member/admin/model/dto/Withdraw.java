@@ -2,7 +2,11 @@ package com.kh.cityrack.member.admin.model.dto;
 
 import java.sql.Date;
 
-public class Withdraw {
+public class Withdraw implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5938097769579355793L;
 	private int memberCode;
 	private String memberName;
 	private Date withdrawDate;

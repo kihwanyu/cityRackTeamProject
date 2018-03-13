@@ -6,9 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 
 import com.kh.cityrack.member.admin.model.dto.Member;
+import com.kh.cityrack.member.admin.model.dto.Search;
 import com.kh.cityrack.member.admin.model.dto.Withdraw;
 
 import static com.kh.cityrack.common.JDBCTemplet.*;
@@ -33,7 +35,6 @@ public class MemberDao {
 		ResultSet rset = null;
 		Member m = null;
 		String query = prop.getProperty("memberGetAll");
-		System.out.println(currentPage);
 		int listCount = 10;
 		int startList = ((currentPage - 1)) * listCount + 1;
 	    int endList = startList + listCount - 1; 
@@ -265,6 +266,163 @@ public class MemberDao {
 		}
 		
 		return result;
+	}
+	
+	public int memberSearch(Connection conn, Search search) {
+		PreparedStatement pstmt = null;
+		String query = null;
+		ResultSet rset = null;
+		int result = 0;
+		
+		if(search.getSearchCondition().equals("email")){
+			query = prop.getProperty("emailSearch");
+			try{
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, search.getSearchText());
+				pstmt.setInt(2, 1);
+				pstmt.setInt(3, 100);
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()){
+					result++;
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				close(pstmt);
+				close(rset);
+			}
+		}else if(search.getSearchCondition().equals("name")){
+			query = prop.getProperty("nameSearch");
+			try{
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, search.getSearchText());
+				pstmt.setInt(2, 1);
+				pstmt.setInt(3, 100);
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()){
+					result++;
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				close(pstmt);
+				close(rset);
+			}
+		}else if(search.getSearchCondition().equals("birthday")){
+			query = prop.getProperty("birthdaySearch");
+			try{
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, search.getSearchText());
+				pstmt.setInt(2, 1);
+				pstmt.setInt(3, 100);
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()){
+					result++;
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				close(pstmt);
+				close(rset);
+			}
+		}else if(search.getSearchCondition().equals("grade")){
+			query = prop.getProperty("gradeSearch");
+			try{
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, search.getSearchText());
+				pstmt.setInt(2, 1);
+				pstmt.setInt(3, 100);
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()){
+					result++;
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				close(pstmt);
+				close(rset);
+			}
+		}else if(search.getSearchCondition().equals("enrollDate")){
+			query = prop.getProperty("enrollDateSearch");
+			try{
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, search.getSearchText());
+				pstmt.setInt(2, 1);
+				pstmt.setInt(3, 100);
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()){
+					result++;
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				close(pstmt);
+				close(rset);
+			}
+		}
+		
+		
+		return result;
+	}
+	
+	public ArrayList<Member> memberSearch(Connection conn, Search search, int currentPage) {
+		ArrayList<Member> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member m = null;
+		String query = prop.getProperty("emailSearch");
+		int listCount = 10;
+		int startList = ((currentPage - 1)) * listCount + 1;
+	    int endList = startList + listCount - 1; 
+		
+		
+		try{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, search.getSearchText());
+			pstmt.setInt(2, startList);
+			pstmt.setInt(3, endList);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Member>();
+			
+			while(rset.next()){
+				m = new Member();
+				m.setM_no(rset.getInt("m_no"));
+				m.setM_email(rset.getString("m_email"));
+				m.setC_name(rset.getString("c_name"));
+				m.setM_password(rset.getString("m_password"));
+				m.setM_name(rset.getString("m_name"));
+				m.setM_gender(rset.getString("m_gender"));
+				m.setM_birthDay(rset.getDate("m_birthDay"));
+				m.setM_address(rset.getString("m_address"));
+				m.setM_tel(rset.getString("m_tel"));
+				m.setM_phone(rset.getString("m_phone"));
+				m.setM_enorll_date(rset.getDate("m_enroll_date"));
+				m.setM_status(rset.getString("m_status"));
+				
+				list.add(m);
+			}
+		
+		
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(rset);
+		}
+		return list;
+		
 	}
 
 }
