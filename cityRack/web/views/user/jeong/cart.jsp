@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html >
 
 <head>
 	<meta charset="utf-8">
@@ -9,7 +9,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>E-SHOP HTML Template</title>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
@@ -40,161 +39,12 @@
 </head>
 
 <body>
-	<!-- HEADER -->
-	<header>
-		<!-- header -->
-		<div id="header">
-			<div class="container">
-				<div class="pull-left">
-					<!-- 로고 -->
-					<div class="header-logo">
-						<a class="logo" href="#">
-							<img src="./img/logo.png" alt="">
-						</a>
-					</div>
-					<!-- /로고 -->
-				</div>
-				<div class="pull-right">
-					<ul class="header-btns">
-						<!-- Account -->
-						<li class="header-account dropdown default-dropdown">
-							<div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
-								<div class="header-btns-icon">
-									<i class="fa fa-user-o"></i>
-								</div>
-								<strong class="text-uppercase">마이페이지 <i class="fa fa-caret-down"></i></strong>
-							</div>
-							<div class="loginDiv">
-								<a href="#" class="text-uppercase">로그인</a> / <a href="#" class="text-uppercase">회원가입</a>
-							</div>
-							<ul class="custom-menu">
-								<li><a href="#"><i class="fa fa-user-o"></i> 내 정보</a></li>
-								<li><a href="#"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
-								<li><a href="#"><i class="fa fa-check"></i> 주문배송조회</a></li>
-								<li><a href="#"><i class="fa fa-exchange"></i> 고객센터</a></li>
-								<li><a href="#"><i class="fa fa-unlock-alt"></i> 로그아웃</a></li>
-							</ul>
-						</li>
-						<!-- /Account -->
+	
 
-						<!-- 장바구니 -->
-						<li class="header-cart dropdown default-dropdown">
-							<div class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-								<div class="header-btns-icon">
-									<i class="fa fa-shopping-cart"></i>
-									<span class="qty">3</span>
-								</div>
-								<strong class="text-uppercase">장바구니</strong>
-							</div>
-							<div class="loginDiv">
-								<a href="#" class="text-uppercase">주문하러가기</a>
-							</div>
-						</li>
-						<!-- /Cart -->
-
-						<!-- Mobile nav toggle-->
-						<li class="nav-toggle">
-							<button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
-						</li>
-						<!-- / Mobile nav toggle -->
-					</ul>
-				</div>
-			</div>
-			<!-- header -->
-		</div>
-		<!-- container -->
-	</header>
-	<!-- /HEADER -->
-
-	<!-- NAVIGATION -->
-	<div id="navigation">
-		<!-- container -->
-		<div class="container">
-			<div id="responsive-nav">
-				<!-- category nav -->
-				<div class="category-nav show-on-click">
-					<span class="category-header">8체질 카테고리<i class="fa fa-list"></i></span>
-					<ul class="category-list">
-						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="#">목양체질<i class="fa fa-angle-right"></i></a>
-						</li>
-						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="#">목음체질<i class="fa fa-angle-right"></i></a>
-						</li>						
-						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="#">수양체질<i class="fa fa-angle-right"></i></a>
-						</li>						
-						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="#">수음체질<i class="fa fa-angle-right"></i></a>
-						</li>						
-						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="#">토양체질<i class="fa fa-angle-right"></i></a>
-						</li>						
-						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="#">토음체질<i class="fa fa-angle-right"></i></a>
-						</li>						
-						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="#">금양체질<i class="fa fa-angle-right"></i></a>
-						</li>						
-						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="#">금음체질<i class="fa fa-angle-right"></i></a>
-						</li>						
-						
-					</ul>
-				</div>
-				<!-- /category nav -->
-
-				<!-- 메뉴 네비게이터 -->
-				<div class="menu-nav">
-					<span class="menu-header">메뉴 <i class="fa fa-bars"></i></span>
-					<ul class="menu-list">
-						<li><a href="#">전체상품보기</a></li>
-						<li><a href="#">베스트상품</a></li>
-						<li><a href="#">이벤트</a></li>
-						<li class="dropdown mega-dropdown full-width"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">설문조사 <i class="fa fa-caret-down"></i></a>
-							<div class="custom-menu">
-								<div class="row">
-									<div class="col-md-3">
-										<div class="hidden-sm hidden-xs">
-											<a class="banner banner-1">
-												<img src="./img/logo.png" alt="">
-											</a>
-										</div>
-										<hr>
-										<ul class="list-links">
-											<li><h3 class="list-links-title">간편설문조사</h3></li>
-											<li>총 20문항으로, <br/>보다 간편하게 체질을 <br/>판단합니다.</li>
-											<li><br/></li>
-											<li><a href="survey_easy.jsp">간편설문조사하기 Go!</a></li>
-										</ul>
-									</div>
-									<div class="col-md-3">
-										<div class="hidden-sm hidden-xs">
-											<a class="banner banner-1">
-												<img src="./img/logo.png" alt="">
-											</a>
-										</div>
-										<hr>
-										<ul class="list-links">
-										<li><h3 class="list-links-title">상세설문조사</h3></li>
-											<li>총 65문항으로, <br/>보다 확실하게 체질을 <br/>판단합니다.</li>
-											<li><br/></li>
-											<li><a href="survey_detail.jsp">상세설문조사하기 Go!</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-				<!-- 메뉴 네비게이터 -->
-			</div>
-		</div>
-		<!-- /container -->
-	</div>
-	<!-- /NAVIGATION -->
-
-
+	<!-- 메뉴바 -->
+	
+	<%@ include file="/views/user/common/menubar_main.jsp" %>
+	<!-- /메뉴바 -->
 
 
 	<!-- section -->
@@ -298,13 +148,6 @@
 	<%@ include file="footer.jsp" %>
 	
 	
-	<!-- jQuery Plugins -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/slick.min.js"></script>
-	<script src="js/nouislider.min.js"></script>
-	<script src="js/jquery.zoom.min.js"></script>
-	<script src="js/main.js"></script>
 
 </body>
 
