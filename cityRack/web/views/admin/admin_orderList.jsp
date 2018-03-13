@@ -153,7 +153,8 @@
 									<%		break;
 											} else { %>
 											<input type="checkbox" id="searchCheackedOono" name="searchType" value="searchCheackedOono">
-									<%	}
+									<%		}
+										}
 									}%>
 								</div>
 								<div class="searchDiv" style="width: 25%">
@@ -222,7 +223,8 @@
 									<%		break;
 											} else { %>
 												<input id="searchCheackedEmail" type="checkbox" name="searchType" value="searchCheackedEmail">
-									<%	}
+									<%		}
+										}
 									}%>
 								</div>
 								<div class="searchDiv" style="width: 25%">
