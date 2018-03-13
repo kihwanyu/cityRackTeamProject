@@ -55,7 +55,7 @@
 						<!-- footer logo -->
 						<div class="footer-logo">
 							<a class="logo" href="#">
-		            <img src="./img/logo.png" alt="">
+		            <img src="views/user/jeong/img/logo.png" alt="">
 		          </a>
 						</div>
 						<!-- /footer logo -->
@@ -80,7 +80,7 @@
 					<div class="footer">
 						<h3 class="footer-header">마이 페이지</h3>
 						<ul class="list-links">
-							<li><a href="#">내 계정</a></li>
+							<li><a href="views/user/jeong/myPage_info.jsp">내 계정</a></li>
 							<li><a href="#">위시리스트</a></li>
 							<li><a href="#">교환</a></li>
 							<li><a href="#">주문</a></li>
@@ -97,7 +97,7 @@
 					<div class="footer">
 						<h3 class="footer-header">고객서비스</h3>
 						<ul class="list-links">
-							<li><a href="#">회사소개</a></li>
+							<li><a href="views/user/jeong/company.jsp">회사소개</a></li>
 							<li><a href="#">배송 & 환불</a></li>
 							<li><a href="#">배송 가이드</a></li>
 							<li><a href="#">FAQ</a></li>
