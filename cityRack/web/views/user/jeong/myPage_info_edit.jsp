@@ -3,7 +3,7 @@
 
 <%
 	Member loginUser = (Member)session.getAttribute("loginUser");
-	//String[] address = loginUser.getM_address().split(", ");
+	String[] address = loginUser.getM_address().split("/");
 	
 %>
 <!-- sdfs --><!-- asd -->
@@ -91,20 +91,17 @@
 									<tr >
 										<td rowspan="3" style="font-size:12px;" align="center"><strong>주소</strong></td>
 										<td colspan="3" align="center">
-											<input type="text" id="sample6_postcode" >
-											<%-- <input type="text" id="sample6_postcode" placeholder="<%= address[0] %>"> --%>
+											<input type="text" id="sample6_postcode" name="zipcode" value="<%= address[0] %>">
 											<button type="button" class="editBtn" onclick="sample6_execDaumPostcode()">우편번호 찾기</button><br>
 										</td>
 									<tr >	
 										<td colspan="3" style="border-bottom:1px solid white;" align="center">
-											<input type="text" id="sample6_address">
-											<%-- <input type="text" id="sample6_address" placeholder="<%= address[1] %>"> --%>
+											<input type="text" id="sample6_address" name="addr1" value="<%= address[1] %>">
 										</td>
 									</tr>
 									<tr >
 										<td colspan="3" align="center">
-											<input type="text" id="sample6_address2">
-											<%-- <input type="text" id="sample6_address2" placeholder="<%= address[2] %>"> --%>
+											<input type="text" id="sample6_address2" name="addr2" value="<%= address[2] %>">
 										</td>
 									</tr>								
 									<tr>

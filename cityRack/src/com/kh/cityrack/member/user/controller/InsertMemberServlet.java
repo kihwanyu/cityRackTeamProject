@@ -61,7 +61,7 @@ public class InsertMemberServlet extends HttpServlet {
 		String zc = request.getParameter("zipcode");
 		String addr1 = request.getParameter("addr1");
 		String addr2 = request.getParameter("addr2");
-		String addr = addr1 +" " + addr2 + " "+ zc;
+		String addr = zc + "/" + addr1 +"/" + addr2;
 		
 		System.out.println("email : "+ email);
 		System.out.println("password: " + pwd); 
