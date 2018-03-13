@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.cityrack.member.common.model.dto.Member"%>
-<% Member loginUser = (Member)session.getAttribute("loginUser"); %>
+    pageEncoding="UTF-8" import="com.kh.cityrack.member.common.model.dto.Member,
+    								com.kh.cityrack.question.user.model.dto.* "%>
+    								
+<% Member loginUser = (Member)session.getAttribute("loginUser"); 
+
+%>
+
 <!DOCTYPE html>
 <html >
 <!-- asd --><!-- sd -->
@@ -213,32 +218,35 @@
 									</div>
 								<script>
 											
-										<%-- function goResult(){
+										function goResult(){
 											
-											alert("으갸갸ㅑ갸갸");
-											
+										
+										 <% 	Question q = new Question();
+										
 											// 로그인은 되어있는데
 											if(loginUser != null){
-												// 설문조사 한 경우와 안해서 결과가 없는 경우
-												if(){
-													// 회원번호도 넘기기
+												// 설문조사 한경우
+												 if(loginUser.getQ_8constitution() != null){ 
+												
+												 %>
+													 /* 회원번호도 넘기기 */
 													location.href="<%= request.getContextPath()%>/selectCon?mNo=" + "<%= loginUser.getM_no() %>";
-													location.href="<%= request.getContextPath() %>/views/user/jeong/myPage_cs.jsp?사랑해="+ "사랑해";
+													<%-- location.href="<%= request.getContextPath() %>/views/user/jeong/myPage_cs.jsp?사랑해="+ "사랑해"; --%>
 													
-												} else {
-													// 설문조사 먼저 하라구 알림창
-													alert("먼저 체질 설문조사를 진행해주세요.");
-												}
-
-											} else {
-												// 로그인 후 이용할 수 있는 서비스라고
+											<%	
+												// 설문조사 안한경우
+												 } else {  %>
+													/*  설문조사 먼저 하라구 알림창 */
+												 alert("먼저 체질 설문조사를 진행해주세요."); 
+											<%	 } 
+											} else { 
+											
+											%>
+												/*  로그인 후 이용할 수 있는 서비스라고 */
 												alert("로그인 후 이용하실 수 있는 서비스입니다.");
-											}
-											
-											
-											
-											
-										}	 --%>
+										<%	} %> 
+										 
+										}	
 												
 								</script>
 								</div>

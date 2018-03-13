@@ -34,7 +34,9 @@ public class SelectConstitutionServlet extends HttpServlet {
 		q.setM_no(mNo);
 		
 		// 서비스 호출
-		int result = new QuestionService().selectConstitution(q);
+		/*int result = new QuestionService().selectConstitution(q);*/
+		Question qResult = null;
+		qResult = new QuestionService().selectConstitution(q);
 		
 		/*// 페이지
 		String page = "";
@@ -45,9 +47,9 @@ public class SelectConstitutionServlet extends HttpServlet {
 		} */
 		
 		String page = "";
-		if(result > 0) {
+		if(qResult != null) {
 			request.setAttribute("mNo", mNo);
-			request.setAttribute("conResult", q.getQ_8constitution());
+			request.setAttribute("conResult", qResult);
 			page = "views/user/jeong/myPage_result.jsp";
 		} else {
 			request.setAttribute("msg", "회원 정보 조회 실패");

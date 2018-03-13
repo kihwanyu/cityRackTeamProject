@@ -7,6 +7,8 @@ import static com.kh.cityrack.common.JDBCTemplet.rollback;
 
 import java.sql.Connection;
 
+import com.kh.cityrack.member.common.model.dao.MemberDao;
+import com.kh.cityrack.member.common.model.dto.Member;
 import com.kh.cityrack.question.user.model.dao.QuestionDao;
 import com.kh.cityrack.question.user.model.dto.Question;
 /*sdf*//*sdf*//* sd */
@@ -35,7 +37,7 @@ public class QuestionService {
 	}
 
 	// 체질조사결과 가져오기
-	public int selectConstitution(Question q) {
+	/*public int selectConstitution(Question q) {
 		
 		Connection con = getConnection();
 
@@ -48,6 +50,17 @@ public class QuestionService {
 		close(con);
 		
 		return result;
+	
+	}*/
+	
+	
+	public Question selectConstitution(Question q) {
+		
+		Connection con = getConnection();
+				
+		Question qResult = new QuestionDao().selectConstitution(con, q);
+				
+		return qResult;
 	
 	}
 
