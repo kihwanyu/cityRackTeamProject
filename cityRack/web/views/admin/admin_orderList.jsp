@@ -31,7 +31,22 @@
 	th {
 		background: lightgray;
 	}
-	
+	.statusButton {
+		display:  inline-block;
+		width: 40%;
+		height: 50%;
+		margin: 0.05em;	
+		
+	}
+	.pagingArea {
+		margin-top: 15px;
+	}
+	.searchDiv {
+		display:  inline-block;
+		margin-left:auto;
+		margin-right:auto;
+		vertical-align: middle;
+	}
 </style>
 <title>회원 관리</title>
 </head>
@@ -39,37 +54,137 @@
 	<%@ include file="/views/admin/common/header.jsp" %>
 	<section>
 		<div align="center">
-			<h2>주문 정보</h2><br>
-			<form action="" method="get">
-				<select id="searchCondition" name="searchCondition" onchange="selectSearch();">
-					<option value="ono">주문번호</option>
-					<option value="email">회원이메일</option>
-					<option value="orderDate">주문일자</option>
-					<option value="pname">상품명</option>
-					<option value="ostatus">주문상태</option>
-				</select>
-				&nbsp;
-				<input type="search" name="searchText" id="searchText">
-				<span id="serachDate" hidden="">
-					<input type="date" name="beforeDate" id="beforeDate"> -
-					<input type="date" name="AfterDate" id="AfterDate" > 
-				</span>
-				<select id="ostatus" name="ostatus" hidden="">
-					<option value="ready">준비중</option>
-					<option value="allSet">준비완료</option>
-					<option value="delivery">배송중</option>
-					<option value="deliveryCompleted">배송완료</option>
-					<option value="contractStandby">취소대기</option>
-					<option value="contractCompleted">취소완료</option>		
-				</select>
-				&nbsp;
-				<select id="order" name="order">
-					<option value="asc">오름차순</option>
-					<option value="desc">내림차순</option>
-				</select>
-				&nbsp;
-				<input type="button" value="검색">
-			</form>
+			<h2>주문 정보</h2>
+			<table style="width: 40%; border: 2px solid black; margin: 15px;">
+				<tr style="border: none">
+					<td style="border: none;">
+						<div align="left">
+							<div class="searchDiv" style="width: 18%;" align="center"> 
+								<label for="search_pname">주문번호 : </label>
+							</div>
+							<div class="searchDiv" style="width: 40%">
+								<input type="search" name="search_pname" id="search_pname" class="form-control">
+							</div>
+							<div class="searchDiv" style="width: 5%;" align="center"> 
+								<input type="checkbox" id="searchCheackedPname" name="searchType" value="searchCheackedPname">
+							</div>
+							<div class="searchDiv" style="width: 25%">
+								<select id="pname_order" name="pname_order" class="form-control">
+									<option value="ASC">오름차순</option>
+									<option value="DESC">내림차순</option>
+								</select>
+							</div>
+						</div>
+					</td>	
+					<td style="border: none">
+						<input type="radio" id="searchCheackedPnameOrder" name="orderType" value="searchCheackedPnameOrder">
+					</td>
+				</tr>
+				<tr style="border: none">
+					<td style="border: none;">
+						<div align="left">
+							<div class="searchDiv" style="width: 18%;" align="center"> 
+								<label style="height: 100%; margin-top: 5px;" for="search_pcode">회원이메일 : </label>	
+							</div>
+							<div class="searchDiv" style="width: 40%">
+								<input type="search" name="search_pcode" id="search_pcode" class="form-control">
+							</div>
+							<div class="searchDiv" style="width: 5%;" align="center"> 
+								<input id="searchCheackedpCode" type="checkbox" name="searchType" value="searchCheackedpCode">
+							</div>
+							<div class="searchDiv" style="width: 25%">
+								<select id="pcode_order" name="pcode_order" class="form-control">
+									<option value="ASC">오름차순</option>
+									<option value="DESC">내림차순</option>
+								</select>
+							</div>		
+						</div>
+					</td>	
+					
+					<td style="border: none">
+						<input type="radio" id="searchCheackedpCodeOrder" name="orderType" value="searchCheackedpCodeOrder">
+					</td>
+				</tr>
+				<tr style="border: none">
+					<td style="border: none;">
+						<div align="left">
+							<div class="searchDiv" style="width: 18%;" align="center"> 
+								<label for="search_rdate">주문일자 : </label>
+							</div>
+							<div class="searchDiv" style="width: 36%">
+								<input type="date" name="beforeDate" id="beforeDate" class="form-control">
+							</div>
+							<div class="searchDiv" style="width: 2%;" align="center">
+								-
+							</div>
+							<div class="searchDiv" style="width: 36%">
+								<input type="date" name="afterDate" id="afterDate" class="form-control">
+							</div>
+						</div>	
+					</td>	
+					<td style="border: none">
+						<input id="searchCheackedRdate" type="checkbox" name="searchType" value="searchCheackedRdate">
+					</td>
+				</tr>
+				<tr style="border: none">
+					<td style="border: none;">
+						<div align="left">
+							<div class="searchDiv" style="width: 18%;" align="center"> 
+								<label for="search_pname">상품명 : </label>
+							</div>
+							<div class="searchDiv" style="width: 40%">
+								<input type="search" name="search_pname" id="search_pname" class="form-control">
+							</div>
+							<div class="searchDiv" style="width: 5%;" align="center"> 
+								<input type="checkbox" id="searchCheackedPname" name="searchType" value="searchCheackedPname">
+							</div>
+							<div class="searchDiv" style="width: 25%">
+								<select id="pname_order" name="pname_order" class="form-control">
+									<option value="ASC">오름차순</option>
+									<option value="DESC">내림차순</option>
+								</select>
+							</div>
+						</div>
+					</td>	
+					<td style="border: none">
+						<input type="radio" id="searchCheackedPnameOrder" name="orderType" value="searchCheackedPnameOrder">
+					</td>
+				</tr>
+				<tr style="border: none">
+					<td style="border: none;" colspan="2">
+						<div align="center">
+							<div class="searchDiv" style="width: 15%;" align="center"> 
+								<label for="search_status">주문상태 : </label>
+							</div>
+							<div class="searchDiv" align="right">
+								<select name="status">
+									<option value="ready">준비중</option>
+									<option value="allSet">준비완료</option>
+									<option value="delivery">배송중</option>
+									<option value="deliveryCompleted">배송완료</option>
+									<option value="contractStandby">취소대기</option>
+									<option value="contractCompleted">취소완료</option>
+								</select>
+							</div>
+							<!--  -->
+							<div class="searchDiv" style="width: 5%">
+								<input type="checkbox" id="searchCheackedStatus" name="searchType" value="searchCheackedStatus">
+							</div>
+							<div class="searchDiv" style="width: 5%;" align="center"> 
+							</div>
+							<div class="searchDiv" style="width: 5%;" align="center"> 
+							</div>
+							<div class="searchDiv" style="width: 10%">
+								<input type="submit" id="SearchBtn" value="검색" class="btn btn-primary active" style="width: 100%">
+							</div>
+							<div class="searchDiv" style="width: 10%;">
+								<input type="reset" id="rsetBtn" value="초기화" class="btn btn-primary active" style="width: 100%">
+							</div>
+						</div>
+					</td>	
+				</tr>
+			</table>			
+			
 		</div>
 		
 		<br>
@@ -103,79 +218,16 @@
 					</td>
 					<td><button onclick="dropOut();">변경</button></td>
 				</tr>
-				<tr>
-					<td style="text-align: right;">100000</td>
-					<td style="text-align: left;">2018-03-01</td>
-					<td style="text-align: left;">abcd1234@naver.com</td>
-					<td style="text-align: left;"><a href="<%=request.getContextPath()%>/views/admin/admin_orderDetails.jsp">********* 외 3</a></td>
-					<td style="text-align: right;">56,000</td>
-					<td>
-						<select id="status" name="status">
-							<option value="ready">준비중</option>
-							<option value="allSet">준비완료</option>
-							<option value="delivery">배송중</option>
-							<option value="deliveryCompleted">배송완료</option>
-							<option value="contractStandby">취소대기</option>
-							<option value="contractCompleted">취소완료</option>
-						</select>
-					</td>
-					<td><button onclick="dropOut();">변경</button></td>
-				</tr>
-				<tr>
-					<td style="text-align: right;">100000</td>
-					<td style="text-align: left;">2018-03-01</td>
-					<td style="text-align: left;">abcd1234@naver.com</td>
-					<td style="text-align: left;"><a href="<%=request.getContextPath()%>/views/admin/admin_orderDetails.jsp">********* 외 3</a></td>
-					<td style="text-align: right;">56,000</td>
-					<td>
-						<select id="status" name="status">
-							<option value="ready">준비중</option>
-							<option value="allSet">준비완료</option>
-							<option value="delivery">배송중</option>
-							<option value="deliveryCompleted">배송완료</option>
-							<option value="contractStandby">취소대기</option>
-							<option value="contractCompleted">취소완료</option>
-						</select>
-					</td>
-					<td><button onclick="dropOut();">변경</button></td>
-				</tr>
 			</table>	
 		</div>	
 	</section>
 	<%@ include file="/views/admin/common/footer.jsp" %>
 	<script type="text/javascript">
-		function selectSearch() {
-			var selection = document.getElementById('searchCondition').value;
-			console.log(selection);
-			if(selection=='ono'){
-				document.getElementById('searchText').style.display='inline';
-				document.getElementById('serachDate').style.display='none';
-				document.getElementById('ostatus').style.display='none';
-				document.getElementById('order').style.display='inline';
-			} else if(selection=='email') {
-				document.getElementById('searchText').style.display='inline';
-				document.getElementById('serachDate').style.display='none';
-				document.getElementById('ostatus').style.display='none';
-				document.getElementById('order').style.display='inline';
-			} else if(selection=='orderDate') {
-				document.getElementById('searchText').style.display='none';
-				document.getElementById('serachDate').style.display='inline';
-				document.getElementById('ostatus').style.display='none';
-				document.getElementById('order').style.display='inline';
-			} else if(selection=='pname'){
-				document.getElementById('searchText').style.display='inline';
-				document.getElementById('serachDate').style.display='none';
-				document.getElementById('ostatus').style.display='none';
-				document.getElementById('order').style.display='inline';
-			} else {
-				document.getElementById('searchText').style.display='none';
-				document.getElementById('serachDate').style.display='none';
-				document.getElementById('ostatus').style.display='inline';
-				document.getElementById('order').style.display='none';
-			}
+		
 		}
-		function dropOut(){
-			var result = window.confirm("주문번호 : 100000 의 상태를 변경하시겠습니까?");
+		function dropOut(var no){
+			var msgStr = "주문번호 : "+no+" 의 상태를 변경하시겠습니까?";
+			var result = window.confirm(msgStr);
 			if(result==true){
 				
 			} else {
