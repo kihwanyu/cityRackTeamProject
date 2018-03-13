@@ -42,7 +42,7 @@ public class MemberSearchServlet extends HttpServlet {
 		}
 		
 		//값을 하나도 입력하지 않은 경우 전체 조회 서블릿으로 리다이렉트 
-		if(request.getParameter("searchText") == "" && request.getParameter("beforeDate") == "" && request.getParameter("afterDate") == ""){
+		if(request.getParameter("searchText") == "" && request.getParameter("beforeDate") == "" && request.getParameter("afterDate") == "" && request.getParameter("grade").equals("--")){
 			response.sendRedirect("/cityRack/MemberGetAll.me");
 			return;
 		}
@@ -62,11 +62,23 @@ public class MemberSearchServlet extends HttpServlet {
 		System.out.println(searchText);
 		search.setSearchText(searchText);
 		
-		String beforeDate = request.getParameter("beforeDate");
+		String beforeDateOrigin = request.getParameter("beforeDate");
+		String[] beforeDateArr = beforeDateOrigin.split("-");
+		String beforeDate = "";
+		for(String b : beforeDateArr){
+			beforeDate += b;
+		}
+		
 		System.out.println(beforeDate);
 		search.setBeforeDate(beforeDate);
 		
-		String afterDate = request.getParameter("afterDate");
+		String afterDateOrigin = request.getParameter("afterDate");
+		String[] afterDateArr = afterDateOrigin.split("-");
+		String afterDate = "";
+		for(String a : afterDateArr){
+			afterDate += a;
+		}
+		
 		System.out.println(afterDate);
 		search.setAfterDate(afterDate);
 		
