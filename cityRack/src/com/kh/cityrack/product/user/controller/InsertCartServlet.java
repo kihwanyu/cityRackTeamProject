@@ -18,14 +18,14 @@ import com.kh.cityrack.product.user.model.service.CartService;
 /**
  * Servlet implementation class CartServlet
  */
-@WebServlet("/cart.em")
-public class CartServlet extends HttpServlet {
+@WebServlet("/insertCart.em")
+public class InsertCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CartServlet() {
+    public InsertCartServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

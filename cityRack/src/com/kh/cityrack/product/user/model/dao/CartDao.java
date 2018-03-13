@@ -4,10 +4,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import static com.kh.cityrack.common.JDBCTemplet.*;
+
+import com.kh.cityrack.product.user.model.dto.Product;
 
 public class CartDao {
 	private Properties prop = new Properties();
@@ -27,16 +31,27 @@ public class CartDao {
 	}
 	
 	
-	
+	// 장바구니 전체 조회
+	public HashMap<Product, Integer> selectCart(Connection con) {
+		HashMap<Product, Integer> hmap = null;
+		ResultSet rset = null;
+		Statement stmt = null;
+		
+		
+		
+		
+		return hmap;
+		
+	}
 	
 	// 장바구니에 물건 담기 
 	public int insertCart(Map m, Connection con) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = prop.getProperty("insertCart");
+		//String query = prop.getProperty("insertCart");
 		
 		try {
-			pstmt = con.prepareStatement(query);
+		//	pstmt = con.prepareStatement(query);
 			
 			
 			
@@ -51,5 +66,10 @@ public class CartDao {
 		
 		return result;
 	}
+
+
+
+
+	
 
 }
