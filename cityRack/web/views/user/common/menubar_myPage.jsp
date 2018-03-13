@@ -17,20 +17,20 @@
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
 
 	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="../jeong/css/bootstrap.min.css" />
 
 	<!-- Slick -->
-	<link type="text/css" rel="stylesheet" href="css/slick.css" />
-	<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+	<link type="text/css" rel="stylesheet" href="../jeong/css/slick.css" />
+	<link type="text/css" rel="stylesheet" href="../jeong/css/slick-theme.css" />
 
 	<!-- nouislider -->
-	<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+	<link type="text/css" rel="stylesheet" href="../jeong/css/nouislider.min.css" />
 
 	<!-- Font Awesome Icon -->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="../jeong/css/font-awesome.min.css">
 
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<link type="text/css" rel="stylesheet" href="../jeong/css/style.css" />
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -77,10 +77,10 @@
 								</div>
 							<%} %>
 							<ul class="custom-menu">
-								<li><a href="myPage_info.jsp"><i class="fa fa-user-o"></i> 내 정보</a></li>
-								<li><a href="myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
-								<li><a href="myPage_delivery.jsp"><i class="fa fa-check"></i> 주문배송조회</a></li>
-								<li><a href="myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>
+								<li><a href="../jeong/myPage_info.jsp"><i class="fa fa-user-o"></i> 내 정보</a></li>
+								<li><a href="../jeong/myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
+								<li><a href="../jeong/myPage_delivery.jsp"><i class="fa fa-check"></i> 주문배송조회</a></li>
+								<li><a href="../jeong/myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>
 								<li><a href="#"><i class="fa fa-unlock-alt"></i> 로그아웃</a></li>
 							</ul>
 						</li>
@@ -96,7 +96,7 @@
 								<strong class="text-uppercase">장바구니</strong>
 							</div>
 							<div class="loginDiv">
-								<a href="cart.jsp" class="text-uppercase">주문하러가기</a>
+								<a href="../jeong/cart.jsp" class="text-uppercase">주문하러가기</a>
 							</div>
 						</li>
 						<!-- /Cart -->
@@ -129,12 +129,12 @@
 				<!-- 메뉴 네비게이터 -->
 				<div class="menu-nav">
 					<ul class="menu-list">
-						<li><a href="myPage_cart.jsp">장바구니</a></li>
-						<li><a href="myPage_delivery.jsp">주문배송조회</a></li>
-						<li><a href="myPage_QnA.jsp">체질 Q / A</a></li>
-						<li><a href="myPage_info.jsp">내 정보</a></li>
-						<li><a href="myPage_result.jsp">설문조사조회</a></li>
-						<li><a href="myPage_cs.jsp">고객센터</a></li>
+						<li><a href="../jeong/myPage_cart.jsp">장바구니</a></li>
+						<li><a href="../jeong/myPage_delivery.jsp">주문배송조회</a></li>
+						<li><a href="../jeong/myPage_QnA.jsp">체질 Q / A</a></li>
+						<li><a href="../jeong/myPage_info.jsp">내 정보</a></li>
+						<li><a href="../jeong/myPage_result.jsp">설문조사조회</a></li>
+						<li><a href="../jeong/myPage_cs.jsp">고객센터</a></li>
 					</ul>
 				</div>
 				<!-- 메뉴 네비게이터 -->
