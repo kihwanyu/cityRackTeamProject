@@ -4,7 +4,7 @@
 <%
 	Member loginUser = (Member) session.getAttribute("loginUser");
 %>
-<!-- sdfs -->
+<!-- sdfs --><!-- sf -->
 <!DOCTYPE html>
 <html lang="en">
 <!-- asd -->
