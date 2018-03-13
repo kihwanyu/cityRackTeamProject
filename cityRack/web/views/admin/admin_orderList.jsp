@@ -166,6 +166,7 @@
 									<option value="contractCompleted">취소완료</option>
 								</select>
 							</div>
+							<!--  -->
 							<div class="searchDiv" style="width: 5%">
 								<input type="checkbox" id="searchCheackedStatus" name="searchType" value="searchCheackedStatus">
 							</div>
