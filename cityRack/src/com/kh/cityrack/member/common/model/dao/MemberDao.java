@@ -49,10 +49,8 @@ public class MemberDao {
 			pstmt = conn.prepareStatement(query);
 			
 			//PreparedStatement객체의 ?를 채워준다.
-			/*pstmt.setString(1, m.getM_email());
-			pstmt.setString(2, m.getM_password());*/
-			pstmt.setString(1, "ddf0526@12345.com");
-			pstmt.setString(2, "spqHNBr3HyqKPaj7StTcK6F91Lf/uabCDsfCS48vj96/WxS/cu+y3fRje2bQCheKhoPwKMOQP7lAMv6hmSRvgA==");
+			pstmt.setString(1, m.getM_email());
+			pstmt.setString(2, m.getM_password());
 			
 			//쿼리문의 결과를 ResultSet으로 받는다.
 			rset = pstmt.executeQuery();
