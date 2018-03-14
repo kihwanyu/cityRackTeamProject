@@ -118,6 +118,7 @@ public class BoardDao {
 			pstmt.setString(1, b.getBo_division());
 			pstmt.setString(2, b.getBo_category());
 			pstmt.setInt(3, b.getM_no());
+			
 			pstmt.setString(4, b.getBo_title());
 			pstmt.setString(5, b.getBo_content());
 			/*BO_NO
@@ -144,6 +145,7 @@ public class BoardDao {
 		
 		return result;
 	}
+	//게시글 내용보기
 	public Board selectOne(Connection con, int num) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
