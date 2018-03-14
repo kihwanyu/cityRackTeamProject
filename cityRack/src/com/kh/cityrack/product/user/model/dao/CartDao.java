@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-import com.kh.cityrack.member.user.model.dto.Member;
+import com.kh.cityrack.member.common.model.dto.Member;
 import com.kh.cityrack.product.user.model.dto.Cart;
 import com.kh.cityrack.product.user.model.dto.Product;
 
@@ -39,138 +39,103 @@ public class CartDao {
 	
 	
 	// 장바구니 전체 조회
-	public HashMap<String, ArrayList<Cart>> selectCart(Connection con) {
-		HashMap<String, ArrayList<Cart>> hmap = null;
+	public  ArrayList<Cart> selectCart(Connection con, Member m) {
+		
 		Cart c = null;
-		ArrayList<Cart> cartList = null;
+		ArrayList<Cart> cart = new ArrayList<Cart>();
 		ResultSet rset = null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		
 		try {
-			stmt = con.createStatement();
-			
 			String query = prop.getProperty("selectCart");
+			pstmt = con.prepareStatement(query);
 			
-			System.out.println(query);
-			rset = stmt.executeQuery(query);
+			pstmt.setInt(1, m.getM_no());			
+			
+			System.out.println(query);			
+			
+			rset = pstmt.executeQuery(query);
+		
+			
 			while(rset.next()) {
 				
 				c = new Cart();
-			
-				/*SELECT P.P_PIC1, P.P_NAME, P.P_PRICE ,CART_AMOUNT, P.P_PRICE*P.P_DISCOUNT FROM CART C JOIN PRODUCT P ON(P.P_CODE = C.P_CODE)*/
+				/*SELECT  P.P_PIC1, P.P_NAME, M.M_NO , P.P_PRICE , COUNT (C.CART_AMOUNT)
+				 * FROM CART C JOIN PRODUCT P ON(P.P_CODE = C.P_CODE)
+				 * JOIN MEMBER M ON (C.M_NO = M.M_NO) GROUP BY (P.P_PIC1,P.P_NAME, M.M_NO , P.P_PRICE);*/
+				
+				/*private int cart_no; // 장바구니_번호
+					private int m_no; // 회원_번호
+					private String product_code; // 상품_코드
+					private int cart_amount; // 장바구니_상품수량
+					private String pic1; //
+					private double discount;
+					private int price;*/
+				
+				c.setM_no(rset.getInt("m_no"));
 				c.setPic1(rset.getString("p_pic1"));
-				c.setCart_amount(rset.getInt("cart_amount"));
+				c.setCart_amount(rset.getInt("COUNT (C.CART_AMOUNT)"));
 				c.setProduct_code(rset.getString("p_name"));
 				c.setDiscount(rset.getDouble("p_discount"));
 				c.setPrice(rset.getInt("p_price"));
 				
 			
-				cartList.add(c);
-				
-				hmap.put(c.getProduct_code(), cartList);
+				cart.add(c);
+								
 
 			}
 			
-			System.out.println( "cartList @Dao : "+ cartList);
-			System.out.println("hmap @Dao : "+hmap);
+			System.out.println( "cartList @Dao : "+ cart);
+			
 			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			close(stmt);
+			close(pstmt);
 			close(rset);
 		}
 		
 		
-		return hmap;
+		return cart;
 		
 	}
 	
 	// 장바구니에 물건 담기 
-	public int insertCart(Map map, Connection con, Member m) {
+	public int insertCart( Map foodname, Connection con, Member m) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = prop.getProperty("insertCart");
-		/*INSERT INTO CART VALUES(CANO.NEXTVAL, ?,?,?)*/
-	
-		/*M_NO
-		P_CODE
-		CART_AMOUNT*/
-		
-
-		//entrySet을 통해 맵을 set에 담음.
-		Set s = map.entrySet();	
-		//이터레이터에 s 담기
-		Iterator it = s.iterator();
-
-		//받아온 Map의 밸류 확인
-		//Map.Entry인 entry 생성
-		Map.Entry<String, String[]> entry = null;
-		
-		//foodprice에 담을 맵,  foodname에 담을 맵 생성.
-		HashMap<String, Integer> foodprice= new HashMap<String, Integer>();
-		HashMap<String, Integer> foodname= new HashMap<String, Integer>();
-		
-		while(it.hasNext()){
-			 
-            entry = (Map.Entry<String , String[]>)it.next();
-
-            //키와 밸류를 각자 제너릭에 저장.
-            String key = entry.getKey();
-            String[] value = entry.getValue();
-
-            //키값이 'foodprice'로 시작하면 맵에 담기.
-            if(key.contains("price")) {
-            	
-            	if(value.length>1) {
-            		for(int i = 0; i<value.length;i++) {
-            			foodprice.put(key, Integer.parseInt(value[i]));
-            		}
-            	} else {
-            		foodprice.put(key, Integer.parseInt(value[0]));
-            	}
-            	
-            	
-            } else if(key.contains("name") ){
-            	if(value.length>1) {
-            		for(int i =0; i<value.length;i++) {
-            			foodname.put(key, Integer.parseInt(value[i]));
-            		}
-            	} else {
-            		foodname.put(key, Integer.parseInt(value[0]));
-            	}
-            }
-
-		   System.out.println("foodprice @DAO: " + foodprice);
-           System.out.println("foodname @DAO: "  + foodname);
-           
-           
+				
+		   
+           System.out.println("foodname @DAO: "  + foodname);        
            
            try {
-			
-        	while(true) {
-        		pstmt = con.prepareStatement(query);
-        		
-        		
-        		
-        		result = pstmt.executeUpdate();
-        		
-        		
-        	}
-			
+        		   
+        		   for(int i = 0 ; i<foodname.size();i++) {
+        			   
+        			   pstmt = con.prepareStatement(query);
+        			   
+        			   pstmt.setInt(1, m.getM_no());
+        			   pstmt.setInt(2, (int) foodname.get("foodname"+i) );
+        			   pstmt.setInt(3, 1);
+        			   
+        			   result = pstmt.executeUpdate();
+        		   }
+        		   
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} finally {
+				close(pstmt);
+				
 			}
 	           
-		
-	
 	
 		
-	}
+	
 		return result;
 		
 

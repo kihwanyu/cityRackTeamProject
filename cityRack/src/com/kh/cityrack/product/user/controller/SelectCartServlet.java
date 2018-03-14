@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.cityrack.member.common.model.dto.Member;
 import com.kh.cityrack.product.user.model.dto.Cart;
 import com.kh.cityrack.product.user.model.dto.Pcategory;
 import com.kh.cityrack.product.user.model.dto.Product;
@@ -36,21 +37,22 @@ public class SelectCartServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//상품코드와 수량을 담아올 hmap을 생성
-		HashMap<String, ArrayList<Cart>> hmap = null;
+		//로그인 유저 가져오기
+		Member m = (Member) request.getSession().getAttribute("loginUser");
 		
-		hmap = new CartService().selectCart();
+		// cart ArrayList 생성
+		ArrayList<Cart> c = new CartService().selectCart(m);
 		
-		System.out.println(hmap);
+		System.out.println(c);
 		
 		String page = "";
 		
-		if(hmap !=null) {
+		if(c !=null) {
 			
 			page = "/views/user/rani/signature.jsp";
-			request.setAttribute("hmap", hmap);
 			
-			System.out.println("hmap @Servlet : " + hmap);
+			request.setAttribute("cartList", c);
+			
 			
 		} else {
 			page="/views/common/errorPage.jsp";
