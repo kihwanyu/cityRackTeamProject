@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.cityrack.product.user.model.dto.Cart;
 import com.kh.cityrack.product.user.model.dto.Pcategory;
 import com.kh.cityrack.product.user.model.dto.Product;
 import com.kh.cityrack.product.user.model.service.CartService;
@@ -36,7 +37,7 @@ public class SelectCartServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//상품코드와 수량을 담아올 hmap을 생성
-		HashMap<Product, Integer> hmap = null;
+		HashMap<String, ArrayList<Cart>> hmap = null;
 		
 		hmap = new CartService().selectCart();
 		
