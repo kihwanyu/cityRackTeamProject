@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.kh.cityrack.member.user.model.dto.Member;
+import com.kh.cityrack.member.common.model.dto.Member;
 import com.kh.cityrack.member.user.model.service.MemberService;
 
 /*sdf*//*sdf*/
@@ -33,27 +33,25 @@ public class UpdateMemberServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF=8");
 		
 		// 2. request객체에서 파라미터 꺼내기
-		String mMail = request.getParameter("M_EMAIL");
-		String mPassword = request.getParameter("M_PASSWORD");
-		String mName = request.getParameter("M_NAME");
-		String bday = request.getParameter("M_BIRTHDAY") ;
+		String mMail = request.getParameter("email");
+		String mPassword = request.getParameter("password");
+		String mName = request.getParameter("name");
 		String zip = request.getParameter("zipcode");
 		String addr1 = request.getParameter("addr1");
 		String addr2 = request.getParameter("addr2");
-		String mPhone = request.getParameter("M_PHONE");
-		String mTel = request.getParameter("M_TEL");
-		String mAddress = addr1 +", " + addr2 + ", "+ zip;
+		String mPhone = request.getParameter("phone");
+		String mTel = request.getParameter("tel");
+		String mAddress =  zip + "/" + addr1 +"/" + addr2;
+		
 		
 		// 3. member 객체 생성해서 넘기기
 		Member m = new Member();
-		m.setM_mail(mMail);
+		m.setM_email(mMail);
 		m.setM_password(mPassword);
 		m.setM_name(mName);
-		m.setM_birthDay(java.sql.Date.valueOf(bday)); 
 		m.setM_address(mAddress);
 		m.setM_phone(mPhone);
 		m.setM_tel(mTel);
-		m.setM_address(mAddress);
 		
 		// 4. service 로직으로 전달
 		int result = new MemberService().updateMember(m);
@@ -68,11 +66,14 @@ public class UpdateMemberServlet extends HttpServlet {
 			HttpSession session = request.getSession(); 
 			
 			// 로그인 유저 정보 갱신 (setAttribute)
-			int loginUser = new MemberService().updateMember(m);
+			//int loginUser = new MemberService().updateMember(m);
 			session.setAttribute("loginUser", m);
 			
 			// sendRedirect로 다시 updateForm으로 이동
+			System.out.println("안녕하세여 숭덩이에요 ");
 			response.sendRedirect("views/user/jeong/myPage_info_edit.jsp");
+			//request.setAttribute("loginUser", m);
+			//request.getRequestDispatcher("views/user/jeong/myPage_info_edit.jsp").forward(request, response);
 			
 		} else {
 			// 에러페이지로 연결

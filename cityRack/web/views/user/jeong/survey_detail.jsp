@@ -415,7 +415,6 @@
 						<input type="text" id="check3" >
 
 						<script>
-						
 							 function test3(){
 								
 								var avg = 0;
@@ -1142,14 +1141,13 @@
 						<form id="result-form" class="clearfix"
 								action="<%=request.getContextPath()%>/8result" method="post">
 							<div align="right">
-								<input type="text" id="mNo" name="mNo" value="<%= loginUser.getM_no() %>">
+								<input type="text" id="mNo" name="mNo" value="<%= loginUser.getM_no() %>"/>
 								<input type="text" id="conResult" name="conResult">
 								<button class="primary-btn" type="button" onclick="goResult();">완료</button>
 								<button class="primary-btn" type="button" onclick="goMain();">메인으로</button>
 							</div>
 						</form>
 						<script>
-						
 							function goResult(){
 								
 								// 8개의 평균값 비교하고 해당 체질명 구해서 결과를 result에 저장

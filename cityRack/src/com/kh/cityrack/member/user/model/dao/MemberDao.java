@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.Properties;
 
-import com.kh.cityrack.member.user.model.dto.Member;
+import com.kh.cityrack.member.common.model.dto.Member;
 
 import static com.kh.cityrack.common.JDBCTemplet.*;
 /*sdfs*//*sdf*/
@@ -55,7 +55,7 @@ public class MemberDao {
 
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, m.getM_mail());
+			pstmt.setString(1, m.getM_email());
 			pstmt.setString(2, m.getM_password());
 			pstmt.setString(3, m.getM_name());
 			pstmt.setString(4, m.getM_gender());
@@ -120,8 +120,8 @@ public class MemberDao {
 				loginUser = new Member();
 
 				loginUser.setM_no(rset.getInt("M_NO"));
-				loginUser.setC_code(rset.getString("c_no"));
-				loginUser.setM_mail(rset.getString("M_EMAIL"));
+				loginUser.setC_name(rset.getString("c_no"));
+				loginUser.setM_email(rset.getString("M_EMAIL"));
 				loginUser.setM_password(rset.getString("M_PASSWORD"));
 				loginUser.setM_name(rset.getString("M_NAME"));
 				loginUser.setM_gender(rset.getString("M_GENDER"));
@@ -130,7 +130,7 @@ public class MemberDao {
 				loginUser.setM_phone(rset.getString("M_PHONE"));
 				loginUser.setM_tel(rset.getString("m_tel"));
 				loginUser.setM_enorll_date(rset.getDate("m_enroll_date"));
-				loginUser.setM_leave_yn(rset.getString("m_status"));
+				loginUser.setM_stuts(rset.getString("m_status"));
 
 
 				/*M_NO
@@ -184,8 +184,8 @@ public class MemberDao {
 				loginUser = new Member();
 
 				loginUser.setM_no(rset.getInt("M_NO"));
-				loginUser.setM_mail(rset.getString("M_EMAIL"));
-				loginUser.setC_code(rset.getString("C_NO"));
+				loginUser.setM_email(rset.getString("M_EMAIL"));
+				loginUser.setC_name(rset.getString("C_NO"));
 				loginUser.setM_password(rset.getString("M_PASSWORD"));
 				loginUser.setM_name(rset.getString("M_NAME"));
 				loginUser.setM_gender(rset.getString("M_GENDER"));
@@ -194,7 +194,7 @@ public class MemberDao {
 				loginUser.setM_tel(rset.getString("M_TEL"));
 				loginUser.setM_phone(rset.getString("M_PHONE"));
 				loginUser.setM_enorll_date(rset.getDate("M_ENROLL_DATE"));
-				loginUser.setM_leave_yn(rset.getString("M_STATUS"));
+				loginUser.setM_stuts(rset.getString("M_STATUS"));
 				/*loginUser.setM_note(rset.getString("mNote"));*/
 
 			}
@@ -218,7 +218,6 @@ public class MemberDao {
 
 		PreparedStatement pstmt = null;
 		int result = 0;
-		Properties prop = new Properties();
 
 		String query = prop.getProperty("modifyMember");
 
@@ -231,6 +230,7 @@ public class MemberDao {
 			pstmt.setString(2, m.getM_address());
 			pstmt.setString(3, m.getM_phone());
 			pstmt.setString(4, m.getM_tel());
+			pstmt.setString(5, m.getM_email());
 
 			// 쿼리문 실행결과 result에 담기
 			result = pstmt.executeUpdate();

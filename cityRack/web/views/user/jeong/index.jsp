@@ -217,7 +217,7 @@
 										</ul>
 									</div>
 								<script>
-											
+										alert("<%= loginUser.getM_no() %>");
 										function goResult(){
 											
 										

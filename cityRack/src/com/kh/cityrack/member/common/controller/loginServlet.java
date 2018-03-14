@@ -70,6 +70,8 @@ public class loginServlet extends HttpServlet {
 						page = "views/user/jeong/index.jsp"  ;				
 					}
 					
+					System.out.println("loginServlet loginUser : " + loginUser);
+					
 					HttpSession session = request.getSession();
 					session.setAttribute("loginUser", loginUser);
 					//loginUser의 등급이 관리자일 경우 관리자 페이지로 보낸다.
@@ -79,7 +81,7 @@ public class loginServlet extends HttpServlet {
 					page = "views/common/errorPage.jsp";
 				}
 			
-				
+				System.out.println("login Servlet mNo : " + loginUser.getM_no());
 				request.getRequestDispatcher(page).forward(request, response);
 	}
 
