@@ -63,7 +63,10 @@ public class loginServlet extends HttpServlet {
 						Question temp = new Question();
 						temp.setM_no(loginUser.getM_no());
 						Question q = new QuestionService().selectConstitution(temp);
-						loginUser.setQ_8constitution(q.getQ_8constitution());
+						if(q != null){
+							loginUser.setQ_8constitution(q.getQ_8constitution());
+						}
+						
 						page = "views/user/jeong/index.jsp"  ;				
 					}
 					
