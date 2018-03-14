@@ -45,5 +45,13 @@ public class BoardService {
 		
 		return result;
 	}
+	public Board selectOne(int num) {
+		Connection con = getConnection();
+		
+		Board b = new BoardDao().selectOne(con, num);
+		
+		close(con);
+		return b;
+	}
 
 }

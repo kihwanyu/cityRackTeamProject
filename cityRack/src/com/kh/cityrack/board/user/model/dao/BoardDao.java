@@ -144,5 +144,38 @@ public class BoardDao {
 		
 		return result;
 	}
+	public Board selectOne(Connection con, int num) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Board b = null;
+		
+		String query = prop.getProperty("selectOne");
+		System.out.println("query:"+query);
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, num);
+			rset = pstmt.executeQuery();
+			if(rset.next()){
+				b = new Board();
+				
+				b.setBo_no(rset.getInt("bo_no"));
+				b.setM_name(rset.getString("m_name"));
+				b.setBo_title(rset.getString("bo_title"));
+				b.setBo_content(rset.getString("bo_content"));
+			}
+			
+			
+			
+			System.out.println("b :"+b);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+		return b;
+	}
 
 }
