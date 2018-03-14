@@ -136,7 +136,10 @@ public class QuestionDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(rset);
 		}
+		
+		System.out.println("QuestionDao : " + qResult);
 		
 		return qResult;
 	}

@@ -2,7 +2,8 @@
     pageEncoding="UTF-8" import="com.kh.cityrack.member.common.model.dto.Member,
     								com.kh.cityrack.question.user.model.dto.* "%>
     								
-<% Member loginUser = (Member)session.getAttribute("loginUser"); 
+<% 
+	Member loginUser = (Member)session.getAttribute("loginUser"); 
 
 %>
 
@@ -76,7 +77,7 @@
 							</div>
 							<%} else { %>
 								<div class="loginDiv">
-											<p><%-- <%=loginUser.getM_name() %>님, 환영합니다. |  --%><a onclick="logout();" >로그아웃 </a></p>
+											<p> <%=loginUser.getM_name()%> 님, 환영합니다. | <a onclick="logout();" >로그아웃 </a></p>
 								</div>
 							<%} %> 
 							<ul class="custom-menu">
@@ -93,12 +94,13 @@
 						<li class="header-cart dropdown default-dropdown">
 							<div class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 								<div class="header-btns-icon">
-																
+									<i class="fa fa-shopping-cart"></i>
+									<span class="qty">3</span>
 								</div>
 								<strong class="text-uppercase">장바구니</strong>
 							</div>
 							<div class="loginDiv">
-								<a href="<%=request.getContextPath() %>/selectCart.ct" class="text-uppercase">주문하러가기</a>
+								<a href="views/user/jeong/cart.jsp" class="text-uppercase">주문하러가기</a>
 							</div>
 						</li>
 						<!-- /Cart -->
