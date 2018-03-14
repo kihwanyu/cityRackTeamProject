@@ -471,7 +471,7 @@
 					<td style="text-align: right;">100000</td>
 					<td style="text-align: left;">2018-03-01</td>
 					<td style="text-align: left;">abcd1234@naver.com</td>
-					<td style="text-align: left;"><a href="<%=request.getContextPath()%>/views/admin/admin_orderDetails.jsp">********* 외 3</a></td>
+					<td style="text-align: left;"><a href="<%=request.getContextPath()%>/orderDetailGetAll.or?ono=100">********* 외 3</a></td>
 					<td style="text-align: right;">56,000</td>
 					<td>
 						<select name="status">

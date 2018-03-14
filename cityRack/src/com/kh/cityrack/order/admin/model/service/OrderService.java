@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import com.kh.cityrack.order.admin.model.dao.OrderDao;
 import com.kh.cityrack.order.admin.model.dto.Order;
 import com.kh.cityrack.order.admin.model.dto.OrderSearch;
+import com.kh.cityrack.order.admin.model.dto.Product;
 
 
 public class OrderService {
@@ -51,6 +52,27 @@ public class OrderService {
 		close(conn);
 		
 		return oList;
+	}
+
+	public Order orderDetailGet(String ono) {
+		Connection conn = getConnection();
+		
+		Order o = new OrderDao().orderDetailGet(conn, ono);
+		
+		close(conn);
+		
+		return o;
+	}
+
+	public ArrayList<Product> orderProductGetAll(String ono) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Product> pList = new OrderDao().orderProductGetAll(conn, ono);
+		
+		close(conn);
+		
+		return pList;
 	}
 
 }

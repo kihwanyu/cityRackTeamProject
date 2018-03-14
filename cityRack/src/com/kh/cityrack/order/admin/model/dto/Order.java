@@ -16,18 +16,19 @@ public class Order implements Serializable{
 	private String m_email; // 회원_이메일
 	private String p_code; // 상품_코드
 	private String p_name; // 상품명
-	private String pa_amount; // 결제_총액
+	private int pa_amount; // 결제_총액
 	private int d_no; // 배송_번호
 	private int pay_no; // 결제_번호
 	private String o_state; // 주문_상태
+	private Double c_discount; // 등급 할인율
 	private String o_note; //주문_비고
 
 	public Order() {
 		super();
 	}
 
-	public Order(int o_no, int o_ono, Date o_orderDate, String m_email, String p_code, String p_name, String pa_amount,
-			int d_no, int pay_no, String o_state, String o_note) {
+	public Order(int o_no, int o_ono, Date o_orderDate, String m_email, String p_code, String p_name, int pa_amount,
+			int d_no, int pay_no, String o_state, Double c_discount, String o_note) {
 		super();
 		this.o_no = o_no;
 		this.o_ono = o_ono;
@@ -39,6 +40,7 @@ public class Order implements Serializable{
 		this.d_no = d_no;
 		this.pay_no = pay_no;
 		this.o_state = o_state;
+		this.c_discount = c_discount;
 		this.o_note = o_note;
 	}
 
@@ -90,11 +92,11 @@ public class Order implements Serializable{
 		this.p_name = p_name;
 	}
 
-	public String getPa_amount() {
+	public int getPa_amount() {
 		return pa_amount;
 	}
 
-	public void setPa_amount(String pa_amount) {
+	public void setPa_amount(int pa_amount) {
 		this.pa_amount = pa_amount;
 	}
 
@@ -122,6 +124,14 @@ public class Order implements Serializable{
 		this.o_state = o_state;
 	}
 
+	public Double getC_discount() {
+		return c_discount;
+	}
+
+	public void setC_discount(Double c_discount) {
+		this.c_discount = c_discount;
+	}
+
 	public String getO_note() {
 		return o_note;
 	}
@@ -134,7 +144,10 @@ public class Order implements Serializable{
 	public String toString() {
 		return "Order [o_no=" + o_no + ", o_ono=" + o_ono + ", o_orderDate=" + o_orderDate + ", m_email=" + m_email
 				+ ", p_code=" + p_code + ", p_name=" + p_name + ", pa_amount=" + pa_amount + ", d_no=" + d_no
-				+ ", pay_no=" + pay_no + ", o_state=" + o_state + ", o_note=" + o_note + "]";
+				+ ", pay_no=" + pay_no + ", o_state=" + o_state + ", c_discount=" + c_discount + ", o_note=" + o_note
+				+ "]";
 	}
+
+	
 	
 }
