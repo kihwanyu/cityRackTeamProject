@@ -20,7 +20,6 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
 	<title>cityRack_myPage_QnA</title>
 
 	<!-- Google font -->
@@ -48,7 +47,8 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
 </head>
 
 <body>
@@ -97,13 +97,13 @@
 										<th class="text-center">답변상태</th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id="tby">
 									<% System.out.println(list); %>
 									<% for(Board b : list){ %>
 									<tr>
 										<td align="center"><%=b.getBo_no() %></td>
 										<td class="details" colspan="2">
-											<a href="#"><%=b.getBo_title() %></a>
+											<a href="<%=request.getContextPath()%>/selectOne.bo?num=<%=b.getBo_no()%>"><%=b.getBo_title() %></a>
 										</td>
 										<td class="price text-center"><%=b.getM_name() %></td>
 										<td align="center"><%=b.getBo_date() %></td>
@@ -172,6 +172,7 @@
 					<button onclick="location.href='views/user/jeong/myPage_question.jsp'" class="primary-btn">질문하기</button>
 					<button onclick="history(); return false;" class="primary-btn">내 질문내역</button>
 				</div>
+				
 				
 				<script>
 				
