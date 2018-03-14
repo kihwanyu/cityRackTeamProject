@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.cityrack.member.common.model.dto.Member;
 import com.kh.cityrack.member.common.model.service.MemberService;
+import com.kh.cityrack.question.user.model.dto.Question;
+import com.kh.cityrack.question.user.model.service.QuestionService;
 
 
 /*sdf*/
@@ -58,6 +60,10 @@ public class loginServlet extends HttpServlet {
 					if(loginUser.getC_name().equals("관리자")){
 						page = "views/admin/index.jsp";
 					} else {
+						Question temp = new Question();
+						temp.setM_no(loginUser.getM_no());
+						Question q = new QuestionService().selectConstitution(temp);
+						loginUser.setQ_8constitution(q.getQ_8constitution());
 						page = "views/user/jeong/index.jsp"  ;				
 					}
 					
