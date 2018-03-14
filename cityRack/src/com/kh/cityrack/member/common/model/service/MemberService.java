@@ -6,7 +6,6 @@ import static com.kh.cityrack.common.JDBCTemplet.*;
 
 import java.sql.Connection;
 public class MemberService {
-	/*sdf*//* sd */
 	public Member login(Member m) {
 		//Connection 객체 생성
 		Connection conn = getConnection();
@@ -14,6 +13,7 @@ public class MemberService {
 		Member loginUser = new MemberDao().login(conn, m);
 		
 		close(conn);
+		
 		return loginUser;
 	}
 

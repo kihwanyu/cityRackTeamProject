@@ -18,7 +18,7 @@ public class MemberDao {
 	//member-query.propertie 파일을 읽어 오기 위해서.
 	private Properties prop = null;
 	public MemberDao(){
-		//prop 객체 인스턴스화sdfasd
+		//prop 객체 인스턴스화
 		prop = new Properties();
 		
 		//fileName에 member-query.properties 파일의 위치를 넣어준다.
@@ -48,11 +48,11 @@ public class MemberDao {
 			//Connection 객체를 통해 PreparedStatement객체를 인스턴스화 한다.
 			pstmt = conn.prepareStatement(query);
 			
-			
 			//PreparedStatement객체의 ?를 채워준다.
-			pstmt.setString(1, m.getM_email());
-			pstmt.setString(2, m.getM_password());
-			
+			/*pstmt.setString(1, m.getM_email());
+			pstmt.setString(2, m.getM_password());*/
+			pstmt.setString(1, "ddf0526@12345.com");
+			pstmt.setString(2, "spqHNBr3HyqKPaj7StTcK6F91Lf/uabCDsfCS48vj96/WxS/cu+y3fRje2bQCheKhoPwKMOQP7lAMv6hmSRvgA==");
 			
 			//쿼리문의 결과를 ResultSet으로 받는다.
 			rset = pstmt.executeQuery();
@@ -70,7 +70,6 @@ public class MemberDao {
 				loginUser.setM_address(rset.getString("M_ADDRESS"));
 				loginUser.setM_phone(rset.getString("M_PHONE"));
 				loginUser.setM_tel(rset.getString("M_TEL"));
-				loginUser.setQ_8constitution(rset.getString("Q_8CONSTITUTION"));
 				
 				System.out.println("MemberDao loginUser : " + loginUser);
 			}
@@ -82,7 +81,6 @@ public class MemberDao {
 			close(pstmt);
 			close(rset);
 		}
-		
 		
 		return loginUser;
 	}

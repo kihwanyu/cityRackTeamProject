@@ -34,11 +34,12 @@ public class OrderService {
 
 	public int getListSearchCount(OrderSearch oSearch, String[] searchTypeArr, String orderType) {
 		Connection conn = getConnection();
-		
+
 		int result = new OrderDao().orderSearchListCount(conn, oSearch, searchTypeArr, orderType);
 		
 		close(conn);
-		return 0;
+		
+		return result;
 	}
 
 	public ArrayList<Order> orderListSearchGetAll(int currentPage, int limit, OrderSearch oSearch,
