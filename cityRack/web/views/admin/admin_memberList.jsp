@@ -74,7 +74,10 @@ searchWord = "&gender=" + gender + "&searchCondition=" + searchCondition + "&sea
 		<div align="center">
 			<h2>회원 정보</h2><br>
 			<form action="<%=request.getContextPath()%>/MemberSearch.me" method="get">
-				<input type="radio" value="M" id="male" name="gender" checked="checked">
+				<input type="radio" value="A" id="alㅣ" name="gender" checked="checked">
+				<label for="all">전체</label>
+				&nbsp;
+				<input type="radio" value="M" id="male" name="gender">
 				<label for="male">남성</label>
 				&nbsp;
 				<input type="radio" value="F" id=" female" name="gender">
@@ -254,11 +257,7 @@ searchWord = "&gender=" + gender + "&searchCondition=" + searchCondition + "&sea
 					location.href="<%= request.getContextPath()%>/MemberGet.me?num=" + num;
 				});
 			
-			<%if(search != null){%>	
-			if('<%=search.getSearchText()%>' != null){
-				$('#searchText').attr('placeholder', '<%=search.getSearchText()%>');
-			}	
-			<%}%>
+			
 			
 		});
 		

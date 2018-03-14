@@ -141,23 +141,28 @@ public class MemberDao {
 		
 		return result;
 	}
-	public ArrayList<Withdraw> withdrawMemberGetAll(Connection conn) {
+	public ArrayList<Withdraw> withdrawMemberGetAll(Connection conn, int currentPage) {
 		ArrayList<Withdraw> list = null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		Withdraw w = null;
 		String query = prop.getProperty("withdrawMemberGetAll");
+		int listCount = 10;
+		int startList = ((currentPage - 1)) * listCount + 1;
+	    int endList = startList + listCount - 1; 
 		
 		try{
-			stmt = conn.createStatement();
+			pstmt = conn.prepareStatement(query);
 			
-			rset = stmt.executeQuery(query);
+			pstmt.setInt(1, startList);
+			pstmt.setInt(2, endList);
 			
+			rset = pstmt.executeQuery();
 			list = new ArrayList<Withdraw>();
 			
 			while(rset.next()){
 				w = new Withdraw();
-				w.setMemberCode(rset.getInt("m_no"));
+				w.setMemberCode(rset.getInt("w_no"));
 				w.setMemberName(rset.getString("m_name"));
 				w.setWithdrawDate(rset.getDate("w_date"));
 				w.setWithdrawReason(rset.getString("w_reason"));
@@ -169,7 +174,7 @@ public class MemberDao {
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
-			close(stmt);
+			close(pstmt);
 			close(rset);
 		}
 		return list;
@@ -267,6 +272,29 @@ public class MemberDao {
 		
 		return result;
 	}
+	public int getWithdrawTotalCount(Connection conn) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("getWithdrawTotalCount");
+		int result = 0;
+		
+		try{
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()){
+				result = rset.getInt("withdrawtotalcount");
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(stmt);
+		}
+		
+		return result;
+	}
 	
 	public int memberSearch(Connection conn, Search search) {
 		PreparedStatement pstmt = null;
@@ -279,9 +307,15 @@ public class MemberDao {
 			try{
 				pstmt = conn.prepareStatement(query);
 				pstmt.setString(1, search.getSearchText());
-				pstmt.setString(2, search.getGender());
-				pstmt.setInt(3, 1);
-				pstmt.setInt(4, 1000);
+				if(search.getGender().equals("A")){
+					pstmt.setString(2, "M");
+					pstmt.setString(3, "F");
+				}else{
+					pstmt.setString(2, search.getGender());
+					pstmt.setString(3, search.getGender());
+				}
+				pstmt.setInt(4, 1);
+				pstmt.setInt(5, 1000);
 				
 				rset = pstmt.executeQuery();
 				
@@ -299,9 +333,15 @@ public class MemberDao {
 			try{
 				pstmt = conn.prepareStatement(query);
 				pstmt.setString(1, search.getSearchText());
-				pstmt.setString(2, search.getGender());
-				pstmt.setInt(3, 1);
-				pstmt.setInt(4, 1000);
+				if(search.getGender().equals("A")){
+					pstmt.setString(2, "M");
+					pstmt.setString(3, "F");
+				}else{
+					pstmt.setString(2, search.getGender());
+					pstmt.setString(3, search.getGender());
+				}
+				pstmt.setInt(4, 1);
+				pstmt.setInt(5, 1000);
 				
 				rset = pstmt.executeQuery();
 				
@@ -320,9 +360,15 @@ public class MemberDao {
 				pstmt = conn.prepareStatement(query);
 				pstmt.setInt(1, Integer.parseInt(search.getBeforeDate()));
 				pstmt.setInt(2, Integer.parseInt(search.getAfterDate()));
-				pstmt.setString(3, search.getGender());
-				pstmt.setInt(4, 1);
-				pstmt.setInt(5, 1000);
+				if(search.getGender().equals("A")){
+					pstmt.setString(3, "M");
+					pstmt.setString(4, "F");
+				}else{
+					pstmt.setString(3, search.getGender());
+					pstmt.setString(4, search.getGender());
+				}
+				pstmt.setInt(5, 1);
+				pstmt.setInt(6, 1000);
 				
 				rset = pstmt.executeQuery();
 				
@@ -340,9 +386,15 @@ public class MemberDao {
 			try{
 				pstmt = conn.prepareStatement(query);
 				pstmt.setString(1, search.getGrade());
-				pstmt.setString(2, search.getGender());
-				pstmt.setInt(3, 1);
-				pstmt.setInt(4, 1000);
+				if(search.getGender().equals("A")){
+					pstmt.setString(2, "M");
+					pstmt.setString(3, "F");
+				}else{
+					pstmt.setString(2, search.getGender());
+					pstmt.setString(3, search.getGender());
+				}
+				pstmt.setInt(4, 1);
+				pstmt.setInt(5, 1000);
 				
 				rset = pstmt.executeQuery();
 				
@@ -361,9 +413,15 @@ public class MemberDao {
 				pstmt = conn.prepareStatement(query);
 				pstmt.setInt(1, Integer.parseInt(search.getBeforeDate()));
 				pstmt.setInt(2, Integer.parseInt(search.getAfterDate()));
-				pstmt.setString(3, search.getGender());
-				pstmt.setInt(4, 1);
-				pstmt.setInt(5, 1000);
+				if(search.getGender().equals("A")){
+					pstmt.setString(3, "M");
+					pstmt.setString(4, "F");
+				}else{
+					pstmt.setString(3, search.getGender());
+					pstmt.setString(4, search.getGender());
+				}
+				pstmt.setInt(5, 1);
+				pstmt.setInt(6, 1000);
 				
 				rset = pstmt.executeQuery();
 				
@@ -397,9 +455,15 @@ public class MemberDao {
 			try{
 				pstmt = conn.prepareStatement(query);
 				pstmt.setString(1, search.getSearchText());
-				pstmt.setString(2, search.getGender());
-				pstmt.setInt(3, startList);
-				pstmt.setInt(4, endList);
+				if(search.getGender().equals("A")){
+					pstmt.setString(2, "M");
+					pstmt.setString(3, "F");
+				}else{
+					pstmt.setString(2, search.getGender());
+					pstmt.setString(3, search.getGender());
+				}
+				pstmt.setInt(4, startList);
+				pstmt.setInt(5, endList);
 				
 				rset = pstmt.executeQuery();
 				
@@ -433,9 +497,15 @@ public class MemberDao {
 			try{
 				pstmt = conn.prepareStatement(query);
 				pstmt.setString(1, search.getSearchText());
-				pstmt.setString(2, search.getGender());
-				pstmt.setInt(3, startList);
-				pstmt.setInt(4, endList);
+				if(search.getGender().equals("A")){
+					pstmt.setString(2, "M");
+					pstmt.setString(3, "F");
+				}else{
+					pstmt.setString(2, search.getGender());
+					pstmt.setString(3, search.getGender());
+				}
+				pstmt.setInt(4, startList);
+				pstmt.setInt(5, endList);
 				
 				System.out.println(query);
 				
@@ -471,9 +541,15 @@ public class MemberDao {
 				pstmt = conn.prepareStatement(query);
 				pstmt.setInt(1, Integer.parseInt(search.getBeforeDate()));
 				pstmt.setInt(2, Integer.parseInt(search.getAfterDate()));
-				pstmt.setString(3, search.getGender());
-				pstmt.setInt(4, startList);
-				pstmt.setInt(5, endList);
+				if(search.getGender().equals("A")){
+					pstmt.setString(3, "M");
+					pstmt.setString(4, "F");
+				}else{
+					pstmt.setString(3, search.getGender());
+					pstmt.setString(4, search.getGender());
+				}
+				pstmt.setInt(5, startList);
+				pstmt.setInt(6, endList);
 				
 				rset = pstmt.executeQuery();
 				
@@ -506,9 +582,15 @@ public class MemberDao {
 			try{
 				pstmt = conn.prepareStatement(query);
 				pstmt.setString(1, search.getGrade());
-				pstmt.setString(2, search.getGender());
-				pstmt.setInt(3, startList);
-				pstmt.setInt(4, endList);
+				if(search.getGender().equals("A")){
+					pstmt.setString(2, "M");
+					pstmt.setString(3, "F");
+				}else{
+					pstmt.setString(2, search.getGender());
+					pstmt.setString(3, search.getGender());
+				}
+				pstmt.setInt(4, startList);
+				pstmt.setInt(5, endList);
 				
 				rset = pstmt.executeQuery();
 				
@@ -542,9 +624,15 @@ public class MemberDao {
 				pstmt = conn.prepareStatement(query);
 				pstmt.setInt(1, Integer.parseInt(search.getBeforeDate()));
 				pstmt.setInt(2, Integer.parseInt(search.getAfterDate()));
-				pstmt.setString(3, search.getGender());
-				pstmt.setInt(4, startList);
-				pstmt.setInt(5, endList);
+				if(search.getGender().equals("A")){
+					pstmt.setString(3, "M");
+					pstmt.setString(4, "F");
+				}else{
+					pstmt.setString(3, search.getGender());
+					pstmt.setString(4, search.getGender());
+				}
+				pstmt.setInt(5, startList);
+				pstmt.setInt(6, endList);
 				
 				rset = pstmt.executeQuery();
 				
@@ -577,5 +665,123 @@ public class MemberDao {
 		return list;
 		
 	}
-
+	public int withdrawMemberSearch(Connection conn, Search search) {
+		PreparedStatement pstmt = null;
+		String query = null;
+		ResultSet rset = null;
+		int result = 0;
+		
+		if(search.getSearchCondition().equals("email")){
+			query = prop.getProperty("withdrawEmailSearch");
+			
+			try{
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, search.getSearchText());
+				pstmt.setInt(2, 1);
+				pstmt.setInt(3, 1000);
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()){
+					result++;
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				close(pstmt);
+				close(rset);
+			}
+		}else if(search.getSearchCondition().equals("withdrawDate")){
+			query = prop.getProperty("withdrawDateSearch");
+			
+			try{
+				pstmt = conn.prepareStatement(query);
+				pstmt.setInt(1, Integer.parseInt(search.getBeforeDate()));
+				pstmt.setInt(2, Integer.parseInt(search.getAfterDate()));
+				pstmt.setInt(3, 1);
+				pstmt.setInt(4, 1000);
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()){
+					result++;
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				close(pstmt);
+				close(rset);
+			}
+		}
+		
+		return result;
+	}
+	
+	public ArrayList<Withdraw> withdrawMemberSearch(Connection conn, Search search, int currentPage) {
+		ArrayList<Withdraw> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Withdraw w = null;
+		String query = null;
+		int listCount = 10;
+		int startList = ((currentPage - 1)) * listCount + 1;
+	    int endList = startList + listCount - 1; 
+	    
+	    if(search.getSearchCondition().equals("email")){
+			query = prop.getProperty("withdrawEmailSearch");
+			
+			try{
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, search.getSearchText());
+				pstmt.setInt(2, startList);
+				pstmt.setInt(3, endList);
+				rset = pstmt.executeQuery();
+				
+				list = new ArrayList<Withdraw>();
+				while(rset.next()){
+					w = new Withdraw();
+					w.setMemberCode(rset.getInt("w_no"));
+					w.setMemberName(rset.getString("m_name"));
+					w.setWithdrawDate(rset.getDate("w_date"));
+					w.setWithdrawReason(rset.getString("w_reason"));
+					list.add(w);
+				}
+			
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				close(pstmt);
+				close(rset);
+			}
+		}else if(search.getSearchCondition().equals("withdrawDate")){
+			query = prop.getProperty("withdrawDateSearch");
+			System.out.println("비포:" + Integer.parseInt(search.getBeforeDate()));
+			System.out.println("애프터:"+ Integer.parseInt(search.getAfterDate()));
+			try{
+				pstmt = conn.prepareStatement(query);
+				
+				pstmt.setInt(1, Integer.parseInt(search.getBeforeDate()));
+				pstmt.setInt(2, Integer.parseInt(search.getAfterDate()));
+				pstmt.setInt(3, startList);
+				pstmt.setInt(4, endList);
+				rset = pstmt.executeQuery();
+				
+				list  = new ArrayList<Withdraw>();
+				while(rset.next()){
+					w = new Withdraw();
+					w.setMemberCode(rset.getInt("w_no"));
+					w.setMemberName(rset.getString("m_name"));
+					w.setWithdrawDate(rset.getDate("w_date"));
+					w.setWithdrawReason(rset.getString("w_reason"));
+					list.add(w);
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				close(pstmt);
+				close(rset);
+			}
+		}
+		
+	    return list;
+	}
+	
 }

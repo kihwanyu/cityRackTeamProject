@@ -42,13 +42,12 @@ public class MemberSearchServlet extends HttpServlet {
 		}
 		
 		//값을 하나도 입력하지 않은 경우 전체 조회 서블릿으로 리다이렉트 
-		if(request.getParameter("searchText") == "" && request.getParameter("beforeDate") == "" && request.getParameter("afterDate") == "" && request.getParameter("grade").equals("--")){
+		if(request.getParameter("searchText") == "" && request.getParameter("beforeDate") == "" && request.getParameter("afterDate") == "" && request.getParameter("grade").equals("--") && request.getParameter("gender").equals("A")){
 			response.sendRedirect("/cityRack/MemberGetAll.me");
 			return;
 		}
 		
 		Search search = new Search();
-		
 		
 		String gender = request.getParameter("gender");
 		System.out.println(gender);
