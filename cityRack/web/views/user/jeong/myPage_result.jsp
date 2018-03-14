@@ -1,8 +1,9 @@
+<%@page import="com.kh.cityrack.question.user.model.dto.Question"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.cityrack.member.common.model.dto.Member" %>
 
 <%
-	Member loginUser = (Member)session.getAttribute("loginUser");
+	Question qResult = (Question)request.getAttribute("qResult");
 %>
 
 <!DOCTYPE html>
@@ -71,7 +72,7 @@
 							
 								<% 
 								
-								switch(loginUser.getQ_8constitution()){ 
+								switch(qResult.getQ_8constitution()){ 
 								
 									case "목양" : %>
 									

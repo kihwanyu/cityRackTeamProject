@@ -2,7 +2,8 @@
     pageEncoding="UTF-8" import="com.kh.cityrack.member.common.model.dto.Member,
     								com.kh.cityrack.question.user.model.dto.* "%>
     								
-<% Member loginUser = (Member)session.getAttribute("loginUser"); 
+<% 
+	Member loginUser = (Member)session.getAttribute("loginUser"); 
 
 %>
 
@@ -76,7 +77,7 @@
 							</div>
 							<%} else { %>
 								<div class="loginDiv">
-											<p><%-- <%=loginUser.getM_name() %>님, 환영합니다. |  --%><a onclick="logout();" >로그아웃 </a></p>
+											<p> <%=loginUser.getM_name()%> 님, 환영합니다. | <a onclick="logout();" >로그아웃 </a></p>
 								</div>
 							<%} %> 
 							<ul class="custom-menu">

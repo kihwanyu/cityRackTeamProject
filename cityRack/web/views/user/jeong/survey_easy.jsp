@@ -204,6 +204,11 @@
 							<button class="primary-btn" type="submit">완료</button>
 							<button class="primary-btn" type="reset">취소</button>
 						</div>
+						<script>
+						
+						
+						
+						</script>
 
 					</div>
 				</form>

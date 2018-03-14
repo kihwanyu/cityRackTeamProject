@@ -63,13 +63,11 @@ public class loginServlet extends HttpServlet {
 					
 					HttpSession session = request.getSession();
 					session.setAttribute("loginUser", loginUser);
-					request.setAttribute("loginUser", loginUser) ;
 					//loginUser의 등급이 관리자일 경우 관리자 페이지로 보낸다.
 					//loginUser의 등급이 나머지일 경우 유저 페이지로 보낸다.
 					
 				} else {
 					page = "views/common/errorPage.jsp";
-					request.setAttribute("loginUser", loginUser);
 				}
 			
 				
