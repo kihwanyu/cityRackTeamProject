@@ -1,0 +1,78 @@
+@CHARSET "UTF-8";
+/**
+ * Created by yyh on 2017. 4. 20..
+ */
+
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+.header-title {
+    border-bottom: solid 2px #dddddd;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+
+    font-size: 16px;
+    font-weight: 500;
+    font-style: normal;
+    color: #777777;
+}
+
+.label-style {
+    font-family: NotoSansCJKkr;
+    font-size: 16px;
+    color: #3cc6d3;
+    font-weight: normal;
+}
+
+.info-style {
+    font-family: NotoSansCJKkr;
+    font-size: 16px;
+    font-weight: normal;
+    color: #343434;
+}
+
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: rgba(54, 198, 211, 0.06);
+}
+
+.table > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+    padding: 11px;
+}
+
+.table > tbody > tr > td, .table > tfoot > tr > td {
+    padding: 11px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 0px;
+}
+
+.table-striped > thead {
+    font-size: 14px;
+    font-weight: 500;
+    color: #777777;
+}
+
+.table-striped > tbody {
+    font-size: 14px;
+    font-weight: 300;
+    color: #777777;
+}
+
+.td-time {
+    width: 40%;
+}
+
+.td-location {
+    width: 40%;
+}
+
+.td-status {
+    width: 20%;
+}
