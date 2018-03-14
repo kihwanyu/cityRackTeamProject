@@ -48,11 +48,10 @@ public class SelectConstitutionServlet extends HttpServlet {
 		
 		String page = "";
 		if(qResult != null) {
-			request.setAttribute("mNo", mNo);
-			request.setAttribute("conResult", qResult);
+			request.setAttribute("qResult", qResult);
 			page = "views/user/jeong/myPage_result.jsp";
 		} else {
-			request.setAttribute("msg", "회원 정보 조회 실패");
+			request.setAttribute("msg", "설문조사 결과 조회 실패");
 			page = "views/common/errorPage.jsp";
 		}
 		

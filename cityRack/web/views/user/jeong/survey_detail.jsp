@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="com.kh.cityrack.member.common.model.dto.Member" %>
 
 <%
-	Member loginUser = (Member) session.getAttribute("loginUser");
+	//Member loginUser = (Member) session.getAttribute("loginUser");
 %>
 <!-- sdfs --><!-- sf -->
 <!DOCTYPE html>
@@ -47,7 +47,7 @@
 
 <body>
 	<!-- 메인용 메뉴바 -->
-	<%-- <%@ include file="/views/user/common/menubar_main.jsp" %> --%>
+	<%@ include file="/views/user/common/menubar_main.jsp" %> 
 
 	<!-- section -->
 	<div class="section">

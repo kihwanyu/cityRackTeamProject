@@ -60,6 +60,8 @@ public class QuestionService {
 				
 		Question qResult = new QuestionDao().selectConstitution(con, q);
 				
+		close(con);
+		
 		return qResult;
 	
 	}
