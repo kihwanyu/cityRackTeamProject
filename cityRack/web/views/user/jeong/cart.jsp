@@ -1,7 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.kh.cityrack.product.user.model.dto.Product"  %>
-<%HashMap<Product, Integer> hmap = (HashMap<Product, Integer>)request.getAttribute("hmap");
-System.out.println(hmap);%>    
+    pageEncoding="UTF-8" import="java.util.*, com.kh.cityrack.product.user.model.dto.Product, com.kh.cityrack.product.user.model.dto.Cart"  %>
+<%
+
+ArrayList<Cart> c = (ArrayList<Cart>)request.getAttribute("cartList");
+HashMap<Product, Integer> foodprice = (HashMap<Product, Integer>)request.getAttribute("foodprice");
+HashMap<Product, Integer> foodname = (HashMap<Product, Integer>)request.getAttribute("foodname");
+Member m = (Member) request.getAttribute("loginUser");
+
+System.out.println("foodname @cart.jsp " + foodname);
+System.out.println("foodprice @cart.jsp " + foodprice);
+System.out.println("foodname @cart.jsp " + c);
+%>    
 <!DOCTYPE html>
 <html >
 
@@ -74,42 +83,42 @@ System.out.println(hmap);%>
 									</tr>
 								</thead>
 								<tbody>
+								<% for (int i = 0; i<c.size();i++){ %>
 									<tr>
-										<td class="thumb"><img src="./img/땅콩조림.png" alt=""></td>
+										<td class="thumb"><img src="<%= %>" alt=""></td>
 										<td class="details">
-											<a href="#">땅콩조림</a>
+											<a href="#"><%=c.get(i).getProduct_code() %></a>
 										</td>
-										<td class="price text-center"><strong>1,500</strong><br><del class="font-weak"><small>1,800</small></del></td>
-										<td class="qty text-center"><input class="input" type="number" value="1"></td>
-										<td class="total text-center"><strong class="primary-color">1,500</strong></td>
+										<% if(c.get(i).getDiscount()==0 ){%>
+										<td class="price text-center"><strong><%=c.get(i).getPrice() %></strong></td>
+										<%} else {%>
+										<td class="price text-center"><strong><%=c.get(i).getDiscount()*c.get(i).getPrice() %></strong><br><del class="font-weak"><small><%=c.get(i).getPrice() %></small></del></td>
+										<%} %>
+										<td class="qty text-center"><input class="input" type="number" value="<%=c.get(i).getCart_amount() %>"></td>
+										<% if(c.get(i).getDiscount()==0 ){%>
+										<td class="total text-center"><strong class="primary-color"><%=c.get(i).getPrice() %></strong></td>
+										<%} else {%>
+										<td class="total text-center"><strong class="primary-color"><%=c.get(i).getDiscount()*c.get(i).getPrice() %></strong></td>
+										<%} %>
 										<td class="text-right"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></td>
 									</tr>
-									<tr>
-										<td class="thumb"><img src="./img/소고기장조림.png" alt=""></td>
-										<td class="details">
-											<a href="#">소고기장조림</a>
-										</td>
-										<td class="price text-center"><strong>2,000</strong></td>
-										<td class="qty text-center"><input class="input" type="number" value="1"></td>
-										<td class="total text-center"><strong class="primary-color">2,000</strong></td>
-										<td class="text-right"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></td>
-									</tr>
-									<tr>
-										<td class="thumb"><img src="./img/갈치조림.png" alt=""></td>
-										<td class="details">
-											<a href="#">갈치조림</a>
-										</td>
-										<td class="price text-center"><strong>2,500</strong></td>
-										<td class="qty text-center"><input class="input" type="number" value="1"></td>
-										<td class="total text-center"><strong class="primary-color">2,500</strong></td>
-										<td class="text-right"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></td>
-									</tr>
+								<%} %>	
+									
 								</tbody>
 								<tfoot>
 									<tr>
 										<th class="empty" colspan="3"></th>
 										<th>총 금액</th>
-										<th colspan="2" class="sub-total">6,000</th>
+										<th colspan="2" class="sub-total" id="totalPrice">
+										<script type="text/javascript">
+											$(function(){
+												var totalPrice;
+												
+												for(int i = 0; )
+												$(".total").val().appendTo($("#totalPrice"));
+											});										
+										</script>
+										</th>
 									</tr>
 									<tr>
 										<th class="empty" colspan="3"></th>
