@@ -12,6 +12,7 @@ import java.util.Properties;
 
 import com.kh.cityrack.order.admin.model.dto.Order;
 import com.kh.cityrack.order.admin.model.dto.OrderSearch;
+import com.kh.cityrack.order.admin.model.dto.Product;
 
 import static com.kh.cityrack.common.JDBCTemplet.*;
 
@@ -86,7 +87,7 @@ public class OrderDao {
 				o.setO_orderDate(rset.getDate("O_ORDERDATE"));
 				o.setM_email(rset.getString("M_EMAIL"));
 				o.setP_name(rset.getString("P_NAME"));
-				o.setPa_amount(rset.getString("AMOUNT"));
+				o.setPa_amount(rset.getInt("AMOUNT"));
 				o.setO_state(rset.getString("O_STATE"));
 				
 				olist.add(o);
@@ -288,7 +289,7 @@ public class OrderDao {
 				o.setO_orderDate(rset.getDate("O_ORDERDATE"));
 				o.setM_email(rset.getString("M_EMAIL"));
 				o.setP_name(rset.getString("P_NAME"));
-				o.setPa_amount(rset.getString("AMOUNT"));
+				o.setPa_amount(rset.getInt("AMOUNT"));
 				o.setO_state(rset.getString("O_STATE"));
 				
 				oList.add(o);
@@ -302,6 +303,76 @@ public class OrderDao {
 			close(pstmt);
 		}
 		return oList;
+	}
+	public Order orderDetailGet(Connection conn, String ono) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		Order o = null;
+		String query = prop.getProperty("orderDetailGet");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setInt(1, Integer.parseInt(ono));
+			
+			rset = pstmt.executeQuery();
+						
+			if(rset.next()){
+				o = new Order();
+				o.setO_ono(rset.getInt("O_ONO"));
+				o.setO_orderDate(rset.getDate("O_ORDERDATE"));
+				o.setM_email(rset.getString("M_EMAIL"));
+				o.setO_state(rset.getString("O_STATE"));
+				o.setC_discount(rset.getDouble("C_DISCOUNT"));
+				o.setPa_amount(rset.getInt("AMOUNT"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return o;
+	}
+	public ArrayList<Product> orderProductGetAll(Connection conn, String ono) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		ArrayList<Product> pList = null;
+		Product p = null;
+		
+		String query = prop.getProperty("orderProductGetAll");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setInt(1, Integer.parseInt(ono));
+			
+			rset = pstmt.executeQuery();
+			
+			pList = new ArrayList<Product>();
+			
+			while (rset.next()) {
+				p = new Product();
+				p.setP_code(rset.getString("P_CODE"));
+				p.setP_name(rset.getString("P_NAME"));
+				p.setP_discount(rset.getDouble("P_DISCOUNT"));
+				p.setP_price(rset.getInt("P_PRICE"));
+				p.setO_amount(rset.getInt("O_AMOUNT"));
+				
+				pList.add(p);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return pList;
 	}
 
 }
