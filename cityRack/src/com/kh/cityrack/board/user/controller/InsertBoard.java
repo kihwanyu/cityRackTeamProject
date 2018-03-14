@@ -2,6 +2,7 @@ package com.kh.cityrack.board.user.controller;
 
 import java.io.IOException;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.cityrack.board.user.model.dto.Board;
 import com.kh.cityrack.board.user.model.service.BoardService;
-import com.kh.cityrack.member.admin.model.dto.Member;
+import com.kh.cityrack.member.user.model.dto.Member;
 
 /**
  * Servlet implementation class InsertBoard
@@ -32,17 +33,18 @@ public class InsertBoard extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//글작성 내용값 꺼내기
+		
 		String category = request.getParameter("category");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String division = request.getParameter("division");
-		//String writer = String.valueOf(((Member)(request.getSession().getAttribute("loginUser"))).getM_no());
-		
+		int mno = Integer.parseInt(request.getParameter("mno"));
+		System.out.println(request.getSession().getAttribute("loginuser"));
 		System.out.println("category:"+category);
 		System.out.println("title:"+title);
 		System.out.println("content:"+content);
 		System.out.println("division:"+division);
-		//System.out.println("writer:" + writer);
+		System.out.println("mno:" + mno);
 		//작성자 가져오기 멤버연결안되있어서 나중에
 //
 		Board b = new Board();
@@ -50,6 +52,7 @@ public class InsertBoard extends HttpServlet {
 		b.setBo_title(title);
 		b.setBo_content(content);
 		b.setBo_division(division);
+		b.setM_no(mno);
 		int result = new BoardService().insertBoard(b);
 		
 		System.out.println("result:"+result);

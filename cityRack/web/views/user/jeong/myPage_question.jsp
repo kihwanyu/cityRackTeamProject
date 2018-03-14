@@ -66,6 +66,10 @@
 							<strong>체질 관련 질문을 작성해 주세요. 전문가가 직접 답변해드립니다!</strong>
 							</div>
 							<br/>
+							<%
+								Member m = (Member)session.getAttribute("loginUser");
+							%>
+							<input type="hidden" name="mno" value="<%=m.getM_no()%>">
 							<div class="tableArea" align="center">
 								<table>
 									<tr>
