@@ -395,7 +395,7 @@ overflow-y:scroll;
 	                  		  <br><br>
 	                  		  <p class="foodname" name="foodname" value="<%=pList.get(i).getP_name()%>"> <%=pList.get(i).getP_name() %> <a data-toggle="popover" data-content="<%=pList.get(i).getP_8constitution() %>"></a></p>
 	                  		   <p class="foodprice"><%=pList.get(i).getP_price() %> 원</p><br> 
-	                  		  <input type="hidden" name="fooodname" value="<%=pList.get(i).getP_name() %>"> <input type="hidden" name="fooodprice" value="<%=pList.get(i).getP_price() %>">
+	                  		  <input type="hidden" name="foodname" value="<%=pList.get(i).getP_code()%>"> <input type="hidden" name="foodprice" value="<%=pList.get(i).getP_price() %>">
 	                  		</td>
                   		<%
                   			row++; } %>
@@ -429,7 +429,7 @@ overflow-y:scroll;
 		                  			  <br><br>
 		                  			  <p class="foodname" name="foodname" value="<%=pList.get(i).getP_name() %>"><%=pList.get(i).getP_name() %><a data-toggle="popover" data-content="<%=pList.get(i).getP_8constitution() %>"></a></p>
 		                  			   <p class="foodprice"><%=pList.get(i).getP_price() %> 원</p><br> 
-		                  			  <input type="hidden" name="fooodname" value="<%=pList.get(i).getP_name() %>"> <input type="hidden" name="fooodprice" value="<%=pList.get(i).getP_price() %>">
+		                  			  <input type="hidden" name="foodname" value="<%=pList.get(i).getP_code() %>"> <input type="hidden" name="foodprice" value="<%=pList.get(i).getP_price() %>">
 		                  			</td>		                		
 	                 	<%} %>
 	                  	</tr> 
@@ -507,8 +507,8 @@ overflow-y:scroll;
 					 console.log($(".tdata").length);
 					 var data = {};
 					 for(var i = 0; i<$(".tdata").length;i++){
-						 data["foodname"+ i] = $(".selectFoodTable").find("td").eq(i).children("p").eq(0).text();
-						 data["foodprice"+ i] = $(".selectFoodTable").find("td").eq(i).children("p").eq(1).text();
+						 data["foodprice"+ i] = $(".selectFoodTable").find("td").eq(i).children("input").eq(1).val();
+						 data["foodname"+ i] = $(".selectFoodTable").find("td").eq(i).children("input").eq(0).val();
 					 }
 					 
 					 console.log(data);

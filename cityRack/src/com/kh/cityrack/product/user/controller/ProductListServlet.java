@@ -48,7 +48,7 @@ public class ProductListServlet extends HttpServlet {
 			ArrayList<Pcategory> cList = new PcategoryService().selectAllCategory();
 			
 			page = "/views/user/rani/signature.jsp";
-			request.setAttribute("pList", pList);
+			request.setAttribute("pList", pList );
 			request.setAttribute("cList", cList);
 			
 			System.out.println("pList @Servlet : " + pList);

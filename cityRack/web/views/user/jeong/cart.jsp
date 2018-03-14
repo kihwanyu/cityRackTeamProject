@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.cityrack.product.user.model.dto.Product"  %>
+<%HashMap<Product, Integer> hmap = (HashMap<Product, Integer>)request.getAttribute("hmap");
+System.out.println(hmap);%>    
 <!DOCTYPE html>
 <html >
 

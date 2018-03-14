@@ -46,6 +46,7 @@ public class ProductDao {
 				p = new Product();
 				
 				p.setP_name(rset.getString("p_name"));
+				p.setP_code(rset.getString("p_code"));
 				p.setP_price(rset.getInt("p_price"));
 				p.setP_8constitution(rset.getString("p_8constitution"));
 				p.setCa_code(rset.getString("ca_name"));

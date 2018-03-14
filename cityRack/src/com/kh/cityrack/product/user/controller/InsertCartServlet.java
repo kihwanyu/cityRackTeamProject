@@ -1,6 +1,7 @@
 package com.kh.cityrack.product.user.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.kh.cityrack.member.user.model.dto.Member;
 import com.kh.cityrack.product.user.model.service.CartService;
 
 /**
@@ -34,11 +36,17 @@ public class InsertCartServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//세션에서 멤버 정보 가져오기
+		Member m = (Member) request.getSession(false).getAttribute("loginUser");
+		
 		//Map으로 장바구니에 담아 올 상품 가져오기
-		Map m =  request.getParameterMap();
+				
+		HashMap<String, String[]> hmap = new HashMap<>(request.getParameterMap());
+		
+		
 		
 		//entrySet을 통해 맵을 set에 담음.
-		Set s = m.entrySet();	
+		Set s = hmap.entrySet();	
 		//이터레이터에 s 담기
 		Iterator it = s.iterator();
 
@@ -59,18 +67,28 @@ public class InsertCartServlet extends HttpServlet {
 
             if(value.length>1){    
                     for (int i = 0; i < value.length; i++) {
-                    	System.out.println( value[i].toString() );
+                    	System.out.println( value[i].toString());
                    }
              } else
               	System.out.println(value[0].toString());
 			 }
 		
+				
 		
+		int result = new CartService().insertCart(hmap, m);
+		String page = "";
 		
-		int result = new CartService().insertCart(m);
+		if(result > 0) {
+			page="";
+			request.setAttribute("hmap", hmap);			
+			
+		} else {
+			page = "views/common/errorPage";
+			request.setAttribute("msg", "카트 넣기 실패");
+		}
 		
-		
-		
+		RequestDispatcher view = request.getRequestDispatcher(page);
+		view.forward(request, response);
 				
 	/*	response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");

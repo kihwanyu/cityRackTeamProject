@@ -13,7 +13,7 @@ public class ProductService {
 		
 		ArrayList<Product> pList = new ProductDao().selectAllProduct(con);
 		
-		close(con);
+		close(con) ;
 		
 		return pList;
 	}
