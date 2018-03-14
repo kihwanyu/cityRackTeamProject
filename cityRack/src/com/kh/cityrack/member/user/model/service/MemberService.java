@@ -3,7 +3,7 @@ package com.kh.cityrack.member.user.model.service;
 import java.sql.Connection;
 
 import com.kh.cityrack.member.user.model.dao.MemberDao;
-import com.kh.cityrack.member.user.model.dto.Member;
+import com.kh.cityrack.member.common.model.dto.Member;
 import static com.kh.cityrack.common.JDBCTemplet.*;
 public class MemberService {
 	/*sdf*//* sd */
@@ -46,11 +46,11 @@ public class MemberService {
 
 		Connection con = getConnection();
 
-		Member loginUser = new MemberDao().loginCheck(con, m.getM_mail(), m.getM_password());
+		//Member loginUser = new MemberDao().loginCheck(con, m.getM_mail(), m.getM_password());
 
-		if(loginUser != null) {
+		//if(loginUser != null) {
 			result = new MemberDao().modifyMember(con, m);
-		}
+		//}
 
 		if(result > 0) {
 			commit(con);

@@ -229,7 +229,6 @@
 							</div>
 							
 							<script>
-							console.log("<%= loginUser.getM_tel() %>");
 							
 							
 								function edit(form){
