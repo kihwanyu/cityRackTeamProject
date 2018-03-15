@@ -82,7 +82,7 @@ public class BoardDao {
 				b.setBo_no(rset.getInt("bo_no"));
 				//b.setBo_pno(rset.getInt("bo_pno"));
 				//b.setBo_division(rset.getString("bo_division"));
-				//b.setBo_category(rset.getString("bo_category"));
+				b.setBo_category(rset.getString("bo_category"));
 				b.setBo_title(rset.getString("bo_title"));
 				b.setM_name(rset.getString("m_name"));
 				b.setBo_date(rset.getDate("bo_date"));

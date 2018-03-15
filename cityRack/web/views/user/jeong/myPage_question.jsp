@@ -66,6 +66,7 @@
 							<strong>체질 관련 질문을 작성해 주세요. 전문가가 직접 답변해드립니다!</strong>
 							</div>
 							<br/>
+							<!-- 로그인유저 정보가져오기 -->
 							<%
 								Member m = (Member)session.getAttribute("loginUser");
 							%>
@@ -77,14 +78,14 @@
 										<td>
 											<select name="category">
 												<option>------------</option>
-												<option value="10">목양체질</option>
-												<option value="20">목음체질</option>
-												<option value="30">토양체질</option>
-												<option value="40">토음체질</option>
-												<option value="50">금양체질</option>
-												<option value="60">금음체질</option>
-												<option value="70">수양체질</option>
-												<option value="80">수음체질</option>
+												<option value="목양체질">목양체질</option>
+												<option value="목음체질">목음체질</option>
+												<option value="토양체질">토양체질</option>
+												<option value="토음체질">토음체질</option>
+												<option value="금양체질">금양체질</option>
+												<option value="금음체질">금음체질</option>
+												<option value="수양체질">수양체질</option>
+												<option value="수음체질">수음체질</option>
 											</select>
 										</td>
 										<td width="40px" height="40px"><strong>구분</strong></td>
