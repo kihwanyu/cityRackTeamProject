@@ -150,7 +150,7 @@ public class OrderSearchServlet extends HttpServlet {
 		String page = "";
 		
 		if(oList != null){
-			
+			oList = new OrderService().orderListSearchGetPcount(currentPage, limit, oSearch, searchTypeArr, orderType, oList);
 			
 			request.setAttribute("searchTypeArr", searchTypeArr);
 			request.setAttribute("orderType", orderType);
