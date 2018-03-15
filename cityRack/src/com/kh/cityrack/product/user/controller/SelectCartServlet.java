@@ -43,13 +43,13 @@ public class SelectCartServlet extends HttpServlet {
 		// cart ArrayList 생성
 		ArrayList<Cart> c = new CartService().selectCart(m);
 		
-		System.out.println(c);
+		System.out.println("cart @selectCartServlet : " +c );
 		
 		String page = "";
 		
 		if(c !=null) {
 			
-			page = "/views/user/rani/signature.jsp";
+			page = "/views/user/jeong/cart.jsp";
 			
 			request.setAttribute("cartList", c);
 			

@@ -9,7 +9,7 @@ Member m = (Member) request.getAttribute("loginUser");
 
 System.out.println("foodname @cart.jsp " + foodname);
 System.out.println("foodprice @cart.jsp " + foodprice);
-System.out.println("foodname @cart.jsp " + c);
+System.out.println("cart @cart.jsp " + c);
 %>    
 <!DOCTYPE html>
 <html >
@@ -82,7 +82,8 @@ System.out.println("foodname @cart.jsp " + c);
 										<th class="text-center">수량</th>
 										<th class="text-center">총 금액</th>
 										<th class="text-right"></th>
-									</tr>								</thead>
+									</tr>
+								</thead>
 								<tbody>
 								<% for (int i = 0; i<c.size();i++){ %>
 									<tr>
@@ -174,21 +175,21 @@ System.out.println("foodname @cart.jsp " + c);
 								</tfoot>
 							</table>
 							<div class="pull-right">
-								<button class="primary-btn" onclick="deleteThis();">삭제하기</button>
+								<button class="primary-btn" >삭제하기</button>
 								<button class="primary-btn">주문하기</button>
 							</div>
 							<script type="text/javascript">
 							$(function(){
 								$("#checkAll").change(function(){
 									if(this.checked){
-									$(".checkboxes").prop("checked",true);
+										$(".checkboxes").prop("checked",true);
 									}
 								});	
 							});
 							
-							function deleteThis(){
+							<%-- function deleteThis(){
 									locaiton.href="<% request.getContextPath()%>/deleteCart.ct";
-								}
+								} --%>
 								
 							</script>
 						</div>
