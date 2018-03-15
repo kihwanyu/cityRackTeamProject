@@ -87,7 +87,9 @@ public class ThumbBoardDao {
 		
 		return bid;
 	}
-	public int insertBoardFile(Connection con, ArrayList<BoardFile> fileList) {
+	
+	
+	public int insertBoardFile(Connection con, ArrayList<BoardFile> fileList, Board b) {
 	
 		/*PreparedStatement pstmt = null;
 		int result = 0;
@@ -130,20 +132,25 @@ public class ThumbBoardDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 											// board-file 게시판에 insert
-		String query = prop.getProperty("insertThumb");
+		String query = prop.getProperty("insertBoardFile");
 		
 		try {
 			pstmt = con.prepareStatement(query);
 			
 			for (int j = 0; j < fileList.size(); j++) {
 				
-				pstmt.setInt(1, fileList.get(j).getBo_no());
+				String fileName = fileList.get(j).getBf_originname();
+				String extension = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length()); 
+				
+				pstmt.setInt(1, b.getBo_no());
 				pstmt.setString(2, fileList.get(j).getBf_originname());
 				pstmt.setString(3, fileList.get(j).getBf_name());
+				pstmt.setString(4, extension);
 				
+				System.out.println("extension : " + extension);
 				result = pstmt.executeUpdate();
+
 			}
-			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
