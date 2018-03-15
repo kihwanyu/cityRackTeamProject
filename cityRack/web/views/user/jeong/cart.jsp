@@ -33,7 +33,7 @@ System.out.println("cart @cart.jsp " + c);
 		<div class="container">
 			<!-- row -->
 			<div class="row">
-				<form id="checkout-form" class="clearfix">
+				<form id="cartForm" class="clearfix">
 
 					<div class="col-md-12">
 						<div class="order-summary clearfix">
@@ -56,11 +56,11 @@ System.out.println("cart @cart.jsp " + c);
 								<tbody>
 								<% for (int i = 0; i<c.size();i++){ %>
 									<tr>
-										<td><input type="checkbox" name="productCheck" class="checkboxes" value="<%=c.get(i).getProduct_code() %>"></td>
+										<td><input type="checkbox" name="productCheck" class="checkboxes" value="<%=c.get(i).getProduct_code() %>" id="<%=c.get(i).getProduct_code() %>"></td>
 										<td class="thumb"><img src="product_download_imgFiles/<%=c.get(i).getPic1()%>" alt=""></td>
 										<td class="details">
-											<a href="#"><%=c.get(i).getProduct_code() %></a>
-											<input type="hidden" value="<%=c.get(i).getProduct_code() %>" class="pCode" name="pCode">
+											<a href="#"><label for="<%=c.get(i).getProduct_code() %>"><%=c.get(i).getpName() %></label></a>
+											<input type="hidden" value="<%=c.get(i).getProduct_code() %>" name="pcode" class="pcode">
 										</td>
 										<!-- 단가가격 -->
 										<% if(c.get(i).getDiscount()==0 ){%>
@@ -76,7 +76,10 @@ System.out.println("cart @cart.jsp " + c);
 										</td>
 										<%} %>
 										<!-- 수량 -->
-										<td class="qty text-center" ><input class="input qty" name ="quantity" type="number" value="<%=c.get(i).getCart_amount() %>"></td>
+										<td class="qty text-center" >
+										<input class="input qty" name ="quantity" type="number" min="1" value="<%=c.get(i).getCart_amount() %>">
+										
+										</td>
 										<!-- 단가*수량 -->
 										<% if(c.get(i).getDiscount()==0 ){%>
 										<td class="total text-center" >
@@ -169,7 +172,8 @@ System.out.println("cart @cart.jsp " + c);
 							</table>
 							<div class="pull-right">
 								<button class="primary-btn" onclick="deleteThis();">삭제하기</button>
-								<button class="primary-btn">주문하기</button>
+								<button class="primary-btn" onclick="editThis();">수정하기</button>
+								<button class="primary-btn" onclick="goCheckOut();">주문하기</button>
 							</div>
 							<script type="text/javascript">
 							$(function(){
@@ -182,9 +186,36 @@ System.out.println("cart @cart.jsp " + c);
 								});	
 							});
 							
+							
+						
+							/* $(function(){
+								var count = 0;
+								data = [];
+								 $(".checkboxes").change(function(){									
+										//console.log("윽 : " + $(this).val());
+										count++;
+										data += $(this).val() + "/";
+										console.log(data);
+									});
+						 
+							}); */
+							
+							//장바구니 삭제
 							 function deleteThis(){
-								locaiton.href="<% request.getContextPath()%>/deleteCart.ct";
+								 
+								$("#cartForm").attr({"action": "<%=request.getContextPath()%>/deleteCart.ct" , "method":"post"}).submit();
 							} 
+							 
+							
+							//장바구니 수정
+							function editThis(){
+								$("#cartForm").attr({"action" : "<%=request.getContextPath()%>/editCart.ct", "method":"post"}).submit();
+							}
+							
+							
+							 function goCheckOut(){
+								 confirm('장바구니에 담긴 상품들로 주문하시겠습니까?');
+							 }
 								
 							</script>
 						</div>
