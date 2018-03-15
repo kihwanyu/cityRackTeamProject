@@ -15,38 +15,7 @@ System.out.println("cart @cart.jsp " + c);
 <html >
 
 <head>
-	<!-- <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
-
-
-	Google font
-	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
-
-	Bootstrap
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
-
-	Slick
-	<link type="text/css" rel="stylesheet" href="css/slick.css" />
-	<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
-
-	nouislider
-	<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
-
-	Font Awesome Icon
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-
-	Custom stlylesheet
-	<link type="text/css" rel="stylesheet" href="css/style.css" />
- -->
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -88,24 +57,39 @@ System.out.println("cart @cart.jsp " + c);
 								<% for (int i = 0; i<c.size();i++){ %>
 									<tr>
 										<td><input type="checkbox" name="productCheck" class="checkboxes" value="<%=c.get(i).getProduct_code() %>"></td>
-										<td class="thumb"><img src="<%=c.get(i).getPic1()%>" alt=""></td>
+										<td class="thumb"><img src="product_download_imgFiles/<%=c.get(i).getPic1()%>" alt=""></td>
 										<td class="details">
 											<a href="#"><%=c.get(i).getProduct_code() %></a>
+											<input type="hidden" value="<%=c.get(i).getProduct_code() %>" class="pCode" name="pCode">
 										</td>
+										<!-- 단가가격 -->
 										<% if(c.get(i).getDiscount()==0 ){%>
-										<td class="price text-center"><strong><%=c.get(i).getPrice() %></strong></td>
+										<td class="price text-center" value="<%=c.get(i).getPrice() %>">
+											<strong><%=c.get(i).getPrice() %></strong>
+										</td>										
 										<%} else {%>
-										<td class="price text-center"><strong><%=c.get(i).getDiscount()*c.get(i).getPrice() %></strong><br><del class="font-weak"><small><%=c.get(i).getPrice() %></small></del></td>
+										<td class="price text-center" >
+											<strong><%=c.get(i).getDiscount()*c.get(i).getPrice() %></strong><br>
+											<del class="font-weak"><small><%=c.get(i).getPrice() %></small></del>
+											<input type="hidden" value="<%=c.get(i).getDiscount()*c.get(i).getPrice() %>" name="dc" class="dcAmount">
+											
+										</td>
+										<%} %>
+										<!-- 수량 -->
+										<td class="qty text-center" ><input class="input qty" name ="quantity" type="number" value="<%=c.get(i).getCart_amount() %>"></td>
+										<!-- 단가*수량 -->
+										<% if(c.get(i).getDiscount()==0 ){%>
+										<td class="total text-center" >
+											<strong class="primary-color"><%=c.get(i).getPrice()*c.get(i).getCart_amount() %></strong>
+											<input type="hidden" class="eachTotalPrice" name="totalPrice" value=<%=c.get(i).getPrice()*c.get(i).getCart_amount() %>>
+										</td>
+										<%} else {%>
+										<td class="total text-center" value=<%=c.get(i).getDiscount()*c.get(i).getPrice()*c.get(i).getCart_amount() %>>
+											<strong class="primary-color"><%=c.get(i).getDiscount()*c.get(i).getPrice()*c.get(i).getCart_amount() %></strong>
+											<input type="hidden" class="eachTotalPrice" name="totalPrice" value=<%=c.get(i).getDiscount()*c.get(i).getPrice()*c.get(i).getCart_amount() %>>
+										</td>
 										<%} %>
 										
-										<td class="qty text-center"><input class="input" type="number" value="<%=c.get(i).getCart_amount() %>"></td>
-										
-										<% if(c.get(i).getDiscount()==0 ){%>
-										<td class="total text-center"><strong class="primary-color"><%=c.get(i).getPrice() %></strong></td>
-										<%} else {%>
-										<td class="total text-center"><strong class="primary-color"><%=c.get(i).getDiscount()*c.get(i).getPrice() %></strong></td>
-										<%} %>
-										<td class="text-right"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></td>
 									</tr>
 								<%} %>	
 									
@@ -117,15 +101,17 @@ System.out.println("cart @cart.jsp " + c);
 										<th colspan="2" class="sub-total" id="totalPrice">
 										 <script type="text/javascript">
 											$(function(){
-												var totalPrice;
-												var length = $(".total").length();
-												for(int i = 0; i<length;i++){
-													totalPrice += $(".total").eq(i).val();
+												var totalPrice = 0;
+												var length = $(".total").length;
+												console.log("length : " + length);
+												
+												for(var i = 0; i<length-1;i++){
+													totalPrice += parseInt($(".eachTotalPrice").eq(i).val());
 												}
 												
-												console.log(totalPrice);
+												console.log("totalPrice : " + totalPrice);
 												
-												$("#totalPrice").val(totalPrice);
+												$("#totalPrice").html(totalPrice);
 												
 											});										
 										</script> 
@@ -134,17 +120,17 @@ System.out.println("cart @cart.jsp " + c);
 									<tr>
 										<th class="empty" colspan="3"></th>
 										<th>할인</th>
-										<th colspan="2" class="sub-total">
+										<th colspan="2" class="sub-total" id="dcAmount">
 										<script type="text/javascript">
 											$(function(){
-												var dc;
-												var length = $(".font-weak").length();
-												for(int i =0; i<length;i++){
-													dc += $(".font-weak").eq(i).val();	
+												var dc = 0;
+												var length = $(".font-weak").length;
+												for(var i =0; i<length-1;i++){
+													dc += parseInt($(".dcAmount").eq(i).val());	
 												}
-												console.log(dc);
+												console.log("dc : " + dc);
 												
-												$(".sub-total").val(dc*$("#totalPrice").val());
+												$("#dcAmount").html(dc*$("#totalPrice").val());
 												
 											});
 											
@@ -162,12 +148,19 @@ System.out.println("cart @cart.jsp " + c);
 										<th>결제금액</th>
 										<th colspan="2" class="total" id="payThis">
 										<script type="text/javascript">
+										
 											$(function(){
-												var total = $(".total").val();
-												var dc = $(".sub-total").val();
-												var payThisAmount = total-dc;
 												
-												$("#payThis").val(payThisAmount);
+												var total = parseInt($("#totalPrice").text());
+												var dc = parseInt($("#dcAmount").text());
+												var deliveryFee = 2500;
+												
+												console.log("토탈 : " + total);
+												console.log("디스카운트 " + dc);
+												console.log( "배송료 "+ deliveryFee);
+												var payThisAmount = total-dc+deliveryFee;
+												
+												$("#payThis").html(payThisAmount);
 											});
 										</script>
 										</th>
@@ -175,7 +168,7 @@ System.out.println("cart @cart.jsp " + c);
 								</tfoot>
 							</table>
 							<div class="pull-right">
-								<button class="primary-btn" >삭제하기</button>
+								<button class="primary-btn" onclick="deleteThis();">삭제하기</button>
 								<button class="primary-btn">주문하기</button>
 							</div>
 							<script type="text/javascript">
@@ -183,13 +176,15 @@ System.out.println("cart @cart.jsp " + c);
 								$("#checkAll").change(function(){
 									if(this.checked){
 										$(".checkboxes").prop("checked",true);
+									} else {
+										$(".checkboxes").prop("checked",false);
 									}
 								});	
 							});
 							
-							<%-- function deleteThis(){
-									locaiton.href="<% request.getContextPath()%>/deleteCart.ct";
-								} --%>
+							 function deleteThis(){
+								locaiton.href="<% request.getContextPath()%>/deleteCart.ct";
+							} 
 								
 							</script>
 						</div>
