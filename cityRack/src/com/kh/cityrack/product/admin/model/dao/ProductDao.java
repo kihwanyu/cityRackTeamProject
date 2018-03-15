@@ -250,7 +250,11 @@ public class ProductDao {
 				sb.append("P.P_CODE=?");
 				break;
 			case "searchCheackedRdate": 
-				sb.append("P.P_RESISTERDATE BETWEEN ? AND ?");
+				if(pSearch.getAfterDate().getTime() == pSearch.getBeforeDate().getTime()){
+					sb.append("P.P_RESISTERDATE LIKE ?");
+				} else {
+					sb.append("P.P_RESISTERDATE BETWEEN ? AND ?");
+				}
 				break;
 			case "searchCheackedPcategory":
 				sb.append("C.CA_NAME=?");
@@ -299,12 +303,16 @@ public class ProductDao {
 					j++;
 					break;
 				case "searchCheackedRdate": 
-					pstmt.setDate(j, pSearch.getBeforeDate());
-					System.out.println(pSearch.getBeforeDate());
-					j++;
-					pstmt.setDate(j, pSearch.getAfterDate());
-					System.out.println(pSearch.getAfterDate());
-					j++;
+					if(pSearch.getAfterDate().getTime() == pSearch.getBeforeDate().getTime()){
+						pstmt.setDate(j, pSearch.getBeforeDate());
+						j++;
+					} else {
+						pstmt.setDate(j, pSearch.getBeforeDate());
+						j++;
+						pstmt.setDate(j, pSearch.getAfterDate());
+						j++;
+					}
+					
 					break;
 				case "searchCheackedPcategory":
 					pstmt.setString(j, pSearch.getSearch_pcname());
@@ -375,7 +383,11 @@ public class ProductDao {
 				sb.append("P.P_CODE=?");
 				break;
 			case "searchCheackedRdate": 
-				sb.append("P.P_RESISTERDATE BETWEEN ? AND ?");
+				if(pSearch.getAfterDate().getTime() == pSearch.getBeforeDate().getTime()){
+					sb.append("P.P_RESISTERDATE LIKE ?");
+				} else {
+					sb.append("P.P_RESISTERDATE BETWEEN ? AND ?");
+				}
 				break;
 			case "searchCheackedPcategory":
 				sb.append("C.CA_NAME=?");
@@ -414,10 +426,12 @@ public class ProductDao {
 					j++;
 					break;
 				case "searchCheackedRdate": 
-					pstmt.setDate(j, pSearch.getBeforeDate());
-					j++;
-					pstmt.setDate(j, pSearch.getAfterDate());
-					j++;
+					if(pSearch.getAfterDate().getTime() == pSearch.getBeforeDate().getTime()){
+						pstmt.setDate(j, pSearch.getBeforeDate());
+						j++;
+						pstmt.setDate(j, pSearch.getAfterDate());
+						j++;
+					}
 					break;
 				case "searchCheackedPcategory":
 					pstmt.setString(j, pSearch.getSearch_pcname());

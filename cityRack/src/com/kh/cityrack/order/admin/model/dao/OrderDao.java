@@ -121,7 +121,12 @@ public class OrderDao {
 				sb.append("M.M_EMAIL LIKE ?");
 				break;
 			case "searchCheackedOdate":
-				sb.append("O.O_ORDERDATE BETWEEN ? AND ?");
+				if(oSearch.getBeforeDate().getTime() == oSearch.getAfterDate().getTime()){
+					sb.append("O.O_ORDERDATE BETWEEN LIKE ?");
+				} else {
+					sb.append("O.O_ORDERDATE BETWEEN ? AND ?");
+				}
+				
 				break;
 			case "searchCheackedPname":
 				sb.append("P.P_NAME LIKE ?");
@@ -155,10 +160,15 @@ public class OrderDao {
 					j++;
 					break;
 				case "searchCheackedOdate":
-					pstmt.setDate(j, oSearch.getBeforeDate());
-					j++;
-					pstmt.setDate(j, oSearch.getAfterDate());
-					j++;
+					if(oSearch.getBeforeDate().getTime() == oSearch.getAfterDate().getTime()){
+						pstmt.setDate(j, oSearch.getBeforeDate());
+						j++;
+					} else {
+						pstmt.setDate(j, oSearch.getBeforeDate());
+						j++;
+						pstmt.setDate(j, oSearch.getAfterDate());
+						j++;
+					}
 					
 					break;
 				case "searchCheackedPname":
@@ -213,7 +223,12 @@ public class OrderDao {
 				sb.append("M.M_EMAIL LIKE ?");
 				break;
 			case "searchCheackedOdate":
-				sb.append("O.O_ORDERDATE BETWEEN ? AND ?");
+				if(oSearch.getBeforeDate().getTime() == oSearch.getAfterDate().getTime()){
+					sb.append("O.O_ORDERDATE LIKE ?");
+				} else {
+					sb.append("O.O_ORDERDATE BETWEEN ? AND ?");
+				}
+				
 				break;
 			case "searchCheackedPname":
 				sb.append("P.P_NAME LIKE ?");
@@ -258,10 +273,16 @@ public class OrderDao {
 					j++;
 					break;
 				case "searchCheackedOdate":
-					pstmt.setDate(j, oSearch.getBeforeDate());
-					j++;
-					pstmt.setDate(j, oSearch.getAfterDate());
-					j++;
+					if(oSearch.getBeforeDate().getTime() == oSearch.getAfterDate().getTime()){
+						pstmt.setDate(j, oSearch.getBeforeDate());
+						j++;
+					} else {
+						pstmt.setDate(j, oSearch.getBeforeDate());
+						j++;
+						pstmt.setDate(j, oSearch.getAfterDate());
+						j++;
+					}
+					
 					break;
 				case "searchCheackedPname":
 					pstmt.setString(j, "%"+oSearch.getSearch_pname()+"%");
