@@ -5,7 +5,6 @@
 	ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) request.getAttribute("list");
 %>
 
-
 <!DOCTYPE html>
 <html lang="en">
 

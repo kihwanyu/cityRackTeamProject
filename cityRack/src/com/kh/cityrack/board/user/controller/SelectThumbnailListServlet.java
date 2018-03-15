@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.cityrack.board.user.model.service.ThumbBoardService;
 
-@WebServlet("/selectList.tn")
+@WebServlet("/selectThumbList")
 public class SelectThumbnailListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
