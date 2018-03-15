@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
 
-import com.kh.cityrack.board.user.model.dto.Attachment;
+import com.kh.cityrack.board.user.model.dto.BoardFile;
 import com.kh.cityrack.board.user.model.dto.Board;
 import com.kh.cityrack.member.user.model.dao.MemberDao;
 
@@ -36,10 +36,13 @@ public class ThumbBoardDao {
 		
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
+										// 그냥 board 게시판에 insert
 		String query = prop.getProperty("insertThumb");
 		
 		try {
+			
+			System.out.println("ThumbBoardDao's insertThumb query : " + query);
+			
 			pstmt = con.prepareStatement(query);
 			
 			// 회원번호, 제목, 내용
@@ -84,12 +87,12 @@ public class ThumbBoardDao {
 		
 		return bid;
 	}
-	public int insertAttachment(Connection con, ArrayList<Attachment> fileList) {
+	public int insertBoardFile(Connection con, ArrayList<BoardFile> fileList) {
 	
-		PreparedStatement pstmt = null;
+		/*PreparedStatement pstmt = null;
 		int result = 0;
 		
-		String query = prop.getProperty("insertAttachment");
+		String query = prop.getProperty("insertBoardFile");
 		
 		try {
 			
@@ -98,10 +101,9 @@ public class ThumbBoardDao {
 				
 				pstmt = con.prepareStatement(query);
 				
-				pstmt.setInt(1, fileList.get(i).getBid());
-				pstmt.setString(2, fileList.get(i).getOriginName());
-				pstmt.setString(3, fileList.get(i).getChangeName());
-				pstmt.setString(4, fileList.get(i).getFilePath());
+				pstmt.setInt(1, fileList.get(i).getBo_no());
+				pstmt.setString(2, fileList.get(i).getBf_originname());
+				pstmt.setString(3, fileList.get(i).getBf_name());
 				
 				// 레벨은 타이틀만 0으로하고 다른건 1로
 				int level = 0;
@@ -118,6 +120,33 @@ public class ThumbBoardDao {
 				
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;*/
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+											// board-file 게시판에 insert
+		String query = prop.getProperty("insertThumb");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			for (int j = 0; j < fileList.size(); j++) {
+				
+				pstmt.setInt(1, fileList.get(j).getBo_no());
+				pstmt.setString(2, fileList.get(j).getBf_originname());
+				pstmt.setString(3, fileList.get(j).getBf_name());
+				
+				result = pstmt.executeUpdate();
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
@@ -209,10 +238,10 @@ public class ThumbBoardDao {
 		
 		// 맵에 바로 컬럼을 넣는게 아니라 보드와 어태치먼트의 객체를 넣음
 		Board b = null;
-		Attachment at = null;
+		BoardFile at = null;
 		
 		// 클릭하면 사진이 4장이니까 어태치먼트를 리스트로 만들어서 전달
-		ArrayList<Attachment> list = null;
+		ArrayList<BoardFile> list = null;
 		
 		String query = prop.getProperty("selectThumbnailOne");
 		
@@ -223,7 +252,7 @@ public class ThumbBoardDao {
 			
 			rset = pstmt.executeQuery();
 			
-			list = new ArrayList<Attachment>();
+			list = new ArrayList<BoardFile>();
 			
 			while(rset.next()) {
 				
@@ -237,7 +266,7 @@ public class ThumbBoardDao {
 				b.setbCount(rset.getInt("bcount"));
 				b.setbDate(rset.getDate("bdate"));
 				
-				at = new Attachment();
+				at = new BoardFile();
 				
 				at.setFid(rset.getInt("fid"));
 				at.setOriginName(rset.getString("origin_name"));
@@ -254,7 +283,7 @@ public class ThumbBoardDao {
 			
 			hmap = new HashMap<String, Object>();
 			hmap.put("board", b);
-			hmap.put("attachment", list);
+			hmap.put("BoardFile", list);
 			
 			
 		} catch (SQLException e) {

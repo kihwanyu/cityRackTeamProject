@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
-import com.kh.cityrack.board.user.model.dto.Attachment;
+import com.kh.cityrack.board.user.model.dto.BoardFile;
 import com.kh.cityrack.board.user.model.dto.Board;
 import com.kh.cityrack.board.user.model.service.BoardService;
 import com.kh.cityrack.board.user.model.service.ThumbBoardService;
@@ -130,15 +130,14 @@ public class InsertThumbnailServlet extends HttpServlet {
 			// b.setbWriter(String.valueOf(((Member)(request.getSession().getAttribute("loginUser"))).getUno()));
 
 			// 첨부파일의 정보를 저장할 arrayList객체 생성
-			ArrayList<Attachment> fileList = new ArrayList<Attachment>();
+			ArrayList<BoardFile> fileList = new ArrayList<BoardFile>();
 
 			// 전송 순서가 역순으로 파일이 Enumeration에 저장되기 때문에 반복문을 역으로 수행
 			// 디폴트는 역순저장이라서 반복문을 반대로해서 오름차순 저장으로
 			for(int i = originFiles.size() - 1; i >= 0; i--) {
-				Attachment at = new Attachment();
-				at.setFilePath(savePath);
-				at.setOriginName(originFiles.get(i));
-				at.setChangeName(saveFiles.get(i));
+				BoardFile at = new BoardFile();
+				at.setBf_originname(originFiles.get(i));
+				at.setBf_name(saveFiles.get(i));
 				
 				System.out.println("at : " + at);
 				fileList.add(at);
@@ -150,11 +149,11 @@ public class InsertThumbnailServlet extends HttpServlet {
 			// 가공한 데이터들을 service로 전송
 			int result = new ThumbBoardService().insertThumb(b, fileList);
 				
-			System.out.println("insertThumbnailServlet's result" + result);
+			System.out.println("insertThumbnailServlet's result : " + result);
 			
 			// 업로드 실패했을때는 업로드파일에 사진저장 안되게
 			if(result > 0) {
-				response.sendRedirect(request.getContextPath() + "/selectList.tn");
+				response.sendRedirect(request.getContextPath() + "/selectThumbList");
 			} else {
 				
 				for(int i = 0; i < saveFiles.size(); i++) {

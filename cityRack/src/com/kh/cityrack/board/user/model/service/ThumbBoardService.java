@@ -7,30 +7,34 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.kh.cityrack.board.user.model.dao.ThumbBoardDao;
-import com.kh.cityrack.board.user.model.dto.Attachment;
+import com.kh.cityrack.board.user.model.dto.BoardFile;
 import com.kh.cityrack.board.user.model.dto.Board;
 public class ThumbBoardService {
 	
 	
 	// 후기게시판 
-	public int insertThumb(Board b, ArrayList<Attachment> fileList) {
+	public int insertThumb(Board b, ArrayList<BoardFile> fileList) {
 		
-		Connection con = getConnection();
+		/*Connection con = getConnection();
 		int result = 0;
 		
 		int result1 = new ThumbBoardDao().insertThumbnailContent(con, b);
 		
+		System.out.println("ThumbBoardService's result1 : " + result1);
+		
 		if(result1 > 0) {
-			// 아직 커밋을 안했어서 bid의 키값을 가져올 수 없으니까 제일 최근의 커런트 값의 시퀀스를 가져옴
+			// 아직 커밋을 안했어서 BF_NO의 키값을 가져올 수 없으니까 제일 최근의 커런트 값의 시퀀스를 가져옴
 			int bid = new ThumbBoardDao().selectCurrval(con);
 			
-			// 반복문을 이용해서 파일리스트에 반복적으로 가공한 bid를 저장
+			// 반복문을 이용해서 파일리스트에 반복적으로 가공한 BF_NO를 저장
 			for(int i = 0; i < fileList.size(); i++) {
-				fileList.get(i).setBid(bid);
+				fileList.get(i).setBf_no(bid);
 			}
 		}
 			
-		int result2 = new ThumbBoardDao().insertAttachment(con, fileList);
+		int result2 = new ThumbBoardDao().insertBoardFile(con, fileList);
+		
+		System.out.println("ThumbBoardService's result2 : " + result2);
 					
 					// result2 > 0을 안하는 이유 : 사진이 모두다 올라가야 커밋 -> 이런처리를 서비스에서 하는 것
 		if(result1 > 0 && result2 == fileList.size()) {
@@ -42,7 +46,24 @@ public class ThumbBoardService {
 		
 		close(con);
 		
+		System.out.println("ThumbBoardService's insertThumb final result : " + result);
+		
+		return result;*/
+		
+		Connection con = getConnection();
+		
+		int result = new ThumbBoardDao().insertBoardFile(con, fileList);
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
 		return result;
+		
 	}
 
 	// 후기게시판 리스트
