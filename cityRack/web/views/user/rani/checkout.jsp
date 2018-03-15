@@ -76,11 +76,7 @@ body{
 								<h3 class="title">Billing Details</h3>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" id="buyer_name" name="name" placeholder="이름" value="<%=loginUser.getM_name()%>">
-							</div>
-							
-							<div class="form-group">
-								<input class="input" type="email" id="buyer_email" name="email" placeholder="이메일" value="<%=loginUser.getM_email()%>">
+								<input class="input" type="text" id="name" name="name" placeholder="이름" value="<%=loginUser.getM_name()%>">
 							</div>
 							
 							<%
@@ -88,7 +84,6 @@ body{
 								String postcode = addressArr[0];
 								String address1 = addressArr[1];
 								String address2 = addressArr[2];
-							
 							%>
 							
 							<div class="form-group">
@@ -150,9 +145,14 @@ body{
 							</script>
 
 							<div class="form-group">
-								<input class="input" type="tel" name="phone" placeholder="전화번호" value="<%=loginUser.getM_phone()%>">
+								<input class="input" type="tel" name="tel" placeholder="전화번호" value="<%=loginUser.getM_tel()%>">
 							</div>
-						
+							<div class="form-group">
+								<input class="input" type="tel" name="phone" placeholder="휴대폰" value="<%=loginUser.getM_phone()%>">
+							</div>
+							<div class="form-group">
+							<textarea class="input" rows="5" cols="10" style="resize: none; height: 50px;" name="messeage" placeholder="메세지를 입력해주세요."></textarea>
+							</div>
 							<div class="form-group">
 								<div class="input-checkbox">
 									<label style="font-size: 15px; color: red;"> - 수령자의 정보가 다르다면 수정해주세요.</label>
@@ -283,11 +283,17 @@ body{
 						var pay_name = "test1";
 						<%-- var pay_name = <%=productStr %>; --%>
 						
-						var pay_buyer_email = $('#buyer_email').val();
+						/* var pay_buyer_email = $('#buyer_email').val();
 						var pay_buyer_name = $('#buyer_name').val();
 						var pay_buyer_tel = $('#buyer_tel').val();
 						var pay_buyer_address = $('#sample6_address').val();
-						var pay_buyer_postcode = $('#sample6_postcode').val();
+						var pay_buyer_postcode = $('#sample6_postcode').val(); */
+						
+						var pay_buyer_email = <%=loginUser.getM_email()%>;
+						var pay_buyer_name = <%=loginUser.getM_name()%>;
+						var pay_buyer_tel = <%=loginUser.getM_phone()%>;
+						var pay_buyer_address = <%=address1+address2%>;
+						var pay_buyer_postcode = <%=postcode%>;
 						
 						IMP.request_pay({
 						    pg : pg, 
@@ -319,7 +325,6 @@ body{
 						      	$('#pay_buyer_name').val(pay_buyer_name);
 						      	$('#pay_buyer_tel').val(pay_buyer_tel);
 						      	$('#pay_buyer_addr').val(pay_buyer_address);
-						      	$('#pay_buyer_postcode').val(pay_buyer_postcode);
 						      	$('#pay_buyer_email').val(pay_buyer_email);
 								
 						        formObj.submit();
