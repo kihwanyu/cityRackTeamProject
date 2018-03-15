@@ -37,7 +37,7 @@ public class BoardDao {
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);
-			//
+			// 페이징처리수정부분
 			if(rset.next()){
 				listCount = rset.getInt("COUNT(*)");
 			}
