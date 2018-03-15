@@ -2,6 +2,7 @@ package com.kh.cityrack.board.user.controller;
 
 import java.io.IOException;
 
+
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.cityrack.board.user.model.dto.Board;
 import com.kh.cityrack.board.user.model.dto.PageInfo;
 import com.kh.cityrack.board.user.model.service.BoardService;
+
 
 
 /**
@@ -52,10 +54,10 @@ public class SelectBoardList extends HttpServlet {
 		//한페이지에 보여질 목록 갯수
 		limit = 10;
 		
-		//전체 목록 갯수를 리턴받음
-		BoardService bs = new BoardService();
-		int listCount = bs.getListCount();
 		
+		//전체 목록 갯수를 리턴 받음
+		int listCount = new BoardService().getListCount();
+				
 		System.out.println("listCount : " + listCount);
 		
 		//총 페이지수 계산
