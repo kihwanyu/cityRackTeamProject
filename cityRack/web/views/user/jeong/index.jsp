@@ -21,20 +21,19 @@
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
 
 	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="views/user/jeong/css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/views/user/jeong/css/bootstrap.min.css" />
 
 	<!-- Slick -->
-	<link type="text/css" rel="stylesheet" href="views/user/jeong/css/slick.css" />
-	<link type="text/css" rel="stylesheet" href="views/user/jeong/css/slick-theme.css" />
+	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/views/user/jeong/css/slick.css" />
+	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/views/user/jeong/css/slick-theme.css" />
 
 	<!-- nouislider -->
-	<link type="text/css" rel="stylesheet" href="views/user/jeong/css/nouislider.min.css" />
+	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/views/user/jeong/css/nouislider.min.css" />
 
-	<!-- Font Awesome Icon -->
-	<link rel="stylesheet" href="views/user/jeong/css/font-awesome.min.css">
+	
 
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="views/user/jeong/css/style.css" />
+	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/views/user/jeong/css/style.css" />
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -99,7 +98,7 @@
 								<strong class="text-uppercase">장바구니</strong>
 							</div>
 							<div class="loginDiv">
-								<a href="views/user/jeong/cart.jsp" class="text-uppercase">주문하러가기</a>
+								<a href="<%=request.getContextPath() %>/selectCart.ct" class="text-uppercase">주문하러가기</a>
 							</div>
 						</li>
 						<!-- /Cart -->
