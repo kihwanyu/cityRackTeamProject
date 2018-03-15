@@ -12,7 +12,10 @@
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 	<title>E-SHOP HTML Template</title>
-
+	<!-- 결제 모듈 js file import -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<!-- Google font  -- >
 	
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
@@ -65,7 +68,7 @@ body{
 		<div class="container">
 			<!-- row -->
 			<div class="row">
-				<form id="checkout-form" class="clearfix">
+				<form role='order' id="checkout-form" class="clearfix">
 					<div class="col-md-6">
 						<div class="billing-details">
 							<!-- <p>Already a customer ? <a href="#">Login</a></p> -->
@@ -152,25 +155,32 @@ body{
 					</div>
 
 					<div class="col-md-6">
-						
 						<div class="payments-methods">
 							<div class="section-title">
 								<h4 class="title">결제 수단</h4>
 							</div>
 							<div class="input-checkbox">
-								<input type="radio" name="payments" id="payments-1" checked>
+								<input type="radio" name="payments" value="trans" id="payments-1" checked>
 								<label for="payments-1">온라인 계좌이체</label>
 								
 							</div>
 							<div class="input-checkbox">
-								<input type="radio" name="payments" id="payments-2">
-								<label for="payments-2">무통장 입금</label>
+								<input type="radio" name="payments" value="samsung" id="payments-2">
+								<label for="payments-2">삼성 페이</label>
 								
 							</div>
 							<div class="input-checkbox">
-								<input type="radio" name="payments" id="payments-3">
+								<input type="radio" name="payments" value="card" id="payments-3">
 								<label for="payments-3">신용카드</label>
 							
+							</div>
+							<div class="input-checkbox">
+								<input type="radio" name="payments" value="vbank" id="payments-4">
+								<label for="payments-3">가상계좌</label>
+							</div>
+							<div class="input-checkbox">
+								<input type="radio" name="payments" value="phone" id="payments-4">
+								<label for="payments-3">핸드폰 소액결제</label>
 							</div>
 						</div>
 					</div>
@@ -220,7 +230,7 @@ body{
 									<tr>
 										<th class="empty" colspan="3"></th>
 										<th>주문 총 금액</th>
-										<th colspan="2" class="total">$97.50</th>
+										<th colspan="2" class="total" id='pay_amount'>$97.50</th>
 									</tr>
 								</tfoot>
 							</table>
@@ -230,7 +240,68 @@ body{
 						</div>
 
 					</div>
+					<input type="hidden" id='pay_no'>
+					<input type="hidden" id='pay_pg'>
+					<input type="hidden" id="pay_paymethod">
+					<input type="hidden" id="pay_merchant_uid">
+					<input type="hidden" id="pay_name">
+					<input type="hidden" id="pay_buyer_name">
+					<input type="hidden" id="pay_buyer_tel">
+					<input type="hidden" id="pay_buyer_addr">
+					<input type="hidden" id="pay_buyer_postcode">
+					<input type="hidden" id="pay_imp_uid">
+					<input type="hidden" id="pay_apply_num">
+					<input type="hidden" id="pay_buyer_email">
+					<input type="hidden" id="pay_status">
 				</form>
+				<script type="text/javascript">
+				$(function(){
+					
+					var formObj = $("form[role='order']");
+					
+					console.log(formObj);
+					/* 주문명은 상품 나열해주세요. */
+					$('#paymentbtn').click(function(){
+						var IMP = window.IMP; // 생략가능
+						IMP.init('imp46573984'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+						
+						var pay_pay_method = $(":radio[name='payments']:checked").val(); 
+						var pay_amount = $("#pay_amount").val();
+						var pay_name = "";
+						
+						var pay_buyer_email = <%=loginUser.getM_email()%>;
+						IMP.request_pay({
+						    pg : 'html5_inicis', // version 1.1.0부터 지원.
+						    pay_method : pay_pay_method,
+						    merchant_uid : 'merchant_' + new Date().getTime(),
+						    name : pay_name,
+						    amount : pay_amount,
+						    buyer_email : 'iamport@siot.do',
+						    buyer_name : '구매자이름',
+						    buyer_tel : '010-1234-5678',
+						    buyer_addr : '서울특별시 강남구 삼성동',
+						    buyer_postcode : '123-456',
+						    m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+						}, function(rsp) {
+						    if ( rsp.success ) {
+						        var msg = '결제가 완료되었습니다.';
+						        msg += '고유ID : ' + rsp.imp_uid;
+						        msg += '상점 거래ID : ' + rsp.merchant_uid;
+						        msg += '결제 금액 : ' + rsp.paid_amount;
+						        msg += '카드 승인번호 : ' + rsp.apply_num;
+						    } else {
+						        var msg = '결제에 실패하였습니다.';
+						        msg += '에러내용 : ' + rsp.error_msg;
+						    }
+						    alert(msg);
+						    
+						    
+						    
+						    formObj.submit();
+						});
+					});
+				});
+				</script>
 			</div>
 			<!-- /row -->
 		</div>
