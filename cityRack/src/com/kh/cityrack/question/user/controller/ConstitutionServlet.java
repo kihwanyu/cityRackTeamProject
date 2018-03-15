@@ -11,7 +11,7 @@ import com.kh.cityrack.member.common.model.service.WithdrawService;
 import com.kh.cityrack.question.user.model.dto.Question;
 import com.kh.cityrack.question.user.model.service.QuestionService;
 /*sdf*//*sdf*/
-@WebServlet("/8result")
+@WebServlet("/qResult")
 public class ConstitutionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,16 +26,16 @@ public class ConstitutionServlet extends HttpServlet {
 		* 2. 체질결과
 		*  */
 		int mNo = Integer.parseInt(request.getParameter("mNo"));
-		String conResult = request.getParameter("conResult");
+		String qResult = request.getParameter("qResult");
 		
 		System.out.println("ConstitutionServlet's mNo : " + mNo);
-		System.out.println("ConstitutionServlet's conResult : " + conResult);
+		System.out.println("ConstitutionServlet's qResult : " + qResult);
 		
 		
 		// 객체에 파라미터로 받아온 두값을 set으로 넣어
 		Question q = new Question();
 		q.setM_no(mNo);
-		q.setQ_8constitution(conResult);
+		q.setQ_8constitution(qResult);
 		
 		// 서비스 호출
 		int result = new QuestionService().insertConstitution(q);
@@ -43,7 +43,7 @@ public class ConstitutionServlet extends HttpServlet {
 		// 페이지
 		String page = "";
 		if(result > 0) {
-			request.setAttribute("conResult", conResult);
+			request.setAttribute("qResult", qResult);
 			page = "views/user/jeong/myPage_result.jsp";
 			response.sendRedirect(page);
 		} 
