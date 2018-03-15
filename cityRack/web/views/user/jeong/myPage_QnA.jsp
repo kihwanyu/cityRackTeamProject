@@ -91,7 +91,8 @@
 								<thead>
 									<tr>
 										<th class="text-center">번호</th>
-										<th colspan="2">제목</th>
+										<th class="text-center">체질</th>
+										<th>제목</th>
 										<th class="text-center">작성자</th>
 										<th class="text-center">작성일</th>
 										<th class="text-center">답변상태</th>
@@ -102,7 +103,8 @@
 									<% for(Board b : list){ %>
 									<tr>
 										<td align="center"><%=b.getBo_no() %></td>
-										<td class="details" colspan="2">
+										<td align="center"><%=b.getBo_category() %></td>
+										<td class="details">
 											<a href="<%=request.getContextPath()%>/selectOne.bo?num=<%=b.getBo_no()%>"><%=b.getBo_title() %></a>
 										</td>
 										<td class="price text-center"><%=b.getM_name() %></td>
@@ -111,16 +113,7 @@
 										<td class="text-right"></td>
 									</tr>
 									<% } %>
-									<tr>
-										<td align="center">2</td>
-										<td class="details" colspan="2">
-											<a href="#">토음체질과 수음체질이 함께 먹으면 좋은 반찬 추천해주세요~</a>
-										</td>
-										<td class="price text-center">city****@naver.com</td>
-										<td align="center">2018/02/18</td>
-										<td align="center">답변대기</td>
-										<td class="text-right"></td>
-									</tr>
+									
 																											
 								</tbody>
 							</table>
