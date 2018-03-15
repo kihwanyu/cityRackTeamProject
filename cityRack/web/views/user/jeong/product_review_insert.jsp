@@ -101,15 +101,11 @@ table {
 
 
 
-
-
-
 </head>
 
 <body>
 	<!-- 메인페이지용 메뉴바 -->
 	<%@ include file="/views/user/common/menubar_main.jsp"%>
-
 
 
 	<!-- section -->
@@ -122,8 +118,6 @@ table {
 					<h3 class="title">city樂 이용 후기</h3>
 				</div>
 				<br /> <br />
-
-
 
 				<%
 					if (loginUser != null) {
@@ -172,20 +166,19 @@ table {
 								</tr>
 								<tr>
 									<td>사진 메모</td>
-									<td colspan="3"><textarea name="content" rows="5"
-											cols="55" style="resize: none;"></textarea></td>
+									<td colspan="3">
+										<textarea name="content" rows="5" cols="55" style="resize: none;"></textarea>
+									</td>
 								</tr>
 
 
 
 							</table>
 							<div id="fileArea">
-								<input type="file" id="thumbnail1" name="thumbnailImg1"
-									onchange="LoadImg1(this);"> <input type="file"
-									id="thumbnail2" name="thumbnailImg2" onchange="LoadImg2(this);">
-								<input type="file" id="thumbnail3" name="thumbnailImg3"
-									onchange="LoadImg3(this);"> <input type="file"
-									id="thumbnail4" name="thumbnailImg4" onchange="LoadImg4(this);">
+								<input type="file" id="thumbnail1" name="thumbnailImg1"	onchange="LoadImg1(this);"> 
+								<input type="file" id="thumbnail2" name="thumbnailImg2" onchange="LoadImg2(this);">
+								<input type="file" id="thumbnail3" name="thumbnailImg3" onchange="LoadImg3(this);"> 
+								<input type="file" id="thumbnail4" name="thumbnailImg4" onchange="LoadImg4(this);">
 							</div>
 						</div>
 						<br />
@@ -230,7 +223,8 @@ table {
 							reader.onload = function(e) {
 								$("#titleImg").attr("src", e.target.result);
 							}
-
+							
+							// 0번째 파일 읽어오기
 							reader.readAsDataURL(value.files[0]);
 						}
 					}

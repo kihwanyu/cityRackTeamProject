@@ -255,6 +255,7 @@
 								</div>
 							</div>
 						</li>
+						<li><a href="views/user/jeong/product_review_insert.jsp">city樂 후기</a></li>
 					</ul>
 				</div>
 				<!-- 메뉴 네비게이터 -->

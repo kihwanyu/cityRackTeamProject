@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.cityrack.member.user.model.dto.Member;
+import com.kh.cityrack.member.common.model.dto.Member;
 import com.kh.cityrack.member.user.model.service.MemberService;
 
 /**
@@ -77,7 +77,7 @@ public class InsertMemberServlet extends HttpServlet {
 		Member m = new Member();
 		
 		//세터로 값 지정
-		m.setM_mail(email);
+		m.setM_email(email);
 		m.setM_password(pwd);
 		m.setM_name(name);
 		m.setM_gender(sex);

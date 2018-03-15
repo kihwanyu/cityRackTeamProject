@@ -1139,10 +1139,10 @@
 						</script>
 						<br/><br/>
 						<form id="result-form" class="clearfix"
-								action="<%=request.getContextPath()%>/8result" method="post">
+								action="<%=request.getContextPath()%>/qResult" method="post">
 							<div align="right">
 								<input type="text" id="mNo" name="mNo" value="<%= loginUser.getM_no() %>"/>
-								<input type="text" id="conResult" name="conResult">
+								<input type="text" id="qResult" name="qResult">
 								<button class="primary-btn" type="button" onclick="goResult();">완료</button>
 								<button class="primary-btn" type="button" onclick="goMain();">메인으로</button>
 							</div>
@@ -1161,7 +1161,7 @@
 									var check6 = $("#check6").val();
 									var check7 = $("#check7").val();
 									var check8 = $("#check8").val();
-									var conResult = "";
+									var qResult = "";
 									
 									var arr = [check1, check2, check3, check4,
 													check5, check6, check7, check8];
@@ -1179,20 +1179,20 @@
 									console.log	("가장 큰 수는 : " + max);
 									
 									switch(max){
-									case check1 : conResult = "목양"; break;
-									case check2 : conResult = "목음"; break;
-									case check3 : conResult = "토양"; break;
-									case check4 : conResult = "토음"; break;
-									case check5 : conResult = "금양"; break;
-									case check6 : conResult = "금음"; break;
-									case check7 : conResult = "수양"; break;
-									case check8 : conResult = "수음"; break;
+									case check1 : qResult = "목양"; break;
+									case check2 : qResult = "목음"; break;
+									case check3 : qResult = "토양"; break;
+									case check4 : qResult = "토음"; break;
+									case check5 : qResult = "금양"; break;
+									case check6 : qResult = "금음"; break;
+									case check7 : qResult = "수양"; break;
+									case check8 : qResult = "수음"; break;
 									}
 									
-									console.log("체질결과 : " + conResult);
+									console.log("체질결과 : " + qResult);
 									
 									// 체질결과 담아주기
-									document.getElementById("conResult").value = conResult;
+									document.getElementById("qResult").value = qResult;
 									
 								});
 								
