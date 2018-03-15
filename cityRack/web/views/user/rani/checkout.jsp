@@ -277,10 +277,10 @@ body{
 					$('#paymentBtn').click(function(){
 						var IMP = window.IMP; // 생략가능
 						IMP.init('imp46573984'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-						var pg = 'html5_incis';
+						var pg = 'inicis';
 						var pay_pay_method = $(":radio[name='payments']:checked").val(); 
 						var pay_amount = $("#total").html().trim(); // 만약 앞뒤로 공백이있다면 공백제거
-						var pay_name = "";
+						var pay_name = "test1";
 						<%-- var pay_name = <%=productStr %>; --%>
 						
 						var pay_buyer_email = $('#buyer_email').val();
