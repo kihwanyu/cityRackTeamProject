@@ -64,7 +64,7 @@ public class ThumbBoardDao {
 		
 		Statement stmt = null;
 		ResultSet rset = null;
-		int bid = 0;
+		int boNo = 0;
 		
 		String query = prop.getProperty("selectCurrval");
 		
@@ -75,7 +75,7 @@ public class ThumbBoardDao {
 			
 			// 어차피 rset은 한행이니까 if문
 			if(rset.next()) {
-				bid = rset.getInt("currval");
+				boNo = rset.getInt("currval");
 			}
 			
 		} catch (SQLException e) {
@@ -85,50 +85,12 @@ public class ThumbBoardDao {
 			close(rset);
 		}
 		
-		return bid;
+		return boNo;
 	}
 	
 	
 	public int insertBoardFile(Connection con, ArrayList<BoardFile> fileList, Board b) {
 	
-		/*PreparedStatement pstmt = null;
-		int result = 0;
-		
-		String query = prop.getProperty("insertBoardFile");
-		
-		try {
-			
-			// 리스트에서 꺼내오기는 객체를 생성하고 해당객체의 bid를 가져오고, 다시 객체생성하고 .. 반복처리해야함
-			for(int i = 0; i < fileList.size(); i++) {
-				
-				pstmt = con.prepareStatement(query);
-				
-				pstmt.setInt(1, fileList.get(i).getBo_no());
-				pstmt.setString(2, fileList.get(i).getBf_originname());
-				pstmt.setString(3, fileList.get(i).getBf_name());
-				
-				// 레벨은 타이틀만 0으로하고 다른건 1로
-				int level = 0;
-				if(i == 0){
-					level = 0;
-				} else {
-					level = 1;
-				}
-				
-				pstmt.setInt(5, level);
-				
-				// 지금 한행한행 반복하는거기때문에 그냥 = 이렇게 대입하면 몇행이 들어가도 무조건 1이됨,, += 이렇게 누적해주기
-				result += pstmt.executeUpdate();
-				
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;*/
-		
 		PreparedStatement pstmt = null;
 		int result = 0;
 											// board-file 게시판에 insert
@@ -137,18 +99,23 @@ public class ThumbBoardDao {
 		try {
 			pstmt = con.prepareStatement(query);
 			
+			System.out.println("ThumbBoardDao's b.getBo_no() : " + b.getBo_no()); // 결과 0,,, 왜지?!!!
+			
+			// 리스트에서 꺼내오기는 객체를 생성하고 해당객체의 bid를 가져오고, 다시 객체생성하고 .. 반복처리해야함
 			for (int j = 0; j < fileList.size(); j++) {
 				
 				String fileName = fileList.get(j).getBf_originname();
 				String extension = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length()); 
 				
-				pstmt.setInt(1, b.getBo_no());
+				pstmt.setInt(1, b.getBo_no()); // insertThumb쿼리문의 BONO 시쿼스와 같아야 함.
 				pstmt.setString(2, fileList.get(j).getBf_originname());
 				pstmt.setString(3, fileList.get(j).getBf_name());
 				pstmt.setString(4, extension);
 				
 				System.out.println("extension : " + extension);
-				result = pstmt.executeUpdate();
+				
+				// 지금 한행한행 반복하는거기때문에 그냥 = 이렇게 대입하면 몇행이 들어가도 무조건 1이됨. 따라서 += 로
+				result += pstmt.executeUpdate();
 
 			}
 			

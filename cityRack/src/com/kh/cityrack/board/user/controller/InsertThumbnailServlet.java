@@ -95,7 +95,7 @@ public class InsertThumbnailServlet extends HttpServlet {
 			}
 
 
-			// multipartRequest 객체에서 파일 외의 값도 가져옴
+			// multipartRequest 객체에서 파일 외의 값도 가져옴 (폼의 게시글 제목과 내용)
 			String multiTile = multiRequest.getParameter("title");
 			String multiContent = multiRequest.getParameter("content");
 
@@ -106,29 +106,13 @@ public class InsertThumbnailServlet extends HttpServlet {
 			b.setBo_title(multiTile);
 			b.setBo_content(multiContent);
 			
-			
-	/*		private int bo_no; // 게시판_번호
-			private int bo_pno; // 게시판_부모번호 Self Join Not Null 조건 X
-			private String bo_division; // 게시판_구분 게시글 답글 댓글
-			private String bo_category; // 게시판_카테고리 문의게시판..
-			private int m_no; // 회원_번호
-			private Date bo_date; // 게시판_작성일
-			private String bo_title; // 게시판_제목
-			private String bo_content; // 게시판_내용
-			private int bo_hit; // 게시판_조회수
-			private int bo_recomm; // 게시판 추천수
-			private String m_name; //게시판_작성자이름
-			private String bo_status; //답변상태		
-			*/
-			
 
+			// 세션의 로그인유저에서 회원번호 가져옴
 			HttpSession session = request.getSession();
 			Member m = (Member)session.getAttribute("loginUser");
-			String uno = String.valueOf(m.getM_no());
-			b.setM_name(uno);
-			System.out.println("uno : " + uno);
-			// 위에 네줄을 한줄로도 쓸 수 있음
-			// b.setbWriter(String.valueOf(((Member)(request.getSession().getAttribute("loginUser"))).getUno()));
+			int uno = m.getM_no();
+			b.setM_no(uno);
+			System.out.println("InsertThumbnailServlet's uno : " + uno);
 
 			// 첨부파일의 정보를 저장할 arrayList객체 생성
 			ArrayList<BoardFile> fileList = new ArrayList<BoardFile>();

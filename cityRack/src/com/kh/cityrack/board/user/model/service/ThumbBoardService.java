@@ -13,43 +13,8 @@ import com.kh.cityrack.board.user.model.dto.Board;
 public class ThumbBoardService {
 
 
-	// 후기게시판 
+	// 후기게시판 insert(게시글내용과 파일 두가지)
 	public int insertThumb(Member m, Board b, ArrayList<BoardFile> fileList) {
-
-		/*Connection con = getConnection();
-		int result = 0;
-
-		int result1 = new ThumbBoardDao().insertThumbnailContent(con, b);
-
-		System.out.println("ThumbBoardService's result1 : " + result1);
-
-		if(result1 > 0) {
-			// 아직 커밋을 안했어서 BF_NO의 키값을 가져올 수 없으니까 제일 최근의 커런트 값의 시퀀스를 가져옴
-			int bid = new ThumbBoardDao().selectCurrval(con);
-
-			// 반복문을 이용해서 파일리스트에 반복적으로 가공한 BF_NO를 저장
-			for(int i = 0; i < fileList.size(); i++) {
-				fileList.get(i).setBf_no(bid);
-			}
-		}
-
-		int result2 = new ThumbBoardDao().insertBoardFile(con, fileList);
-
-		System.out.println("ThumbBoardService's result2 : " + result2);
-
-					// result2 > 0을 안하는 이유 : 사진이 모두다 올라가야 커밋 -> 이런처리를 서비스에서 하는 것
-		if(result1 > 0 && result2 == fileList.size()) {
-			commit(con);
-			result = 1;
-		} else {
-			rollback(con);
-		}
-
-		close(con);
-
-		System.out.println("ThumbBoardService's insertThumb final result : " + result);
-
-		return result;*/
 
 		Connection con = getConnection();
 		int result = 0;
@@ -59,20 +24,26 @@ public class ThumbBoardService {
 		
 		System.out.println("ThumbBoardService's result1 : " + result1);
 
+		
+		
 		if(result1 > 0) {
 			// 아직 커밋을 안했어서 BF_NO의 키값을 가져올 수 없으니까 제일 최근의 커런트 값의 시퀀스를 가져옴
-			int bid = new ThumbBoardDao().selectCurrval(con);
+			int boNo = new ThumbBoardDao().selectCurrval(con);
 
-			// 반복문을 이용해서 파일리스트에 반복적으로 가공한 BF_NO를 저장
+			// 반복문을 이용해서 파일리스트에 반복적으로 가공한 BO_NO를 저장
 			for(int i = 0; i < fileList.size(); i++) {
-				fileList.get(i).setBf_no(bid);
+				fileList.get(i).setBo_no(boNo);
 			}
 		}
 		
+		System.out.println("ThumbBoardService's b.getBo_bo : " + b.getBo_no());
+		
 		// 게시글에 첨부된 사진파일 insert
 		int result2 = new ThumbBoardDao().insertBoardFile(con, fileList, b);
-
+		
 		System.out.println("ThumbBoardService's result2 : " + result2);
+		
+		
 
 		if(result1 > 0 && result2 > 0) {
 			commit(con);
