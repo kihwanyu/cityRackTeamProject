@@ -21,19 +21,19 @@
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 
 	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/views/user/rani/css/bootstrap.min.css" />
 
 	<!-- Slick -->
-	<link type="text/css" rel="stylesheet" href="css/slick.css" />
-	<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/views/user/rani/css/slick.css" />
+	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/views/user/rani/css/slick-theme.css" />
 
 	<!-- nouislider -->
-	<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/views/user/rani/css/nouislider.min.css" />
 
 	
 
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/views/user/rani/css/style.css" />
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -76,23 +76,32 @@ body{
 								<h3 class="title">Billing Details</h3>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="name" placeholder="이름">
+								<input class="input" type="text" id="buyer_name" name="name" placeholder="이름" value="<%=loginUser.getM_name()%>">
 							</div>
 							
 							<div class="form-group">
-								<input class="input" type="email" name="email" placeholder="이메일">
+								<input class="input" type="email" id="buyer_email" name="email" placeholder="이메일" value="<%=loginUser.getM_email()%>">
 							</div>
+							
+							<%
+								String[] addressArr = loginUser.getM_address().split("/");
+								String postcode = addressArr[0];
+								String address1 = addressArr[1];
+								String address2 = addressArr[2];
+							
+							%>
+							
 							<div class="form-group">
-								<input class="input" type="text" id="sample6_postcode" placeholder="우편번호">
+								<input class="input" type="text" id="sample6_postcode" name="postcode" placeholder="우편번호" value="<%=postcode%>">
 								</div>
 							<div class="form-group">
 								<input  class="input spans" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="background:#FF720D;border-radius:4px;border:none; color:"><br>
 								</div>
 							<div class="form-group">
-								<input  class="input" type="text" id="sample6_address" placeholder="주소">
+								<input  class="input" type="text" name="address" id="sample6_address" placeholder="주소" value="<%=address1%>">
 								</div>
 							<div class="form-group">	
-								<input  class="input" type="text" id="sample6_address2" placeholder="상세주소">
+								<input  class="input" type="text" name="address2" id="sample6_address2" placeholder="상세주소" value="<%=address2%>">
 								</div>
 								
 								<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -141,14 +150,12 @@ body{
 							</script>
 
 							<div class="form-group">
-								<input class="input" type="tel" name="city" placeholder="전화번호">
+								<input class="input" type="tel" name="phone" placeholder="전화번호" value="<%=loginUser.getM_phone()%>">
 							</div>
 						
 							<div class="form-group">
 								<div class="input-checkbox">
-									<input type="checkbox" id="register" >
-									<label class="font-weak" for="register">수령자의 정보와 주문자의 정보가 같습니다</label>
-									
+									<label style="font-size: 15px; color: red;"> - 수령자의 정보가 다르다면 수정해주세요.</label>
 								</div>
 							</div>
 						</div>
@@ -176,11 +183,11 @@ body{
 							</div>
 							<div class="input-checkbox">
 								<input type="radio" name="payments" value="vbank" id="payments-4">
-								<label for="payments-3">가상계좌</label>
+								<label for="payments-4">가상계좌</label>
 							</div>
 							<div class="input-checkbox">
-								<input type="radio" name="payments" value="phone" id="payments-4">
-								<label for="payments-3">핸드폰 소액결제</label>
+								<input type="radio" name="payments" value="phone" id="payments-5">
+								<label for="payments-5">핸드폰 소액결제</label>
 							</div>
 						</div>
 					</div>
@@ -230,21 +237,22 @@ body{
 									<tr>
 										<th class="empty" colspan="3"></th>
 										<th>주문 총 금액</th>
-										<th colspan="2" class="total" id='pay_amount'>$97.50</th>
+										<th colspan="2" class="total" id="total" >10000</th>
 									</tr>
 								</tfoot>
 							</table>
 							<div class="pull-right">
-								<button class="primary-btn" style="padding-left: 70px; padding-right: 70px;">주문하기</button>
+								<input type="button" id="paymentBtn" class="primary-btn" style="padding-left: 70px; padding-right: 70px;" value="주문하기">
 							</div>
 						</div>
 
 					</div>
-					<input type="hidden" id='pay_no'>
+					
 					<input type="hidden" id='pay_pg'>
 					<input type="hidden" id="pay_paymethod">
 					<input type="hidden" id="pay_merchant_uid">
 					<input type="hidden" id="pay_name">
+					<input type="hidden" id="pay_amount">
 					<input type="hidden" id="pay_buyer_name">
 					<input type="hidden" id="pay_buyer_tel">
 					<input type="hidden" id="pay_buyer_addr">
@@ -252,7 +260,7 @@ body{
 					<input type="hidden" id="pay_imp_uid">
 					<input type="hidden" id="pay_apply_num">
 					<input type="hidden" id="pay_buyer_email">
-					<input type="hidden" id="pay_status">
+					
 				</form>
 				<script type="text/javascript">
 				$(function(){
@@ -260,28 +268,39 @@ body{
 					var formObj = $("form[role='order']");
 					
 					console.log(formObj);
-					/* 주문명은 상품 나열해주세요. */
-					$('#paymentbtn').click(function(){
+					/* 주문명은 상품 나열해주세요. 
+					장바구니에서 상품을 가져올 때 productStr에 상품을 누적해서 
+					productStr을 pay_name 넣어준다.
+					예) 단무지 단무지 단무지
+					*/
+					
+					$('#paymentBtn').click(function(){
 						var IMP = window.IMP; // 생략가능
 						IMP.init('imp46573984'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-						
+						var pg = 'html5_incis';
 						var pay_pay_method = $(":radio[name='payments']:checked").val(); 
-						var pay_amount = $("#pay_amount").val();
+						var pay_amount = $("#total").html().trim(); // 만약 앞뒤로 공백이있다면 공백제거
 						var pay_name = "";
+						<%-- var pay_name = <%=productStr %>; --%>
 						
-						var pay_buyer_email = <%=loginUser.getM_email()%>;
+						var pay_buyer_email = $('#buyer_email').val();
+						var pay_buyer_name = $('#buyer_name').val();
+						var pay_buyer_tel = $('#buyer_tel').val();
+						var pay_buyer_address = $('#sample6_address').val();
+						var pay_buyer_postcode = $('#sample6_postcode').val();
+						
 						IMP.request_pay({
-						    pg : 'html5_inicis', // version 1.1.0부터 지원.
+						    pg : pg, 
 						    pay_method : pay_pay_method,
 						    merchant_uid : 'merchant_' + new Date().getTime(),
 						    name : pay_name,
 						    amount : pay_amount,
-						    buyer_email : 'iamport@siot.do',
-						    buyer_name : '구매자이름',
-						    buyer_tel : '010-1234-5678',
-						    buyer_addr : '서울특별시 강남구 삼성동',
-						    buyer_postcode : '123-456',
-						    m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+						    buyer_email : pay_buyer_email,
+						    buyer_name : pay_buyer_name,
+						    buyer_tel : pay_buyer_tel,
+						    buyer_addr : pay_buyer_address,
+						    buyer_postcode : pay_buyer_postcode,
+						    //m_redirect_url : 'https://www.yourdomain.com/payments/complete'
 						}, function(rsp) {
 						    if ( rsp.success ) {
 						        var msg = '결제가 완료되었습니다.';
@@ -289,15 +308,26 @@ body{
 						        msg += '상점 거래ID : ' + rsp.merchant_uid;
 						        msg += '결제 금액 : ' + rsp.paid_amount;
 						        msg += '카드 승인번호 : ' + rsp.apply_num;
+						        
+						      	$('#pay_imp_uid').val(rsp.imp_uid); 
+						      	$('#pay_merchant_uid').val(rsp.merchant_uid);
+						      	$('#pay_amount').val(rsp.paid_amount);
+						      	$('#pay_apply_num').val(rsp.apply_num);
+						      	$('#pay_pg').val(pg);
+						      	$('#pay_paymethod').val(pay_pay_method);
+						      	$('#pay_name').val(pay_name);
+						      	$('#pay_buyer_name').val(pay_buyer_name);
+						      	$('#pay_buyer_tel').val(pay_buyer_tel);
+						      	$('#pay_buyer_addr').val(pay_buyer_address);
+						      	$('#pay_buyer_postcode').val(pay_buyer_postcode);
+						      	$('#pay_buyer_email').val(pay_buyer_email);
+								
+						        formObj.submit();
 						    } else {
 						        var msg = '결제에 실패하였습니다.';
 						        msg += '에러내용 : ' + rsp.error_msg;
 						    }
 						    alert(msg);
-						    
-						    
-						    
-						    formObj.submit();
 						});
 					});
 				});
