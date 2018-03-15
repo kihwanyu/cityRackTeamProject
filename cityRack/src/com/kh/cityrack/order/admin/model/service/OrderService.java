@@ -75,4 +75,27 @@ public class OrderService {
 		return pList;
 	}
 
+	public ArrayList<Order> orderListGetPcount(int currentPage, int limit, ArrayList<Order> oList) {
+		
+		Connection conn = getConnection();
+		
+		oList = new OrderDao().orderListGetPcount(conn, currentPage, limit, oList);
+		
+		close(conn);
+		
+		return oList;
+	}
+
+	public ArrayList<Order> orderListSearchGetPcount(int currentPage, int limit, OrderSearch oSearch,
+			String[] searchTypeArr, String orderType, ArrayList<Order> oList) {
+		
+		Connection conn = getConnection();
+		
+		oList = new OrderDao().orderListSearchGetPcount(conn, currentPage, limit, oSearch, searchTypeArr, orderType, oList);
+		
+		close(conn);
+		
+		return oList;
+	}
+
 }

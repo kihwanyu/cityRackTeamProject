@@ -374,5 +374,149 @@ public class OrderDao {
 		
 		return pList;
 	}
+	public ArrayList<Order> orderListGetPcount(Connection conn, int currentPage, int limit, ArrayList<Order> oList) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+				
+		String query = prop.getProperty("orderListGetPcount");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			oList = new ArrayList<Order>();
+			
+			while (rset.next()) {
+				int i = 0;
+												
+				oList.get(i).setpCount(rset.getInt("PCOUNT"));
+				
+				i++;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return oList;
+	}
+	public ArrayList<Order> orderListSearchGetPcount(Connection conn, int currentPage, int limit, OrderSearch oSearch,
+			String[] searchTypeArr, String orderType, ArrayList<Order> oList) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("SELECT RNUM, PCOUNT FROM(SELECT ROWNUM RNUM, O_ONO, PCOUNT "
+				+ "FROM(SELECT O.O_ONO, COUNT(*) PCOUNT "
+				+ "FROM ORDERS O JOIN MEMBER M ON(O.M_NO=M.M_NO) "
+				+ "JOIN PRODUCT P ON(O.P_CODE=P.P_CODE) "
+				+ "JOIN PAYMENT PA ON(O.PAY_NO=PA.NO) WHERE ");
+		
+		for(int i = 0; i < searchTypeArr.length; i++){
+			switch (searchTypeArr[i]) {
+			case "searchCheackedOono":
+				sb.append("O.O_ONO=?");
+				break;
+			case "searchCheackedEmail": 
+				sb.append("M.M_EMAIL LIKE ?");
+				break;
+			case "searchCheackedOdate":
+				sb.append("O.O_ORDERDATE BETWEEN ? AND ?");
+				break;
+			case "searchCheackedPname":
+				sb.append("P.P_NAME LIKE ?");
+				break;
+			default: //searchCheackedStatus
+				sb.append("O.O_STATE=?");
+				break;
+			}
+			if(i < searchTypeArr.length-1) {
+				sb.append(" AND ");
+			} 
+		}
+		sb.append(" GROUP BY O.O_ONO ORDER BY ");
+		if(orderType.equals("searchCheackedOonoOrder")){
+			sb.append("O.O_ONO " + oSearch.getOono_order());
+		} 
+		else if(orderType.equals("searchCheackedEmailOrder")) {
+			sb.append("M.M_EMAIL " + oSearch.getEmail_order());
+		} else { //searchCheackedPnameOrder
+			sb.append("P.P_NAME " + oSearch.getPname_order());
+		}
+			
+		sb.append(")) WHERE RNUM BETWEEN ? AND ?");
+		System.out.println(sb.toString());
+		
+		try {
+			pstmt = conn.prepareStatement(sb.toString());
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			int j = 1;
+			
+			for(int i = 0; i < searchTypeArr.length; i++){
+				switch (searchTypeArr[i]) {
+				case "searchCheackedOono":
+					pstmt.setInt(j, Integer.parseInt(oSearch.getSearch_oono()));
+					j++;
+					break;
+				case "searchCheackedEmail": 
+					pstmt.setString(j, "%"+oSearch.getSearch_email()+"%");
+					j++;
+					break;
+				case "searchCheackedOdate":
+					pstmt.setDate(j, oSearch.getBeforeDate());
+					j++;
+					pstmt.setDate(j, oSearch.getAfterDate());
+					j++;
+					break;
+				case "searchCheackedPname":
+					pstmt.setString(j, "%"+oSearch.getSearch_pname()+"%");
+					j++;
+					break;
+				default: //searchCheackedStatus
+					pstmt.setString(j, oSearch.getSearch_status());
+					j++;
+					break;
+				}
+			}
+			
+			pstmt.setInt(j, startRow);
+			j++;
+			pstmt.setInt(j, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			oList = new ArrayList<Order>();
+			
+			while(rset.next()){
+				int i = 0;
+				
+				oList.get(i).setpCount(rset.getInt("PCOUNT"));
+				
+				i++;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return oList;
+	}
 
 }

@@ -73,14 +73,14 @@ public class OrdersGetAllServlet extends HttpServlet {
 		}
 		
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
-				
-		ArrayList<Order> oList = null;
-		
-		oList = new OrderService().orderListGetAll(currentPage, limit);
+						
+		 ArrayList<Order> oList = new OrderService().orderListGetAll(currentPage, limit);
 		//
 		String page = "";
 		
 		if(oList != null){
+			oList = new OrderService().orderListGetPcount(currentPage, limit, oList);
+			
 			Boolean searchBoolean = false;
 			request.setAttribute("searchBoolean", searchBoolean);
 			
