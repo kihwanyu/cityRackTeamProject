@@ -36,4 +36,24 @@ public class CartService {
 		return result;
 	}
 
+
+	// 카트에 물품 삭제
+	public int deleteCart(String[] list, Member m) {
+		Connection con = getConnection();
+		int result = new CartDao().deleteCart(list, m, con);
+		close(con);
+		return result ;
+	}
+
+
+	// 카트 물품 수정
+	public int updateCart(Member m, ArrayList<Cart> cartList) {
+		Connection con = getConnection();
+		int result = new CartDao().updateCart(cartList, m, con);
+		
+		close(con);
+		
+		return result;
+	}
+
 }

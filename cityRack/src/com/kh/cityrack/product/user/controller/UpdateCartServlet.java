@@ -1,8 +1,8 @@
 package com.kh.cityrack.product.user.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,19 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.cityrack.member.common.model.dto.Member;
+import com.kh.cityrack.product.user.model.dto.Cart;
 import com.kh.cityrack.product.user.model.service.CartService;
 
 /**
- * Servlet implementation class DeleteCartServlet
+ * Servlet implementation class UpdateCartServlet
  */
-@WebServlet("/deleteCart.ct")
-public class DeleteCartServlet extends HttpServlet {
+@WebServlet("/editCart.ct")
+public class UpdateCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteCartServlet() {
+    public UpdateCartServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,33 +32,39 @@ public class DeleteCartServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//카트 삭제 서블렛
+		// 장바구니 수정
 		
 		//세션 가져오기
 		Member m = (Member) request.getSession().getAttribute("loginUser");
 		
-		//해당 물품 코드 가져오기
-		String[] list = request.getParameterValues("productCheck");
-		for(int i = 0; i<list.length;i++) {
-			System.out.println("삭제리스트 :" + list[i]);
-		}
-		
-		int result = new CartService().deleteCart(list, m); 
-		
-		String page = "";
-			
-		if(result>0) {
-			page = "selectCart.ct";
-						
-		}else {
-			page= "views/common/errorPage.jsp";
-			request.setAttribute("msg", "장바구니 삭제에 실패하였습니다.");
-		}
-		
-		RequestDispatcher view = request.getRequestDispatcher(page);
-		view.forward(request, response);
+		//수정할 상품정보 수량 가져오기
 		
 				
+		String[] pCode = request.getParameterValues("pcode");
+		String[] count = request.getParameterValues("quantity");
+		
+		System.out.println("수정 물품 코드 " + pCode);
+		System.out.println("수량 " + count);
+		
+				
+		//카트 어레이 리스트 생성
+		ArrayList<Cart> cartList = new ArrayList<Cart>();
+		Cart c = null;
+		for(int i =0;i<pCode.length;i++) {
+			c = new Cart();
+			
+			c.setProduct_code(pCode[i]);
+			c.setCart_amount(Integer.parseInt(count[i]));
+			cartList.add(c);
+		}
+		
+		System.out.println(cartList);
+		
+		// 서비스로 전달
+		int result = new CartService().updateCart(m, cartList);
+		
+		
+		
 		
 	}
 

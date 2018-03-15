@@ -75,7 +75,8 @@ public class CartDao {
 				c.setM_no(rset.getInt("m_no"));
 				c.setPic1(rset.getString("p_pic1"));
 				c.setCart_amount(rset.getInt("COUNT(C.CART_AMOUNT)"));
-				c.setProduct_code(rset.getString("p_name"));
+				c.setpName(rset.getString("p_name"));
+				c.setProduct_code(rset.getString("p_code"));
 				c.setDiscount(rset.getDouble("p_discount"));
 				c.setPrice(rset.getInt("p_price"));
 				
@@ -142,6 +143,66 @@ public class CartDao {
 
 
 }
+
+
+	// 카트 물품 삭제
+	public int deleteCart(String[] list, Member m, Connection con) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteCart");
+		System.out.println("deleteCart : " + query);
+			
+			try {
+					for(int i = 0;i<list.length;i++) {
+						pstmt = con.prepareStatement(query);
+						pstmt.setInt(1, m.getM_no());
+						pstmt.setString(2, list[i]);
+						
+						/*DELETE 
+						FROM (SELECT  P.P_PIC1, P.P_NAME, M.M_NO , P.P_PRICE ,  P.P_DISCOUNT, COUNT(C.CART_AMOUNT)
+						      FROM CART C JOIN PRODUCT P ON(P.P_CODE = C.P_CODE) JOIN MEMBER M ON (C.M_NO = M.M_NO)
+						      GROUP BY P.P_PIC1, P.P_NAME, M.M_NO, P.P_PRICE, P.P_DISCOUNT)
+						WHERE M.M_NO=? AND P.P_NAME=?*/
+						
+						
+						result = pstmt.executeUpdate();
+					}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		
+		
+		return result;
+	}
+
+
+	// 카트 업데이트
+	public int updateCart(ArrayList<Cart> cartList, Member m, Connection con) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query="";
+		
+		
+		System.out.println("카트 수정 쿼리 : " + query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return result;
+	}
 	
 
 

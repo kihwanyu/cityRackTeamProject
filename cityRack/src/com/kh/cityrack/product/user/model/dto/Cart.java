@@ -16,12 +16,13 @@ public class Cart implements Serializable{
 	private String pic1; //
 	private double discount;
 	private int price;
+	private String pName;
 	
 	
 	public Cart() {
 		super();
 	}
-	public Cart(int cart_no, int m_no, String product_code, int cart_amount, String pic1, double discount, int price) {
+	public Cart(int cart_no, int m_no, String product_code, int cart_amount, String pic1, double discount, int price, String pName) {
 		super();
 		this.cart_no = cart_no;
 		this.m_no = m_no;
@@ -31,7 +32,14 @@ public class Cart implements Serializable{
 		this.pic1 = pic1;
 		this.discount = discount;
 		this.price =price;
+		this.pName = pName;
 		
+	}
+	public String getpName() {
+		return pName;
+	}
+	public void setpName(String pName) {
+		this.pName = pName;
 	}
 	public int getCart_no() {
 		return cart_no;
@@ -83,7 +91,7 @@ public class Cart implements Serializable{
 	@Override
 	public String toString() {
 		return "Cart [cart_no=" + cart_no + ", m_no=" + m_no + ", product_code=" + product_code + ", cart_amount="
-				+ cart_amount + discount + pic1 + price+ "]";
+				+ cart_amount +"discount = "+ discount +"pic1 : " + pic1 + "price = " + price+ "]";
 	}
 	
 	
