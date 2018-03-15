@@ -54,7 +54,7 @@ public class CartDao {
 			
 			System.out.println(query);			
 			
-			rset = pstmt.executeQuery(query);
+			rset = pstmt.executeQuery();
 		
 			
 			while(rset.next()) {
@@ -74,7 +74,7 @@ public class CartDao {
 				
 				c.setM_no(rset.getInt("m_no"));
 				c.setPic1(rset.getString("p_pic1"));
-				c.setCart_amount(rset.getInt("COUNT (C.CART_AMOUNT)"));
+				c.setCart_amount(rset.getInt("COUNT(C.CART_AMOUNT)"));
 				c.setProduct_code(rset.getString("p_name"));
 				c.setDiscount(rset.getDouble("p_discount"));
 				c.setPrice(rset.getInt("p_price"));
