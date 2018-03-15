@@ -126,6 +126,7 @@ public class InsertThumbnailServlet extends HttpServlet {
 			Member m = (Member)session.getAttribute("loginUser");
 			String uno = String.valueOf(m.getM_no());
 			b.setM_name(uno);
+			System.out.println("uno : " + uno);
 			// 위에 네줄을 한줄로도 쓸 수 있음
 			// b.setbWriter(String.valueOf(((Member)(request.getSession().getAttribute("loginUser"))).getUno()));
 
@@ -147,7 +148,7 @@ public class InsertThumbnailServlet extends HttpServlet {
 			System.out.println("fileList : " + fileList);
 			
 			// 가공한 데이터들을 service로 전송
-			int result = new ThumbBoardService().insertThumb(b, fileList);
+			int result = new ThumbBoardService().insertThumb(m, b, fileList);
 				
 			System.out.println("insertThumbnailServlet's result : " + result);
 			

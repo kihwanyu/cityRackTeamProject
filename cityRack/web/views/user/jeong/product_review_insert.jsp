@@ -133,7 +133,9 @@ table {
 							<table align="center">
 								<tr>
 									<td width="100px">제목</td>
-									<td colspan="3"><input type="text" size="53" name="title">
+									<td colspan="3">
+										<input type="text" size="53" name="title">
+										<input type="hidden" value="<%= loginUser.getM_no() %>" name="mNo">
 									</td>
 								</tr>
 								<tr>
