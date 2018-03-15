@@ -37,7 +37,7 @@ public class BoardDao {
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);
-			
+			//
 			if(rset.next()){
 				listCount = rset.getInt("COUNT(*)");
 			}
