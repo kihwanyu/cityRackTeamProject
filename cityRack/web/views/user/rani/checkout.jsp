@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.cityrack.product.user.model.dto.Cart" %>
+<%
+
+ArrayList<Cart> c = (ArrayList<Cart>)request.getAttribute("cartList");
+
+System.out.println("cart @checkout.jsp : " + c);
+
+
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -227,7 +235,7 @@ body{
 									<tr>
 										<th class="empty" colspan="3"></th>
 										<th>제품 총 금액</th>
-										<th colspan="2" class="sub-total">$97.50</th>
+										<th colspan="2" class="sub-total">원</th>
 									</tr>
 									<tr>
 										<th class="empty" colspan="3"></th>
@@ -262,6 +270,7 @@ body{
 					<input type="hidden" id="pay_buyer_email" name="pay_buyer_email">
 					
 				</form>
+				
 				<script type="text/javascript">
 				$(function(){
 					
