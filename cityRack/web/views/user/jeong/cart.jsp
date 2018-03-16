@@ -143,8 +143,8 @@ System.out.println("cart @cart.jsp " + c);
 									<tr>
 										<th class="empty" colspan="3"></th>
 										<th>결제금액</th>
-										<th colspan="2" class="total" id="payThis">
-										<input type="hidden" name="totalPay" id="totalPay">
+										<th colspan="2" class="total" id="payThis">									
+										
 										<script type="text/javascript">
 										
 											$(function(){
@@ -159,9 +159,11 @@ System.out.println("cart @cart.jsp " + c);
 												var payThisAmount = total-dc+deliveryFee;
 												
 												$("#payThis").html(payThisAmount);
-												$("#totalPay").val(payThisAmount);
+											
 												
 											});
+											
+											
 										</script>
 										</th>
 									</tr>

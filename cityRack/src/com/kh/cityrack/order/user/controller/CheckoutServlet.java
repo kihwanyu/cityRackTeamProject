@@ -37,8 +37,7 @@ public class CheckoutServlet extends HttpServlet {
 		//멤버 정보 가져오기
 		Member m = (Member) request.getSession().getAttribute("loginUser");
 		
-		//totalPay 가져오기		
-		int totalPay = Integer.parseInt(request.getParameter("totalPay"));
+
 		//카트 어레이 리스트 담기
 		ArrayList<Cart> cart = new CartService().selectCart(m);
 		
@@ -46,7 +45,7 @@ public class CheckoutServlet extends HttpServlet {
 		if(cart!=null) {
 			page = "views/user/rani/checkout.jsp";
 			request.setAttribute("cartList", cart);
-			request.setAttribute("totalPay", totalPay);			
+				
 			
 		} else {
 			page= "views/common/errorPage.jsp";
