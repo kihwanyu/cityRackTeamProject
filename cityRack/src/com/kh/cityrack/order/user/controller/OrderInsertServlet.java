@@ -1,14 +1,21 @@
 package com.kh.cityrack.order.user.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.kh.cityrack.member.common.model.dto.Member;
+import com.kh.cityrack.order.user.model.dto.Cart;
 import com.kh.cityrack.order.user.model.dto.Delivery;
+import com.kh.cityrack.order.user.model.service.CartService;
 import com.kh.cityrack.order.user.model.service.DeliveryService;
+import com.kh.cityrack.order.user.model.service.OrderService;
 
 /**
  * Servlet implementation class PaymentInsertServlet
@@ -36,16 +43,34 @@ public class OrderInsertServlet extends HttpServlet {
 		int paycode = (Integer)request.getAttribute("paycode");
 		
 		String page="";
-		/*상품이 넘어와야됨*/
+		
+		HttpSession session = request.getSession();
+		
+		//로그인 정보
+		Member m = (Member)session.getAttribute("loginUser");
+		
+		int mno = m.getM_no();
+	
 		int result = 0;
+		ArrayList<Cart> cartList = new CartService().memberCartListGetAll(mno);
+		
+		
+		result = new OrderService().orderInsert(mno ,dcode, paycode ,cartList);
+		
 		
 		if(result > 0){
-			
-			page = "";
+			result = new CartService().memberCartDeleteAll(mno);
+			if(result > 0){
+				page = "";
+			} else {
+				request.setAttribute("msg", "장바구니 삭제 실패");
+				page = "views/common/errorPage.jsp";
+			}
 		} else {
-			request.setAttribute("msg", "배송 등록 실패");
+			request.setAttribute("msg", "주문 등록 실패");
 			page = "views/common/errorPage.jsp";
-		}
+		}		
+		
 		request.getRequestDispatcher(page).forward(request, response);
 	}
 
