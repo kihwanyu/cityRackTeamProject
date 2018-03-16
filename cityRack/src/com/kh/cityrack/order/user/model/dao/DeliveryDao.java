@@ -18,18 +18,18 @@ public class DeliveryDao {
 	private Properties prop = null;
 	public DeliveryDao(){
 		//prop 객체 인스턴스화
-				prop = new Properties();
-				
-				//fileName에 member-query.properties 파일의 위치를 넣어준다.
-				String fileName = OrderDao.class.getResource("/sql/user/delivery/delivery-query.properties").getPath();
-				
-				try {
-					//prop객체에 member-query.properties 파일위치를 넣어준다.
-					prop.load(new FileReader(fileName));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		prop = new Properties();
+		
+		//fileName에 member-query.properties 파일의 위치를 넣어준다.
+		String fileName = OrderDao.class.getResource("/sql/user/delivery/delivery-query.properties").getPath();
+		
+		try {
+			//prop객체에 member-query.properties 파일위치를 넣어준다.
+			prop.load(new FileReader(fileName));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public int deliveryInsert(Connection conn, Delivery d) {
 		PreparedStatement pstmt = null;
