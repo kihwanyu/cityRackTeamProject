@@ -1,5 +1,7 @@
 package com.kh.cityrack.order.admin.model.dao;
 
+import static com.kh.cityrack.common.JDBCTemplet.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -10,11 +12,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import org.apache.tomcat.jdbc.pool.interceptor.ResetAbandonedTimer;
+
 import com.kh.cityrack.order.admin.model.dto.Order;
 import com.kh.cityrack.order.admin.model.dto.OrderSearch;
 import com.kh.cityrack.order.admin.model.dto.Product;
 
-import static com.kh.cityrack.common.JDBCTemplet.*;
+import oracle.net.aso.i;
 
 public class OrderDao {
 	private Properties prop = null;
@@ -83,7 +87,7 @@ public class OrderDao {
 			
 			while (rset.next()) {
 				o = new Order();
-				o.setO_ono(rset.getInt("O_ONO"));
+				o.setO_ono(rset.getString("O_ONO"));
 				o.setO_orderDate(rset.getDate("O_ORDERDATE"));
 				o.setM_email(rset.getString("M_EMAIL"));
 				o.setP_name(rset.getString("P_NAME"));
@@ -100,6 +104,7 @@ public class OrderDao {
 			close(rset);
 			close(pstmt);
 		}
+		System.out.println(olist);
 		return olist;
 	}
 	public int orderSearchListCount(Connection conn, OrderSearch oSearch, String[] searchTypeArr, String orderType) {
@@ -306,7 +311,7 @@ public class OrderDao {
 			while(rset.next()){
 				Order o = new Order();
 				o = new Order();
-				o.setO_ono(rset.getInt("O_ONO"));
+				o.setO_ono(rset.getString("O_ONO"));
 				o.setO_orderDate(rset.getDate("O_ORDERDATE"));
 				o.setM_email(rset.getString("M_EMAIL"));
 				o.setP_name(rset.getString("P_NAME"));
@@ -323,6 +328,7 @@ public class OrderDao {
 			close(rset);
 			close(pstmt);
 		}
+		
 		return oList;
 	}
 	public Order orderDetailGet(Connection conn, String ono) {
@@ -341,7 +347,7 @@ public class OrderDao {
 						
 			if(rset.next()){
 				o = new Order();
-				o.setO_ono(rset.getInt("O_ONO"));
+				o.setO_ono(rset.getString("O_ONO"));
 				o.setO_orderDate(rset.getDate("O_ORDERDATE"));
 				o.setM_email(rset.getString("M_EMAIL"));
 				o.setO_state(rset.getString("O_STATE"));
@@ -401,6 +407,8 @@ public class OrderDao {
 				
 		String query = prop.getProperty("orderListGetPcount");
 		
+		Order Order = null;
+		
 		try {
 			pstmt = conn.prepareStatement(query);
 			
@@ -412,14 +420,11 @@ public class OrderDao {
 			
 			rset = pstmt.executeQuery();
 			
-			oList = new ArrayList<Order>();
-			
 			while (rset.next()) {
 				int i = 0;
-												
 				oList.get(i).setpCount(rset.getInt("PCOUNT"));
-				
 				i++;
+				
 			}
 			
 		} catch (SQLException e) {

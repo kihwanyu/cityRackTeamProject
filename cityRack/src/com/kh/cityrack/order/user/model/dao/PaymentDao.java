@@ -77,6 +77,7 @@ public class PaymentDao {
 			
 			if(rset.next()){
 				result = rset.getInt(1);
+				System.out.println("payCodeGet : " + result);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

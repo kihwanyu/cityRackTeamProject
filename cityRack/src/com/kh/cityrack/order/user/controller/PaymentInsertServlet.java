@@ -99,7 +99,7 @@ public class PaymentInsertServlet extends HttpServlet {
 		result = new PaymentService().paymentInsert(p);
 		
 		if(result > 0){
-	
+			
 			request.setAttribute("paycode", result);
 			request.setAttribute("d", d);
 			request.setAttribute("cartList", cartList);

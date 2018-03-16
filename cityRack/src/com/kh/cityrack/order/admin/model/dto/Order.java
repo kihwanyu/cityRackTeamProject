@@ -11,7 +11,7 @@ public class Order implements Serializable{
 	private static final long serialVersionUID = 8146957136130411643L;
 	
 	private int o_no; // 주문_번호
-	private int o_ono; // 주문_번호
+	private String o_ono; // 주문_번호
 	private Date o_orderDate; // 주문_주문일자
 	private String m_email; // 회원_이메일
 	private String p_code; // 상품_코드
@@ -28,7 +28,7 @@ public class Order implements Serializable{
 		super();
 	}
 
-	public Order(int o_no, int o_ono, Date o_orderDate, String m_email, String p_code, String p_name, int pCount,
+	public Order(int o_no, String o_ono, Date o_orderDate, String m_email, String p_code, String p_name, int pCount,
 			int pa_amount, int d_no, int pay_no, String o_state, Double c_discount, String o_note) {
 		super();
 		this.o_no = o_no;
@@ -54,11 +54,11 @@ public class Order implements Serializable{
 		this.o_no = o_no;
 	}
 
-	public int getO_ono() {
+	public String getO_ono() {
 		return o_ono;
 	}
 
-	public void setO_ono(int o_ono) {
+	public void setO_ono(String o_ono) {
 		this.o_ono = o_ono;
 	}
 

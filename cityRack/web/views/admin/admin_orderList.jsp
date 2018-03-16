@@ -4,8 +4,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	ArrayList<Order> olist = (ArrayList<Order>)request.getAttribute("olist");
-	
+	ArrayList<Order> olist = (ArrayList<Order>)request.getAttribute("oList");
+	System.out.println(olist);
 	Boolean searchBoolean = (Boolean)request.getAttribute("searchBoolean");
 	
 	String[] searchTypeArr = null;
@@ -466,25 +466,63 @@
 					<th width="6%" style="text-align: center;">주문상태</th>
 					<th width="6%" style="text-align: center;">상태변경</th>
 					<!-- 도시락 외 3 클릭시 주문 정보 다 출력. -->
+				<%
+					String[] selectedArr = new String[6];		
+				%>
+				
 				</tr>
+				<%for(int i = 0; i < olist.size(); i++){ %>
 				<tr>
-					<td style="text-align: right;">100000</td>
+					<td style="text-align: right;"><%=olist.get(i).getO_ono() %></td>
 					<td style="text-align: left;">2018-03-01</td>
-					<td style="text-align: left;">abcd1234@naver.com</td>
-					<td style="text-align: left;"><a href="<%=request.getContextPath()%>/orderDetailGetAll.or?ono=100">********* 외 3</a></td>
-					<td style="text-align: right;">56,000</td>
+					<td style="text-align: left;"><%=olist.get(i).getM_email() %></td>
+					<td style="text-align: left;"><a href="<%=request.getContextPath()%>/orderDetailGetAll.or?ono=<%=olist.get(i).getO_ono() %>"><%=olist.get(i).getP_name() %> 외 <%=olist.get(i).getpCount()-1 %></a></td>
+					<td style="text-align: right;"><%=olist.get(i).getPa_amount() %></td>
+					
+					<%
+					selectedArr[0] = "";
+					selectedArr[1] = "";
+					selectedArr[2] = "";
+					selectedArr[3] = "";
+					selectedArr[4] = "";
+					selectedArr[5] = "";
+					
+					for(int j = 0; j < selectedArr.length; j++) { 
+						switch (olist.get(i).getO_state()) {
+						case "준비중":
+							selectedArr[0] = "selected=\"selected\"";
+							break;
+						case "준비완료":
+							selectedArr[0] = "selected=\"selected\"";
+							break;
+						case "배송대기":
+							selectedArr[2] = "selected=\"selected\"";		
+							break;
+						case "배송완료":
+							selectedArr[3] = "selected=\"selected\"";
+ 							break;
+						case "취소대기":
+							selectedArr[4] = "selected=\"selected\"";
+ 							break;
+						default://취소완료.
+							selectedArr[5] = "selected=\"selected\"";
+							break;
+						}
+					} %>
 					<td>
 						<select name="status">
-							<option value="ready">준비중</option>
-							<option value="allSet">준비완료</option>
-							<option value="delivery">배송중</option>
-							<option value="deliveryCompleted">배송완료</option>
-							<option value="contractStandby">취소대기</option>
-							<option value="contractCompleted">취소완료</option>
+							<option value="준비중" <%=selectedArr[0] %>>준비중</option>
+							<option value="준비완료" <%=selectedArr[1] %>>준비완료</option>
+							<option value="배송중" <%=selectedArr[2] %>>배송중</option>
+							<option value="배송완료" <%=selectedArr[3] %>>배송완료</option>
+							<option value="취소대기" <%=selectedArr[4] %>>취소대기</option>
+							<option value="취소완료" <%=selectedArr[5] %>>취소완료</option>
 						</select>
 					</td>
-					<td><button onclick="dropOut();">변경</button></td>
+					
+					<td><input type="button" onclick="uodateBtn();">변경</button></td>
 				</tr>
+				<%} %>
 			</table>	
 			<% 
 				double backNextPageVal = (double)currentPage/limit;
@@ -497,15 +535,15 @@
 			<%if(!searchBoolean) {%>
 			<!-- <h3>검색 안한 페이징</h3> -->
 			<div class="pagingArea" align="center">
-				<button onclick="location.href='<%= request.getContextPath()%>/OrdersGetAll.or?currentPage=1'"><<</button>
+				<button onclick="location.href='<%= request.getContextPath()%>/OrderGetAll.or?currentPage=1'"><<</button>
 				<%if(currentPage <= 1) { %>
 				<button><</button>
 				<%} else { 
 					if(backNextpage < 1) {%>
-						<button onclick="location.href='<%= request.getContextPath()%>/OrdersGetAll.or?currentPage=1'"><</button>
+						<button onclick="location.href='<%= request.getContextPath()%>/OrderGetAll.or?currentPage=1'"><</button>
 				<% 	} else {%>
 				
-						<button onclick="location.href='<%= request.getContextPath()%>/OrdersGetAll.or?currentPage=<%=backNextpage%>'"><</button>
+						<button onclick="location.href='<%= request.getContextPath()%>/OrderGetAll.or?currentPage=<%=backNextpage%>'"><</button>
 				<%	} %>
 				<%} %>
 				<%for(int p = startPage; p <= endPage; p++){ 
@@ -513,19 +551,19 @@
 				%>
 					<button disabled="disabled"><%=p %></button>
 				<%	} else { %>
-					<button onclick="location.href='<%= request.getContextPath()%>/OrdersGetAll.or?currentPage=<%=p %>'"><%=p %></button>
+					<button onclick="location.href='<%= request.getContextPath()%>/OrderGetAll.or?currentPage=<%=p %>'"><%=p %></button>
 				<%	} %>	
 				<%} %>
 				<%if(currentPage >= maxPage){ %>
 				<button disabled="disabled">></button>	
 				<%} else { 
 					if(forwardNextpage > maxPage) {%>
-					<button onclick="location.href='<%= request.getContextPath()%>/OrdersGetAll.or?currentPage=<%= maxPage%>'">></button>
+					<button onclick="location.href='<%= request.getContextPath()%>/OrderGetAll.or?currentPage=<%= maxPage%>'">></button>
 					<% } else { %>
-					<button onclick="location.href='<%= request.getContextPath()%>/OrdersGetAll.or?currentPage=<%= forwardNextpage%>'">></button>
+					<button onclick="location.href='<%= request.getContextPath()%>/OrderGetAll.or?currentPage=<%= forwardNextpage%>'">></button>
 					<%} %>
 				<%} %> 
-				<button onclick="location.href='<%= request.getContextPath()%>/OrdersGetAll.or?currentPage=<%=maxPage%>'">>></button>
+				<button onclick="location.href='<%= request.getContextPath()%>/OrderGetAll.or?currentPage=<%=maxPage%>'">>></button>
 			</div>
 			<%} else {%>
 			<!-- <h3>검색한 페이징</h3> -->
