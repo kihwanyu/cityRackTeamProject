@@ -68,7 +68,7 @@ public class InsertCartServlet extends HttpServlet {
 		            String key = entry.getKey();
 		            String[] value = entry.getValue();
 
-		            //키값이 'foodprice'로 시작하면 맵에 담기.
+		            //키값이 'amount'를 포함하면
 		            if(key.contains("amount")) {
 		            	
 		            	if(value.length>1) {

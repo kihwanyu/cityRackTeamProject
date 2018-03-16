@@ -29,7 +29,7 @@ System.out.println("cart @cart.jsp " + c);
 		<div class="container">
 			<!-- row -->
 			<div class="row">
-				<form id="cartForm" class="clearfix">
+				<form id="cartForm" class="clearfix" action="<%=request.getContextPath() %>/goCheckOut.or" method="post">
 
 					<div class="col-md-12">
 						<div class="order-summary clearfix">
@@ -39,7 +39,6 @@ System.out.println("cart @cart.jsp " + c);
 							<table class="shopping-cart-table table">
 								<thead>
 									<tr>
-
 										<th><input type="checkbox" id="checkAll">전체선택</th>
 										<th>상품</th>
 										<th></th>
@@ -145,6 +144,7 @@ System.out.println("cart @cart.jsp " + c);
 										<th class="empty" colspan="3"></th>
 										<th>결제금액</th>
 										<th colspan="2" class="total" id="payThis">
+										<input type="hidden" name="totalPay" id="totalPay">
 										<script type="text/javascript">
 										
 											$(function(){
@@ -159,6 +159,8 @@ System.out.println("cart @cart.jsp " + c);
 												var payThisAmount = total-dc+deliveryFee;
 												
 												$("#payThis").html(payThisAmount);
+												$("#totalPay").val(payThisAmount);
+												
 											});
 										</script>
 										</th>
@@ -209,7 +211,11 @@ System.out.println("cart @cart.jsp " + c);
 							
 							
 							 function goCheckOut(){
-								 confirm('장바구니에 담긴 상품들로 주문하시겠습니까?');
+								 var question = confirm('장바구니에 담긴 상품들로 주문하시겠습니까?');
+								 
+								 if(question == true){
+									$("#cartForm").submit();
+								 }
 							 }
 								
 							</script>
