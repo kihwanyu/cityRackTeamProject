@@ -68,7 +68,7 @@ body{
 		<div class="container">
 			<!-- row -->
 			<div class="row">
-				<form role='order' id="checkout-form" class="clearfix">
+				<form role='order' id="checkout-form" class="clearfix" action="<%=request.getContextPath() %>/PaymentInsert.pay" method="post">
 					<div class="col-md-6">
 						<div class="billing-details">
 							<!-- <p>Already a customer ? <a href="#">Login</a></p> -->
@@ -237,7 +237,7 @@ body{
 									<tr>
 										<th class="empty" colspan="3"></th>
 										<th>주문 총 금액</th>
-										<th colspan="2" class="total" id="total" >10000</th>
+										<th colspan="2" class="total" id="total" >100</th>
 									</tr>
 								</tfoot>
 							</table>
@@ -248,18 +248,18 @@ body{
 
 					</div>
 					
-					<input type="hidden" id='pay_pg'>
-					<input type="hidden" id="pay_paymethod">
-					<input type="hidden" id="pay_merchant_uid">
-					<input type="hidden" id="pay_name">
-					<input type="hidden" id="pay_amount">
-					<input type="hidden" id="pay_buyer_name">
-					<input type="hidden" id="pay_buyer_tel">
-					<input type="hidden" id="pay_buyer_addr">
-					<input type="hidden" id="pay_buyer_postcode">
-					<input type="hidden" id="pay_imp_uid">
-					<input type="hidden" id="pay_apply_num">
-					<input type="hidden" id="pay_buyer_email">
+					<input type="hidden" id='pay_pg' name="pay_pg">
+					<input type="hidden" id="pay_paymethod" name="pay_paymethod">
+					<input type="hidden" id="pay_merchant_uid" name="pay_merchant_uid">
+					<input type="hidden" id="pay_name" name="pay_name">
+					<input type="hidden" id="pay_amount" name="pay_amount">
+					<input type="hidden" id="pay_buyer_name" name="pay_buyer_name">
+					<input type="hidden" id="pay_buyer_tel" name="pay_buyer_tel">
+					<input type="hidden" id="pay_buyer_addr" name="pay_buyer_addr">
+					<input type="hidden" id="pay_buyer_postcode" name="pay_buyer_postcode">
+					<input type="hidden" id="pay_imp_uid" name="pay_imp_uid">
+					<input type="hidden" id="pay_apply_num" name="pay_apply_num">
+					<input type="hidden" id="pay_buyer_email" name="pay_buyer_email">
 					
 				</form>
 				<script type="text/javascript">
@@ -289,11 +289,11 @@ body{
 						var pay_buyer_address = $('#sample6_address').val();
 						var pay_buyer_postcode = $('#sample6_postcode').val(); */
 						
-						var pay_buyer_email = <%=loginUser.getM_email()%>;
-						var pay_buyer_name = <%=loginUser.getM_name()%>;
-						var pay_buyer_tel = <%=loginUser.getM_phone()%>;
-						var pay_buyer_address = <%=address1+address2%>;
-						var pay_buyer_postcode = <%=postcode%>;
+						var pay_buyer_email = "<%=loginUser.getM_email()%>";
+						var pay_buyer_name = "<%=loginUser.getM_name()%>";
+						var pay_buyer_tel = "<%=loginUser.getM_phone()%>";
+						var pay_buyer_address = "<%=address1+address2%>";
+						var pay_buyer_postcode = "<%=postcode%>";
 						
 						IMP.request_pay({
 						    pg : pg, 
