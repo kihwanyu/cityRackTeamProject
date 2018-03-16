@@ -3,6 +3,8 @@
     pageEncoding="UTF-8"%>
 <%
 	Board b = (Board)request.getAttribute("b");
+	Member m = (Member)session.getAttribute("loginUser");
+	Board re_b = (Board)request.getAttribute("re_b");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,27 +64,58 @@
 					<div class="section-title">
 						<h3 class="title">문의내용</h3>
 					</div>
-						<div>
-							<table class="table table-striped">
-								<tr>
-									<th width="100" align="center">NO</th>
-									<td name="bcount"><%=b.getBo_no() %></td>
-								</tr>
-								<tr>
-									<th width="100" align="center">제목</th>
-									<td name="title"><%=b.getBo_title() %></td>
-								</tr>
-								<tr>
-									<th width="100" align="center">작성자</th>
-									<td name="writer"><%=b.getM_name() %></td>
-								</tr>
-								<tr>
-									<th width="100" align="center">내용</th>
-									<td name="content"><%=b.getBo_content() %></td>
-								</tr>
-							</table>
-						</div>
+						<div class="tableArea">
+			<table align="center" width="800px" class="question-table table">
+				<tr>
+					<td width="80"><b>번호</b></td>
+					<td>
+						<span><%= b.getBo_no() %></span>
+					</td>
+					<td><b>제목</b></td>
+					<td colspan="3">
+						<span><%= b.getBo_title()  %></span>
+					</td>
+				</tr>
+				<tr>
+					<td><b>작성자</b></td>
+					<td width="80">
+						<span><%= b.getM_name()  %></span>
+					</td>
+					<td width="80"><b>조회수</b></td>
+					<td width="50">
+						<span><%= b.getBo_hit()  %></span>
+					</td>
+					<td width="80"><b>작성일</b></td>
+					<td>
+						<span><%= b.getBo_date() %></span>
+					</td>
 					
+				</tr>
+				<tr>
+					<td colspan="6"><b>내용</b></td>
+				</tr>
+				<tr>
+					<td colspan="6">
+						<p id="content"><%= b.getBo_content() %></p>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		<hr>
+		<!-- 답변 내용 b.getStatus 'Y' 일때 보여지도록-->
+		
+		<div>
+		<% System.out.println("re_b :"+ re_b); %>
+		<table>
+			<tr>
+				<td><h4>문의하신글에 대한 답변입니다.</h4></td>
+			</tr>
+			<tr>
+				<td><h5>ㄴㄱㅁ</h5></td>
+			<tr>
+		</table>
+		</div>
 					
 					
 							
@@ -100,6 +133,10 @@
 				<br/>
 				<div align="right">
 					<button onclick="location.href='<%=request.getContextPath()%>/selectList.bo'" class="primary-btn">이전으로</button>
+					<% System.out.println(m); %>
+					<%if(m.getM_no() == 10001){ %>
+					<button onclick="location.href='views/user/jeong/myPage_QnA_Re.jsp'" class="primary-btn">답변작성
+					<% } %>
 				</div>
 				
 				<script>

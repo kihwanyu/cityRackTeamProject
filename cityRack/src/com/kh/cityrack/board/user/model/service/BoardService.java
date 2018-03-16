@@ -53,5 +53,21 @@ public class BoardService {
 		close(con);
 		return b;
 	}
+	public int insertRe(Board re_b) {
+		Connection con = getConnection();
+		
+		int result = new BoardDao().insertRe(con, re_b);
+		if(result > 0) commit(con);
+		else rollback(con);
+		close(con);
+		return result;
+	}
+	public ArrayList<Board> selectList() {
+		Connection con = getConnection();
+		ArrayList<Board> rlist = new BoardDao().selectList(con);
+		close(con);
+		return rlist;
+	}
+	
 
 }

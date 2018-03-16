@@ -85,14 +85,15 @@ public class SelectBoardList extends HttpServlet {
 		//ArrayList<Board> list = new BoardService().selectList();
 		
 		ArrayList<Board> list = new BoardService().selectList(currentPage, limit);
-		
-		System.out.println(list);
-		
+		ArrayList<Board> rlist = new BoardService().selectList();
+		System.out.println("list :" +list);
+		System.out.println("rlist :" + rlist);
 		String page = "";
 		if(list != null){
 			page = "views/user/jeong/myPage_QnA.jsp";
 			request.setAttribute("list", list);
 			request.setAttribute("pi", pi);
+			request.setAttribute("rlist", rlist);
 		}else{
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시판 조회 실패!");

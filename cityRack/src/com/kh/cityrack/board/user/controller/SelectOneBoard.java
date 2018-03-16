@@ -42,6 +42,7 @@ public class SelectOneBoard extends HttpServlet {
 		String page = null;
 		if(b != null){
 			page = "views/user/jeong/myPage_QnA_View.jsp";
+			page = "views/user/jeong/myPage_QnA_Re.jsp";
 			request.setAttribute("b", b);
 		}else{
 			page = "views/common/errorPage.jsp";
