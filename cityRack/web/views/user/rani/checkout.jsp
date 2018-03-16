@@ -325,6 +325,7 @@ body{
 						      	$('#pay_buyer_name').val(pay_buyer_name);
 						      	$('#pay_buyer_tel').val(pay_buyer_tel);
 						      	$('#pay_buyer_addr').val(pay_buyer_address);
+						      	$('#pay_buyer_postcode').val(pay_buyer_postcode);
 						      	$('#pay_buyer_email').val(pay_buyer_email);
 								
 						        formObj.submit();

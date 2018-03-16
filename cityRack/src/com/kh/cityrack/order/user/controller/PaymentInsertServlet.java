@@ -45,10 +45,14 @@ public class PaymentInsertServlet extends HttpServlet {
 		String pay_imp_uid = request.getParameter("pay_imp_uid");
 		String pay_apply_num = request.getParameter("pay_apply_num");
 		
+		System.out.println("buyer_postcode : " + buyer_postcode);
+		
 		Payment p = new Payment(pg, pay_method, merchant_uid, name,Integer.parseInt(amount)
 								, buyer_name, buyer_tel, buyer_email, buyer_addr, buyer_postcode, pay_imp_uid
 								, pay_apply_num);
 		
+		
+		System.out.println("p.getBuyer_postcode() : "+p.getBuyer_postcode());
 		/*배송*/
 		
 		String d_addr_name = request.getParameter("name");
@@ -73,7 +77,7 @@ public class PaymentInsertServlet extends HttpServlet {
 			
 			request.setAttribute("paycode", paycode);
 			request.setAttribute("d", d);
-			page = request.getContextPath() + "/deliveryInsert.de";
+			page = "/deliveryInsert.de";
 		} else {
 			request.setAttribute("msg", "결제 등록 실패");
 			page = "views/common/errorPage.jsp";

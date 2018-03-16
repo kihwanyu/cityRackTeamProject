@@ -29,6 +29,7 @@ public class PaymentService {
 		int result = new PaymentDao().payCodeGet(conn);
 		
 		close(conn);
+		
 		return result;
 	}
 

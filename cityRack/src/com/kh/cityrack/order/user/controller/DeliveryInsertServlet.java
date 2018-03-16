@@ -44,7 +44,7 @@ public class DeliveryInsertServlet extends HttpServlet {
 			
 			request.setAttribute("paycode", paycode);
 			request.setAttribute("dcode", dcode);
-			page = request.getContextPath() + "/OrderInsert.or";
+			page = "/OrderInsert.or";
 		} else {
 			request.setAttribute("msg", "배송 등록 실패");
 			page = "views/common/errorPage.jsp";
