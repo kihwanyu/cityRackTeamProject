@@ -14,22 +14,13 @@ public class DeliveryService {
 		
 		if(result > 0) {
 			commit(conn);
+			result = new DeliveryDao().dcodeGet(conn);
 		} else {
 			rollback(conn);
 		}
 		
 		close(conn);
 
-		return result;
-	}
-
-	public int dcodeGet() {
-		Connection conn = getConnection();
-		
-		int result = new DeliveryDao().dcodeGet(conn);
-		
-		close(conn);
-		
 		return result;
 	}
 

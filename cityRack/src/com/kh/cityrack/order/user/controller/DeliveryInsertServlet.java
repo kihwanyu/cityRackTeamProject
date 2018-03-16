@@ -40,10 +40,10 @@ public class DeliveryInsertServlet extends HttpServlet {
 		int result = new DeliveryService().deliveryInsert(d);
 		
 		if(result > 0){
-			int dcode = new DeliveryService().dcodeGet();
+			
 			
 			request.setAttribute("paycode", paycode);
-			request.setAttribute("dcode", dcode);
+			request.setAttribute("dcode", result);
 			page = "/OrderInsert.or";
 		} else {
 			request.setAttribute("msg", "배송 등록 실패");

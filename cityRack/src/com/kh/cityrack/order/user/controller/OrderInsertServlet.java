@@ -54,14 +54,15 @@ public class OrderInsertServlet extends HttpServlet {
 		int result = 0;
 		ArrayList<Cart> cartList = new CartService().memberCartListGetAll(mno);
 		
+		System.out.println("cartList : " + cartList);
 		
 		result = new OrderService().orderInsert(mno ,dcode, paycode ,cartList);
-		
 		
 		if(result > 0){
 			result = new CartService().memberCartDeleteAll(mno);
 			if(result > 0){
-				page = "";
+				request.setAttribute("msg", "결제 성공");
+				page = "views/common/successPage.jsp";
 			} else {
 				request.setAttribute("msg", "장바구니 삭제 실패");
 				page = "views/common/errorPage.jsp";

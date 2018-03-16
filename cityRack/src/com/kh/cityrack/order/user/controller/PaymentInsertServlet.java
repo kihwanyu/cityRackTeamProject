@@ -73,9 +73,8 @@ public class PaymentInsertServlet extends HttpServlet {
 		int result = new PaymentService().paymentInsert(p);
 		
 		if(result > 0){
-			int paycode = new PaymentService().payCodeGet();
-			
-			request.setAttribute("paycode", paycode);
+	
+			request.setAttribute("paycode", result);
 			request.setAttribute("d", d);
 			page = "/deliveryInsert.de";
 		} else {
