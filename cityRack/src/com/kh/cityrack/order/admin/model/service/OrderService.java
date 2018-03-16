@@ -27,7 +27,7 @@ public class OrderService {
 		Connection conn = getConnection();
 		
 		ArrayList<Order> olist = new OrderDao().orderListGetAll(conn, currentPage, limit);
-		
+
 		close(conn);
 		
 		return olist;

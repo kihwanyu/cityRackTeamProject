@@ -26,7 +26,7 @@ public class OrderDao {
 			e.printStackTrace();
 		}
 	}
-	public int orderInsert(Connection conn, String ono, int mno ,int paycode, int dcode, Cart cart) {
+	public int orderInsert(Connection conn, String ono, int mno ,int dcode, int paycode, Cart cart) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		

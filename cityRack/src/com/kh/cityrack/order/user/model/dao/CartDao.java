@@ -60,7 +60,7 @@ public class CartDao {
 			close(rset);
 			close(pstmt);
 		}
-		
+		System.out.println("cartList : " + cartList);
 		return cartList;
 	}
 	public int memberCarListDelteAll(Connection conn, int mno) {
