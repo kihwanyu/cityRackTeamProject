@@ -217,7 +217,7 @@
 										</ul>
 									</div>
 								<script>
-										alert("<%= loginUser.getM_no() %>");
+										
 										function goResult(){
 											
 										
@@ -255,9 +255,18 @@
 								</div>
 							</div>
 						</li>
-						<li><a href="views/user/jeong/product_review_insert.jsp">city樂 후기</a></li>
+						<li><a onclick="goReview(); return false;">city樂 후기</a></li>
 					</ul>
 				</div>
+				
+				<script>
+				
+					function goReview(){
+						
+						location.href="/cityRack/selectThumbList.tn";
+					}
+				
+				</script>
 				<!-- 메뉴 네비게이터 -->
 			</div>
 		</div>

@@ -49,7 +49,7 @@
 .outer {
 	width: 1000px;
 	height: 650px;
-	background: #132639;
+	background: lightgray;
 	color: white;
 	margin-left: auto;
 	margin-right: auto;
@@ -124,9 +124,9 @@ table {
 
 				<div class="outer">
 					<br />
-					<h2 align="center">사진 게시글 작성 ㅇㅅㅇ</h2>
+					<h2 align="center" style="color:white;">cityRack 후기작성</h2>
 					<!-- 파일 업로드시에는 액션/메소드말고 encType이라고 하나 더해야 request에 사진도 함께 전송해줌 -->
-					<form action="<%=request.getContextPath()%>/insertThumb"
+					<form action="<%=request.getContextPath()%>/insertThumb.tn"
 						method="post" encType="multipart/form-data">
 
 						<div class="insertArea">
@@ -134,7 +134,7 @@ table {
 								<tr>
 									<td width="100px">제목</td>
 									<td colspan="3">
-										<input type="text" size="53" name="title">
+										<input type="text" size="53" style="color:black;" name="title">
 										<input type="hidden" value="<%= loginUser.getM_no() %>" name="mNo">
 									</td>
 								</tr>
@@ -168,7 +168,7 @@ table {
 								<tr>
 									<td>사진 메모</td>
 									<td colspan="3">
-										<textarea name="content" rows="5" cols="55" style="resize: none;"></textarea>
+										<textarea name="content" rows="5" cols="55" style="resize: none; color:black;"></textarea>
 									</td>
 								</tr>
 
