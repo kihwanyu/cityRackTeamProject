@@ -40,7 +40,7 @@ public class OrderDao {
 			pstmt.setInt(4, paycode);
 			pstmt.setString(5,cart.getPcode());
 			pstmt.setInt(6, cart.getCart_amount());
-			
+			//
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -45,7 +45,7 @@ public class OrderInsertServlet extends HttpServlet {
 		String page="";
 		
 		HttpSession session = request.getSession();
-		
+		//
 		//로그인 정보
 		Member m = (Member)session.getAttribute("loginUser");
 		

@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class Delivery implements Serializable{
 	/**
-	 * 
-	 */
+	 *
+	 *///
 	private static final long serialVersionUID = 1819006040304224696L;
 	
 	private String d_addrName;

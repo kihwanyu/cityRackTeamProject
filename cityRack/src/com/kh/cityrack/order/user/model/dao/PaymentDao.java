@@ -35,7 +35,7 @@ public class PaymentDao {
 
 		int result = 0;
 		String query = prop.getProperty("paymentInsert");
-		
+		//
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, p.getPg());

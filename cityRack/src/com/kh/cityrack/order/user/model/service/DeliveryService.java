@@ -11,7 +11,7 @@ public class DeliveryService {
 		Connection conn = getConnection();
 		
 		int result = new DeliveryDao().deliveryInsert(conn, d);
-		
+		//
 		if(result > 0) {
 			commit(conn);
 			result = new DeliveryDao().dcodeGet(conn);

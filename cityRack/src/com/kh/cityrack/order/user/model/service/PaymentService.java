@@ -6,7 +6,7 @@ import static com.kh.cityrack.common.JDBCTemplet.*;
 
 import java.sql.Connection;
 public class PaymentService {
-
+//
 	public int paymentInsert(Payment p) {
 		Connection conn = getConnection();
 		

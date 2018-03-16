@@ -17,7 +17,7 @@ public class CartDao {
 	public CartDao(){
 		//prop 객체 인스턴스화
 		prop = new Properties();
-		
+		//
 		//fileName에 member-query.properties 파일의 위치를 넣어준다.
 		String fileName = OrderDao.class.getResource("/sql/user/cart/cart-query.properties").getPath();
 		

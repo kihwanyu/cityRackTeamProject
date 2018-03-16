@@ -30,7 +30,7 @@ public class DeliveryInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*배송*/
+		///*배송*/
 		
 		Delivery d = (Delivery)request.getAttribute("d");
 		int paycode = (Integer)request.getAttribute("paycode");

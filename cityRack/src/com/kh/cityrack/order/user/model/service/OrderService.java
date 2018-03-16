@@ -20,7 +20,7 @@ public class OrderService {
 		int randomNum = (int)(Math.random() * 10000);
 		
 		String ono = ft.format(currentTime) +""+randomNum;
-		
+		//
 		for(int i = 0; i < cartList.size(); i++){
 			resultList.add(new OrderDao().orderInsert(conn, ono, mno, dcode, paycode ,cartList.get(i)));
 		}

@@ -16,7 +16,7 @@ import com.kh.cityrack.order.admin.model.service.OrderService;
 
 /**
  * Servlet implementation class ProductGetAllServlet
- */
+ *///
 @WebServlet("/orderDetailGetAll.or")
 public class OrderDetailGetAllServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
