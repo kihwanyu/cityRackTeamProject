@@ -29,14 +29,18 @@ public class BoardDao {
 	}
 	public int getListCount(Connection con) {
 		Statement stmt = null;
-		int listCount = 0;
 		ResultSet rset = null;
+		int listCount = 0;
 		
 		String query = prop.getProperty("listCount");
 		
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);
+			// 페이징처리수정부분
+			if(rset.next()){
+				listCount = rset.getInt("COUNT(*)");
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
