@@ -69,7 +69,9 @@
 							
 								<% 
 								
-								switch(loginUser.getQ_8constitution()){ 
+								System.out.println("결과페이지 qResult : " + request.getParameter("qResult"));
+								
+								switch(request.getParameter("qResult")){ 
 								
 									case "목양" : %>
 									

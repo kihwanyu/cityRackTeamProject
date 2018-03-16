@@ -1,13 +1,16 @@
 package com.kh.cityrack.question.user.controller;
 
 import java.io.IOException;
+
+import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.kh.cityrack.member.common.model.service.WithdrawService;
+import com.kh.cityrack.member.common.model.dto.Member;
 import com.kh.cityrack.question.user.model.dto.Question;
 import com.kh.cityrack.question.user.model.service.QuestionService;
 /*sdf*//*sdf*/
@@ -44,8 +47,14 @@ public class ConstitutionServlet extends HttpServlet {
 		String page = "";
 		if(result > 0) {
 			request.setAttribute("qResult", qResult);
+			System.out.println("ConstitutionServlet's qResult(if문) : " + qResult);
+	
+			// 설문조사결과 세션에도 담기
+			HttpSession session = request.getSession();
+			
 			page = "views/user/jeong/myPage_result.jsp";
-			response.sendRedirect(page);
+			request.getRequestDispatcher(page).forward(request, response);
+			
 		} 
 		
 	}
