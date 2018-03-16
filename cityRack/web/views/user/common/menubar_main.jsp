@@ -166,14 +166,14 @@
 						<li><a href="#">전체상품보기</a></li>
 						<li><a href="#">베스트상품</a></li>
 						<li><a href="<%=request.getContextPath() %>/getProducts.pr">시그니처 도시락</a></li>
-						<li><a href="#">이벤트</a></li>
+						<li><a href="views/user/jeong/event.jsp">이벤트</a></li>
 						<li class="dropdown mega-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">설문조사 <i class="fa fa-caret-down"></i></a>
 							<div class="custom-menu" width="300px">
 								<div class="row">
 									<div class="col-md-3">
 										<div class="hidden-sm hidden-xs">
 											<a class="banner banner-1">
-												<img src="../jeong/img/survey1.png" alt="">
+												<img src="views/user/jeong/img/survey1.png" alt="">
 											</a>
 										</div>
 										<hr>
@@ -181,28 +181,90 @@
 											<li><h3 class="list-links-title">간편설문조사</h3></li>
 											<li>총 20문항으로, <br/>보다 간편하게 체질을 <br/>판단합니다.</li>
 											<li><br/></li>
-											<li><a href="survey_easy.jsp">간편설문조사하기 Go!</a></li>
+											<li><a href="views/user/jeong/survey_easy.jsp">간편설문조사하기 Go!</a></li>
 										</ul>
 									</div>
 									<div class="col-md-3">
 										<div class="hidden-sm hidden-xs">
 											<a class="banner banner-1">
-												<img src="../jeong/img/survey2.png" alt="">
+												<img src="views/user/jeong/img/survey2.png" alt="">
 											</a>
 										</div>
 										<hr>
 										<ul class="list-links">
-											<li><h3 class="list-links-title">상세설문조사</h3></li>
+										<li><h3 class="list-links-title">상세설문조사</h3></li>
 											<li>총 65문항으로, <br/>보다 확실하게 체질을 <br/>판단합니다.</li>
 											<li><br/></li>
-											<li><a href="survey_detail.jsp">상세설문조사하기 Go!</a></li>
+											<li><a href="views/user/jeong/survey_detail.jsp">상세설문조사하기 Go!</a></li>
 										</ul>
 									</div>
+									<div class="col-md-3">
+										<div class="hidden-sm hidden-xs">
+											<a class="banner banner-1">
+												<img src="views/user/jeong/img/survey2.png" alt="">
+											</a>
+										</div>
+										<hr>
+										<ul class="list-links">
+										<li><h3 class="list-links-title">설문조사결과</h3></li>
+											<li>기존의 설문조사 결과로 <br/>체질의 특성과 음식을<br/>추천해드립니다.</li>
+											<li><br/></li>
+											<li>
+												<!-- <a href="views/user/jeong/myPage_result.jsp">설문조사결과보기 Go!</a> -->
+												<button type="button" onclick="goResult(); return false;" class="primary-btn">설문조사결과보기 Go!</button>
+											</li>
+										</ul>
+									</div>
+								<script>
+										function goResult(){
+											
+										
+										 <% 	
+										
+											// 로그인은 되어있는데
+											if(loginUser != null){
+												System.out.println(loginUser.getM_no());
+												System.out.println(loginUser.getQ_8constitution());
+												// 설문조사 한경우
+												 if(loginUser.getQ_8constitution() != null){ 
+												
+												 %>
+													 /* 회원번호도 넘기기 */
+													location.href="<%= request.getContextPath()%>/selectCon?mNo=" + "<%= loginUser.getM_no() %>";
+													request.setAttribute(q_8constitution);
+													<%-- location.href="<%= request.getContextPath() %>/views/user/jeong/myPage_cs.jsp?사랑해="+ "사랑해"; --%>
+													
+											<%	
+												// 설문조사 안한경우
+												 } else {  %>
+													/*  설문조사 먼저 하라구 알림창 */
+												 alert("먼저 체질 설문조사를 진행해주세요."); 
+											<%	 } 
+											} else { 
+											
+											%>
+												/*  로그인 후 이용할 수 있는 서비스라고 */
+												alert("로그인 후 이용하실 수 있는 서비스입니다.");
+										<%	} %> 
+										 
+										}	
+												
+								</script>
 								</div>
 							</div>
 						</li>
+						<li><a onclick="goReview(); return false;">city樂 후기</a></li>
 					</ul>
 				</div>
+				
+				<script>
+				
+					function goReview(){
+						
+						location.href="/cityRack/selectThumbList.tn";
+					}
+				
+				</script>
 				<!-- 메뉴 네비게이터 -->
 			</div>
 		</div>

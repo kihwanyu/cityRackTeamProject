@@ -24,7 +24,7 @@ import com.kh.cityrack.member.common.model.dto.Member;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-@WebServlet("/insertThumb")
+@WebServlet("/insertThumb.tn")
 public class InsertThumbnailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

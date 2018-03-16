@@ -30,7 +30,8 @@
 	<!-- nouislider -->
 	<link type="text/css" rel="stylesheet" href="views/user/jeong/css/nouislider.min.css" />
 
-	
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="views/user/jeong/css/font-awesome.min.css">
 
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="views/user/jeong/css/style.css" />
@@ -98,7 +99,7 @@
 								<strong class="text-uppercase">장바구니</strong>
 							</div>
 							<div class="loginDiv">
-								<a href="<%=request.getContextPath() %>/selectCart.ct" class="text-uppercase">주문하러가기</a>
+								<a href="views/user/jeong/cart.jsp" class="text-uppercase">주문하러가기</a>
 							</div>
 						</li>
 						<!-- /Cart -->
@@ -216,7 +217,7 @@
 										</ul>
 									</div>
 								<script>
-										alert("<%= loginUser.getM_no() %>");
+										
 										function goResult(){
 											
 										
@@ -254,9 +255,18 @@
 								</div>
 							</div>
 						</li>
-						<li><a href="views/user/jeong/product_review_insert.jsp">city樂 후기</a></li>
+						<li><a onclick="goReview(); return false;">city樂 후기</a></li>
 					</ul>
 				</div>
+				
+				<script>
+				
+					function goReview(){
+						
+						location.href="/cityRack/selectThumbList.tn";
+					}
+				
+				</script>
 				<!-- 메뉴 네비게이터 -->
 			</div>
 		</div>

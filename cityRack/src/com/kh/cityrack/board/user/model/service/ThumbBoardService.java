@@ -24,10 +24,16 @@ public class ThumbBoardService {
 		
 		System.out.println("ThumbBoardService's result1 : " + result1);
 
+		// board 게시판에 insert되면 커밋
+		if(result1 > 0) {
+			commit(con);
+			result = 1;
+		} else {
+			rollback(con);
+		}
 		
 		
 		if(result1 > 0) {
-			// 아직 커밋을 안했어서 BF_NO의 키값을 가져올 수 없으니까 제일 최근의 커런트 값의 시퀀스를 가져옴
 			int boNo = new ThumbBoardDao().selectCurrval(con);
 
 			// 반복문을 이용해서 파일리스트에 반복적으로 가공한 BO_NO를 저장
@@ -36,7 +42,10 @@ public class ThumbBoardService {
 			}
 		}
 		
-		System.out.println("ThumbBoardService's b.getBo_bo : " + b.getBo_no());
+		System.out.println("ThumbBoardService's fileList.get(i).getBo_no : " + fileList.get(1).getBo_no());
+		
+		
+		// 사진없이 글만올라갈떄도 생각..,,
 		
 		// 게시글에 첨부된 사진파일 insert
 		int result2 = new ThumbBoardDao().insertBoardFile(con, fileList, b);
@@ -44,7 +53,6 @@ public class ThumbBoardService {
 		System.out.println("ThumbBoardService's result2 : " + result2);
 		
 		
-
 		if(result1 > 0 && result2 > 0) {
 			commit(con);
 			result = 1;

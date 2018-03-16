@@ -67,6 +67,7 @@ public class ThumbBoardDao {
 		int boNo = 0;
 		
 		String query = prop.getProperty("selectCurrval");
+		System.out.println("selectCurrval's query : " + query);
 		
 		try {
 			stmt = con.createStatement();
@@ -75,7 +76,10 @@ public class ThumbBoardDao {
 			
 			// 어차피 rset은 한행이니까 if문
 			if(rset.next()) {
+				
 				boNo = rset.getInt("currval");
+				
+				System.out.println("if문 안에 boNo : " + boNo);
 			}
 			
 		} catch (SQLException e) {
@@ -99,7 +103,7 @@ public class ThumbBoardDao {
 		try {
 			pstmt = con.prepareStatement(query);
 			
-			System.out.println("ThumbBoardDao's b.getBo_no() : " + b.getBo_no()); // 결과 0,,, 왜지?!!!
+			System.out.println("ThumbBoardDao's fileList.getBo_no() : " + fileList.get(1).getBo_no());
 			
 			// 리스트에서 꺼내오기는 객체를 생성하고 해당객체의 bid를 가져오고, 다시 객체생성하고 .. 반복처리해야함
 			for (int j = 0; j < fileList.size(); j++) {
@@ -107,7 +111,7 @@ public class ThumbBoardDao {
 				String fileName = fileList.get(j).getBf_originname();
 				String extension = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length()); 
 				
-				pstmt.setInt(1, b.getBo_no()); // insertThumb쿼리문의 BONO 시쿼스와 같아야 함.
+				pstmt.setInt(1, fileList.get(j).getBo_no()); // insertThumb쿼리문의 BONO 시쿼스와 같아야 함.
 				pstmt.setString(2, fileList.get(j).getBf_originname());
 				pstmt.setString(3, fileList.get(j).getBf_name());
 				pstmt.setString(4, extension);
@@ -152,18 +156,18 @@ public class ThumbBoardDao {
 				// 해쉬맵에 put으로 get을 통해 정보가져와서 저장
 				hmap = new HashMap<String, Object>();
 				
-				hmap.put("bid", rset.getInt("bid"));
-				hmap.put("bno", rset.getInt("bno"));
-				hmap.put("btitle", rset.getString("btitle"));
-				hmap.put("bcontent", rset.getString("bcontent"));
-				hmap.put("bwriter", rset.getString("nick_name"));
-				hmap.put("bcount", rset.getInt("bcount"));
-				hmap.put("bdate", rset.getDate("bdate"));
-				hmap.put("fid", rset.getString("fid"));
-				hmap.put("originName", rset.getString("origin_Name"));
-				hmap.put("changeName", rset.getString("change_Name"));
-				hmap.put("filePath", rset.getString("file_path"));
-				hmap.put("uploadDate", rset.getDate("upload_Date"));
+				//hmap.put("bid", rset.getInt("bid"));
+				hmap.put("bo_no", rset.getInt("bo_no"));
+				hmap.put("bo_title", rset.getString("bo_title"));
+				hmap.put("bo_content", rset.getString("bo_content"));
+				hmap.put("m_no", rset.getInt("m_no"));
+				hmap.put("bo_hit", rset.getInt("bo_hit"));
+				hmap.put("bo_recomm", rset.getInt("bo_recomm"));
+				hmap.put("bo_date", rset.getDate("bo_date"));
+				hmap.put("bf_no", rset.getString("bf_no"));
+				hmap.put("bf_originname", rset.getString("bf_originname"));
+				hmap.put("bf_name", rset.getString("bf_name"));
+				hmap.put("bf_kind", rset.getString("bf_kind"));
 				
 				list.add(hmap); // -> selectAll과 같지만 hmap을 사용한것뿐
 			}
