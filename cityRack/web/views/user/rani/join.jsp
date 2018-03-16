@@ -157,8 +157,30 @@
 							<div class="inputs">
 								<input class="input" type="text" name="name" placeholder="이름" >	
 							
-								<input class="input" type="email" name="email" placeholder="이메일 주소" >								
-							
+								<input class="input" type="email" name="email" id="emailId" placeholder="이메일 주소" >								
+								<button class="input" style="background:#EBEBEB;margin-bottom:5px;border-radius:3px;" onclick="repeatIdCheck();">중복확인</button>
+								
+								
+								<script type="text/javascript">
+								function repeatIdCheck(){
+									var id = $("#emailId").val();
+									//console.log(id);
+									 $.ajax({
+										  method: "POST",
+										  url: "checkRepeatId.em",
+										  data: {id:id},
+										  success:function(data){
+											  if(data == id){
+												  alert('이미 사용 중인 메일 주소입니다.');
+											  }else{
+												  alert('사용 가능한 메일 주소입니다.');
+											  }
+										  }
+										}); 
+								}
+								</script>
+								
+								
 								<input class="input" type="password" name="password" placeholder="비밀번호">							
 						
 								<input class="input" type="password" name="password2" placeholder="비밀번호 확인">
