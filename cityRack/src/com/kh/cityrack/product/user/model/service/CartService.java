@@ -26,11 +26,17 @@ public class CartService {
 	
 	
 	// 카트에 시그니처 도시락 담기
-	public int insertCart(Map foodname, Member m ) {
+	public int insertCart(Map foodamount, Map foodname, Member m ) {
 		int result = 0;
 		Connection con = getConnection();
 		
-		result = new CartDao().insertCart(foodname, con, m);
+		result = new CartDao().insertCart(foodname, foodamount, con, m);
+		
+		if(result>0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
 		
 		close(con);
 		return result;
@@ -41,6 +47,12 @@ public class CartService {
 	public int deleteCart(String[] list, Member m) {
 		Connection con = getConnection();
 		int result = new CartDao().deleteCart(list, m, con);
+		if(result>0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
 		close(con);
 		return result ;
 	}
@@ -51,6 +63,12 @@ public class CartService {
 		Connection con = getConnection();
 		int result = new CartDao().updateCart(cartList, m, con);
 		
+		if(result>0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+				
 		close(con);
 		
 		return result;

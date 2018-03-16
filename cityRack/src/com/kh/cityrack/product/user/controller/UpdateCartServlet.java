@@ -3,6 +3,7 @@ package com.kh.cityrack.product.user.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -58,13 +59,21 @@ public class UpdateCartServlet extends HttpServlet {
 			cartList.add(c);
 		}
 		
-		System.out.println(cartList);
-		
+				
 		// 서비스로 전달
 		int result = new CartService().updateCart(m, cartList);
+		String page = "";
 		
-		
-		
+		if(result>0) {
+			page = "selectCart.ct";
+			
+		} else {
+			page= "views/common/errorPage.jsp";
+			request.setAttribute("msg", "장바구니 수정에 실패하였습니다.");
+		}
+	
+		RequestDispatcher view = request.getRequestDispatcher(page);
+		view.forward(request, response);
 		
 	}
 

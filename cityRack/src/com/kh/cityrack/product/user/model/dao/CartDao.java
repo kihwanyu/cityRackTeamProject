@@ -74,7 +74,7 @@ public class CartDao {
 				
 				c.setM_no(rset.getInt("m_no"));
 				c.setPic1(rset.getString("p_pic1"));
-				c.setCart_amount(rset.getInt("COUNT(C.CART_AMOUNT)"));
+				c.setCart_amount(rset.getInt("CART_AMOUNT"));
 				c.setpName(rset.getString("p_name"));
 				c.setProduct_code(rset.getString("p_code"));
 				c.setDiscount(rset.getDouble("p_discount"));
@@ -104,26 +104,38 @@ public class CartDao {
 	}
 	
 	// 장바구니에 물건 담기 
-	public int insertCart( Map foodname, Connection con, Member m) {
+	public int insertCart( Map foodname, Map foodamount, Connection con, Member m) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = prop.getProperty("insertCart");
 				
 		   
-           System.out.println("foodname @DAO: "  + foodname);        
+           System.out.println("foodname @DAO: "  + foodname);   
+           System.out.println("foodamount @DAO: "  + foodamount);  
+           
+           int size = 0;
+           if(foodname.size() == foodamount.size()) {
+        	   size = foodamount.size();
+        	   System.out.println("같다!");
+           }
+           
+           
+           
            
            try {
+        		 
+        			   
+        			   for(int i = 0 ; i<size;i++) {
+        				   
+        				   pstmt = con.prepareStatement(query);
+        				   
+        				   pstmt.setInt(1, m.getM_no());
+        				   pstmt.setInt(2, (int) foodname.get("foodname"+i) );
+        				   pstmt.setInt(3, (int) foodamount.get("amount"+i));
+        				   
+        				   result = pstmt.executeUpdate();
+        			   }
         		   
-        		   for(int i = 0 ; i<foodname.size();i++) {
-        			   
-        			   pstmt = con.prepareStatement(query);
-        			   
-        			   pstmt.setInt(1, m.getM_no());
-        			   pstmt.setInt(2, (int) foodname.get("foodname"+i) );
-        			   pstmt.setInt(3, 1);
-        			   
-        			   result = pstmt.executeUpdate();
-        		   }
         		   
 				
 			} catch (SQLException e) {
@@ -185,19 +197,29 @@ public class CartDao {
 	public int updateCart(ArrayList<Cart> cartList, Member m, Connection con) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query="";
+		String query=prop.getProperty("updateCart");
+		System.out.println("수정 쿼리 : " + query);	
 		
-		
-		System.out.println("카트 수정 쿼리 : " + query);
-		
+	
+		/*updateCart=UPDATE TABLE CART SET CART_AMOUNT=? WHERE P_CODE=? AND M_NO=?*/
 		try {
-			pstmt = con.prepareStatement(query);
-			
+			for(int i = 0; i<cartList.size();i++) {
+				
+				pstmt = con.prepareStatement(query);
+				
+				pstmt.setInt(1, cartList.get(i).getCart_amount());
+				pstmt.setString(2, cartList.get(i).getProduct_code());
+				pstmt.setInt(3, m.getM_no());
+				
+				result = pstmt.executeUpdate();
+			}
 			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
 		
 		
