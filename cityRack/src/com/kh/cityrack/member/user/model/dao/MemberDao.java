@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.cityrack.member.common.model.dto.Member;
@@ -274,6 +275,36 @@ public class MemberDao {
 		}
 
 		return result;
+	}
+
+
+
+
+	// 이메일 중복 체크
+	public ArrayList<com.kh.cityrack.member.user.model.dto.Member> checkRepeatId(Connection con, String emailCheck) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("checkRepeatId");
+		
+		
+		ArrayList<com.kh.cityrack.member.user.model.dto.Member> emailList = 
+				new MemberDao().checkRepeatId(con, emailCheck);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, emailCheck);
+			
+			rset = pstmt.executeQuery();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return emailList;
 	}
 
 }

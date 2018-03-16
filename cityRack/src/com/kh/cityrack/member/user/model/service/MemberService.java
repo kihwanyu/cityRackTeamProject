@@ -1,10 +1,15 @@
 package com.kh.cityrack.member.user.model.service;
 
-import java.sql.Connection;
+import static com.kh.cityrack.common.JDBCTemplet.close;
+import static com.kh.cityrack.common.JDBCTemplet.commit;
+import static com.kh.cityrack.common.JDBCTemplet.getConnection;
+import static com.kh.cityrack.common.JDBCTemplet.rollback;
 
-import com.kh.cityrack.member.user.model.dao.MemberDao;
+import java.sql.Connection;
+import java.util.ArrayList;
+
 import com.kh.cityrack.member.common.model.dto.Member;
-import static com.kh.cityrack.common.JDBCTemplet.*;
+import com.kh.cityrack.member.user.model.dao.MemberDao;
 public class MemberService {
 	/*sdf*//* sd */
 	// 회원 가입
@@ -73,5 +78,18 @@ public class MemberService {
 		
 		return result;
 	}
+
+
+	// 이메일 중복 체크
+	public ArrayList<com.kh.cityrack.member.user.model.dto.Member> checkRepeatId(String emailCheck) {
+		Connection con = getConnection();
+		ArrayList<com.kh.cityrack.member.user.model.dto.Member> emailList = 
+				new MemberDao().checkRepeatId(con, emailCheck);
+		close(con);
+		
+		return emailList;
+	}
+
+
 
 }
