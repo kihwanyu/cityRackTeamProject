@@ -13,24 +13,25 @@ public class OrderService {
 	public int orderInsert(int mno, int dcode, int paycode, ArrayList<Cart> cartList) {
 		ArrayList<Integer> resultList = new ArrayList<Integer>();
 		Connection conn = getConnection();
-		int result = 0;
+		int result = 1;
 		
 		long currentTime = System.currentTimeMillis();
 		SimpleDateFormat ft = new SimpleDateFormat("yyyyMMddHHmmss");
 		int randomNum = (int)(Math.random() * 10000);
 		
 		String ono = ft.format(currentTime) +""+randomNum;
-		
+		//
 		for(int i = 0; i < cartList.size(); i++){
-			resultList.add(new OrderDao().orderInsert(conn, Integer.valueOf(ono), mno, dcode, paycode ,cartList.get(i)));
+			resultList.add(new OrderDao().orderInsert(conn, ono, mno, dcode, paycode ,cartList.get(i)));
 		}
 		
 		for(int i = 0; i < resultList.size(); i++){
 			if(resultList.get(i) <= 0){
 				result = -1;
 				break;
-			}
+			} 
 		}
+		
 		if(result > 0){
 			commit(conn);
 		} else {

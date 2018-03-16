@@ -6,7 +6,7 @@ import static com.kh.cityrack.common.JDBCTemplet.*;
 
 import java.sql.Connection;
 public class PaymentService {
-
+//
 	public int paymentInsert(Payment p) {
 		Connection conn = getConnection();
 		
@@ -14,6 +14,7 @@ public class PaymentService {
 		
 		if(result > 0){
 			commit(conn);
+			result = new PaymentDao().payCodeGet(conn);
 		} else {
 			rollback(conn);
 		}
@@ -22,15 +23,4 @@ public class PaymentService {
 		
 		return result;
 	}
-
-	public int payCodeGet() {
-		Connection conn = getConnection();
-		
-		int result = new PaymentDao().payCodeGet(conn);
-		
-		close(conn);
-		
-		return result;
-	}
-
 }

@@ -30,7 +30,7 @@ public class DeliveryInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*배송*/
+		///*배송*/
 		
 		Delivery d = (Delivery)request.getAttribute("d");
 		int paycode = (Integer)request.getAttribute("paycode");
@@ -40,10 +40,10 @@ public class DeliveryInsertServlet extends HttpServlet {
 		int result = new DeliveryService().deliveryInsert(d);
 		
 		if(result > 0){
-			int dcode = new DeliveryService().dcodeGet();
+			
 			
 			request.setAttribute("paycode", paycode);
-			request.setAttribute("dcode", dcode);
+			request.setAttribute("dcode", result);
 			page = "/OrderInsert.or";
 		} else {
 			request.setAttribute("msg", "배송 등록 실패");

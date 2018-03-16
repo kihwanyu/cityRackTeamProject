@@ -66,16 +66,15 @@ public class PaymentInsertServlet extends HttpServlet {
 
 		String d_addr_msg = request.getParameter("message");
 		
-		
+		//
 		Delivery d = new Delivery(d_addr_name, d_addr_tel, d_addr_phone, d_addr_adress, d_addr_msg);
 		String page="";
 		
 		int result = new PaymentService().paymentInsert(p);
 		
 		if(result > 0){
-			int paycode = new PaymentService().payCodeGet();
-			
-			request.setAttribute("paycode", paycode);
+	
+			request.setAttribute("paycode", result);
 			request.setAttribute("d", d);
 			page = "/deliveryInsert.de";
 		} else {

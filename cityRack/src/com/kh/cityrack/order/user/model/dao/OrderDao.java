@@ -26,23 +26,22 @@ public class OrderDao {
 			e.printStackTrace();
 		}
 	}
-	public int orderInsert(Connection conn, int ono, int mno ,int paycode, int dcode, Cart cart) {
+	public int orderInsert(Connection conn, String ono, int mno ,int paycode, int dcode, Cart cart) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
-		String query = "orderInsert";
+		String query = prop.getProperty("orderInsert");
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, ono);
+			pstmt.setString(1, ono);
 			pstmt.setInt(2, mno);
 			pstmt.setInt(3, dcode);
 			pstmt.setInt(4, paycode);
 			pstmt.setString(5,cart.getPcode());
-			pstmt.setString(6, cart.getPcode());
-			
+			pstmt.setInt(6, cart.getCart_amount());
+			//
 			result = pstmt.executeUpdate();
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
