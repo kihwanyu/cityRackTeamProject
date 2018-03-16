@@ -24,11 +24,12 @@ public class StockService {
 		
 		return result;
 	}
-
-	public int StockTotal(String pcode, Stock s) {
+	public int StockTotal(Stock s) {
+	//public int StockTotal(String pcode, Stock s) {
 		Connection conn = getConnection();
 		
-		int result = new StockDao().stockTotal(conn, pcode);
+		//int result = new StockDao().stockTotal(conn, pcode);
+		int result = new StockDao().stockTotal(conn, s.getPcode());
 		
 		if(s.getDivsion().equals("입고")){
 			result += s.getAmount();
