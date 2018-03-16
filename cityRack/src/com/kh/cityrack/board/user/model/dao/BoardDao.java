@@ -64,8 +64,9 @@ public class BoardDao {
 			
 			System.out.println("startRow"+startRow);
 			System.out.println("endRow"+endRow);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
+			pstmt.setString(1, "게시글");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			rset = pstmt.executeQuery();
 			//조회 시작할 행 번호와 마지막 행 번호 계산
 			list = new ArrayList<Board>();
@@ -169,6 +170,8 @@ public class BoardDao {
 				b.setM_name(rset.getString("m_name"));
 				b.setBo_title(rset.getString("bo_title"));
 				b.setBo_content(rset.getString("bo_content"));
+				b.setBo_date(rset.getDate("bo_date"));
+				b.setBo_category(rset.getString("bo_category"));
 			}
 			
 			
@@ -182,6 +185,62 @@ public class BoardDao {
 			close(rset);
 		}
 		return b;
+	}
+	public int insertRe(Connection con, Board re_b) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertRe");
+		System.out.println("query:"+query);
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, re_b.getBo_pno());
+			pstmt.setString(2, re_b.getBo_division());
+			pstmt.setString(3, re_b.getBo_category());
+			pstmt.setInt(4, re_b.getM_no());
+			pstmt.setString(5, re_b.getBo_title());
+			pstmt.setString(6, re_b.getBo_content());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		return result;
+	}
+	public ArrayList<Board> selectList(Connection con) {
+		PreparedStatement pstmt = null;
+		
+		ArrayList<Board> rlist= null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("reList");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, "답글");
+			rset = pstmt.executeQuery();
+			
+			rlist = new ArrayList<Board>();
+			while(rset.next()){
+				Board b = new Board();
+				b.setBo_pno(rset.getInt("bo_pno"));
+				b.setBo_title(rset.getString("bo_title"));
+				b.setBo_content(rset.getString("bo_content"));
+				
+				rlist.add(b);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return rlist;
 	}
 
 }
