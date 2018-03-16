@@ -395,6 +395,7 @@ overflow-y:scroll;
 	                  		  <br><br>
 	                  		  <p class="foodname" name="foodname" value="<%=pList.get(i).getP_name()%>"> <%=pList.get(i).getP_name() %> <a data-toggle="popover" data-content="<%=pList.get(i).getP_8constitution() %>"></a></p>
 	                  		   <p class="foodprice"><%=pList.get(i).getP_price() %> 원</p><br> 
+	                  		   <input class="input qty" name="amount" type="number" min="0" placeholder="0">
 	                  		  <input type="hidden" name="foodname" value="<%=pList.get(i).getP_code()%>"> <input type="hidden" name="foodprice" value="<%=pList.get(i).getP_price() %>">
 	                  		</td>
                   		<%
@@ -429,6 +430,7 @@ overflow-y:scroll;
 		                  			  <br><br>
 		                  			  <p class="foodname" name="foodname" value="<%=pList.get(i).getP_name() %>"><%=pList.get(i).getP_name() %><a data-toggle="popover" data-content="<%=pList.get(i).getP_8constitution() %>"></a></p>
 		                  			   <p class="foodprice"><%=pList.get(i).getP_price() %> 원</p><br> 
+		                  			     <input class="input qty" name="amount" type="number" min="0" placeholder="0">
 		                  			  <input type="hidden" name="foodname" value="<%=pList.get(i).getP_code() %>"> <input type="hidden" name="foodprice" value="<%=pList.get(i).getP_price() %>">
 		                  			</td>		                		
 	                 	<%} %>
@@ -470,8 +472,27 @@ overflow-y:scroll;
   			$(".foodimg").click(function(){
   				//이미지를 선택하면 선택한 토핑 푸드 테이블의 끝에서 첫번째 tr에 td를 추가한다.
   				//그리고 선택한 이미지의 td에 있는 내용을 전부 복사하여 붙여 넣는다.
-  				$(".selectFoodTable").find("tr:nth-last-child(1)").append("<td class='tdata'></td>");
-  				$(this).parent().children().clone(true).appendTo($(".selectFoodTable").find("tr:nth-last-child(1)").find("td:nth-last-child(1)"));
+  				
+  				if(tdata==0){ 
+  					$(".selectFoodTable").find("tr:nth-last-child(1)").append("<td class='tdata'></td>");
+  	  				$(this).parent().children().clone(true).appendTo($(".selectFoodTable").find("tr:nth-last-child(1)").find("td:nth-last-child(1)"));
+  				console.log( $(".selectFoodTable").find("td").children("p").eq(0).text() );
+  				console.log( $(this).parent().children("p").eq(0).text()  );
+  				} else {
+  				
+					for(var i = 0; i<tdata;i++){
+						if($(this).parent().children("p").eq(0).text() ==  $(".selectFoodTable").find("td").eq(i).children("p").eq(0).text()){
+							alert("중복된 상품입니다.");
+						} else {
+							$(".selectFoodTable").find("tr:nth-last-child(1)").append("<td class='tdata'></td>");
+		  	  				$(this).parent().children().clone(true).appendTo($(".selectFoodTable").find("tr:nth-last-child(1)").find("td:nth-last-child(1)"));
+		  	  				break;
+						}
+					}  				
+  					
+  					
+  				}	
+  				
 	  		
   				//tdata에 td의 개수를 담는다.
 	  			tdata = $(".tdata").length;
