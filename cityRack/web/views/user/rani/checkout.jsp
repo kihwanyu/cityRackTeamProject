@@ -8,9 +8,17 @@ System.out.println("cart @checkout.jsp : " + c);
 
 
 %>    
+
+</style>
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+.empty{
+	
+	border-top-style: none;
+}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
@@ -217,35 +225,94 @@ body{
 									</tr>
 								</thead>
 								<tbody>
+								<% for(int i = 0; i<c.size();i++){ %>
 									<tr>
-										<td class="thumb"><img src="./img/baby-octopus.jpg" alt=""></td>
+										<!-- 제품 정보 -->
+										<td class="thumb"><img src="product_download_imgFiles/<%=c.get(i).getPic1()%>" alt=""></td>
 										<td class="details">
-											<a href="#">쭈꾸미 볶음</a>
-											
+											<a href="#"><%=c.get(i).getpName() %></a>
 										</td>
-										<td class="price text-center"><strong>$32.50</strong><br><del class="font-weak"><small>$40.00</small></del></td>
-										<td class="qty text-center"><input class="input" type="number" value="1"></td>
-										<td class="total text-center"><strong class="primary-color">$32.50</strong></td>
-										<td class="text-right"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></td>
+										<!-- 가격 -->
+										<% if(c.get(i).getDiscount()!=0){ %>
+										<td class="price text-center">
+											<strong><%=(c.get(i).getDiscount()*0.01 )* c.get(i).getPrice() %></strong><br>
+											<del class="font-weak"><small><%=c.get(i).getPrice() %></small></del>
+										</td>
+										<%} else{ %>
+										<td class="price text-center">
+											<strong><%=c.get(i).getPrice() %></strong><br>
+										</td>
+										<%} %>
+										<!-- 수량 -->
+										<td class="qty text-center">
+											<input class="input" type="text" value="<%=c.get(i).getCart_amount()%>">
+										</td>
+										<!-- 단가 * 수량 -->
+										<td class="total text-center">
+										<% if(c.get(i).getDiscount() != 0)  {%>
+										<strong class=" primary-color"  ><%=(c.get(i).getDiscount()*0.01 )* c.get(i).getPrice() %> </strong>
+										<input type="hidden" class="eachTotalPrice" name="totalPrice"  value=<%=(c.get(i).getDiscount()*0.01 )* c.get(i).getPrice() %>>
+										<% } else {%>
+										<strong class=" primary-color" ><%=c.get(i).getPrice() %></strong>
+										<input type="hidden" class="eachTotalPrice" name="totalPrice" value=<%=c.get(i).getPrice() %>>
+										<%} %>
+										</td>
 									</tr>
-									
-									
+								<%} %>
 								</tbody>
 								<tfoot>
-									<tr>
-										<th class="empty" colspan="3"></th>
+								<tr>
+									 <tr>
+										<th class="empty" colspan="3" style="border-top-style: none;"></th>
 										<th>제품 총 금액</th>
-										<th colspan="2" class="sub-total">원</th>
+										<th colspan="2" class="sub-total" id="totalPrice">
+										 <script type="text/javascript">
+											$(function(){
+												var totalPrice = 0;
+												var length = $(".total").length;
+												console.log("length : " + length);
+												
+												for(var i = 0; i<length-1;i++){
+													totalPrice += parseInt($(".eachTotalPrice").eq(i).val());
+												}
+												
+												console.log("totalPrice : " + totalPrice);
+												
+												$("#totalPrice").html(totalPrice+"원");
+												
+											});										
+										</script> 
+										</th>
 									</tr>
 									<tr>
-										<th class="empty" colspan="3"></th>
+										<th class="empty" colspan="3" style="border-top-style: none;"></th>
 										<th>배송료</th>
-										<td colspan="2">Free Shipping</td>
+										<td colspan="2">2500원</td>
 									</tr>
 									<tr>
-										<th class="empty" colspan="3"></th>
-										<th>주문 총 금액</th>
-										<th colspan="2" class="total" id="total" >100</th>
+										<th class="empty" colspan="3" style="border-top-style: none;"></th>
+										
+										<th>결제금액</th>
+										<th colspan="2" class="total" id="payThis">									
+										
+										<script type="text/javascript">
+										
+											$(function(){
+												
+												var total = parseInt($("#totalPrice").text());
+												var deliveryFee = 2500;
+												
+												console.log("토탈 : " + total);
+												console.log( "배송료 "+ deliveryFee);
+												var payThisAmount = total+deliveryFee;
+												
+												$("#payThis").html(payThisAmount+"원");
+											
+											});
+											
+											
+										</script>
+										</th>
 									</tr>
 								</tfoot>
 							</table>
