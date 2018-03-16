@@ -149,7 +149,7 @@ public class InsertThumbnailServlet extends HttpServlet {
 					System.out.println("failedFile : " + failedFile);
 					
 					//failedFile.delete(); //결과를 t/f로 리턴(삭제성공은 t/실패면 f)
-					System.out.println(failedFile.delete()); // 이렇게하면 삭제도 하면서 출력도 함
+					System.out.println("failedFile.delete() : " + failedFile.delete()); // 이렇게하면 삭제도 하면서 출력도 함
 					
 				}
 				

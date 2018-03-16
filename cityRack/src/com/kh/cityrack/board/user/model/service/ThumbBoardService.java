@@ -44,13 +44,22 @@ public class ThumbBoardService {
 		
 		System.out.println("ThumbBoardService's fileList.get(i).getBo_no : " + fileList.get(1).getBo_no());
 		
+		int result2 = 0;
 		
-		// 사진없이 글만올라갈떄도 생각..,,
-		
-		// 게시글에 첨부된 사진파일 insert
-		int result2 = new ThumbBoardDao().insertBoardFile(con, fileList, b);
-		
-		System.out.println("ThumbBoardService's result2 : " + result2);
+		if(fileList.size() != 0){
+			
+			// 게시글에 첨부된 사진파일 insert
+			result2 = new ThumbBoardDao().insertBoardFile(con, fileList, b);
+			
+			System.out.println("ThumbBoardService's result2 : " + result2);
+			
+		} else{
+			
+			// 첨부파일이 없을때 기본으로 로고사진 insert
+			result2 = new ThumbBoardDao().insertDefaultFile(con, b);
+						
+			System.out.println("ThumbBoardService's result2 : " + result2);
+		}
 		
 		
 		if(result1 > 0 && result2 > 0) {
