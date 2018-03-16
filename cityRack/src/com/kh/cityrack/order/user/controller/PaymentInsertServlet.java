@@ -1,15 +1,23 @@
 package com.kh.cityrack.order.user.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.kh.cityrack.member.common.model.dto.Member;
+import com.kh.cityrack.order.user.model.dto.Cart;
 import com.kh.cityrack.order.user.model.dto.Delivery;
 import com.kh.cityrack.order.user.model.dto.Payment;
+import com.kh.cityrack.order.user.model.dto.Stock;
+import com.kh.cityrack.order.user.model.service.CartService;
 import com.kh.cityrack.order.user.model.service.PaymentService;
+import com.kh.cityrack.order.user.model.service.StockService;
 
 /**
  * Servlet implementation class PaymentInsertServlet
@@ -54,7 +62,6 @@ public class PaymentInsertServlet extends HttpServlet {
 		
 		System.out.println("p.getBuyer_postcode() : "+p.getBuyer_postcode());
 		/*배송*/
-		
 		String d_addr_name = request.getParameter("name");
 		String d_addr_tel = request.getParameter("tel");
 		String d_addr_phone = request.getParameter("phone");
@@ -66,16 +73,36 @@ public class PaymentInsertServlet extends HttpServlet {
 
 		String d_addr_msg = request.getParameter("message");
 		
-		//
 		Delivery d = new Delivery(d_addr_name, d_addr_tel, d_addr_phone, d_addr_adress, d_addr_msg);
 		String page="";
 		
-		int result = new PaymentService().paymentInsert(p);
+		HttpSession session = request.getSession();
+		/*재고*/
+		Member m = (Member)session.getAttribute("loginUser");	
+		int mno = m.getM_no();
+	
+		ArrayList<Cart> cartList = new CartService().memberCartListGetAll(mno);
+		
+		int result = 0;
+		
+		result = new StockService().StockInsert(cartList);
+	
+		if(result > 0){
+			System.out.println("입력완료");
+		} else {
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "재고 입력 에러 발생");
+			request.getRequestDispatcher(page).forward(request, response);
+			return;
+		}
+			
+		result = new PaymentService().paymentInsert(p);
 		
 		if(result > 0){
 	
 			request.setAttribute("paycode", result);
 			request.setAttribute("d", d);
+			request.setAttribute("cartList", cartList);
 			page = "/deliveryInsert.de";
 		} else {
 			request.setAttribute("msg", "결제 등록 실패");

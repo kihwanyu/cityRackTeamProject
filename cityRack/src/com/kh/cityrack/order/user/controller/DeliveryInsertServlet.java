@@ -1,12 +1,15 @@
 package com.kh.cityrack.order.user.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.cityrack.order.user.model.dto.Cart;
 import com.kh.cityrack.order.user.model.dto.Delivery;
 import com.kh.cityrack.order.user.model.service.DeliveryService;
 
@@ -34,7 +37,7 @@ public class DeliveryInsertServlet extends HttpServlet {
 		
 		Delivery d = (Delivery)request.getAttribute("d");
 		int paycode = (Integer)request.getAttribute("paycode");
-		
+		ArrayList<Cart> cartList = (ArrayList<Cart>)request.getAttribute("cartList");
 		String page="";
 		
 		int result = new DeliveryService().deliveryInsert(d);
@@ -44,6 +47,7 @@ public class DeliveryInsertServlet extends HttpServlet {
 			
 			request.setAttribute("paycode", paycode);
 			request.setAttribute("dcode", result);
+			request.setAttribute("cartList", cartList);
 			page = "/OrderInsert.or";
 		} else {
 			request.setAttribute("msg", "배송 등록 실패");

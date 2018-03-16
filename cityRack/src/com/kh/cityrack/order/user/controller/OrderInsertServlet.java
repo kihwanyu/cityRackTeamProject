@@ -12,9 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.cityrack.member.common.model.dto.Member;
 import com.kh.cityrack.order.user.model.dto.Cart;
-import com.kh.cityrack.order.user.model.dto.Delivery;
 import com.kh.cityrack.order.user.model.service.CartService;
-import com.kh.cityrack.order.user.model.service.DeliveryService;
 import com.kh.cityrack.order.user.model.service.OrderService;
 
 /**
@@ -41,7 +39,7 @@ public class OrderInsertServlet extends HttpServlet {
 		
 		int dcode = (Integer)request.getAttribute("dcode");
 		int paycode = (Integer)request.getAttribute("paycode");
-		
+		ArrayList<Cart> cartList = (ArrayList<Cart>)request.getAttribute("cartList");
 		String page="";
 		
 		HttpSession session = request.getSession();
@@ -52,9 +50,6 @@ public class OrderInsertServlet extends HttpServlet {
 		int mno = m.getM_no();
 	
 		int result = 0;
-		ArrayList<Cart> cartList = new CartService().memberCartListGetAll(mno);
-		
-		System.out.println("cartList : " + cartList);
 		
 		result = new OrderService().orderInsert(mno ,dcode, paycode ,cartList);
 		

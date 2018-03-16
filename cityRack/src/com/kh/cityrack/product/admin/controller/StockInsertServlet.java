@@ -57,7 +57,7 @@ public class StockInsertServlet extends HttpServlet {
 			
 			int p_total = 0;
 			
-			p_total = new StockService().StockTotal(pcode, s);
+			p_total = new StockService().StockTotal(s);
 			
 			if(p_total > -1){		
 				result = new StockService().StockInsert(s);

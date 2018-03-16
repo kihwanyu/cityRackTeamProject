@@ -23,7 +23,7 @@ public class ProductDao {
 		prop = new Properties();
 		
 		//fileName에 member-query.properties 파일의 위치를 넣어준다.
-		String fileName = PcategoryDao.class.getResource("/sql/admin/product/product-query.properties").getPath();
+		String fileName = StockDao.class.getResource("/sql/admin/product/product-query.properties").getPath();
 		
 		try {
 			//prop객체에 member-query.properties 파일위치를 넣어준다.
