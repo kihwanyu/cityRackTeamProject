@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*"%>
+	pageEncoding="UTF-8" import="java.util.*" %>
 
 <% ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>)request.getAttribute("list"); %>
 
 
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,20 +19,20 @@
 	rel="stylesheet">
 
 <!-- Bootstrap -->
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="views/user/jeong/css/bootstrap.min.css" />
 
 <!-- Slick -->
-<link type="text/css" rel="stylesheet" href="css/slick.css" />
-<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+<link type="text/css" rel="stylesheet" href="views/user/jeong/css/slick.css" />
+<link type="text/css" rel="stylesheet" href="views/user/jeong/css/slick-theme.css" />
 
 <!-- nouislider -->
-<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+<link type="text/css" rel="stylesheet" href="views/user/jeong/css/nouislider.min.css" />
 
 <!-- Font Awesome Icon -->
-<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="views/user/jeong/css/font-awesome.min.css">
 
 <!-- Custom stlylesheet -->
-<link type="text/css" rel="stylesheet" href="css/style.css" />
+<link type="text/css" rel="stylesheet" href="views/user/jeong/css/style.css" />
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -77,15 +75,10 @@
 }
 
 .thumb-list:hover {
-	opacity: 0.8;
+	opacity: 0.5;
 	cursor: pointer;
 }
 </style>
-
-
-
-
-
 
 
 
@@ -107,10 +100,9 @@
 					<h3 class="title">city樂 이용 후기</h3>
 				</div>
 				<br /> <br />
-				<!-- 			<form id="checkout-form" class="clearfix">
 					<div class="col-md-qq">
 						<div class="order-summary clearfix">
-							<table class="question-table table">
+							<!-- <table class="question-table table">
 								<thead>
 									<tr>
 										<th class="text-center">번호</th>
@@ -152,28 +144,62 @@
 										<td class="text-right"></td>
 									</tr>																		
 								</tbody>
-							</table>
+							</table> -->
+							
+							
+							<!-- 사진리스트를 불러와서 반복출력 -->
+							<!-- <div class="thumbnailArea" align="center"> -->
+							
+							<% 
+								// hmap을 반복하면서 아래 div를 반복생성 
+								for(int i = 0; i < list.size(); i++){ 
+							
+									HashMap<String, Object> hmap = list.get(i);
+							%>
+								<div class="thumb-list" align="center">
+									<div>
+										<!-- 히든으로 고유의 boNo를 전해줌 -->
+										<input type="hidden" value="<%= hmap.get("bo_no") %>"> <img
+											src="/cityRack/thumbnail_uploadFiles/<%= hmap.get("bf_name") %>"
+											width="200px" height="150px">
+									</div>
+									<p>
+										
+										<%= loginUser.getM_name() %>님
+										<br/> 제목 : 
+										<%= hmap.get("bo_title") %>
+										<br /> 조회수 :
+										<%= hmap.get("bo_hit") %>
+									</p>
+								</div>
+			
+								<% 	} %>
+			
+							</div>							
+							
+							
 						</div>
 					</div>
-				</form>
 				<br/>
 				
 				<br/>
 				<br/>
 				<div align="right">
-					<button class="primary-btn">후기작성</button>
+				<% if(loginUser != null){ %>
+					<button class="primary-btn" onclick="location.href='views/user/jeong/product_review_insert.jsp'">후기작성</button>
+				<% } %>	
 				</div>
-				<br/> -->
+				<br/> 
 
 
 				<hr />
 
-
+<%-- 
 
 				<!-- 사진리스트를 불러와서 반복출력 -->
 				<div class="thumbnailArea" align="center">
 
-					<% 
+		<% 
 			// hmap을 반복하면서 아래 div를 반복생성 
 			for(int i = 0; i < list.size(); i++){ 
 		
@@ -182,56 +208,41 @@
 					<div class="thumb-list" align="center">
 						<div>
 							<!-- 히든으로 고유의 bid를 전해줌 -->
-							<input type="hidden" value="<%= hmap.get("bid") %>"> <img
-								src="/jsp/thumbnail_uploadFiles/<%= hmap.get("changeName") %>"
+							<input type="hidden" value="<%= hmap.get("bo_no") %>"> <img
+								src="/cityRack/thumbnail_uploadFiles/<%= hmap.get("bf_name") %>"
 								width="200px" height="150px">
 						</div>
 						<p>
-							No.
-							<%= hmap.get("bno") %>
-							<%= hmap.get("btitle") %>
+							
+							<%= loginUser.getM_name() %>님
+							<br/> 제목 : 
+							<%= hmap.get("bo_title") %>
 							<br /> 조회수 :
-							<%= hmap.get("bcount") %>
+							<%= hmap.get("bo_hit") %>
 						</p>
 					</div>
 
 					<% 	} %>
 
-				</div>
+				</div> --%>
 
 				<script>
 			
-			$(function(){
-				$(".thumb-list").click(function(){
-					var num = $(this).children().children().eq(0).val(); /* 즉, 히든인 input의 값 */
-					console.log(num);
-					
-					location.href="<%= request.getContextPath() %>/selectOne.tn?num=" + num;
-				});	
-			});
+				
+									
+				
+				
+					$(function(){
+						$(".thumb-list").click(function(){
+							var num = $(this).children().children().eq(0).val(); /* 즉, 히든인 input의 값 */
+							console.log(num);
+							
+							location.href="<%= request.getContextPath() %>/selectOne.tn?num=" + num;
+						});	
+					});
 		
-		</script>
-
-
-
-				<div class="searchArea">
-					<select id="searchCondition" name="searchCondition">
-						<option>------</option>
-						<option>작성자</option>
-						<option>제목</option>
-						<option>내용</option>
-						<option></option>
-					</select> <input type="search">
-					<button type="submit">검색하기</button>
-					<% if(loginUser != null){ %>
-					<button
-						onclick="location.href='views/thumbnail/thumbnailInsertForm.jsp'">작성하기</button>
-					<% } %>
-
-				</div>
+				</script>
 			</div>
-
-
 
 
 		</div>

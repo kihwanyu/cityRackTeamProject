@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.cityrack.board.user.model.service.ThumbBoardService;
 
-@WebServlet("/selectThumbList")
+@WebServlet("/selectThumbList.tn")
 public class SelectThumbnailListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -30,10 +30,10 @@ public class SelectThumbnailListServlet extends HttpServlet {
 		
 		String page = "";
 		if(list != null) {
-			page = "views/thumbnail/thumbnailList.jsp";
+			page = "views/user/jeong/product_review_list.jsp";
 			request.setAttribute("list", list);
 		} else {
-			page = "views/common/errorPage.jsp";
+			page = "views/user/common/errorPage.jsp";
 			request.setAttribute("msg", "사진 게시판 조회 실패...");
 		}
 		
