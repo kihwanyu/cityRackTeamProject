@@ -2,12 +2,16 @@
     pageEncoding="UTF-8" import="java.util.*" %>
 <%@page import="com.kh.cityrack.product.user.model.dto.Product"%>
 <%@page import="com.kh.cityrack.product.user.model.dto.Pcategory"%>
+<%@page import="com.kh.cityrack.product.user.model.dto.Cart"%>
 <!DOCTYPE html>
 <%	ArrayList<Product> pList = (ArrayList<Product>)request.getAttribute("pList");
 	ArrayList<Pcategory> cList = (ArrayList<Pcategory>)request.getAttribute("cList"); 
+	ArrayList<Cart> c =(ArrayList<Cart>)request.getAttribute("cart");
 	
 	System.out.println("pList :" + pList);
 	System.out.println("cList :" + cList);
+	System.out.println("cart :" + c);
+	
 	%>
 <html>
 <head>
@@ -352,6 +356,18 @@ overflow-y:scroll;
 
 	<!-- 시그니처 -->
 	
+	
+	
+	<%if(loginUser==null){%>
+	<div style="margin-top:30px;padding-bottom:50px;">
+	<h2 align="center">로그인이 필요한 서비스입니다.</h2>
+	</div>
+	<div >
+	<button align="center" class="btns" style="font-size:30px;margin-left:40%; "onclick="location.href='views/user/rani/login.jsp'">로그인 하러 가기 </button>
+	</div>
+	
+	<%} else{ %>
+	
 	<form action="<%=request.getContextPath() %>/getProducts.pr" method="post" id="getAllProducts">
 	<!-- <script type="text/javascript">
 		$(function(){
@@ -395,8 +411,9 @@ overflow-y:scroll;
 	                  		  <br><br>
 	                  		  <p class="foodname" name="foodname" value="<%=pList.get(i).getP_name()%>"> <%=pList.get(i).getP_name() %> <a data-toggle="popover" data-content="<%=pList.get(i).getP_8constitution() %>"></a></p>
 	                  		   <p class="foodprice"><%=pList.get(i).getP_price() %> 원</p><br> 
-	                  		   <input class="input qty" name="amount" type="number" min="0" placeholder="0">
-	                  		  <input type="hidden" name="foodname" value="<%=pList.get(i).getP_code()%>"> <input type="hidden" name="foodprice" value="<%=pList.get(i).getP_price() %>">
+	                  		   <input class="input qty" name="amount" type="number" min="1" placeholder="0">
+	                  		  <input type="hidden" name="foodname" value="<%=pList.get(i).getP_code()%>">	                  		  
+	                  		  <input type="hidden" name="foodprice" value="<%=pList.get(i).getP_price() %>">
 	                  		</td>
                   		<%
                   			row++; } %>
@@ -430,8 +447,9 @@ overflow-y:scroll;
 		                  			  <br><br>
 		                  			  <p class="foodname" name="foodname" value="<%=pList.get(i).getP_name() %>"><%=pList.get(i).getP_name() %><a data-toggle="popover" data-content="<%=pList.get(i).getP_8constitution() %>"></a></p>
 		                  			   <p class="foodprice"><%=pList.get(i).getP_price() %> 원</p><br> 
-		                  			     <input class="input qty" name="amount" type="number" min="0" placeholder="0">
-		                  			  <input type="hidden" name="foodname" value="<%=pList.get(i).getP_code() %>"> <input type="hidden" name="foodprice" value="<%=pList.get(i).getP_price() %>">
+		                  			     <input class="input qty" name="amount" type="number" min="1" placeholder="0">
+		                  			  <input type="hidden" name="foodname" value="<%=pList.get(i).getP_code() %>"> 
+		                  			  <input type="hidden" name="foodprice" value="<%=pList.get(i).getP_price() %>">
 		                  			</td>		                		
 	                 	<%} %>
 	                  	</tr> 
@@ -449,6 +467,11 @@ overflow-y:scroll;
   </div>
   </form>
    <!-- 선택 토핑  -->
+	<br>
+   <p style="color:black;">* 선택 상품을 담으시고 아래의 선택 토핑에서 수량을 조정해주십시오.</p>
+   <p style="color:black;">* 상품을 중복 선택하실 수 없으며 양을 늘리고 싶으실 경우 수량을 늘려주십시오.</p>
+   <p style="color:black;">* 수량의 1의 양은 메뉴마다 다를 수 있습니다.</p>
+  
   <form id="selectSignature" action="<%=request.getContextPath() %>/insertCart.em" method="post" onsubmit="return false;" > 
   <div class="selectFood">
   	<br><h3 align="center" id="title" value="선택하신 토핑">선택하신 토핑</h3><br>
@@ -528,8 +551,8 @@ overflow-y:scroll;
 					 console.log($(".tdata").length);
 					 var data = {};
 					 for(var i = 0; i<$(".tdata").length;i++){
-						 data["foodprice"+ i] = $(".selectFoodTable").find("td").eq(i).children("input").eq(1).val();
-						 data["foodname"+ i] = $(".selectFoodTable").find("td").eq(i).children("input").eq(0).val();
+						 data["foodname"+ i] = $(".selectFoodTable").find("td").eq(i).children("input").eq(1).val();
+						 data["amount"+ i] = $(".selectFoodTable").find("td").eq(i).children("input").eq(0).val();
 					 }
 					 
 					 console.log(data);
@@ -537,17 +560,18 @@ overflow-y:scroll;
 					   $.ajax({
 					    type: "POST",
 					    url:   $("#selectSignature").attr( 'action' ) ,
-					   	data: data/* {foodname:$(".selectFoodTable").find("td").children("p").eq(0).text() , foodprice:$(".selectFoodTable").find("td").children("p").eq(1).text()}*/ ,
+					   	data: data ,
 					   	success:function(data){
-					   		var goCart= confirm('장바구니에 담겼습니다. 장바구니 페이지로 이동하겠습니까?');
-					   		if(goCart == true){					   		
-					   			location.href='views/user/jeong/cart.jsp';
-					   		} 
-					   	}
-					   	
-					});   
+					   		 confirm('장바구니에 담겼습니다. ');
+					   		
+					   		}
+						});  
+					
+					} 
+					   	   
+			   
 		    	} 
-  			}
+  			
   			
   		
   		
@@ -555,7 +579,7 @@ overflow-y:scroll;
     </div>
   </form>
     
-
+<%} %>
 	
 	<!-- /시그니처 -->
 

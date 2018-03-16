@@ -1,6 +1,7 @@
 package com.kh.cityrack.product.user.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.kh.cityrack.member.common.model.dto.Member;
+import com.kh.cityrack.product.user.model.dto.Cart;
 import com.kh.cityrack.product.user.model.service.CartService;
 
 /**
@@ -44,7 +46,7 @@ public class InsertCartServlet extends HttpServlet {
 				
 		HashMap<String, String[]> hmap = new HashMap<>(request.getParameterMap());
 		
-		
+		System.out.println(hmap);
 		//entrySet을 통해 맵을 set에 담음.
 				Set s = hmap.entrySet();	
 				//이터레이터에 s 담기
@@ -55,7 +57,7 @@ public class InsertCartServlet extends HttpServlet {
 				Map.Entry<String, String[]> entry = null;
 				
 				//foodprice에 담을 맵,  foodname에 담을 맵 생성.
-				HashMap<String, Integer> foodprice= new HashMap<String, Integer>();
+				HashMap<String, Integer> foodamount= new HashMap<String, Integer>();
 				HashMap<String, Integer> foodname= new HashMap<String, Integer>();
 				
 				while(it.hasNext()){
@@ -67,14 +69,14 @@ public class InsertCartServlet extends HttpServlet {
 		            String[] value = entry.getValue();
 
 		            //키값이 'foodprice'로 시작하면 맵에 담기.
-		            if(key.contains("price")) {
+		            if(key.contains("amount")) {
 		            	
 		            	if(value.length>1) {
 		            		for(int i = 0; i<value.length;i++) {
-		            			foodprice.put(key, Integer.parseInt(value[i]));
+		            			foodamount.put(key, Integer.parseInt(value[i]));
 		            		}
 		            	} else {
-		            		foodprice.put(key, Integer.parseInt(value[0]));
+		            		foodamount.put(key, Integer.parseInt(value[0]));
 		            	}
 		            	
 		            	
@@ -91,21 +93,21 @@ public class InsertCartServlet extends HttpServlet {
 				}
 		
 				System.out.println("foodname@Servlet" + foodname);
-				System.out.println("foodprice@Servlet" + foodprice);
+				System.out.println("foodamount@Servlet" + foodamount);
 		
 				
-		
-		int result = new CartService().insertCart( foodname, m);
+		//카트에 담은 물품 넣기
+		int result = new CartService().insertCart( foodamount, foodname, m);
 		String page = "";
 		
+		//카트 리스트 불러오기
+		ArrayList<Cart> c = new CartService().selectCart(m);
 		
-		
-		
+		System.out.println("cart @InsertCartServlet : " +c );
 		
 		if(result > 0) {
-			page="views/user/jeong/cart.jsp";
-			request.setAttribute("foodprice", foodprice);		
-			request.setAttribute("foodname", foodname);
+			page="getProducts.pr";
+			request.setAttribute("cart", c);
 			
 		} else {
 			page = "views/common/errorPage";
@@ -119,8 +121,6 @@ public class InsertCartServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		
 		new Gson().toJson(m, response.getWriter()); 
-		
-						
 		
 	}
 

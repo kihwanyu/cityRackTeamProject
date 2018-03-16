@@ -3,12 +3,8 @@
 <%
 
 ArrayList<Cart> c = (ArrayList<Cart>)request.getAttribute("cartList");
-HashMap<Product, Integer> foodprice = (HashMap<Product, Integer>)request.getAttribute("foodprice");
-HashMap<Product, Integer> foodname = (HashMap<Product, Integer>)request.getAttribute("foodname");
-Member m = (Member) request.getAttribute("loginUser");
 
-System.out.println("foodname @cart.jsp " + foodname);
-System.out.println("foodprice @cart.jsp " + foodprice);
+Member m = (Member) request.getAttribute("loginUser");
 System.out.println("cart @cart.jsp " + c);
 %>    
 <!DOCTYPE html>
@@ -78,13 +74,12 @@ System.out.println("cart @cart.jsp " + c);
 										<!-- 수량 -->
 										<td class="qty text-center" >
 										<input class="input qty" name ="quantity" type="number" min="1" value="<%=c.get(i).getCart_amount() %>">
-										
 										</td>
 										<!-- 단가*수량 -->
 										<% if(c.get(i).getDiscount()==0 ){%>
 										<td class="total text-center" >
 											<strong class="primary-color"><%=c.get(i).getPrice()*c.get(i).getCart_amount() %></strong>
-											<input type="hidden" class="eachTotalPrice" name="totalPrice" value=<%=c.get(i).getPrice()*c.get(i).getCart_amount() %>>
+											<input type="hidden" class="eachTotalPrice" name="totalPrice"  value=<%=c.get(i).getPrice()*c.get(i).getCart_amount() %>>
 										</td>
 										<%} else {%>
 										<td class="total text-center" value=<%=c.get(i).getDiscount()*c.get(i).getPrice()*c.get(i).getCart_amount() %>>
