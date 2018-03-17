@@ -473,7 +473,7 @@
 				</tr>
 				<%for(int i = 0; i < olist.size(); i++){ %>
 				<tr>
-					<td style="text-align: right;"><%=olist.get(i).getO_ono() %></td>
+					<td style="text-align: left;"><%=olist.get(i).getO_ono() %></td>
 					<td style="text-align: left;"><%=olist.get(i).getO_orderDate() %></td>
 					<td style="text-align: left;"><%=olist.get(i).getM_email() %></td>
 					<td style="text-align: left;"><a href="<%=request.getContextPath()%>/orderDetailGetAll.or?ono=<%=olist.get(i).getO_ono() %>"><%=olist.get(i).getP_name() %> 외 <%=olist.get(i).getpCount()-1%></a></td>
@@ -510,7 +510,7 @@
 						}
 					} %>
 					<td>
-						<select name="status">
+						<select id="status" name="status">
 							<option value="준비중" <%=selectedArr[0] %>>준비중</option>
 							<option value="준비완료" <%=selectedArr[1] %>>준비완료</option>
 							<option value="배송중" <%=selectedArr[2] %>>배송중</option>
@@ -520,7 +520,8 @@
 						</select>
 					</td>
 					
-					<td><input type="button" id="updateBtn" value="수정" onclick="updateBtn(<%=olist.get(i).getO_ono()%>);"></td>
+					<td><input type="button" id="updateBtn" value="수정"></td>
+					
 				</tr>
 				<%} %>
 			</table>	
@@ -603,48 +604,66 @@
 	</section>
 	<%@ include file="/views/admin/common/footer.jsp" %>
 	<script type="text/javascript">
-		var formObj = $("form[role='search']");
+		$(function(){
+			var formObj = $("form[role='search']");
+			
+			var no;
+			var status;
+			var selectedBool = false;
+			console.log(formObj);
+			
+			$("#StartPage").on("click", function(){
+				$("input[name='currentPage']").val(1);
+				console.log($("input[name='currentPage']").val())
+				formObj.submit();
+			});
+			$("#nextPageLeft").on("click", function(){
+				$("input[name='currentPage']").val(<%=backNextpage%>);
+				console.log($("input[name='currentPage']").val())
+				formObj.submit();
+			});
+			$("#nextPageRight").on("click", function(){
+				$("input[name='currentPage']").val(<%= forwardNextpage%>);
+				console.log($("input[name='currentPage']").val())
+				formObj.submit();
+			});
+			
+			$("#endPage").on("click", function(){
+				$("input[name='currentPage']").val(<%= maxPage%>);
+				console.log($("input[name='currentPage']").val())
+				formObj.submit();
+			});
+			$("#selectPage").on("click", function(){
+				var selectPage = $(this).val();
+				console.log(selectPage);
+				$("input[name='currentPage']").val(selectPage);
+				console.log($("input[name='currentPage']").val())
+				formObj.submit();
+			});
+			$(".tableArea td").change(function() {
+				no = $(this).parent().children().eq(0).text();
+				status = $(this).parent().children().eq(5).children().val();
+				console.log(no);
+				console.log(status);
+				selectedBool = true;
+			});
+			$("#updateBtn").click(function(){
+				if(selectedBool){
+					var msgStr = "주문번호 : "+no+" 의 상태를 변경하시겠습니까?";
+					var result = window.alter(msgStr);
+					if(result==true){
+						location.href="<%= request.getContextPath()%>/orderStatusUpdate.or?no="+no+"&status="+status;
+					}
+				} else{
+					window.confirm("상태를 변경하고 버튼을 눌러주세요.");
+				}
+			});	
+			$("button").click(function(){ 
+				$("textarea").select(); document.execCommand('copy'); 
+			});
+		});
 		
-		console.log(formObj);
-		
-		$("#StartPage").on("click", function(){
-			$("input[name='currentPage']").val(1);
-			console.log($("input[name='currentPage']").val())
-			formObj.submit();
-		});
-		$("#nextPageLeft").on("click", function(){
-			$("input[name='currentPage']").val(<%=backNextpage%>);
-			console.log($("input[name='currentPage']").val())
-			formObj.submit();
-		});
-		$("#nextPageRight").on("click", function(){
-			$("input[name='currentPage']").val(<%= forwardNextpage%>);
-			console.log($("input[name='currentPage']").val())
-			formObj.submit();
-		});
-		
-		$("#endPage").on("click", function(){
-			$("input[name='currentPage']").val(<%= maxPage%>);
-			console.log($("input[name='currentPage']").val())
-			formObj.submit();
-		});
-		$("#selectPage").on("click", function(){
-			var selectPage = $(this).val();
-			console.log(selectPage);
-			$("input[name='currentPage']").val(selectPage);
-			console.log($("input[name='currentPage']").val())
-			formObj.submit();
-		});
-		
-		function updateBtn(var no){
-			var msgStr = "주문번호 : "+no+" 의 상태를 변경하시겠습니까?";
-			var result = window.confirm(msgStr);
-			if(result==true){
-				
-			} else {
-				
-			}
-		}
+			
 	</script>
 </body>
 </html>

@@ -253,7 +253,7 @@ public class ProductDao {
 				if(pSearch.getAfterDate().getTime() == pSearch.getBeforeDate().getTime()){
 					sb.append("P.P_RESISTERDATE LIKE ?");
 				} else {
-					sb.append("P.P_RESISTERDATE BETWEEN ? AND ?");
+					sb.append("P.P_RESISTERDATE BETWEEN ? AND ?+1");
 				}
 				break;
 			case "searchCheackedPcategory":
@@ -386,7 +386,7 @@ public class ProductDao {
 				if(pSearch.getAfterDate().getTime() == pSearch.getBeforeDate().getTime()){
 					sb.append("P.P_RESISTERDATE LIKE ?");
 				} else {
-					sb.append("P.P_RESISTERDATE BETWEEN ? AND ?");
+					sb.append("P.P_RESISTERDATE BETWEEN ? AND ?+1");
 				}
 				break;
 			case "searchCheackedPcategory":
@@ -429,7 +429,13 @@ public class ProductDao {
 					if(pSearch.getAfterDate().getTime() == pSearch.getBeforeDate().getTime()){
 						pstmt.setDate(j, pSearch.getBeforeDate());
 						j++;
+					} else {
+						System.out.println("날짜가 다를 때");
+						pstmt.setDate(j, pSearch.getBeforeDate());
+						System.out.println("pSearch.getBeforeDate() : " + pSearch.getBeforeDate());
+						j++;
 						pstmt.setDate(j, pSearch.getAfterDate());
+						System.out.println("pSearch.getAfterDate() : " + pSearch.getAfterDate());
 						j++;
 					}
 					break;

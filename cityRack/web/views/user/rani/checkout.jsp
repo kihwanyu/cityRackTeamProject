@@ -294,24 +294,6 @@ body{
 										
 										<th>결제금액</th>
 										<th colspan="2" class="total" id="payThis">									
-										
-										<script type="text/javascript">
-										
-											$(function(){
-												
-												var total = parseInt($("#totalPrice").text());
-												var deliveryFee = 2500;
-												
-												console.log("토탈 : " + total);
-												console.log( "배송료 "+ deliveryFee);
-												var payThisAmount = total+deliveryFee;
-												
-												$("#payThis").html(payThisAmount+"원");
-											
-											});
-											
-											
-										</script>
 										</th>
 									</tr>
 								</tfoot>
@@ -349,13 +331,21 @@ body{
 					productStr을 pay_name 넣어준다.
 					예) 단무지 단무지 단무지
 					*/
+					var total = parseInt($("#totalPrice").text());
+					var deliveryFee = 2500;
+					
+					console.log("토탈 : " + total);
+					console.log( "배송료 "+ deliveryFee);
+					var payThisAmount = total+deliveryFee;
+					
+					$("#payThis").html(payThisAmount+"원");
 					
 					$('#paymentBtn').click(function(){
 						var IMP = window.IMP; // 생략가능
 						IMP.init('imp46573984'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 						var pg = 'inicis';
 						var pay_pay_method = $(":radio[name='payments']:checked").val(); 
-						var pay_amount = $("#total").html().trim(); // 만약 앞뒤로 공백이있다면 공백제거
+						var pay_amount = payThisAmount; // 만약 앞뒤로 공백이있다면 공백제거
 						var pay_name = "test1";
 						<%-- var pay_name = <%=productStr %>; --%>
 						
