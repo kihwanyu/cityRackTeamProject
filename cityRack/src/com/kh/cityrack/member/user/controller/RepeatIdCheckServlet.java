@@ -32,13 +32,20 @@ public class RepeatIdCheckServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String emailCheck = request.getParameter("id");
-		ArrayList<Member> emailList = new MemberService().checkRepeatId(emailCheck);
+		com.kh.cityrack.member.common.model.dto.Member takenId = new MemberService().checkRepeatId(emailCheck);
+		
+		System.out.println(emailCheck);
+		System.out.println(takenId);
+		
+		
+		
 		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
 		
-		new Gson().toJson(emailList, response.getWriter());
+		new Gson().toJson(takenId.getM_email(), response.getWriter());
 	}
 
 	/**

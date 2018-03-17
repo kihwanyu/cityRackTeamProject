@@ -81,13 +81,29 @@ public class MemberService {
 
 
 	// 이메일 중복 체크
-	public ArrayList<com.kh.cityrack.member.user.model.dto.Member> checkRepeatId(String emailCheck) {
+	public Member checkRepeatId(String emailCheck) {
 		Connection con = getConnection();
-		ArrayList<com.kh.cityrack.member.user.model.dto.Member> emailList = 
+		Member takenId = 
 				new MemberDao().checkRepeatId(con, emailCheck);
 		close(con);
 		
-		return emailList;
+		return takenId;
+	}
+
+
+	// 임시 비밀번호로 수정
+	public int updateMemberPwd(String encpwd, int mno) {
+		Connection con = getConnection();
+		int result = new MemberDao().updateMemberPwd(con, encpwd, mno);
+		
+		if(result>0){
+			commit(con);
+		} else{
+			rollback(con);
+		}
+		close(con);
+		
+		return result;
 	}
 
 
