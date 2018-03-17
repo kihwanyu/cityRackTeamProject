@@ -83,7 +83,7 @@
 					<td style="text-align: right;"><%=pList.get(i).getP_price() %></td>
 					<td style="text-align: right;"><%=pList.get(i).getP_discount() %> %</td>
 					<%
-						double total = pList.get(i).getP_price() + pList.get(i).getP_discount();
+						int total = pList.get(i).getP_price()-(int)(pList.get(i).getP_price()*(pList.get(i).getP_discount() / 100));
 					%>
 					<td style="text-align: right;"><%=total %></td>
 				</tr>
