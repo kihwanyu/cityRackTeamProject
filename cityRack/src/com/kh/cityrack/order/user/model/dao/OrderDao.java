@@ -26,7 +26,7 @@ public class OrderDao {
 			e.printStackTrace();
 		}
 	}
-	public int orderInsert(Connection conn, String ono, int mno ,int dcode, int paycode, Cart cart) {
+	public int orderInsert(Connection conn, String ono, int mno ,int dcode, int paycode, int level, Cart cart) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
@@ -38,8 +38,9 @@ public class OrderDao {
 			pstmt.setInt(2, mno);
 			pstmt.setInt(3, dcode);
 			pstmt.setInt(4, paycode);
-			pstmt.setString(5,cart.getPcode());
-			pstmt.setInt(6, cart.getCart_amount());
+			pstmt.setInt(5, level);
+			pstmt.setString(6,cart.getPcode());
+			pstmt.setInt(7, cart.getCart_amount());
 			//
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

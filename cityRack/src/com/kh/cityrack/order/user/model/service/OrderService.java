@@ -22,7 +22,11 @@ public class OrderService {
 		String ono = ft.format(currentTime) +""+randomNum;
 		//
 		for(int i = 0; i < cartList.size(); i++){
-			resultList.add(new OrderDao().orderInsert(conn, ono, mno, dcode, paycode ,cartList.get(i)));
+			if(i > 0){
+				resultList.add(new OrderDao().orderInsert(conn, ono, mno, dcode, paycode, 0,cartList.get(i)));
+			} else {
+				resultList.add(new OrderDao().orderInsert(conn, ono, mno, dcode, paycode, 1,cartList.get(i)));
+			}
 		}
 		
 		for(int i = 0; i < resultList.size(); i++){

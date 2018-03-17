@@ -54,13 +54,13 @@
 			<table style="width: 65%;">
 				<tr>
 					<th width="10%" style="text-align: center; background: lightyellow">주문번호</th>
-					<th width="10%" style="text-align: center; background: lightyellow">100000</th>
+					<th width="10%" style="text-align: center; background: lightyellow"><%=o.getO_ono() %></th>
 					<th width="10%" style="text-align: center; background: lightyellow">주문일자</th>
-					<th width="10%" style="text-align: center; background: lightyellow">2018-03-01</th>
+					<th width="10%" style="text-align: center; background: lightyellow"><%=o.getO_orderDate() %></th>
 					<th width="10%" style="text-align: center; background: lightyellow">회원이메일</th>
-					<th width="10%" style="text-align: center; background: lightyellow">asbs1234@naver.com</th>
+					<th width="10%" style="text-align: center; background: lightyellow"><%=o.getM_email() %></th>
 					<th width="10%" style="text-align: center; background: lightyellow">주문상태</th>
-					<th width="10%" style="text-align: center; background: lightyellow">준비중</th>
+					<th width="10%" style="text-align: center; background: lightyellow"><%=o.getO_state() %></th>
 				</tr>
 			</table>
 			<br>
@@ -75,23 +75,27 @@
 					<th width="20%" style="text-align: center;">합계(원)</th>
 					<!-- 도시락 외 3 클릭시 주문 정보 다 출력. -->
 				</tr>
+				<%for(int i = 0; i < pList.size(); i++){ %>
 				<tr>
-					<td style="text-align: left;">AA120523</td>
-					<td style="text-align: left;">*********</td>
-					<td style="text-align: right;">2</td>
-					<td style="text-align: right;">10,000</td>
-					<td style="text-align: right;">10</td>
-					<td style="text-align: right;">20,000</td>
+					<td style="text-align: left;"><%=pList.get(i).getP_code() %></td>
+					<td style="text-align: left;"><%=pList.get(i).getP_name() %></td>
+					<td style="text-align: right;"><%=pList.get(i).getO_amount() %></td>
+					<td style="text-align: right;"><%=pList.get(i).getP_price() %></td>
+					<td style="text-align: right;"><%=pList.get(i).getP_discount() %> %</td>
+					<%
+						double total = pList.get(i).getP_price() + pList.get(i).getP_discount();
+					%>
+					<td style="text-align: right;"><%=total %></td>
 				</tr>
-				
+				<%} %>
 			</table>
 			<br><br>
 			<table style="width: 40%;">
 				<tr>
 					<th width="25%" style="text-align: center; background: lightyellow">등급 할인율(%)</th>
-					<th width="25%" style="text-align: right; background: lightyellow">10</th>
+					<th width="25%" style="text-align: right; background: lightyellow"><%=o.getC_discount() %></th>
 					<th width="25%" style="text-align: center; background: lightyellow">총 가격(원)</th>
-					<th width="25%" style="text-align: right; background: lightyellow">100,000</th>
+					<th width="25%" style="text-align: right; background: lightyellow"><%=o.getPa_amount() %></th>
 				</tr>
 			</table>	
 		</div>	

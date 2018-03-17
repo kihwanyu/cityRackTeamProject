@@ -474,9 +474,9 @@
 				<%for(int i = 0; i < olist.size(); i++){ %>
 				<tr>
 					<td style="text-align: right;"><%=olist.get(i).getO_ono() %></td>
-					<td style="text-align: left;">2018-03-01</td>
+					<td style="text-align: left;"><%=olist.get(i).getO_orderDate() %></td>
 					<td style="text-align: left;"><%=olist.get(i).getM_email() %></td>
-					<td style="text-align: left;"><a href="<%=request.getContextPath()%>/orderDetailGetAll.or?ono=<%=olist.get(i).getO_ono() %>"><%=olist.get(i).getP_name() %> 외 <%=olist.get(i).getpCount()-1 %></a></td>
+					<td style="text-align: left;"><a href="<%=request.getContextPath()%>/orderDetailGetAll.or?ono=<%=olist.get(i).getO_ono() %>"><%=olist.get(i).getP_name() %> 외 <%=olist.get(i).getpCount()-1%></a></td>
 					<td style="text-align: right;"><%=olist.get(i).getPa_amount() %></td>
 					
 					<%
@@ -520,7 +520,7 @@
 						</select>
 					</td>
 					
-					<td><input type="button" onclick="uodateBtn();">변경</button></td>
+					<td><input type="button" id="updateBtn" value="수정" onclick="updateBtn(<%=olist.get(i).getO_ono()%>);"></td>
 				</tr>
 				<%} %>
 			</table>	
@@ -636,7 +636,7 @@
 			formObj.submit();
 		});
 		
-		function dropOut(var no){
+		function updateBtn(var no){
 			var msgStr = "주문번호 : "+no+" 의 상태를 변경하시겠습니까?";
 			var result = window.confirm(msgStr);
 			if(result==true){

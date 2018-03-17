@@ -341,7 +341,7 @@ public class OrderDao {
 		try {
 			pstmt = conn.prepareStatement(query);
 			
-			pstmt.setInt(1, Integer.parseInt(ono));
+			pstmt.setString(1,ono);
 			
 			rset = pstmt.executeQuery();
 						
@@ -375,7 +375,7 @@ public class OrderDao {
 		try {
 			pstmt = conn.prepareStatement(query);
 			
-			pstmt.setInt(1, Integer.parseInt(ono));
+			pstmt.setString(1, ono);
 			
 			rset = pstmt.executeQuery();
 			
@@ -398,7 +398,7 @@ public class OrderDao {
 			close(rset);
 			close(pstmt);
 		}
-		
+		System.out.println("OrderDao :" + pList);
 		return pList;
 	}
 	public ArrayList<Order> orderListGetPcount(Connection conn, int currentPage, int limit, ArrayList<Order> oList) {
@@ -407,7 +407,6 @@ public class OrderDao {
 				
 		String query = prop.getProperty("orderListGetPcount");
 		
-		Order Order = null;
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -419,12 +418,11 @@ public class OrderDao {
 			pstmt.setInt(2, endRow);
 			
 			rset = pstmt.executeQuery();
-			
-			while (rset.next()) {
-				int i = 0;
+			int i = 0;
+			while(rset.next()) {
 				oList.get(i).setpCount(rset.getInt("PCOUNT"));
+				System.out.println(oList.get(i).getpCount());
 				i++;
-				
 			}
 			
 		} catch (SQLException e) {
