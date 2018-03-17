@@ -60,8 +60,6 @@
 }
 
 .thumbnailArea {
-	width: 760px;
-	height: 550px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -102,53 +100,9 @@
 				<br /> <br />
 					<div class="col-md-qq">
 						<div class="order-summary clearfix">
-							<!-- <table class="question-table table">
-								<thead>
-									<tr>
-										<th class="text-center">번호</th>
-										<th colspan="2">제목</th>
-										<th class="text-center">작성자</th>
-										<th class="text-center">작성일</th>
-										<th class="text-center">답변상태</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td align="center">3</td>
-										<td class="details" colspan="2">
-											<a href="#">58년 개띠..금양체질..질문드립니다..</a>
-										</td>
-										<td class="price text-center">city****@naver.com</td>
-										<td align="center">2018/02/18</td>
-										<td align="center">답변대기</td>
-										<td class="text-right"></td>
-									</tr>
-									<tr>
-										<td align="center">2</td>
-										<td class="details" colspan="2">
-											<a href="#">토음체질과 수음체질이 함께 먹으면 좋은 반찬 추천해주세요~</a>
-										</td>
-										<td class="price text-center">city****@naver.com</td>
-										<td align="center">2018/02/18</td>
-										<td align="center">답변대기</td>
-										<td class="text-right"></td>
-									</tr>
-									<tr>
-										<td align="center">1</td>
-										<td class="details" colspan="2">
-											<a href="#">목양체질입니다. 미역초무침 괜찮나요??</a>
-										</td>
-										<td class="price text-center">city****@naver.com</td>
-										<td align="center">2018/02/18</td>
-										<td align="center">답변대기</td>
-										<td class="text-right"></td>
-									</tr>																		
-								</tbody>
-							</table> -->
-							
-							
+
 							<!-- 사진리스트를 불러와서 반복출력 -->
-							<!-- <div class="thumbnailArea" align="center"> -->
+							<div class="thumbnailArea" align="center"> 
 							
 							<% 
 								// hmap을 반복하면서 아래 div를 반복생성 
@@ -159,12 +113,11 @@
 								<div class="thumb-list" align="center">
 									<div>
 										<!-- 히든으로 고유의 boNo를 전해줌 -->
-										<input type="hidden" value="<%= hmap.get("bo_no") %>"> <img
-											src="/cityRack/thumbnail_uploadFiles/<%= hmap.get("bf_name") %>"
+										<input type="hidden" value="<%= hmap.get("bo_no") %>"> 
+										<img src="/cityRack/thumbnail_uploadFiles/<%= hmap.get("bf_name") %>"
 											width="200px" height="150px">
 									</div>
 									<p>
-										
 										<%= loginUser.getM_name() %>님
 										<br/> 제목 : 
 										<%= hmap.get("bo_title") %>
@@ -176,12 +129,9 @@
 								<% 	} %>
 			
 							</div>							
-							
-							
 						</div>
 					</div>
 				<br/>
-				
 				<br/>
 				<br/>
 				<div align="right">
@@ -191,47 +141,9 @@
 				</div>
 				<br/> 
 
-
-				<hr />
-
-<%-- 
-
-				<!-- 사진리스트를 불러와서 반복출력 -->
-				<div class="thumbnailArea" align="center">
-
-		<% 
-			// hmap을 반복하면서 아래 div를 반복생성 
-			for(int i = 0; i < list.size(); i++){ 
-		
-				HashMap<String, Object> hmap = list.get(i);
-		%>
-					<div class="thumb-list" align="center">
-						<div>
-							<!-- 히든으로 고유의 bid를 전해줌 -->
-							<input type="hidden" value="<%= hmap.get("bo_no") %>"> <img
-								src="/cityRack/thumbnail_uploadFiles/<%= hmap.get("bf_name") %>"
-								width="200px" height="150px">
-						</div>
-						<p>
-							
-							<%= loginUser.getM_name() %>님
-							<br/> 제목 : 
-							<%= hmap.get("bo_title") %>
-							<br /> 조회수 :
-							<%= hmap.get("bo_hit") %>
-						</p>
-					</div>
-
-					<% 	} %>
-
-				</div> --%>
-
 				<script>
 			
-				
-									
-				
-				
+					/* 게시글 한개 상세보기 */
 					$(function(){
 						$(".thumb-list").click(function(){
 							var num = $(this).children().children().eq(0).val(); /* 즉, 히든인 input의 값 */

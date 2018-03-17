@@ -108,15 +108,7 @@ public class ThumbBoardDao {
 			// 리스트에서 꺼내오기는 객체를 생성하고 해당객체의 bid를 가져오고, 다시 객체생성하고 .. 반복처리해야함
 			for (int j = 0; j < fileList.size(); j++) {
 
-				String fileName = fileList.get(j).getBf_originname();
-				String extension = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length()); 
-
 				pstmt.setInt(1, fileList.get(j).getBo_no()); // insertThumb쿼리문의 BONO 시쿼스와 같아야 함.
-				pstmt.setString(2, fileList.get(j).getBf_originname());
-				pstmt.setString(3, fileList.get(j).getBf_name());
-				pstmt.setString(4, extension);
-
-				System.out.println("extension : " + extension);
 
 				// 레벨은 타이틀만 0으로하고 다른건 1로 (level default = 1)
 				int level = 0;
@@ -126,7 +118,17 @@ public class ThumbBoardDao {
 					level = 1;
 				}
 
-				pstmt.setInt(5, level);
+				pstmt.setInt(2, level);
+				pstmt.setString(3, fileList.get(j).getBf_originname());
+				pstmt.setString(4, fileList.get(j).getBf_name());
+				
+				// 첨부파일 확장자 자르기
+				String fileName = fileList.get(j).getBf_originname();
+				String extension = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length()); 
+				
+				pstmt.setString(5, extension);
+				
+				System.out.println("ThumbBoardDao's extension : " + extension);
 
 				// 지금 한행한행 반복하는거기때문에 그냥 = 이렇게 대입하면 몇행이 들어가도 무조건 1이됨. 따라서 += 로
 				result += pstmt.executeUpdate();
@@ -155,14 +157,12 @@ public class ThumbBoardDao {
 		try {
 			pstmt = con.prepareStatement(query);
 
-
 			pstmt.setInt(1, 0);
 			pstmt.setString(2, "logo");
 			pstmt.setString(3, "logo");
 			pstmt.setString(4, "png");
 
 			result = pstmt.executeUpdate();
-
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

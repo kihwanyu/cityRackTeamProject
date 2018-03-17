@@ -138,7 +138,7 @@ public class InsertThumbnailServlet extends HttpServlet {
 			
 			// 업로드 실패했을때는 업로드파일에 사진저장 안되게
 			if(result > 0) {
-				response.sendRedirect(request.getContextPath() + "/selectThumbList");
+				response.sendRedirect(request.getContextPath() + "/selectThumbList.tn");
 			} else {
 				
 				for(int i = 0; i < saveFiles.size(); i++) {

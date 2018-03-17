@@ -40,9 +40,13 @@ public class ConstitutionServlet extends HttpServlet {
 		q.setM_no(mNo);
 		q.setQ_8constitution(qResult);
 		
+		
 		// 서비스 호출
 		int result = new QuestionService().insertConstitution(q);
 		
+		Member m = (Member)request.getSession().getAttribute("loginUser");
+		m.setQ_8constitution(qResult);
+
 		// 페이지
 		String page = "";
 		if(result > 0) {
@@ -51,6 +55,7 @@ public class ConstitutionServlet extends HttpServlet {
 	
 			// 설문조사결과 세션에도 담기
 			HttpSession session = request.getSession();
+			session.setAttribute("loginUser", m);
 			
 			page = "views/user/jeong/myPage_result.jsp";
 			request.getRequestDispatcher(page).forward(request, response);

@@ -2,6 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.cityrack.member.common.model.dto.Member" %>
 
+<%
+	String qResult = ((Member)(session.getAttribute("loginUser"))).getQ_8constitution();
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -69,9 +72,7 @@
 							
 								<% 
 								
-								System.out.println("결과페이지 qResult : " + request.getParameter("qResult"));
-								
-								switch(request.getParameter("qResult")){ 
+								switch(qResult){ 
 								
 									case "목양" : %>
 									
