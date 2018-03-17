@@ -3,6 +3,10 @@ package com.kh.cityrack.member.user.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -22,13 +26,14 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import com.google.gson.Gson;
-import com.kh.cityrack.member.user.model.dto.Member;
+import com.kh.cityrack.member.common.model.dto.Member;
 import com.kh.cityrack.member.user.model.service.MemberService;
+import com.kh.cityrack.warpper.LoginWrapper;
 
 /**
  * Servlet implementation class SearchPwdServlet
  */
-@WebServlet("/searchPwd.em")
+@WebServlet("/searchPwd.do")
 public class SearchPwdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -59,22 +64,47 @@ public class SearchPwdServlet extends HttpServlet {
 		System.out.println("email : " + email);*/
 		
 		
-		
 		//멤버 객체 로그인 유저 생성		
 		Member loginUser = new MemberService().checkLoginUser(name, email, key);
+		System.out.println("가져온 메일 : " + loginUser.getM_email());
+		System.out.println("이메일 : " + email);
 		
 		//받아온 loginUser의 값에 따라 보낼 alert 메세지 설정
+		//loginUser의 메일과 일치하다면 메일을 보낸다.
+		if(loginUser.getM_email().equals(email)) {
 		
-		if(loginUser !=null) {
-			connectEmail(email); //아래 메일 보내는 메소드 실행
-			
-			
-			//비밀번호 새로 만든 것을 수정 서비스, DAO를 통해 수정.
-			//향후 코드 작성.
-			
-			
-			alert = "임시 비밀번호가 메일로 발송되었습니다.";
+		String newpd = connectEmail(email); //아래 메일 보내는 메소드 실행
+		System.out.println("newpd : " + newpd);
+		int mno = loginUser.getM_no();	
 		
+
+		String encPwd = "";
+		try {
+			MessageDigest md = MessageDigest.getInstance("SHA-512");
+			
+			byte[] bytes = newpd.getBytes(Charset.forName("UTF-8"));
+			
+			md.update(bytes);
+			
+			encPwd = Base64.getEncoder().encodeToString(md.digest());
+			
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		//비밀번호 새로 만든 것을 수정 서비스, DAO를 통해 수정.
+		int result = new MemberService().updateMemberPwd(encPwd, mno);
+			
+			if(result>0){
+				alert = "임시 비밀번호가 메일로 발송되었습니다.";
+			} else {
+				alert="수정 실패";
+			}
+			
 			
 		} else {
 			alert = "해당하는 회원 정보가 없습니다.";			

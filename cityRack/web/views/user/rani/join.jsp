@@ -152,28 +152,33 @@
 						
 							<div class="section-title">
 								<h3 class="title">회원가입</h3>
+								<p>* 표시가 된 항목들은 필수사항입니다. </p>
 							</div>
 						
 							<div class="inputs">
-								<input class="input" type="text" name="name" placeholder="이름" >	
+								<input class="input" type="text" name="name" id="username" placeholder="이름 *" >	
 							
-								<input class="input" type="email" name="email" id="emailId" placeholder="이메일 주소" >								
+								<input class="input" type="email" name="email" id="emailId" placeholder="이메일 주소 *" >								
 								<button class="input" style="background:#EBEBEB;margin-bottom:5px;border-radius:3px;" onclick="repeatIdCheck();">중복확인</button>
-								
+								<p id="idCheckResult"></p>
 								
 								<script type="text/javascript">
 								function repeatIdCheck(){
 									var id = $("#emailId").val();
+									$("#submitForm").submit();
 									//console.log(id);
 									 $.ajax({
 										  method: "POST",
-										  url: "checkRepeatId.em",
+										  url: "<%=request.getContextPath()%>/checkRepeatId.em",
 										  data: {id:id},
 										  success:function(data){
+											 
 											  if(data == id){
 												  alert('이미 사용 중인 메일 주소입니다.');
+												  $("#submitForm").attr("onsubmit","return false();");
 											  }else{
 												  alert('사용 가능한 메일 주소입니다.');
+												  $("#idCheckResult").html('사용 가능한 메일 주소입니다.');
 											  }
 										  }
 										}); 
@@ -181,11 +186,11 @@
 								</script>
 								
 								
-								<input class="input" type="password" name="password" placeholder="비밀번호">							
+								<input class="input" type="password" name="password" id="password" placeholder="비밀번호 *">							
 						
-								<input class="input" type="password" name="password2" placeholder="비밀번호 확인">
+								<input class="input" type="password" name="password2" id="password2" placeholder="비밀번호 확인 *">
 							
-								<p style="font-size:12px;">비밀번호는 8~12자리로 숫자, 특수기호(!,@,#,$,%,^,&,*,(,))를 반드시 포함해야 합니다.</p>
+								<p style="font-size:12px;">비밀번호는 총 8~12자리로 숫자, 영어 소문자, 특수기호(!@#\$%\^&\*)를 반드시 한 자리씩 이상 포함해야 합니다.</p>
 							<div id="sexDiv" class="join_row join_sex">
 							
 							<span class="sex">
@@ -214,17 +219,17 @@
 							});
 							
 						</script>
-						<input class="input" type="text" name="birthday" placeholder="생년월일" maxlength="8">	
+						<input class="input" type="text" name="birthday" placeholder="생년월일 *" maxlength="8" id="bday">	
 						<p style="font-size:12px;">주민번호 앞자리 형식으로 기재해 주시기 바랍니다. 예:) 19200101 : 1920년 01월 01일 생</p>
-						<input class="input" type="text" name="phone" placeholder="전화번호 ('-'없이 숫자만 기재)" maxlength="11">
-						<input class="input" type="text" name="mobile" placeholder="휴대전화번호 ('-'없이 숫자만 기재)" maxlength="11">		
+						<input class="input" type="text" id="tel" name="phone" placeholder="전화번호 ('-'없이 숫자만 기재) *" maxlength="11">
+						<input class="input" type="text" id="mobile" name="mobile" placeholder="휴대전화번호 ('-'없이 숫자만 기재) *" maxlength="11">		
 						
 															
 								<!-- 주소 api -->
-								<input class="input" type="text" id="sample6_postcode" placeholder="우편번호" name="zipcode">
+								<input class="input" type="text" id="sample6_postcode" placeholder="우편번호 *" name="zipcode" id="zipcode">
 								<input  class="input spans" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="border-radius:4px;border:none;background:#EBEBEB"><br>
-								<input  class="input" type="text" id="sample6_address" placeholder="주소" name="addr1">
-								<input  class="input"  type="text" id="sample6_address2" placeholder="상세주소" name="addr2">
+								<input  class="input" type="text" id="sample6_address" placeholder="주소 *" name="addr1" id="addr1">
+								<input  class="input"  type="text" id="sample6_address2" placeholder="상세주소 *" name="addr2" id="addr2">
 								
 								
 															
@@ -275,30 +280,94 @@
 								<!-- /주소 api -->
 								
 						</div>
-					
+	
+	
+					<!-- 	form 전송 막기 -->
 					<script type="text/javascript">
 					
 					$(function(){
-						// 약관 동의 하지 않으면 가입하게 못 하게 form 전송 막기
-						$("#agree").change(function(){
-							var $submitForm = $("#submitForm");
+						
+						
+						$("#join").click(function(){
 							
-							if($("#agree").prop("checked")){
-								$submitForm.attr("onsubmit","return true();")								
-							} else if (!($("#agree").prop("checked"))){
-								$submitForm.attr("onsubmit", "return false();")			
+							
+							
+							//패스워드 일치하지 않으면 alert
+							
+						var pwd1 = $("#password").val();
+						var pwd2 = $("#password2").val();
+						var regExp =/^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+						
+							if(pwd1 != pwd2){
+								alert('비밀번호가 일치하지 않습니다.');
+							} else {
+								//console.log(pwd1 +", " +pwd2);
+								if( ! regExp.test(pwd1) ){
+									alert('비밀번호 규칙을 지켜주십시오.');
+								}
 							}
+							
+							//아이디 중복 체크를 했는지 검사한다.
+							if($("#idCheckResult").text()!='사용 가능한 메일 주소입니다.'){
+								alert('아이디 중복확인을 해주시기 바랍니다.');
+							}
+							
+							//약관에 동의 하지 않으면 alert
+							if(!($("#agree").prop("checked"))){
+								alert('약관에 동의해주십시오.');
+							}
+							
+							//약관에 동의하면 form 전송하기.
+						
+								var $submitForm = $("#submitForm");
+							
+								//약관 체크가 되었으면 
+								if($("#agree").prop("checked")){
+									
+									if($("#idCheckResult").text()=='사용 가능한 메일 주소입니다.'){
+										alert('중복확인');
+										
+										var name = $("#username").val();
+										var bday = $("#bday").val();
+										var addr1 = $('#addr1').text();
+										var addr2 = $('#addr2').text();
+										var zipcode = $('#zipcode').text();
+										var tel = $('#tel').val();
+										var mobile = $('#mobile').val();
+										
+										console.log(name);
+										console.log(bday);
+										console.log(addr1);
+										console.log(addr2);
+										console.log(zipcode);
+										console.log(tel);
+										console.log(mobile);
+										
+										
+										//필수 입력 사항들을 입력했는지 체크한다.
+										if (name==null || bday==null || addr1 == null || addr2 == null || zipcode==null || tel==null || mobile==null ){
+											 alert('필수 사항을 전부 입력해주시기 바랍니다.');
+										} else{
+											$submitForm.attr("onsubmit","return true();");	
+											$submitForm.submit();
+										}
+									} 
+									
+								} 
+						
 							
 						});	
 						
 						
 						
-						
 					});
+					
 					
 						
 					</script>
 					
+	
+		
 
 				<textarea id="chk_cont1" style="margin-right:9px;resize:none;" cols="80" rows="10" readonly>
 인터넷 쇼핑몰 『주식회사 와이즈앤푸드 사이버 몰』회원 약관
@@ -519,6 +588,7 @@
 				
 	 		<input type="checkbox" id="agree" align="center"><label>위 약관에 동의합니다.</label><br>
 	 		<input type="submit" id="join" value= '가입하기' style="background:#FF720D;width:300px;height:50px;border-radius:4px; border:none; font-size:20px;color:black;margin-left:110px;     margin-top: 30px;" > 
+	 		
 	 			
 	 			
 	 		

@@ -98,7 +98,7 @@ public class MemberDao {
 
 		switch(key) {
 		case "id": query= prop.getProperty("checkID");break;
-		case "pwd": query= prop.getProperty("checkPwd");break;
+		case "pwd": query= prop.getProperty("checkPWD");break;
 		}
 
 
@@ -281,14 +281,13 @@ public class MemberDao {
 
 
 	// 이메일 중복 체크
-	public ArrayList<com.kh.cityrack.member.user.model.dto.Member> checkRepeatId(Connection con, String emailCheck) {
+	public Member checkRepeatId(Connection con, String emailCheck) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = prop.getProperty("checkRepeatId");
+		Member takenId = new Member();
+	
 		
-		
-		ArrayList<com.kh.cityrack.member.user.model.dto.Member> emailList = 
-				new MemberDao().checkRepeatId(con, emailCheck);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -297,6 +296,11 @@ public class MemberDao {
 			
 			rset = pstmt.executeQuery();
 			
+			while(rset.next()){
+				takenId.setM_email(rset.getString("m_email"));
+				
+			}
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -304,7 +308,32 @@ public class MemberDao {
 		}
 		
 		
-		return emailList;
+		return takenId;
+	}
+
+
+
+
+	// 임시 비밀번호로 업데이트
+	public int updateMemberPwd(Connection con, String encpwd, int mno) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("updateMemberPwd");
+	
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, encpwd);
+			pstmt.setInt(2, mno);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 
 }

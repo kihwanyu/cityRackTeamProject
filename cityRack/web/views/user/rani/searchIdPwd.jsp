@@ -98,7 +98,7 @@ button:hover {
 
 
 
-	<form id="pwdForm" action="<%=request.getContextPath()%>/searchPwd.em"
+	<form id="pwdForm" action="<%=request.getContextPath()%>/searchPwd.do"
 		method="post">
 		<!-- 비밀번호 찾기 -->
 		<div class="col-md-6">
