@@ -93,7 +93,7 @@ public class ThumbBoardService {
 		return list;
 	}
 
-
+	// 썸네일 게시글 상세보기
 	public HashMap<String, Object> selectThumbnailMap(int num) {
 
 		Connection con = getConnection();
