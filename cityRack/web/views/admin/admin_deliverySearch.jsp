@@ -81,12 +81,12 @@
 		<div class="searchArea" align="center">
 				<h2>배송 정보 검색</h2>
 				<div class="searchForm">
-					<form action="" method="get" >
+					<form action="<%=request.getContextPath() %>/DeliverySearch.me" method="get" >
 						<div class="searchTest">
 							<label for="searchTest" style="margin-bottom: 10px;">주문번호 : </label>
-							<input type="search" class="form-control" id="searchTest" name="searchText" id="searchText">
+							<input type="search" class="form-control" id="searchTest" name="orderCode" id="searchText">
 						</div>	
-						<input type="button" class="btn btn-primary active" value="검색" onclick="location.href='<%=request.getContextPath() %>/views/admin/admin_deliveryDetailUpdate.jsp'">
+						<input type="submit" class="btn btn-primary active" value="검색">
 					</form>
 				</div>				
 		</div>

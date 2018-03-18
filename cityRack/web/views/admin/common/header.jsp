@@ -37,7 +37,7 @@
         	<span class="caret"></span></a>
 	        <ul class="dropdown-menu">
 		        <li><a href="<%=request.getContextPath() %>/views/admin/admin_deliverySearch.jsp">배송 정보 검색</a></li>
-		        <li><a href="<%=request.getContextPath() %>/views/admin/admin_deliveryInvocenoResister.jsp">운송장 번호 등록</a></li>
+		        <li><a href="<%=request.getContextPath() %>/views/admin/admin_deliveryInvoiceResister.jsp">운송장 번호 등록</a></li>
 	        </ul>
       	</li>
 		<li class="menuNav"><a href="<%=request.getContextPath() %>/views/admin/admin_paymentSearch.jsp">결제 관리</a></li>

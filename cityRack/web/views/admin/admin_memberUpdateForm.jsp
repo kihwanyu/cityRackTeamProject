@@ -51,7 +51,7 @@
 					<th width="4%" style="text-align: center;">번호</th>
 					<th width="10%" style="text-align: center;">이메일</th>
 					<th width="5%" style="text-align: center;">등급</th>
-					<th width="10%" style="text-align: center;">비밀번호</th>
+					
 					<th width="4%" style="text-align: center;">이름</th>
 					<th width="4%" style="text-align: center;">성별</th>
 					<th width="7%" style="text-align: center;">생년월일</th>
@@ -141,7 +141,7 @@
 		  $memberCode = $('<td>').text(<%= m.getM_no()%>);
 		  $memberEmail = $('<td>').text('<%= m.getM_email()%>');
 		  $gradeName = $('<td>').text('<%= m.getC_name()%>');
-		  $memberPassword = $('<td>').text('<%= m.getM_password()%>');
+		
 		  $memberName = $('<td>').text('<%= m.getM_name()%>');
 		  $memberGender = $('<td>').text('<%= m.getM_gender()%>');
 		  $memberBirthday = $('<td>').text('<%= m.getM_birthDay()%>');
@@ -154,7 +154,7 @@
 		  $tr.append($memberCode);
 		  $tr.append($memberEmail);
 		  $tr.append($gradeName);
-		  $tr.append($memberPassword);
+		
 		  $tr.append($memberName);
 		  $tr.append($memberGender);
 		  $tr.append($memberBirthday);

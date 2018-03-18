@@ -87,17 +87,17 @@
 		<div class="searchArea" align="center">
 				<h2>운송장 번호 등록</h2>
 				<div class="searchForm">
-					<form action="" method="get" >
+					<form action="<%= request.getContextPath()%>/DeliveryUpdate.me" method="get" >
 						<div class="searchText">
 							<label for="searchTest">주문번호 : </label>
-							<input type="search" class="form-control" id="searchTest" name="searchText" id="searchText">
+							<input type="search" class="form-control" id="searchTest" name="orderCode" id="orderCode">
 						</div>
 						<div class="invoiceNoTest">
 							<label for="searchTest">운송장 번호 : </label>
-							<input type="search" class="form-control" id="invoiceNoTest" name="invoiceNoTest" id="invoiceNoTest">
+							<input type="search" class="form-control" id="invoiceNoTest" name="invoice" id="invoice">
 						</div>
 						
-						<input type="button" class="btn btn-primary active" value="등록" onclick="location.href=''">
+						<input type="submit" class="btn btn-primary active" value="등록" >
 					</form>
 				</div>				
 		</div>

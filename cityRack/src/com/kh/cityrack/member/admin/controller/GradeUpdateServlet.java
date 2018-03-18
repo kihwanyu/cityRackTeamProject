@@ -34,6 +34,11 @@ public class GradeUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Grade g = new Grade();
 		String gradeName = request.getParameter("gradeName");
+		
+		if(request.getParameter("gradeName") == ""){
+			gradeName = request.getParameter("originGradeName");
+		}
+		
 		int gradeDiscount = Integer.parseInt(request.getParameter("gradeDiscount"));
 		int gradeCode = Integer.parseInt(request.getParameter("gradeCode"));
 		
