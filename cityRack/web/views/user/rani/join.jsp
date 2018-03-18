@@ -121,7 +121,7 @@
 	#chk_cont1  {   
     height: 140px;    
     width:100%;  
-    width: 500px;
+    width: 555px;
 	}
 	
 
@@ -146,7 +146,7 @@
 		<div class="container" style="display: inline-block;  ">
 			<!-- row -->
 			<div class="row">
-				<form id="submitForm" onsubmit="return false;" action="<%=request.getContextPath() %>/insertMember.do" method="post">
+				<form id="submitForm" name="submitForm" onsubmit="return false;" action="<%=request.getContextPath() %>/insertMember.do" method="post">
 					<div class="col-md-6">
 						
 						
@@ -164,7 +164,11 @@
 								
 								<script type="text/javascript">
 								function repeatIdCheck(){
+									
 									var id = $("#emailId").val();
+									
+									if(id!=''){
+										
 									$("#submitForm").submit();
 									//console.log(id);
 									 $.ajax({
@@ -182,9 +186,35 @@
 											  }
 										  }
 										}); 
+									} else{
+										alert('이메일을 입력해주세요.');
+									}
 								}
 								</script>
 								
+										
+								<button class="input" style="background:#EBEBEB;margin-bottom:5px;border-radius:3px;" onclick="emailcheck(submitForm.email.value);">이메일 인증</button>
+								<p id="validateResult" name="validateResult"></p>
+								<input type="hidden" name="emailconfirm_value" value="0">
+								<script type="text/javascript">
+								function emailcheck(email){
+								    // 유효성 검사
+									if(!submitForm.email.value ){ 
+										alert('이메일을 입력해주세요.');
+										
+										return;
+									}
+								    // 인증을 위해 새창으로 이동
+								  
+									var url="emailConfirm.jsp?email="+email;
+									var myWindow = open(url,"emailwindow", "statusbar=no, scrollbar=no, menubar=no, width=400, height=150" );
+							
+									if(submitForm.emailconfirm_value.value==1){
+										document.getElementById("validateResult").innerHTML = '인증되었습니다.';
+									}
+								}
+								
+								</script>
 								
 								<input class="input" type="password" name="password" id="password" placeholder="비밀번호 *">							
 						
@@ -312,6 +342,10 @@
 								alert('아이디 중복확인을 해주시기 바랍니다.');
 							}
 							
+							if($("#validateResult").text()!= '인증되었습니다.'){
+								alert('이메일 인증을 해주시기 바랍니다.');
+							}
+							
 							//약관에 동의 하지 않으면 alert
 							if(!($("#agree").prop("checked"))){
 								alert('약관에 동의해주십시오.');
@@ -367,18 +401,17 @@
 					</script>
 					
 	
-		
 
 				<textarea id="chk_cont1" style="margin-right:9px;resize:none;" cols="80" rows="10" readonly>
-인터넷 쇼핑몰 『주식회사 와이즈앤푸드 사이버 몰』회원 약관
+인터넷 쇼핑몰 『주식회사 시티락 사이버 몰』회원 약관
 
 제1조(목적)
-이 약관은 주식회사 와이즈앤푸드 회사(전자상거래 사업자)가 운영하는 주식회사 와이즈앤푸드 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.
+이 약관은 주식회사 시티락 회사(전자상거래 사업자)가 운영하는 주식회사 시티락 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.
 
   ※「PC통신, 무선 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는 한 이 약관을 준용합니다.」
 
 제2조(정의)
-① “몰”이란 주식회사 와이즈앤푸드 회사가 재화 또는 용역(이하 “재화 등”이라 함)을 이용자에게 제공하기 위하여 컴퓨터 등 정보통신설비를 이용하여 재화 등을 거래할 수 있도록 설정한 가상의 영업장을 말하며, 아울러 사이버몰을 운영하는 사업자의 의미로도 사용합니다.
+① “몰”이란 주식회사 시티락 회사가 재화 또는 용역(이하 “재화 등”이라 함)을 이용자에게 제공하기 위하여 컴퓨터 등 정보통신설비를 이용하여 재화 등을 거래할 수 있도록 설정한 가상의 영업장을 말하며, 아울러 사이버몰을 운영하는 사업자의 의미로도 사용합니다.
 
 ② “이용자”란 “몰”에 접속하여 이 약관에 따라 “몰”이 제공하는 서비스를 받는 회원 및 비회원을 말합니다.
 
@@ -387,7 +420,7 @@
 ④ ‘비회원’이라 함은 회원에 가입하지 않고 “몰”이 제공하는 서비스를 이용하는 자를 말합니다.
 
 제3조 (약관 등의 명시와 설명 및 개정) 
-① “몰”은 이 약관의 내용과 상호 및 대표자 성명, 영업소 소재지 주소(소비자의 불만을 처리할 수 있는 곳의 주소를 포함), 전화번호·모사전송번호·전자우편주소, 사업자등록번호, 통신판매업 신고번호, 개인정보보호책임자 등을 이용자가 쉽게 알 수 있도록 주식회사 와이즈앤푸드 사이버몰의 초기 서비스화면(전면)에 게시합니다. 다만, 약관의 내용은 이용자가 연결화면을 통하여 볼 수 있도록 할 수 있습니다.
+① “몰”은 이 약관의 내용과 상호 및 대표자 성명, 영업소 소재지 주소(소비자의 불만을 처리할 수 있는 곳의 주소를 포함), 전화번호·모사전송번호·전자우편주소, 사업자등록번호, 통신판매업 신고번호, 개인정보보호책임자 등을 이용자가 쉽게 알 수 있도록 주식회사 시티락 사이버몰의 초기 서비스화면(전면)에 게시합니다. 다만, 약관의 내용은 이용자가 연결화면을 통하여 볼 수 있도록 할 수 있습니다.
 
 ② “몰은 이용자가 약관에 동의하기에 앞서 약관에 정하여져 있는 내용 중 청약철회·배송책임·환불조건 등과 같은 중요한 내용을 이용자가 이해할 수 있도록 별도의 연결화면 또는 팝업화면 등을 제공하여 이용자의 확인을 구하여야 합니다.
 
@@ -587,6 +620,7 @@
 				</textarea><br>
 				
 	 		<input type="checkbox" id="agree" align="center"><label>위 약관에 동의합니다.</label><br>
+	 		
 	 		<input type="submit" id="join" value= '가입하기' style="background:#FF720D;width:300px;height:50px;border-radius:4px; border:none; font-size:20px;color:black;margin-left:110px;     margin-top: 30px;" > 
 	 		
 	 			
