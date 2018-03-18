@@ -4,7 +4,8 @@
 <%
 	Board b = (Board)request.getAttribute("b");
 	Member m = (Member)session.getAttribute("loginUser");
-	Board re_b = (Board)request.getAttribute("re_b");
+	
+	Board rb = (Board)request.getAttribute("rb");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -106,7 +107,7 @@
 		<!-- 답변 내용 b.getStatus 'Y' 일때 보여지도록-->
 		
 		<div>
-		<% System.out.println("re_b :"+ re_b); %>
+		<% System.out.println("rb :"+ rb); %>
 		<table>
 			<tr>
 				<td><h4>문의하신글에 대한 답변입니다.</h4></td>
@@ -133,9 +134,10 @@
 				<br/>
 				<div align="right">
 					<button onclick="location.href='<%=request.getContextPath()%>/selectList.bo'" class="primary-btn">이전으로</button>
+					<button onclick="location.href='<%=request.getContextPath() %>/replyResult.bo?num=<%=b.getBo_no() %>'" class="primary-btn">답변확인</button>
 					<% System.out.println(m); %>
-					<%if(m.getM_no() == 10001){ %>
-					<button onclick="location.href='views/user/jeong/myPage_QnA_Re.jsp'" class="primary-btn">답변작성
+					<%if(m.getM_no() == 10000){ %>
+					<button onclick="location.href='<%=request.getContextPath() %>/reList.bo?num=<%=b.getBo_no() %>'" class="primary-btn">답변작성</button>
 					<% } %>
 				</div>
 				

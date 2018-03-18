@@ -242,5 +242,69 @@ public class BoardDao {
 		
 		return rlist;
 	}
+	public Board selectOne2(Connection con, int num) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Board b = null;
+		
+		String query = prop.getProperty("selectOne");
+		System.out.println("query:"+query);
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, num);
+			rset = pstmt.executeQuery();
+			if(rset.next()){
+				b = new Board();
+				
+				b.setBo_no(rset.getInt("bo_no"));
+				b.setM_name(rset.getString("m_name"));
+				b.setBo_title(rset.getString("bo_title"));
+				b.setBo_content(rset.getString("bo_content"));
+				b.setBo_date(rset.getDate("bo_date"));
+				b.setBo_category(rset.getString("bo_category"));
+			}
+			
+			
+			
+			System.out.println("b :"+b);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+		return b;
+	}
+	public Board selectReply(Connection con, int num) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Board b = null;
+		
+		String query = prop.getProperty("selectReply");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, num);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				b = new Board();
+				
+				b.setBo_content(rset.getString("bo_content"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		
+		return b;
+	}
 
 }

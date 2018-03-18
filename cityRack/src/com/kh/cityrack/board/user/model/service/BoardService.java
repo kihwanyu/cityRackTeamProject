@@ -68,6 +68,23 @@ public class BoardService {
 		close(con);
 		return rlist;
 	}
+	public Board selectOne2(int num) {
+		Connection con = getConnection();
+		
+		Board b = new BoardDao().selectOne2(con, num);
+		
+		close(con);
+		return b;
+	}
+	public Board selectReply(int num) {
+		Connection con = getConnection();
+		
+		Board b = new BoardDao().selectReply(con,num);
+		
+		close(con);
+		return b;
+		
+	}
 	
 
 }

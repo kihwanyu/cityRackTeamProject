@@ -12,19 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.cityrack.board.user.model.dto.Board;
 import com.kh.cityrack.board.user.model.service.BoardService;
 
-
-
 /**
- * Servlet implementation class SelectOneBoard
+ * Servlet implementation class ReplyResult
  */
-@WebServlet("/selectOne.bo")
-public class SelectOneBoard extends HttpServlet {
+@WebServlet("/replyResult.bo")
+public class ReplyResult extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectOneBoard() {
+    public ReplyResult() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,13 +35,13 @@ public class SelectOneBoard extends HttpServlet {
 		
 		System.out.println("num :" + num);
 		
-		Board b = new BoardService().selectOne(num);
-		System.out.println("b :"+b);
+		Board rb = new BoardService().selectReply(num);
+		System.out.println("rb :"+ rb);
 		String page = null;
-		if(b != null){
-			page = "views/user/jeong/myPage_QnA_View.jsp";
+		if(rb != null){
+			page = "views/user/jeong/replyResult.jsp";
 			
-			request.setAttribute("b", b);
+			request.setAttribute("rb", rb);
 		}else{
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시판 상세 조회 실패!");
