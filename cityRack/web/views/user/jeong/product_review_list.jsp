@@ -41,6 +41,7 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <style>
 .outer {
@@ -119,10 +120,12 @@
 									</div>
 									<p>
 										<%= loginUser.getM_name() %>님
-										<br/> 제목 : 
-										<%= hmap.get("bo_title") %>
+										<br/> < 제목 : 
+										<%= hmap.get("bo_title") %> >
 										<br /> 조회수 :
-										<%= hmap.get("bo_hit") %>
+										<%= hmap.get("bo_hit") %> &nbsp;&nbsp;|&nbsp;&nbsp;
+										추천수 :
+										<%= hmap.get("bo_recomm") %>
 									</p>
 								</div>
 			
@@ -144,14 +147,12 @@
 				<script>
 			
 					/* 게시글 한개 상세보기 */
-					$(function(){
-						$(".thumb-list").click(function(){
-							var num = $(this).children().children().eq(0).val(); /* 즉, 히든인 input의 값 */
-							console.log(num);
-							
-							location.href="<%= request.getContextPath() %>/selectOne.tn?num=" + num;
-						});	
-					});
+					$(document).on("click", ".thumb-list", function(){
+						alert("j");
+						var num = $(this).children().children().eq(0).val(); /* 즉, 히든인 input의 값 */
+						
+						location.href="<%= request.getContextPath() %>/selectThumbOne.tn?num=" + num;
+					});	
 		
 				</script>
 			</div>

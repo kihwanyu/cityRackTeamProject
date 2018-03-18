@@ -224,7 +224,7 @@ public class ThumbBoardDao {
 		return list;
 	}
 
-
+	// 게시글 조회수 올리기
 	public int updateCount(Connection con, int num) {
 
 		PreparedStatement pstmt = null;
@@ -249,18 +249,18 @@ public class ThumbBoardDao {
 		return result;
 	}
 
-
+	// 썸네일 게시글 상세보기
 	public HashMap<java.lang.String, Object> selectThumbnailMap(Connection con, int num) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		HashMap<String, Object> hmap = null;
 
-		// 맵에 바로 컬럼을 넣는게 아니라 보드와 어태치먼트의 객체를 넣음
+		// 맵에 바로 컬럼을 넣는게 아니라 보드와 보드파일의 객체를 넣음
 		Board b = null;
 		BoardFile at = null;
 
-		// 클릭하면 사진이 4장이니까 어태치먼트를 리스트로 만들어서 전달
+		// 클릭하면 사진이 4장이니까 보드파일을 리스트로 만들어서 전달
 		ArrayList<BoardFile> list = null;
 
 		String query = prop.getProperty("selectThumbnailOne");
@@ -276,29 +276,29 @@ public class ThumbBoardDao {
 
 			while(rset.next()) {
 
-				/*	b = new Board();
+				b = new Board();
 
-				b.setBid(rset.getInt("bid"));
-				b.setBno(rset.getInt("bno"));
-				b.setbTitle(rset.getString("btitle"));
-				b.setbContent(rset.getString("bcontent"));
-				b.setbWriter(rset.getString("nick_name"));
-				b.setbCount(rset.getInt("bcount"));
-				b.setbDate(rset.getDate("bdate"));
+				//b.setBid(rset.getInt("bid"));
+				b.setBo_no(rset.getInt("bo_no"));
+				b.setBo_title(rset.getString("bo_title"));
+				b.setBo_content(rset.getString("bo_content"));
+				b.setM_name(rset.getString("m_name"));
+				b.setBo_hit(rset.getInt("bo_hit"));
+				b.setBo_recomm(rset.getInt("bo_recomm"));
+				b.setBo_date(rset.getDate("bo_date"));
 
 				at = new BoardFile();
 
-				at.setFid(rset.getInt("fid"));
-				at.setOriginName(rset.getString("origin_name"));
-				at.setChangeName(rset.getString("change_name"));
-				at.setFilePath(rset.getString("file_path"));
-				at.setUploadDate(rset.getDate("upload_date"));
+				at.setBf_no(rset.getInt("bf_no"));
+				at.setBf_originname(rset.getString("bf_originname"));
+				at.setBf_name(rset.getString("bf_name"));
+				at.setBf_kind(rset.getString("bf_kind"));
 
 				// < 일대다 조인 >
 				// 보드는 어차피 한개니까 계속 생성 덮어쓰고
 				// 리스트는 보드한개당 4개니까 생성하고 리스트에 담고
 				// 결과) 보드는 하나고 리스트는 네개
-				list.add(at);*/
+				list.add(at);
 			}
 
 			hmap = new HashMap<String, Object>();
