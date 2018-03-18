@@ -114,8 +114,11 @@ public class OrderDao {
 		
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append("SELECT COUNT(*) FROM (SELECT DISTINCT O.O_ONO, O.O_ORDERDATE, M.M_EMAIL, P.P_NAME, PA.AMOUNT, O.O_STATE "
-				+ "FROM ORDERS O JOIN MEMBER M ON(O.M_NO=M.M_NO) JOIN PRODUCT P ON(O.P_CODE=P.P_CODE) JOIN PAYMENT PA ON(O.PAY_NO=PA.NO) WHERE ");
+		sb.append("SELECT COUNT(*) FROM(SELECT DISTINCT O_ONO, O_ORDERDATE, M_EMAIL, P_NAME, AMOUNT, O_STATE "
+				+ "FROM(SELECT DISTINCT O_ONO, O_ORDERDATE, M_EMAIL, P_CODE ,P_NAME, AMOUNT, O_STATE "
+				+ "FROM(SELECT O.O_ONO, O.O_ORDERDATE, M.M_EMAIL, P.P_CODE ,P.P_NAME, PA.AMOUNT, O.O_STATE "
+				+ "FROM ORDERS O JOIN MEMBER M ON(O.M_NO=M.M_NO) JOIN PRODUCT P ON(O.P_CODE=P.P_CODE) JOIN PAYMENT PA ON(O.PAY_NO=PA.NO) "
+				+ "WHERE O.O_LEVEL=1 AND ");
 				
 		for(int i = 0; i < searchTypeArr.length; i++){
 			switch (searchTypeArr[i]) {
@@ -145,6 +148,8 @@ public class OrderDao {
 			} 
 		}
 		
+		sb.append(")))");
+		
 		System.out.println(sb.toString());
 		
 		try {
@@ -157,7 +162,7 @@ public class OrderDao {
 				//switch case문으로 할 시 날짜에서 searchTypeArr을 한개 초과한 값을 꺼내는 오류 발생
 				switch (searchTypeArr[i]) {
 				case "searchCheackedOono":
-					pstmt.setInt(j, Integer.parseInt(oSearch.getSearch_oono()));
+					pstmt.setString(j, oSearch.getSearch_oono());
 					j++;
 					break;
 				case "searchCheackedEmail": 
@@ -174,7 +179,6 @@ public class OrderDao {
 						pstmt.setDate(j, oSearch.getAfterDate());
 						j++;
 					}
-					
 					break;
 				case "searchCheackedPname":
 					pstmt.setString(j, oSearch.getSearch_pname());
@@ -214,10 +218,12 @@ public class OrderDao {
 		
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append("SELECT RNUM, O_ONO, O_ORDERDATE, M_EMAIL, P_NAME, AMOUNT, O_STATE "
-				+ "FROM(SELECT ROWNUM RNUM, O_ONO, O_ORDERDATE, M_EMAIL, P_NAME, AMOUNT, O_STATE "
-				+ "FROM(SELECT DISTINCT O.O_ONO, O.O_ORDERDATE, M.M_EMAIL, P.P_NAME, PA.AMOUNT, O.O_STATE "
-				+ "FROM ORDERS O JOIN MEMBER M ON(O.M_NO=M.M_NO) JOIN PRODUCT P ON(O.P_CODE=P.P_CODE) JOIN PAYMENT PA ON(O.PAY_NO=PA.NO) WHERE ");
+		sb.append("SELECT RNUM, O_ONO, O_ORDERDATE, M_EMAIL, P_CODE ,P_NAME, AMOUNT, O_STATE "
+				+ "FROM(SELECT ROWNUM RNUM, O_ONO, O_ORDERDATE, M_EMAIL, P_CODE ,P_NAME, AMOUNT, O_STATE "
+				+ "FROM(SELECT DISTINCT O_NO ,O_ONO, O_ORDERDATE, M_EMAIL, P_CODE ,P_NAME, AMOUNT, O_STATE "
+				+ "FROM (SELECT O.O_NO, O.O_ONO, O.O_ORDERDATE, M.M_EMAIL, P.P_CODE ,P.P_NAME, PA.AMOUNT, O.O_STATE "
+				+ "FROM ORDERS O JOIN MEMBER M ON(O.M_NO=M.M_NO) JOIN PRODUCT P ON(O.P_CODE=P.P_CODE) JOIN PAYMENT PA ON(O.PAY_NO=PA.NO) "
+				+ "WHERE O.O_LEVEL=1 AND ");
 		
 		for(int i = 0; i < searchTypeArr.length; i++){
 			switch (searchTypeArr[i]) {
@@ -246,17 +252,16 @@ public class OrderDao {
 				sb.append(" AND ");
 			} 
 		}
-		sb.append(" ORDER BY ");
+		sb.append(") ORDER BY ");
 		if(orderType.equals("searchCheackedOonoOrder")){
-			sb.append("O.O_ONO " + oSearch.getOono_order());
-		} 
-		else if(orderType.equals("searchCheackedEmailOrder")) {
-			sb.append("M.M_EMAIL " + oSearch.getEmail_order());
+			sb.append("O_ONO " + oSearch.getOono_order());
+		} else if(orderType.equals("searchCheackedEmailOrder")) {
+			sb.append("M_EMAIL " + oSearch.getEmail_order());
 		} else { //searchCheackedPnameOrder
-			sb.append("P.P_NAME " + oSearch.getPname_order());
+			sb.append("P_NAME " + oSearch.getPname_order());
 		}
-			
 		sb.append(")) WHERE RNUM BETWEEN ? AND ?");
+		
 		System.out.println(sb.toString());
 		
 		try {
@@ -270,7 +275,7 @@ public class OrderDao {
 			for(int i = 0; i < searchTypeArr.length; i++){
 				switch (searchTypeArr[i]) {
 				case "searchCheackedOono":
-					pstmt.setInt(j, Integer.parseInt(oSearch.getSearch_oono()));
+					pstmt.setString(j, oSearch.getSearch_oono());
 					j++;
 					break;
 				case "searchCheackedEmail": 
@@ -287,7 +292,6 @@ public class OrderDao {
 						pstmt.setDate(j, oSearch.getAfterDate());
 						j++;
 					}
-					
 					break;
 				case "searchCheackedPname":
 					pstmt.setString(j, "%"+oSearch.getSearch_pname()+"%");
@@ -441,11 +445,11 @@ public class OrderDao {
 		
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append("SELECT RNUM, PCOUNT FROM(SELECT ROWNUM RNUM, O_ONO, PCOUNT "
-				+ "FROM(SELECT O.O_ONO, COUNT(*) PCOUNT "
-				+ "FROM ORDERS O JOIN MEMBER M ON(O.M_NO=M.M_NO) "
-				+ "JOIN PRODUCT P ON(O.P_CODE=P.P_CODE) "
-				+ "JOIN PAYMENT PA ON(O.PAY_NO=PA.NO) WHERE ");
+		sb.append("SELECT RNUM, PCOUNT "
+				+ "FROM(SELECT ROWNUM RNUM, O_ONO, PCOUNT "
+				+ "FROM(SELECT O_ONO, COUNT(*) PCOUNT FROM(SELECT O_NO, O_ONO, O_ORDERDATE, M_EMAIL, P_CODE , P_NAME, AMOUNT, O_STATE "
+				+ "FROM(SELECT O.O_NO, O.O_ONO, O.O_ORDERDATE, M.M_EMAIL, P.P_CODE ,P.P_NAME, PA.AMOUNT, O.O_STATE "
+				+ "FROM ORDERS O JOIN MEMBER M ON(O.M_NO=M.M_NO) JOIN PRODUCT P ON(O.P_CODE=P.P_CODE) JOIN PAYMENT PA ON(O.PAY_NO=PA.NO) WHERE ");
 		
 		for(int i = 0; i < searchTypeArr.length; i++){
 			switch (searchTypeArr[i]) {
@@ -456,7 +460,7 @@ public class OrderDao {
 				sb.append("M.M_EMAIL LIKE ?");
 				break;
 			case "searchCheackedOdate":
-				sb.append("O.O_ORDERDATE BETWEEN ? AND ?");
+				sb.append("O.O_ORDERDATE BETWEEN ? AND ?+1");
 				break;
 			case "searchCheackedPname":
 				sb.append("P.P_NAME LIKE ?");
@@ -469,17 +473,16 @@ public class OrderDao {
 				sb.append(" AND ");
 			} 
 		}
-		sb.append(" GROUP BY O.O_ONO ORDER BY ");
+		sb.append(" ))GROUP BY O_ONO ORDER BY ");
 		if(orderType.equals("searchCheackedOonoOrder")){
-			sb.append("O.O_ONO " + oSearch.getOono_order());
+			sb.append("O_ONO " + oSearch.getOono_order());
 		} 
 		else if(orderType.equals("searchCheackedEmailOrder")) {
-			sb.append("M.M_EMAIL " + oSearch.getEmail_order());
+			sb.append("M_EMAIL " + oSearch.getEmail_order());
 		} else { //searchCheackedPnameOrder
-			sb.append("P.P_NAME " + oSearch.getPname_order());
+			sb.append("P_NAME " + oSearch.getPname_order());
 		}
-			
-		sb.append(")) WHERE RNUM BETWEEN ? AND ?");
+		sb.append(" )) WHERE RNUM BETWEEN ? AND ?");
 		System.out.println(sb.toString());
 		
 		try {
@@ -493,7 +496,7 @@ public class OrderDao {
 			for(int i = 0; i < searchTypeArr.length; i++){
 				switch (searchTypeArr[i]) {
 				case "searchCheackedOono":
-					pstmt.setInt(j, Integer.parseInt(oSearch.getSearch_oono()));
+					pstmt.setString(j, oSearch.getSearch_oono());
 					j++;
 					break;
 				case "searchCheackedEmail": 
@@ -522,15 +525,12 @@ public class OrderDao {
 			pstmt.setInt(j, endRow);
 			
 			rset = pstmt.executeQuery();
-			
-			oList = new ArrayList<Order>();
-			
+			int i = 0;		
 			while(rset.next()){
-				int i = 0;
 				
 				oList.get(i).setpCount(rset.getInt("PCOUNT"));
-				
 				i++;
+				System.out.println("i : " + i);
 			}
 			
 		} catch (SQLException e) {

@@ -5,11 +5,10 @@
     pageEncoding="UTF-8"%>
 <%
 	ArrayList<Order> olist = (ArrayList<Order>)request.getAttribute("oList");
-	System.out.println(olist);
 	Boolean searchBoolean = (Boolean)request.getAttribute("searchBoolean");
 	
 	String[] searchTypeArr = null;
-	String orderType = null;
+	String orderType = "";
 			
 	String search_oono = "";
 	String search_email = "";
@@ -22,44 +21,63 @@
 	String email_order = "";
 	String pname_order = "";
 	
-	System.out.println(searchBoolean);
-	
 	if(searchBoolean){
-		searchTypeArr = (String[])request.getParameterValues("searchTypeArr");
-		orderType = (String)request.getAttribute("orderType");
-				
-		search_oono = (String)request.getAttribute("search_oono");
-		search_email = (String)request.getAttribute("search_email");
-		beforeDate = (String)request.getAttribute("beforeDate");
-		afterDate = (String)request.getAttribute("afterDate");
-		search_pname = (String)request.getAttribute("search_pname");
-		search_status = (String)request.getAttribute("search_status");
+		if((String[])request.getAttribute("searchTypeArr") != null){
+			searchTypeArr = (String[])request.getAttribute("searchTypeArr");
+			System.out.println("View searchTypeArr[0]" + searchTypeArr[0]);
+		} 
+		if((String)request.getAttribute("orderType") != null){
+			orderType = (String)request.getAttribute("orderType");
+		} 
+		if((String)request.getAttribute("search_oono") != null){
+			search_oono = (String)request.getAttribute("search_oono");
+		}
+		if((String)request.getAttribute("search_email") != null){				
+			search_email = (String)request.getAttribute("search_email");
+		}
+		if((String)request.getAttribute("beforeDate") != null){
+			beforeDate = (String)request.getAttribute("beforeDate");
+		}
+		if((String)request.getAttribute("afterDate") != null){
+			afterDate = (String)request.getAttribute("afterDate");
+		}
+		if((String)request.getAttribute("search_pname") != null){
+			search_pname = (String)request.getAttribute("search_pname");
+		}
+		if((String)request.getAttribute("search_status") != null){
+			search_status = (String)request.getAttribute("search_status");
+		}
+		if((String)request.getAttribute("oono_order") != null){
+			oono_order = (String)request.getAttribute("oono_order");
+		}
+		if((String)request.getAttribute("email_order") != null){
+			email_order = (String)request.getAttribute("email_order");
+		}
+		if((String)request.getAttribute("pname_order") != null){
+			pname_order = (String)request.getAttribute("pname_order");
+		}
 		
-		oono_order = (String)request.getAttribute("oono_order");
-		email_order = (String)request.getAttribute("email_order");
-		pname_order = (String)request.getAttribute("pname_order");
 	}
-	
 	String[] selectedStatus = new String[6];
 	
 	for(int i = 0; i < selectedStatus.length; i++){
 		selectedStatus[i] = "";
 	}
-	
-	if(search_status.equals("준비중")){
-		selectedStatus[0] = "selected=\"selected\"";
-	} else if(search_status.equals("준비완료")) {
-		selectedStatus[1] = "selected=\"selected\"";
-	} else if(search_status.equals("배송중")) {
-		selectedStatus[2] = "selected=\"selected\"";
-	} else if(search_status.equals("취소대기")) {
-		selectedStatus[3] = "selected=\"selected\"";
-	} else if(search_status.equals("준비완료")) {
-		selectedStatus[4] = "selected=\"selected\"";
-	} else{
-		selectedStatus[5] = "selected=\"selected\"";
+	if(searchBoolean && search_status != null){
+		if(search_status.equals("준비중")){
+			selectedStatus[0] = "selected=\"selected\"";
+		} else if(search_status.equals("준비완료")) {
+			selectedStatus[1] = "selected=\"selected\"";
+		} else if(search_status.equals("배송중")) {
+			selectedStatus[2] = "selected=\"selected\"";
+		} else if(search_status.equals("취소대기")) {
+			selectedStatus[3] = "selected=\"selected\"";
+		} else if(search_status.equals("준비완료")) {
+			selectedStatus[4] = "selected=\"selected\"";
+		} else{
+			selectedStatus[5] = "selected=\"selected\"";
+		} 
 	} 
-	
 	
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	int listCount = pi.getListCount();
@@ -138,28 +156,30 @@
 									<label for="search_oono">주문번호 : </label>
 								</div>
 								<div class="searchDiv" style="width: 40%">
-									<%if(!searchBoolean){ %>
+									<%if(!searchBoolean || search_oono.equals("")){ %>
 									<input type="search" name="search_oono" id="search_oono" class="form-control">
 									<%} else { %>
 									<input type="search" name="search_oono" id="search_oono" class="form-control" value="<%=search_oono%>">
 									<%} %> 
+									
 								</div>
 								<div class="searchDiv" style="width: 5%;" align="center"> 
-									<%if(!searchBoolean) {%>
+									<%if(!searchBoolean || searchTypeArr == null) {%>
 									<input type="checkbox" id="searchCheackedOono" name="searchType" value="searchCheackedOono">
 									<%} else { 
 										for(int i = 0; i < searchTypeArr.length; i++) {
 											if(searchTypeArr[i].equals("searchCheackedOono")){%>
 												<input type="checkbox" id="searchCheackedOono" name="searchType" value="searchCheackedOono" checked="checked">				
-									<%		break;
-											} else { %>
-											<input type="checkbox" id="searchCheackedOono" name="searchType" value="searchCheackedOono">
-									<%		}
-										}
+									<%			break;
+											} 
+											if((i > searchTypeArr.length-2)){%>
+												<input type="checkbox" id="searchCheackedOono" name="searchType" value="searchCheackedOono">				
+											<%}
+										} 
 									}%>
 								</div>
 								<div class="searchDiv" style="width: 25%">
-									<%if(!searchBoolean){ %>
+									<%if(!searchBoolean || orderType.equals("")){ %>
 									<select id="oono_order" name="oono_order" class="form-control">
 										<option value="ASC">오름차순</option>
 										<option value="DESC">내림차순</option>
@@ -188,7 +208,7 @@
 							</div>
 						</td>	
 						<td style="border: none">
-							<%if(!searchBoolean){ %>
+							<%if(!searchBoolean || orderType.equals("")){ %>
 							<input type="radio" id="searchCheackedOonoOrder" name="orderType" value="searchCheackedOonoOrder">
 							<%} else { 
 									if(orderType.equals("searchCheackedOonoOrder")){%>
@@ -203,33 +223,32 @@
 						<td style="border: none;">
 							<div align="left">
 								<div class="searchDiv" style="width: 18%;" align="center"> 
-									
 									<label style="height: 100%; margin-top: 5px;" for="search_email">회원이메일 : </label>	
-									
 								</div>
 								<div class="searchDiv" style="width: 40%">
-									<%if(!searchBoolean){ %>
+									<%if(!searchBoolean || search_email.equals("")){ %>
 									<input type="search" name="search_email" id="search_email" class="form-control">
 									<%} else { %>
 									<input type="search" name="search_email" id="search_email" class="form-control" value="<%=search_email%>">
 									<%} %>
 								</div>
 								<div class="searchDiv" style="width: 5%;" align="center"> 
-									<%if(!searchBoolean){ %>
+									<%if(!searchBoolean || searchTypeArr == null){ %>
 									<input id="searchCheackedEmail" type="checkbox" name="searchType" value="searchCheackedEmail">
 									<%} else { 
 										for(int i = 0; i < searchTypeArr.length; i++) {
 											if(searchTypeArr[i].equals("searchCheackedEmail")){%>
 												<input id="searchCheackedEmail" type="checkbox" name="searchType" value="searchCheackedEmail" checked="checked">				
-									<%		break;
-											} else { %>
-												<input id="searchCheackedEmail" type="checkbox" name="searchType" value="searchCheackedEmail">
-									<%		}
-										}
-									}%>
+											<%	break;
+											}
+											if((i > searchTypeArr.length-2)){%>
+												<input type="checkbox" id="searchCheackedEmail" name="searchType" value="searchCheackedEmail">				
+											<%}
+										}%>
+									<%} %>
 								</div>
 								<div class="searchDiv" style="width: 25%">
-									<%if(!searchBoolean){ %>
+									<%-- <%if(!searchBoolean || orderType.equals("")){ %>
 									<select id="email_order" name="email_order" class="form-control">
 										<option value="ASC">오름차순</option>
 										<option value="DESC">내림차순</option>
@@ -253,21 +272,21 @@
 											</select>
 									<%		}
 										}
-									} %>
+									} %> --%>
 								</div>		
 							</div>
 						</td>	
 						
 						<td style="border: none">
-							<%if(!searchBoolean){ %>
-							<input type="radio" id="searchCheackedEmailOrder" name="orderType" value="searchCheackedEmailOrder">
+							<%-- <%if(!searchBoolean || orderType.equals("")){ %>
+								<input type="radio" id="searchCheackedEmailOrder" name="orderType" value="searchCheackedEmailOrder">
 							<%} else { 
 									if(orderType.equals("searchCheackedEmailOrder")){%>
 									<input type="radio" id="searchCheackedEmailOrder" name="orderType" value="searchCheackedEmailOrder" checked="checked">
 							<%		} else { %>
 									<input type="radio" id="searchCheackedEmailOrder" name="orderType" value="searchCheackedEmailOrder">	
 							<%		}
-							} %>
+							} %> --%>
 						</td>
 					</tr>
 					<tr style="border: none">
@@ -276,7 +295,7 @@
 								<div class="searchDiv" style="width: 18%;" align="center"> 
 									<label for="search_odate">주문일자 : </label>
 								</div>
-								<%if(!searchBoolean){ %>
+								<%if(!searchBoolean || beforeDate.equals("")){ %>
 								<div class="searchDiv" style="width: 36%">
 									<input type="date" name="beforeDate" id="beforeDate" class="form-control">
 								</div>
@@ -302,16 +321,17 @@
 							</div>	
 						</td>	
 						<td style="border: none">
-							<%if(!searchBoolean){ %>
+							<%if(!searchBoolean || searchTypeArr == null){ %>
 							<input id="searchCheackedOdate" type="checkbox" name="searchType" value="searchCheackedOdate">
 							<%} else { 
 								for(int i = 0; i < searchTypeArr.length; i++) {
-									if(searchTypeArr[i].equals("searchCheackedEmail")){%>
+									if(searchTypeArr[i].equals("searchCheackedOdate")){%>
 										<input id="searchCheackedOdate" type="checkbox" name="searchType" value="searchCheackedOdate" checked="checked">				
-							<%		break;
-									} else { %>
-										<input id="searchCheackedOdate" type="checkbox" name="searchType" value="searchCheackedOdate">		
-							<%		}
+								<%		break;
+									}
+									if((i > searchTypeArr.length-2)){%>
+										<input type="checkbox" id="searchCheackedOdate" name="searchType" value="searchCheackedOdate">				
+								<%	}
 								}
 							}%>
 						</td>
@@ -323,28 +343,29 @@
 									<label for="search_pname">상품명 : </label>
 								</div>
 								<div class="searchDiv" style="width: 40%">
-									<%if(!searchBoolean){ %>
+									<%if(!searchBoolean || search_pname == null){ %>
 									<input type="search" name="search_pname" id="search_pname" class="form-control">
 									<%} else {%>
 									<input type="search" name="search_pname" id="search_pname" class="form-control" value="<%=search_pname %>">
 									<%} %>
 								</div>
 								<div class="searchDiv" style="width: 5%;" align="center"> 
-									<%if(!searchBoolean){ %>
+									<%if(!searchBoolean || searchTypeArr == null){ %>
 									<input type="checkbox" id="searchCheackedPname" name="searchType" value="searchCheackedPname">
 									<%} else { 
 										for(int i = 0; i < searchTypeArr.length; i++) {
 											if(searchTypeArr[i].equals("searchCheackedPname")){%>
 												<input type="checkbox" id="searchCheackedPname" name="searchType" value="searchCheackedPname" checked="checked">			
 									<%		break;
-											} else { %>
-												<input type="checkbox" id="searchCheackedPname" name="searchType" value="searchCheackedPname">		
-									<%		}
+											} 
+											if((i > searchTypeArr.length-2)){%>
+												<input type="checkbox" id="searchCheackedPname" name="searchType" value="searchCheackedPname">				
+											<%}
 										}
 									}%>
 								</div>
 								<div class="searchDiv" style="width: 25%">
-									<%if(!searchBoolean){ %>
+									<%-- <%if(!searchBoolean || orderType.equals("")){ %>
 									<select id="pname_order" name="pname_order" class="form-control">
 										<option value="ASC">오름차순</option>
 										<option value="DESC">내림차순</option>
@@ -368,12 +389,12 @@
 											</select>
 									<%		}
 										}
-									} %>
+									} %> --%>
 								</div>
 							</div>
 						</td>	
 						<td style="border: none">
-							<%if(!searchBoolean){ %>
+							<%-- <%if(!searchBoolean || orderType.equals("")){ %>
 							<input type="radio" id="searchCheackedPnameOrder" name="orderType" value="searchCheackedPnameOrder">
 							<%} else { 
 									if(orderType.equals("searchCheackedPnameOrder")){%>
@@ -381,7 +402,7 @@
 							<%		} else { %>
 									<input type="radio" id="searchCheackedPnameOrder" name="orderType" value="searchCheackedPnameOrder">	
 							<%		}
-							} %>
+							} %> --%>
 						</td>
 					</tr>
 					<tr style="border: none">
@@ -391,7 +412,7 @@
 									<label for="search_status">주문상태 : </label>
 								</div>
 								<div class="searchDiv" align="right">
-									<%if(!searchBoolean){ %>
+									<%if(!searchBoolean || search_status == ""){ %>
 									<select name="search_status">
 										<option value="준비중">준비중</option>
 										<option value="준비완료">준비완료</option>
@@ -400,27 +421,16 @@
 										<option value="취소대기">취소대기</option>
 										<option value="취소완료">취소완료</option>
 									</select>
-									<%} else {
-										if(search_status.equals("")) {%>
-										<select name="search_status">
-											<option value="준비중">준비중</option>
-											<option value="준비완료">준비완료</option>
-											<option value="배송중">배송중</option>
-											<option value="배송완료">배송완료</option>
-											<option value="취소대기">취소대기</option>
-											<option value="취소완료">취소완료</option>
-										</select>
-									<%	} else { %>
-										<select name="search_status">
-											<option value="준비중" <%=selectedStatus[0] %>>준비중</option>
-											<option value="준비완료" <%=selectedStatus[1] %>>준비완료</option>
-											<option value="배송중" <%=selectedStatus[2] %>>배송중</option>
-											<option value="배송완료" <%=selectedStatus[3] %>>배송완료</option>
-											<option value="취소대기" <%=selectedStatus[4] %>>취소대기</option>
-											<option value="취소완료" <%=selectedStatus[5] %>>취소완료</option>
-										</select>											
-									<%	}
-									} %>
+									<%} else { %>
+									<select name="search_status">
+										<option value="준비중" <%=selectedStatus[0] %>>준비중</option>
+										<option value="준비완료" <%=selectedStatus[1] %>>준비완료</option>
+										<option value="배송중" <%=selectedStatus[2] %>>배송중</option>
+										<option value="배송완료" <%=selectedStatus[3] %>>배송완료</option>
+										<option value="취소대기" <%=selectedStatus[4] %>>취소대기</option>
+										<option value="취소완료" <%=selectedStatus[5] %>>취소완료</option>
+									</select>											
+									<%} %>
 								</div>
 								<!--  -->
 								<div class="searchDiv" style="width: 5%">
@@ -430,10 +440,11 @@
 										for(int i = 0; i < searchTypeArr.length; i++) {
 											if(searchTypeArr[i].equals("searchCheackedStatus")){%>
 												<input type="checkbox" id="searchCheackedStatus" name="searchType" value="searchCheackedStatus" checked="checked">			
-									<%		break;
-											} else { %>
-												<input type="checkbox" id="searchCheackedStatus" name="searchType" value="searchCheackedStatus">		
-									<%		}
+									<%			break;
+											} 
+											if(i > searchTypeArr.length-2){%>
+												<input type="checkbox" id="searchCheackedStatus" name="searchType" value="searchCheackedStatus">				
+											<%}
 										}
 									}%>
 								</div>
@@ -473,12 +484,19 @@
 				</tr>
 				<%for(int i = 0; i < olist.size(); i++){ %>
 				<tr>
-					<td style="text-align: left;"><%=olist.get(i).getO_ono() %></td>
+					<td style="text-align: left;">
+						<%=olist.get(i).getO_ono() %>
+						<input type="button" class="textCopy" style="width: 20px; height: 20px; background:">
+					</td>
 					<td style="text-align: left;"><%=olist.get(i).getO_orderDate() %></td>
 					<td style="text-align: left;"><%=olist.get(i).getM_email() %></td>
-					<td style="text-align: left;"><a href="<%=request.getContextPath()%>/orderDetailGetAll.or?ono=<%=olist.get(i).getO_ono() %>"><%=olist.get(i).getP_name() %> 외 <%=olist.get(i).getpCount()-1%></a></td>
-					<td style="text-align: right;"><%=olist.get(i).getPa_amount() %></td>
 					
+					<%if(olist.get(i).getpCount() > 1){ %>
+						<td style="text-align: left;"><a href="<%=request.getContextPath()%>/orderDetailGetAll.or?ono=<%=olist.get(i).getO_ono() %>"><%=olist.get(i).getP_name() %> 외 <%=olist.get(i).getpCount()-1%></a></td>
+					<%} else {%>					
+						<td style="text-align: left;"><a href="<%=request.getContextPath()%>/orderDetailGetAll.or?ono=<%=olist.get(i).getO_ono() %>"><%=olist.get(i).getP_name() %></a></td>
+					<%} %>
+					<td style="text-align: right;"><%=olist.get(i).getPa_amount() %></td>
 					<%
 					selectedArr[0] = "";
 					selectedArr[1] = "";
@@ -520,7 +538,7 @@
 						</select>
 					</td>
 					
-					<td><input type="button" id="updateBtn" value="수정"></td>
+					<td><input type="button" class="updateBtn" value="수정"></td>
 					
 				</tr>
 				<%} %>
@@ -600,16 +618,14 @@
 				<button id="endPage">>></button>
 			</div>
 			<%} %>
+			<input id="clip_target" type="text" value="" style="position:absolute;top:-9999em;"/>
 		</div>	
 	</section>
 	<%@ include file="/views/admin/common/footer.jsp" %>
 	<script type="text/javascript">
 		$(function(){
 			var formObj = $("form[role='search']");
-			
-			var no;
-			var status;
-			var selectedBool = false;
+
 			console.log(formObj);
 			
 			$("#StartPage").on("click", function(){
@@ -640,26 +656,35 @@
 				console.log($("input[name='currentPage']").val())
 				formObj.submit();
 			});
-			$(".tableArea td").change(function() {
-				no = $(this).parent().children().eq(0).text();
-				status = $(this).parent().children().eq(5).children().val();
+			
+			$(".updateBtn").click(function(){
+				var no = $(this).parent().parent().children().eq(0).text();
+				var status = $(this).parent().parent().children().eq(5).children().val();
 				console.log(no);
 				console.log(status);
-				selectedBool = true;
-			});
-			$("#updateBtn").click(function(){
-				if(selectedBool){
-					var msgStr = "주문번호 : "+no+" 의 상태를 변경하시겠습니까?";
-					var result = window.alter(msgStr);
-					if(result==true){
-						location.href="<%= request.getContextPath()%>/orderStatusUpdate.or?no="+no+"&status="+status;
-					}
-				} else{
-					window.confirm("상태를 변경하고 버튼을 눌러주세요.");
-				}
+				var msgStr = "주문번호 : "+no+" 의 상태를 변경하시겠습니까?";
+				var result = window.alter(msgStr);
+				if(result==true){
+					location.href="<%= request.getContextPath()%>/orderStatusUpdate.or?no="+no+"&status="+status;
+				} 
 			});	
-			$("button").click(function(){ 
-				$("textarea").select(); document.execCommand('copy'); 
+			$(".textCopy").click(function(){
+				var text = $(this).parent().eq(0).text().trim();
+				console.log(text);
+				$('#clip_target').val(text); //input박스 value를 선택 $('#clip_target').select();
+				$('#clip_target').select();
+				// Use try & catch for unsupported browser 
+				try { 
+					//The important part (copy selected text); 
+					var successful = document.execCommand('copy'); 
+					if(successful) {
+						var msg = "주문번호 복사 완료."
+						alert(msg);
+					}
+				} catch (err) { 
+					alert('이 브라우저는 지원하지 않습니다.');
+				}
+
 			});
 		});
 		
