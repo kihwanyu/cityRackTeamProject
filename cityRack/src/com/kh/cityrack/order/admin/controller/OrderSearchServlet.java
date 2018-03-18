@@ -162,6 +162,7 @@ public class OrderSearchServlet extends HttpServlet {
 			if(search_oono != null){
 				request.setAttribute("search_oono", search_oono);
 			}
+			//
 			if(search_email != null){
 				request.setAttribute("search_email", search_email);
 			}
