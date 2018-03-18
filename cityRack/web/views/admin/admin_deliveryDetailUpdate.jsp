@@ -1,6 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*,com.kh.cityrack.delivery.model.dto.*"%>
 <% 
+if((com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUser")!=null){
+	  com.kh.cityrack.member.common.model.dto.Member me = (com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUser");
+	  if(!(me.getC_name().equals("관리자"))){
+		 RequestDispatcher view = request.getRequestDispatcher("/views/common/errorPage.jsp");
+		 request.setAttribute("msg", "동작그만 밑장빼기냐?");
+		 view.forward(request, response);
+	  }
+	}else{
+		System.out.println("bye");
+		RequestDispatcher view = request.getRequestDispatcher("/views/common/errorPage.jsp");
+		  request.setAttribute("msg", "동작그만 밑장빼기냐?");
+		  view.forward(request, response);
+	}
 //DeliverySearch에서 가져온 list 담아서 value값에 입력해줌 
 Delivery d = (Delivery)request.getAttribute("d");
 String orderCode = String.valueOf(request.getAttribute("orderCode"));
@@ -112,7 +125,7 @@ String address2 = address[2];
 				</tr>
 			</table>	
 				<input type="submit" value="저장하기">
-				<a href="javascript:void(window.open('views/admin/admin_deliveryStatus.jsp?invoice=<%=d.getD_invoice_no() %>', '_blank','width=600, height=800'))">배송조회</a>
+				<a href="javascript:void(window.open('views/common/admin_deliveryStatus.jsp?invoice=<%=d.getD_invoice_no() %>', '_blank','width=600, height=800'))">배송조회</a>
 		  </div>
 			
 		</form>

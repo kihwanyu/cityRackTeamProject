@@ -1,6 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*,com.kh.cityrack.member.admin.model.dto.*"%>
 <%
+if((com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUser")!=null){
+  com.kh.cityrack.member.common.model.dto.Member me = (com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUser");
+  if(!(me.getC_name().equals("관리자"))){
+	 RequestDispatcher view = request.getRequestDispatcher("/views/common/errorPage.jsp");
+	 request.setAttribute("msg", "동작그만 밑장빼기냐?");
+	 view.forward(request, response);
+  }
+}else{
+	System.out.println("bye");
+	RequestDispatcher view = request.getRequestDispatcher("/views/common/errorPage.jsp");
+	  request.setAttribute("msg", "동작그만 밑장빼기냐?");
+	  view.forward(request, response);
+}
+
+
 ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
 int currentPage = Integer.parseInt((String)request.getAttribute("currentPage"));
 int startPage = Integer.parseInt((String)request.getAttribute("startPage"));

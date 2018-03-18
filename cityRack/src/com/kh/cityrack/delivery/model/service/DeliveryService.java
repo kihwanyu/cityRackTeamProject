@@ -9,7 +9,7 @@ import static com.kh.cityrack.common.JDBCTemplet.*;
 
 public class DeliveryService {
 
-	public Delivery deliverySearch(int orderCode) {
+	public Delivery deliverySearch(String orderCode) {
 		Connection conn = getConnection();
 		Delivery d = new DeliveryDao().deliverySearch(conn, orderCode);
 		

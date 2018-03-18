@@ -81,7 +81,7 @@ public class loginServlet extends HttpServlet {
 					page = "views/common/errorPage.jsp";
 				}
 			
-				System.out.println("login Servlet mNo : " + loginUser.getM_no());
+				//System.out.println("login Servlet mNo : " + loginUser.getM_no());
 				request.getRequestDispatcher(page).forward(request, response);
 	}
 

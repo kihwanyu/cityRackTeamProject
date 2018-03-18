@@ -32,7 +32,8 @@ public class DeliverySearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    int orderCode = Integer.parseInt(request.getParameter("orderCode"));
+	    String orderCode = (request.getParameter("orderCode"));
+	    System.out.println("orderCode"+orderCode);
 		
 		//가져온 주문번호로 배송상세정보 조회 
 		Delivery d = new DeliveryService().deliverySearch(orderCode);
