@@ -42,6 +42,7 @@
     <form action="<%= request.getContextPath() %>/GradeUpdate.me" method="get">
     <div class="tableArea" align="center">
       <input type="hidden" name="gradeCode" value="<%= g.getGradeCode()%>">
+      <input type="hidden" name="originGradeName" value="<%= g.getGradeName() %>">
 	  <table style="width: 40%;">
 		<tr>
 		  <td colspan="6" style="background: lightyellow"><h2><%= g.getGradeCode() %></h2></td>

@@ -42,7 +42,8 @@ public class MemberSearchServlet extends HttpServlet {
 		}
 		
 		//값을 하나도 입력하지 않은 경우 전체 조회 서블릿으로 리다이렉트 
-		if(request.getParameter("searchText") == "" && request.getParameter("beforeDate") == "" && request.getParameter("afterDate") == "" && request.getParameter("grade").equals("--") && request.getParameter("gender").equals("A")){
+		if(request.getParameter("searchText").equals("") && request.getParameter("beforeDate").equals("") && request.getParameter("afterDate").equals("")&& request.getParameter("grade").equals("--") && request.getParameter("gender").equals("A")){
+			System.out.println("getAll실행");
 			response.sendRedirect("/cityRack/MemberGetAll.me");
 			return;
 		}
@@ -71,6 +72,10 @@ public class MemberSearchServlet extends HttpServlet {
 		System.out.println(beforeDate);
 		search.setBeforeDate(beforeDate);
 		
+		if(request.getParameter("beforeDate") == null){
+			search.setBeforeDate("0");
+		}
+		
 		String afterDateOrigin = request.getParameter("afterDate");
 		String[] afterDateArr = afterDateOrigin.split("-");
 		String afterDate = "";
@@ -81,6 +86,10 @@ public class MemberSearchServlet extends HttpServlet {
 		System.out.println(afterDate);
 		search.setAfterDate(afterDate);
 		
+		if(request.getParameter("afterDate") == null){
+			search.setAfterDate("0");
+		}
+		
 		String grade = request.getParameter("grade");
 		System.out.println(grade);
 		search.setGrade(grade);
@@ -88,6 +97,8 @@ public class MemberSearchServlet extends HttpServlet {
 		String status = request.getParameter("status");
 		System.out.println(status);
 		search.setStatus(status);
+		
+		System.out.println(search);
 		
 		HashMap hmap = new MemberService().memberSearch(search, currentPage);
 		

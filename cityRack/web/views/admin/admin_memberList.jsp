@@ -9,16 +9,23 @@ int totalPage = Integer.parseInt((String)request.getAttribute("totalPage"));
 
 Search search = null;
 String searchWord = null;
+String gender = null;
+String searchCondition = null;
+String searchText = null;
+String beforeDate = null;
+String afterDate = null;
+String grade = null;
+String status = null;
 
 if(request.getAttribute("search") != null){
-search = (Search)request.getAttribute("search");
-String gender = search.getGender();
-String searchCondition = search.getSearchCondition();
-String searchText = search.getSearchText();
-String beforeDate = search.getBeforeDate();
-String afterDate = search.getAfterDate();
-String grade = search.getGrade();
-String status = search.getStatus();
+  search = (Search)request.getAttribute("search");
+  gender = search.getGender();
+  searchCondition = search.getSearchCondition();
+  searchText = search.getSearchText();
+  beforeDate = search.getBeforeDate();
+  afterDate = search.getAfterDate();
+  grade = search.getGrade();
+  status = search.getStatus();
 
 searchWord = "&gender=" + gender + "&searchCondition=" + searchCondition + "&searchText=" + searchText + "&beforeDate=" + beforeDate + "&afterDate=" + afterDate + "&grade=" + grade + "&status=" + status;  
 }
@@ -77,13 +84,13 @@ searchWord = "&gender=" + gender + "&searchCondition=" + searchCondition + "&sea
 				<input type="radio" value="A" id="alㅣ" name="gender" checked="checked">
 				<label for="all">전체</label>
 				&nbsp;
-				<input type="radio" value="M" id="male" name="gender">
+				<input type="radio" value="M" id="gender" name="gender">
 				<label for="male">남성</label>
 				&nbsp;
-				<input type="radio" value="F" id=" female" name="gender">
+				<input type="radio" value="F" id="gender" name="gender">
 				<label for=" female">여성</label>
 				&nbsp;&nbsp;
-				<select id="searchCondition" name="searchCondition" onchange="selectSearch();">
+				<select id="searchCondition" name="searchCondition">
 					<option value="email">이메일</option>
 					<option value="name">이름</option>
 					<option value="birthday">생년월일</option>
@@ -129,8 +136,6 @@ searchWord = "&gender=" + gender + "&searchCondition=" + searchCondition + "&sea
 	</section>
 	
 	<% if(search != null){ %>
-	
-	
 	<div class="paging" align="center">
 	  <button onclick="location.href='<%= request.getContextPath() %>/MemberSearch.me?currentPage=<%= 1%><%= searchWord%>'"><<</button>
 	  
@@ -184,47 +189,64 @@ searchWord = "&gender=" + gender + "&searchCondition=" + searchCondition + "&sea
 	<%@ include file="/views/admin/common/footer.jsp" %>
 	<script type="text/javascript">
 		
-		function selectSearch() {
+		
+		$(function() {
+		
+			$('#searchCondition').change(function(){
+				console.log('바뀜!');
 			var selection = document.getElementById('searchCondition').value;
 			if(selection=='email'){
+				$('#searchText').val('');
+				$('#grade').val('--');
 				document.getElementById('searchText').style.display='inline';
 				document.getElementById('serachDate').style.display='none';
 				document.getElementById('status').style.display='none';
 				document.getElementById('grade').style.display='none';
 				
 			} else if(selection=='name') {
+				$('#searchText').val('');
+				$('#grade').val('--');
 				document.getElementById('searchText').style.display='inline';
 				document.getElementById('serachDate').style.display='none';
 				document.getElementById('status').style.display='none';
 				document.getElementById('grade').style.display='none';
 				
 			} else if(selection=='birthday') {
+				$('#searchText').val('');
+				$('#grade').val('--');
 				document.getElementById('searchText').style.display='none';
 				document.getElementById('serachDate').style.display='inline';
 				document.getElementById('status').style.display='none';
 				document.getElementById('grade').style.display='none';
 				
 			} else if(selection=='status'){
+				$('#searchText').val('');
+				$('#grade').val('--');
 				document.getElementById('searchText').style.display='none';
 				document.getElementById('serachDate').style.display='none';
 				document.getElementById('status').style.display='inline';
 				document.getElementById('grade').style.display='none';
 				
 			} else if(selection=='grade'){
+				$('#searchText').val('');
+				$('#grade').val('--');
 				document.getElementById('searchText').style.display='none';
 				document.getElementById('serachDate').style.display='none';
 				document.getElementById('status').style.display='none';
 				document.getElementById('grade').style.display='inline';
 			} else {
+				$('#searchText').val('');
+				$('#grade').val('--');
 				document.getElementById('searchText').style.display='none';
 				document.getElementById('serachDate').style.display='inline';
 				document.getElementById('status').style.display='none';
 				document.getElementById('grade').style.display='none';
 			
 			}
-		}
+			});
+
 		
-		$(function() {
+		
 			var $memberTable = $('#memberTable');
 			document.getElementById('serachDate').style.display='none';
 			
