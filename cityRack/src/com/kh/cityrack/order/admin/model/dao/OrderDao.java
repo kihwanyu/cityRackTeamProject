@@ -391,6 +391,7 @@ public class OrderDao {
 				
 				pList.add(p);
 			}
+			System.out.println("pList : " + pList);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -406,7 +407,7 @@ public class OrderDao {
 		ResultSet rset = null;
 				
 		String query = prop.getProperty("orderListGetPcount");
-		
+		System.out.println("oList : " + oList);
 		
 		try {
 			pstmt = conn.prepareStatement(query);

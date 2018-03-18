@@ -26,15 +26,16 @@ public class DeliveryDao {
 		
 	}
 	
-	public Delivery deliverySearch(Connection conn, int orderCode) {
+	public Delivery deliverySearch(Connection conn, String orderCode) {
 		Delivery d = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = prop.getProperty("deliverySearch");
+		System.out.println("query : " + query);
 		
 		try{
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, orderCode);
+			pstmt.setString(1, "10000");
 			
 			rset = pstmt.executeQuery();
 			
@@ -49,6 +50,7 @@ public class DeliveryDao {
 				d.setD_addr_msg(rset.getString("d_addr_msg"));
 			}
 			
+			System.out.println("d : " + d);
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{

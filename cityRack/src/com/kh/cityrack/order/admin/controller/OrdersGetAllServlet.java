@@ -35,8 +35,8 @@ public class OrdersGetAllServlet extends HttpServlet {
 		int currentPage; // 현재 페이지를 표시할 변수
 		int limit; // 한 페이지에 게시글이 몇 개 보여질 것인지
 		int maxPage; // 전체 페이지에서 가장 마지막 페이지
-		int startPage; // 한번에 표시될 페이지가 시작할 페이지
-		int endPage; // 한번에 표시될 페이지가 끝나는 페이지
+		int startPage; // 한번에 표시될  시작할 페이지
+		int endPage; // 한번에 표시될 페이지가 페이지가끝나는 페이지
 		
 		// 게시판은 1페이지부터 시작한다.
 		

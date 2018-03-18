@@ -34,7 +34,7 @@ public class DeliveryUpdateServlet extends HttpServlet {
 		Delivery d;
 		int result = 0;
 		
-		int orderCode = Integer.parseInt(request.getParameter("orderCode"));
+		String orderCode = (request.getParameter("orderCode"));
 		
 		if(request.getParameter("dno") != null){
 			d = new Delivery();
