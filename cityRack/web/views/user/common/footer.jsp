@@ -91,7 +91,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 						<!-- footer logo -->
 						<div class="footer-logo">
 							<a class="logo" href="#">
-		            <img src="img/logo.png" alt="" id="footer-logo">
+		            <img src="<%=request.getContextPath() %>/views/user/rani/img/logo.png" alt="" id="footer-logo">
 		          </a>
 						</div>
 						<!-- /footer logo -->
@@ -161,7 +161,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 		<!-- /container -->
 	</footer>
 	<!-- /FOOTER -->
-
-
+	
+	
 </body>
 </html>

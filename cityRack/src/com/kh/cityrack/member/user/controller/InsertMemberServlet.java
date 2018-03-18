@@ -111,11 +111,11 @@ public class InsertMemberServlet extends HttpServlet {
 			String page = "";
 				
 				if(result>0) {
-					page = "views/user/common/successPage";
-					request.setAttribute("msg", "회원 가입 성공.");
+					page = "views/common/successPage.jsp";
+					request.setAttribute("message", "회원 가입에 성공하셨습니다.");
 				} else {
 					page = "views/user/common/errorPage.jsp";
-					request.setAttribute("msg", "회원 가입 실패");
+					request.setAttribute("msg", "회원 가입에 실패하셨습니다.");
 				}
 				
 				RequestDispatcher view = request.getRequestDispatcher(page);

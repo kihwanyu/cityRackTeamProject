@@ -85,7 +85,10 @@ font-family: 'Nanum Gothic', sans-serif !important;
   padding: 0 !important;  
   border-radius: 4px;
   -moz-border-radius: 4px;
- margin-bottom:600px;
+
+ 
+    margin-bottom: 800px;
+ 
   margin-top: 20px;  
   margin-left: 300px;
   margin-right:300px;
@@ -204,8 +207,11 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
 
 .foodimg{
 border-radius:50%;
-width:70%;
+width:50%;
+height:50%;
 }
+
+
 
  td{
 
@@ -269,7 +275,7 @@ overflow-y:scroll;
 }
 
 .selectFood img{
-	width:70%;
+	width:50%;height:50%;
 }
 
 .selectFood h3,a, p{
