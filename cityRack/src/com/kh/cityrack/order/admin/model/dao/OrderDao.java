@@ -543,5 +543,28 @@ public class OrderDao {
 		}
 		return oList;
 	}
+	public int getOrderStatusUpdate(Connection conn ,String ono, String status) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("getOrtderStatusUpdate");
+		System.out.println(query);
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, status);
+			pstmt.setString(2, ono);
+			
+			result = pstmt.executeUpdate();
+			
+			System.out.println("result DAO : " + result);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 
 }
