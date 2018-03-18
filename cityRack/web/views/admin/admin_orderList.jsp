@@ -478,7 +478,7 @@
 					<th width="6%" style="text-align: center;">상태변경</th>
 					<!-- 도시락 외 3 클릭시 주문 정보 다 출력. -->
 				<%
-					String[] selectedArr = new String[6];		
+					String[] selectedArr = new String[7];		
 				%>
 				
 				</tr>
@@ -511,7 +511,7 @@
 							selectedArr[0] = "selected=\"selected\"";
 							break;
 						case "준비완료":
-							selectedArr[0] = "selected=\"selected\"";
+							selectedArr[1] = "selected=\"selected\"";
 							break;
 						case "배송대기":
 							selectedArr[2] = "selected=\"selected\"";		
@@ -658,12 +658,12 @@
 			});
 			
 			$(".updateBtn").click(function(){
-				var no = $(this).parent().parent().children().eq(0).text();
-				var status = $(this).parent().parent().children().eq(5).children().val();
+				var no = $(this).parent().parent().children().eq(0).text().trim();
+				var status = $(this).parent().parent().children().eq(5).children().val().trim();
 				console.log(no);
 				console.log(status);
 				var msgStr = "주문번호 : "+no+" 의 상태를 변경하시겠습니까?";
-				var result = window.alter(msgStr);
+				var result = window.confirm(msgStr);
 				if(result==true){
 					location.href="<%= request.getContextPath()%>/orderStatusUpdate.or?no="+no+"&status="+status;
 				} 

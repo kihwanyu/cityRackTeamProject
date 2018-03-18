@@ -98,4 +98,21 @@ public class OrderService {
 		return oList;
 	}
 
+	public int getOrderStatusUpdate(String ono, String status) {
+		
+		Connection conn = getConnection();
+		
+		int result = new OrderDao().getOrderStatusUpdate(conn ,ono ,status);
+		
+		if(result > 0){
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
 }
