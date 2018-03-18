@@ -49,7 +49,7 @@ public class StockInsertServlet extends HttpServlet {
 			System.out.println("pcode :" + pcode);
 			System.out.println("note :" + note);
 			System.out.println("amount :" + amount);
-			
+			//
 			s.setPcode(pcode);
 			s.setDivsion(divsion);
 			s.setNote(note);

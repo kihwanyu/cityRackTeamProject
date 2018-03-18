@@ -479,7 +479,7 @@ public class StockDao{
 		
 		return result;
 	}
-
+	//
 	public ArrayList<Stock> getStockTodayList(Connection conn, String standard) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
