@@ -62,19 +62,19 @@ public class StockInsertServlet extends HttpServlet {
 			if(p_total > -1){		
 				result = new StockService().StockInsert(s);
 				if(result > 0){
-					page = "views/admin/common/location.jsp";
-					request.setAttribute("msg", "재고 처리가 완료 되었습니다.");
-					request.setAttribute("location", "stockInsert");
+					response.sendRedirect(request.getContextPath()+"/productGetAll.pr");
 				} else {
 					page = "views/common/errorPage.jsp";
 					request.setAttribute("msg", "재고 입력 에러 발생");
+					request.getRequestDispatcher(page).forward(request, response);
 					
 				}
 			} else {
 				page = "views/common/errorPage.jsp";
 				request.setAttribute("msg", "재고가 부족합니다.");
+				request.getRequestDispatcher(page).forward(request, response);
 			}
-			request.getRequestDispatcher(page).forward(request, response);
+			
 	}
 
 	/**
