@@ -76,7 +76,7 @@
 							</div>
 							<% if(loginUser == null){ %>
 							<div class="loginDiv">
-						<a href="views/user/rani/login.jsp" class="text-uppercase">로그인</a> / <a href="views/user/rani/join.jsp" class="text-uppercase">회원가입</a>
+						<a href="views/user/rani/login.jsp" class="text-uppercase">로그인</a> / <a href="<%=request.getContextPath() %>/views/user/rani/join.jsp" class="text-uppercase">회원가입</a>
 							</div>
 							<%} else { %>
 								<div class="loginDiv">
