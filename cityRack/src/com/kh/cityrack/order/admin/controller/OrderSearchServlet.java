@@ -58,6 +58,7 @@ public class OrderSearchServlet extends HttpServlet {
 			case "searchCheackedOono":
 				search_oono = request.getParameter("search_oono").trim();
 				oSearch.setSearch_oono(search_oono);
+				System.out.println("Servlet search_oono : " + search_oono);
 				break;
 			case "searchCheackedEmail": 
 				search_email= request.getParameter("search_email").trim();
@@ -86,7 +87,7 @@ public class OrderSearchServlet extends HttpServlet {
 				break;
 			}
 			if(orderType.equals("searchCheackedOonoOrder")){
-				oono_order = request.getParameter("pcode_order");
+				oono_order = request.getParameter("oono_order");
 				oSearch.setOono_order(oono_order);
 			} else if(orderType.equals("searchCheackedEmailOrder")) {
 				email_order = request.getParameter("email_order");
@@ -151,19 +152,42 @@ public class OrderSearchServlet extends HttpServlet {
 		
 		if(oList != null){
 			oList = new OrderService().orderListSearchGetPcount(currentPage, limit, oSearch, searchTypeArr, orderType, oList);
+			System.out.println("Servlet searchTypeArr[0]" + searchTypeArr[0]);
+			if(searchTypeArr != null){
+				request.setAttribute("searchTypeArr", searchTypeArr);
+			}
+			if(orderType != null){
+				request.setAttribute("orderType", orderType);
+			}
+			if(search_oono != null){
+				request.setAttribute("search_oono", search_oono);
+			}
+			//
+			if(search_email != null){
+				request.setAttribute("search_email", search_email);
+			}
+			if(beforeDate != null){
+				request.setAttribute("beforeDate", String.valueOf(beforeDate));
+			}
+			if(afterDate != null){
+				request.setAttribute("afterDate", String.valueOf(afterDate));
+			}
+			if(search_pname != null){
+				request.setAttribute("search_pname", search_pname);
+			}	
+			if(search_status != null){
+				request.setAttribute("search_status", search_status);
+			}
+			if(oono_order != null){
+				request.setAttribute("oono_order", oono_order);
+			}
+			if(email_order != null){
+				request.setAttribute("email_order", email_order);
+			}
+			if(pname_order != null){
+				request.setAttribute("pname_order", pname_order);
+			}
 			
-			request.setAttribute("searchTypeArr", searchTypeArr);
-			request.setAttribute("orderType", orderType);
-			request.setAttribute("search_oono", search_oono);
-			request.setAttribute("search_email", search_email);
-			request.setAttribute("beforeDate", String.valueOf(beforeDate));
-			request.setAttribute("afterDate", String.valueOf(afterDate));
-			request.setAttribute("search_pname", search_pname);
-			request.setAttribute("search_status", search_status);
-			
-			request.setAttribute("oono_order", oono_order);
-			request.setAttribute("email_order", email_order);
-			request.setAttribute("pname_order", pname_order);
 			
 			request.setAttribute("searchBoolean", true);
 			request.setAttribute("oList", oList);

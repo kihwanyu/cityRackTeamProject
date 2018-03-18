@@ -76,7 +76,7 @@ public class OrderService {
 	}
 
 	public ArrayList<Order> orderListGetPcount(int currentPage, int limit, ArrayList<Order> oList) {
-		
+		//
 		Connection conn = getConnection();
 		
 		oList = new OrderDao().orderListGetPcount(conn, currentPage, limit, oList);
