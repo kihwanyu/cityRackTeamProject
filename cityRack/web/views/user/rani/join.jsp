@@ -320,14 +320,12 @@
 						
 						$("#join").click(function(){
 							
-							
-							
 							//패스워드 일치하지 않으면 alert
 							
-						var pwd1 = $("#password").val();
-						var pwd2 = $("#password2").val();
-						var regExp =/^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
-						
+							var pwd1 = $("#password").val();
+							var pwd2 = $("#password2").val();
+							var regExp =/^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+							
 							if(pwd1 != pwd2){
 								alert('비밀번호가 일치하지 않습니다.');
 							} else {
@@ -341,7 +339,7 @@
 							if($("#idCheckResult").text()!='사용 가능한 메일 주소입니다.'){
 								alert('아이디 중복확인을 해주시기 바랍니다.');
 							}
-							
+							//이메일 인증이 되지 않았으면
 							if($("#validateResult").text()!= '인증되었습니다.'){
 								alert('이메일 인증을 해주시기 바랍니다.');
 							}
@@ -351,16 +349,20 @@
 								alert('약관에 동의해주십시오.');
 							}
 							
+							
+							
 							//약관에 동의하면 form 전송하기.
-						
 								var $submitForm = $("#submitForm");
 							
 								//약관 체크가 되었으면 
-								if($("#agree").prop("checked")){
+								if( $("#agree").prop("checked") ){
 									
-									if($("#idCheckResult").text()=='사용 가능한 메일 주소입니다.'){
-										alert('중복확인');
-										
+									/* if($("#idCheckResult").text()!='사용 가능한 메일 주소입니다.'){
+										alert('중복확인을 해주세요.');
+									}	
+									if($("#validateResult").text()!= '인증되었습니다.'){
+										alert('이메일 인증을 해주시기 바랍니다.');
+									} */
 										var name = $("#username").val();
 										var bday = $("#bday").val();
 										var addr1 = $('#addr1').text();
@@ -369,32 +371,47 @@
 										var tel = $('#tel').val();
 										var mobile = $('#mobile').val();
 										
-										console.log(name);
+										/* console.log(name);
 										console.log(bday);
 										console.log(addr1);
 										console.log(addr2);
 										console.log(zipcode);
 										console.log(tel);
-										console.log(mobile);
+										console.log(mobile); */
 										
+										var pwd1 = $("#password").val();
+										var pwd2 = $("#password2").val();
+										var regExp =/^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+										
+										if(pwd1 != pwd2){
+											alert('비밀번호가 일치하지 않습니다.');
+										} else {
+											//console.log(pwd1 +", " +pwd2);
+											if( ! regExp.test(pwd1) || !regExp.test(pwd2) ){
+												alert('비밀번호 규칙을 지켜주십시오.');
+											}
+										}
 										
 										//필수 입력 사항들을 입력했는지 체크한다.
-										if (name==null || bday==null || addr1 == null || addr2 == null || zipcode==null || tel==null || mobile==null ){
+										if (name==null || bday==null || addr1 == null || addr2 == null || zipcode==null || tel==null || mobile==null 
+											 ){
 											 alert('필수 사항을 전부 입력해주시기 바랍니다.');
-										} else{
+										} else if (name!=null && bday!=null&& addr1 != null && addr2 != null && zipcode!=null && tel!=null && mobile!=null
+												&& pwd1 == pwd2 && regExp.test(pwd1) && regExp.test(pwd2) && $("#idCheckResult").text()=='사용 가능한 메일 주소입니다.'
+												&& $("#validateResult").text()== '인증되었습니다.' && $("#agree").prop("checked")){
 											$submitForm.attr("onsubmit","return true();");	
 											$submitForm.submit();
 										}
 									} 
 									
-								} 
+								});
 						
 							
 						});	
 						
 						
 						
-					});
+					
 					
 					
 						

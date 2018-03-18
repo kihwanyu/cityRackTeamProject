@@ -56,7 +56,7 @@ public class OrderInsertServlet extends HttpServlet {
 		if(result > 0){
 			result = new CartService().memberCartDeleteAll(mno);
 			if(result > 0){
-				request.setAttribute("msg", "결제 성공");
+				request.setAttribute("message", "결제에 성공하셨습니다.");
 				page = "views/common/successPage.jsp";
 			} else {
 				request.setAttribute("msg", "장바구니 삭제 실패");
