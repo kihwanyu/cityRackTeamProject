@@ -27,6 +27,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!--  -->
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -34,7 +35,7 @@
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 
 <style>
-	@import url("views/common/css/common.css");
+	@import url("<%=request.getContextPath()%>/views/admin/css/common.css");
 
 	.mainArea {
 		width: 100%;
@@ -63,7 +64,7 @@
 					<table id="stockTodayTable" class="table table-striped" style="margin: 5px; width: 95%;">
 						<thead>
 							<tr>
-								<td colspan="5">최근 재고 등록 현황&nbsp;&nbsp; (<%= todayStr %> 기준)</td>
+								<td colspan="5">금일 재고 등록 현황&nbsp;&nbsp; (<%= todayStr %> 기준)</td>
 								<td colspan="1" align="right">
 									<select id="standard" name="standard">
 										<option value="입고">입고</option>

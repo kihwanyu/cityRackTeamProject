@@ -479,7 +479,7 @@ public class StockDao{
 		
 		return result;
 	}
-
+	//
 	public ArrayList<Stock> getStockTodayList(Connection conn, String standard) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -491,7 +491,8 @@ public class StockDao{
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, standard);
+			pstmt.setString(1, "상품 판매");
+			pstmt.setString(2, standard);
 			rset = pstmt.executeQuery();
 			
 			sTodayList = new ArrayList<Stock>();

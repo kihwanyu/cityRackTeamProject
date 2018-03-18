@@ -34,7 +34,7 @@ public class todayStockgetAll extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Stock> stockList = null;
 		System.out.println("todayStock.ma");
-		
+		//
 		String standard = request.getParameter("standard");
 		
 		stockList = new StockService().StockTodayList(standard);

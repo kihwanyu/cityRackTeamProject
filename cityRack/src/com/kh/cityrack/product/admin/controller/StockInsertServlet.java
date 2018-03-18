@@ -49,7 +49,7 @@ public class StockInsertServlet extends HttpServlet {
 			System.out.println("pcode :" + pcode);
 			System.out.println("note :" + note);
 			System.out.println("amount :" + amount);
-			
+			//
 			s.setPcode(pcode);
 			s.setDivsion(divsion);
 			s.setNote(note);
@@ -61,19 +61,20 @@ public class StockInsertServlet extends HttpServlet {
 			
 			if(p_total > -1){		
 				result = new StockService().StockInsert(s);
-			
 				if(result > 0){
-					System.out.println("입력완료");
+					page = "views/admin/common/location.jsp";
+					request.setAttribute("msg", "재고 처리가 완료 되었습니다.");
+					request.setAttribute("location", "stockInsert");
 				} else {
 					page = "views/common/errorPage.jsp";
 					request.setAttribute("msg", "재고 입력 에러 발생");
-					request.getRequestDispatcher(page).forward(request, response);
+					
 				}
 			} else {
 				page = "views/common/errorPage.jsp";
 				request.setAttribute("msg", "재고가 부족합니다.");
-				request.getRequestDispatcher(page).forward(request, response);
 			}
+			request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**
