@@ -1,7 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*" %>
+	pageEncoding="UTF-8" import="java.util.*, com.kh.cityrack.board.user.model.dto.*" %>
 
-<% ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>)request.getAttribute("list"); %>
+<% 
+	ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>)request.getAttribute("list"); 
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+%>
 
 
 <!DOCTYPE html>
@@ -137,6 +145,49 @@
 				<br/>
 				<br/>
 				<br/>
+				
+					<%-- 페이지 처리 --%>
+				<div class="pagingArea" align="center">
+					
+					<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=1'"><<</button>
+					
+					<% if(currentPage <= 1){ %>
+					
+						<button disabled><</button>
+					
+					<% } else { %>
+					
+						<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage - 1 %>'"><</button>
+						
+					<% } %>
+					
+					<!-- 페이지가 얼마나 되는지 모르니까 반복문으로 
+							현재페이지면 버튼이 안눌리고 현재가 아닌 페이지들만 버튼이 눌림 -->
+					<% for(int p = startPage; p <= endPage; p++) { 
+						if(p == currentPage){ 
+					%>
+							<button disabled><%= p %></button>
+						
+						<% } else { %>
+							
+							<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= p %>'"><%= p %></button>
+						
+						<% } %>
+					<% } %>
+					
+					<% if(currentPage >= maxPage){ %>
+						<button disabled>></button>
+				
+					<% } else { %>
+					
+						<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage + 1 %>'">></button>
+					<% } %>
+					
+					<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= maxPage %>'">>></button>
+			
+				</div>			
+				
+				
 				<div align="right">
 				<% if(loginUser != null){ %>
 					<button class="primary-btn" onclick="location.href='views/user/jeong/product_review_insert.jsp'">후기작성</button>
@@ -148,7 +199,7 @@
 			
 					/* 게시글 한개 상세보기 */
 					$(document).on("click", ".thumb-list", function(){
-						alert("j");
+
 						var num = $(this).children().children().eq(0).val(); /* 즉, 히든인 input의 값 */
 						
 						location.href="<%= request.getContextPath() %>/selectThumbOne.tn?num=" + num;

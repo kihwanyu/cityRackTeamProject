@@ -68,14 +68,14 @@
 	#contentArea {
 		height:100px;
 		text-indent: 20px;
-		font-size: 18px;
+		font-size: 21px;
 	}
 		
 	
 	/* 광고판 이미지 공간 */
 	.carousel-inner {
 	   width: 100%;
-	   height: 350px;
+	   height: 360px;
 	}
 	
 	.image {
@@ -130,8 +130,8 @@
 			<tr>
 				<td colspan="9">
 					<label style="font-size:30px;"><%= b.getBo_title() %></label>
-					  <input id="like1" type="image" src="views/user/jeong/img/like1.png" width="10%" align="right" >
-					  <input id="like2" type="hidden" src="views/user/jeong/img/like2.png" width="10%" align="right" >
+					  <input id="like1" type="image" src="views/user/jeong/img/like1.png" width="5%" align="right" >
+					  <input id="like2" type="hidden" src="views/user/jeong/img/like2.png" width="5%" align="right" >
 				</td>
 			</tr>
 			<tr>
@@ -172,7 +172,7 @@
 	
 	</script>
 		
-		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="border:1px solid black;">
 		      
 		<!-- 광고판 실제 내용 -->
 		      <div class="carousel-inner">
@@ -203,15 +203,38 @@
 		            <span class="sr-only">Next</span>
 		       </a>
 				 </div>
-				 <br/>
-				 <table class="detail" align="center" >
+				 <table class="detail" align="center">
 					 <tr>
 						<td colspan="9">
 							<p id="contentArea"><%= b.getBo_content() %></p>
 						</td>
 					</tr>
 				 </table>
+				<br/>
+				<br/>
+				
+				<!-- 작성자와 관리자만 삭제가능 -->
+				<% 
+				System.out.println(loginUser.getM_no() + "/" + b.getM_no());
+				if(loginUser.getM_name().equals("관리자") || loginUser.getM_no() == b.getM_no()){ %>
+				
+					<div align="right">
+						<button class="primary-btn" onclick="goDelete();">삭제하기</button>
+			   		</div>
+			   		
+		   		<% } %>
+		   		
 	  		</div>
+	  		
+	  		<script>
+	  		
+	  			function goDelete(){
+	  				
+	  				location.href="<%= request.getContextPath() %>/deleteThumbnail.tn?boNo=<%= b.getBo_no()%>";
+	  			}
+	  		
+	  		</script>
+		
 		</div>
    		<br/>
    		<br/>

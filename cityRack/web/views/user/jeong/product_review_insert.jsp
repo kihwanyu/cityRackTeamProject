@@ -44,33 +44,22 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <style>
 .outer {
 	width: 1000px;
-	height: 650px;
-	background: lightgray;
-	color: white;
+	color: black;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 50px;
 }
 
-table {
-	border: 1px solid white;
-}
-
-.insertArea {
-	width: 500px;
-	height: 450px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
 #titleImgArea {
 	width: 350px;
 	height: 200px;
-	border: 2px dashed lightgray;
+	border: 2px solid orange;
+	border-radius: 50px;
 	text-align: center;
 	display: table-cell;
 	vertical-align: middle;
@@ -82,19 +71,15 @@ table {
 }
 
 #contentImgArea1, #contentImgArea2, #contentImgArea3 {
-	width: 150px;
+	width: 145px;
 	height: 100px;
-	border: 2px dashed lightgray;
+	border: 2px solid orange;
+	border-top: none;
 	text-align: center;
 	display: table-cell;
 	vertical-align: middle;
 }
 
-.btnArea {
-	width: 150px;
-	margin-left: auto;
-	margin-right: auto;
-}
 </style>
 
 
@@ -114,7 +99,7 @@ table {
 			<!-- row -->
 			<div class="row">
 				<div class="section-title">
-					<h3 class="title">city樂 이용 후기</h3>
+					<h3 class="title">city樂 이용 후기작성</h3>
 				</div>
 				<br /> <br />
 
@@ -123,70 +108,76 @@ table {
 				%>
 
 				<div class="outer">
-					<br />
-					<h2 align="center" style="color:white;">cityRack 후기작성</h2>
 					<!-- 파일 업로드시에는 액션/메소드말고 encType이라고 하나 더해야 request에 사진도 함께 전송해줌 -->
 					<form action="<%=request.getContextPath()%>/insertThumb.tn"
 						method="post" encType="multipart/form-data">
 
 						<div class="insertArea">
+							<div align="center">
+								<img src="<%= request.getContextPath() %>/views/user/jeong/img/review1.png" width="50%">
+							</div>
+							<br/>
+							<br/>
 							<table align="center">
 								<tr>
-									<td width="100px">제목</td>
-									<td colspan="3">
-										<input type="text" size="53" style="color:black;" name="title">
+									<td height="40px"><strong>제목</strong></td>
+									<td colspan="4">
+										<input type="text" size="62" name="title"
+											style="resize:none; border:2px solid orange; border-radius: 20px;">
 										<input type="hidden" value="<%= loginUser.getM_no() %>" name="mNo">
 									</td>
 								</tr>
 								<tr>
-									<td>대표이미지</td>
-									<td colspan="3">
+									<td height="40px"><strong>내용</strong></td>
+									<td colspan="4">
+										<textarea rows="15" cols="64" name="content" 
+												style="resize:none; border:2px solid orange; border-radius: 20px;">
+										</textarea>
+									</td>
+								</tr>	
+							
+							
+								<tr>
+									<td><strong>후기<br/>사진</strong></td>
+									<td colspan="4">
 										<!-- 사진을 선택했을때 미리보기 공간 -->
 										<div id="titleImgArea">
-											<img id="titleImg" width="400" height="200">
+											<img id="titleImg" width="440" height="200">
 										</div>
 									</td>
 								</tr>
 								<tr>
-									<td>내용사진</td>
+									<td>후기사진</td>
 									<td>
 										<div id="contentImgArea1">
-											<img id="contentImg1" width="120" height="100">
+											<img id="contentImg1" width="110" height="100" >
 										</div>
 									</td>
 									<td>
 										<div id="contentImgArea2">
-											<img id="contentImg2" width="120" height="100">
+											<img id="contentImg2" width="110" height="100" >
 										</div>
 									</td>
 									<td>
 										<div id="contentImgArea3">
-											<img id="contentImg3" width="120" height="100">
+											<img id="contentImg3" width="110" height="100">
 										</div>
 									</td>
 								</tr>
-								<tr>
-									<td>사진 메모</td>
-									<td colspan="3">
-										<textarea name="content" rows="5" cols="55" style="resize: none; color:black;"></textarea>
-									</td>
-								</tr>
-
-
 
 							</table>
-							<div id="fileArea">
+							<div id="fileArea" style="display:none;">
 								<input type="file" id="thumbnail1" name="thumbnailImg1"	onchange="LoadImg1(this);"> 
 								<input type="file" id="thumbnail2" name="thumbnailImg2" onchange="LoadImg2(this);">
 								<input type="file" id="thumbnail3" name="thumbnailImg3" onchange="LoadImg3(this);"> 
 								<input type="file" id="thumbnail4" name="thumbnailImg4" onchange="LoadImg4(this);">
 							</div>
 						</div>
-						<br />
-
-						<div class="btnArea">
-							<button>취소하기</button>
-							<button type="submit">작성완료</button>
+						<br/>
+						<br/>
+						<div align="center">
+							<button class="primary-btn" type="reset">취소하기</button>
+							<button class="primary-btn" type="submit">작성완료</button>
 						</div>
 					</form>
 				</div>
@@ -284,17 +275,15 @@ table {
 
 
 
-
-
-
 			</div>
 			<!-- /row -->
 		</div>
 		<!-- /container -->
 	</div>
 	<!-- /section -->
-
-
+	<br/>
+	<br/>
+	<br/>
 
 	<!-- 푸터용 메뉴바 -->
 	<%@ include file="footer.jsp"%>

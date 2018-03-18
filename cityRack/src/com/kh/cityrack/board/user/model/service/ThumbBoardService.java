@@ -82,11 +82,11 @@ public class ThumbBoardService {
 	}
 
 	// 후기게시판 리스트
-	public ArrayList<HashMap<String, Object>> selectThumbnailList() {
+	public ArrayList<HashMap<String, Object>> selectThumbnailList(int currentPage, int limit) {
 
 		Connection con = getConnection();
 
-		ArrayList<HashMap<String, Object>> list = new ThumbBoardDao().selectThumbnailList(con);
+		ArrayList<HashMap<String, Object>> list = new ThumbBoardDao().selectThumbnailList(con, currentPage, limit);
 
 		close(con);
 
@@ -113,6 +113,37 @@ public class ThumbBoardService {
 		close(con);
 
 		return hmap;
+	}
+	
+	
+	// 사진게시글 삭제
+	public int deleteThumbnail(int boNo) {
+
+		Connection con = getConnection();
+		
+		int result = new ThumbBoardDao().deleteThumbnail(con, boNo);
+		
+		if(result > 0){
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
+	// 페이징처리
+	public int getListCount() {
+		
+		Connection con = getConnection();
+		
+		int listCount = new ThumbBoardDao().getListCount(con);
+	
+		close(con);
+		
+		return listCount;
 	}
 
 
