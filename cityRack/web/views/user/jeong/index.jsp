@@ -227,6 +227,7 @@
 											if(loginUser != null){
 												System.out.println("index's loginUser.getM_no() : " + loginUser.getM_no());
 												System.out.println("index's loginUser.getQ_8con() : " + loginUser.getQ_8constitution());
+												
 												// 설문조사 한경우
 												 if(loginUser.getQ_8constitution() != null){ 
 												

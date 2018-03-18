@@ -46,7 +46,7 @@ public class ThumbBoardService {
 		
 		int result2 = 0;
 		
-		if(fileList.size() != 0){
+		if(fileList.size() > 0){
 			
 			// 게시글에 첨부된 사진파일 insert
 			result2 = new ThumbBoardDao().insertBoardFile(con, fileList, b);
