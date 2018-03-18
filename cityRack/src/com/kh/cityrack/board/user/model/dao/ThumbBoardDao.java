@@ -60,6 +60,8 @@ public class ThumbBoardDao {
 
 		return result;
 	}
+	
+	// 가장최근글
 	public int selectCurrval(Connection con) {
 
 		Statement stmt = null;
@@ -92,7 +94,7 @@ public class ThumbBoardDao {
 		return boNo;
 	}
 
-
+	// 첨부파일 insert
 	public int insertBoardFile(Connection con, ArrayList<BoardFile> fileList, Board b) {
 
 		PreparedStatement pstmt = null;
@@ -177,9 +179,9 @@ public class ThumbBoardDao {
 
 
 	// 후기게시판 리스트
-	public ArrayList<HashMap<String, Object>> selectThumbnailList(Connection con) {
+	public ArrayList<HashMap<String, Object>> selectThumbnailList(Connection con, int currentPage, int limit) {
 
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ArrayList<HashMap<String, Object>> list = null;
 		HashMap<String, Object> hmap = null;
 		ResultSet rset = null;
@@ -187,9 +189,16 @@ public class ThumbBoardDao {
 		String query = prop.getProperty("selectThumbnailMap");
 
 		try {
-			stmt = con.createStatement();
+			pstmt = con.prepareStatement(query);
+			
+			// 조회 시작할 행 번호와 마지막 행 번호 계산
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
 
-			rset = stmt.executeQuery(query);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery(query);
 
 			list = new ArrayList<HashMap<String, Object>>();
 
@@ -218,7 +227,7 @@ public class ThumbBoardDao {
 			e.printStackTrace();
 		} finally {
 			close(rset);
-			close(stmt);
+			close(pstmt);
 		}
 
 		return list;
@@ -286,6 +295,7 @@ public class ThumbBoardDao {
 				b.setBo_hit(rset.getInt("bo_hit"));
 				b.setBo_recomm(rset.getInt("bo_recomm"));
 				b.setBo_date(rset.getDate("bo_date"));
+				b.setM_no(rset.getInt("m_no"));
 
 				at = new BoardFile();
 
@@ -315,6 +325,62 @@ public class ThumbBoardDao {
 
 		return hmap;
 	}
+
+	
+	// 사진게시글 삭제
+	public int deleteThumbnail(Connection con, int boNo) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteThumbnail");
+		
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, boNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	
+	// 페이징 처리
+	public int getListCount(Connection con) {
+		
+		Statement stmt = null;
+		int listCount = 0;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("listCount");
+		
+		try {
+			stmt = con.createStatement();
+			
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);	// 첫번째 컬럼값 가져오기
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return listCount;
+	}
+
 
 
 

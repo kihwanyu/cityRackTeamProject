@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>cityRack_myPage_un2</title>
+	<title>cityRack_review_delete</title>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
@@ -40,8 +40,8 @@
 </head>
 
 <body>
-		<!-- 마이페이지용 메뉴바 -->
-	<%@ include file="/views/user/common/menubar_myPage.jsp" %>
+		<!-- 메인페이지용 메뉴바 -->
+	<%@ include file="/views/user/common/menubar_main.jsp" %> 
 
 	<!-- section -->
 	<div class="section">
@@ -54,10 +54,10 @@
 					<div class="col-md-12">
 						<div class="order-summary clearfix">
 							<div class="section-title">
-								<h3 class="title">탈퇴완료</h3>
+								<h3 class="title">게시글 삭제완료</h3>
 							</div>
 							<div align="center">
-								 <img src="./img/탈퇴.png" alt="">
+								 <img src="views/user/jeong/img/탈퇴.png" alt="">
 							</div>
 							<br/>
 							<br/>
