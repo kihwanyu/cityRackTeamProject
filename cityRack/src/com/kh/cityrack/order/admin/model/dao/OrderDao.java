@@ -17,6 +17,7 @@ import org.apache.tomcat.jdbc.pool.interceptor.ResetAbandonedTimer;
 import com.kh.cityrack.order.admin.model.dto.Order;
 import com.kh.cityrack.order.admin.model.dto.OrderSearch;
 import com.kh.cityrack.order.admin.model.dto.Product;
+import com.kh.cityrack.order.admin.model.dto.TodayOrder;
 
 import oracle.net.aso.i;
 
@@ -566,6 +567,36 @@ public class OrderDao {
 		}
 		
 		return result;
+	}
+	
+	public ArrayList<TodayOrder> todayOrderGetAll(Connection conn) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<TodayOrder> todayOrder = null;
+		TodayOrder t = null;
+		String query = prop.getProperty("todayOrderGetAll");
+		
+		todayOrder = new ArrayList<TodayOrder>();
+		try{
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()){
+				t = new TodayOrder();
+				t.setO_ono(rset.getString("o_ono"));
+				t.setP_name(rset.getString("p_name"));
+				t.setO_amount(rset.getInt("o_amount"));
+				t.setO_orderdate(rset.getDate("o_orderdate"));
+				todayOrder.add(t);
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(stmt);
+		}
+		
+		return todayOrder;
 	}
 
 }
