@@ -60,7 +60,7 @@
 	<section>
 		<div class="mainArea" align="center">
 			<div class="mainDiv">
-				<div>
+				
 					<table id="stockTodayTable" class="table table-striped" style="margin: 5px; width: 95%;">
 						<thead>
 							<tr>
@@ -85,22 +85,36 @@
 							
 						</tbody>
 					</table>
-				</div>
+				
 			
 			
 			</div>
 			<div class="mainDiv">
-			
+			   <table id="orderTable" class="table table-striped" style="margin: 5px; width: 95%;">
+						<thead>
+							<tr>
+								<td colspan="5">최근 주문 현황&nbsp;&nbsp;</td>
+								<td colspan="1" align="right">
+									
+								</td>
+							</tr>
+							<tr>
+								<th width="10%" style="text-align: center;">번호</th>
+								<th width="10%" style="text-align: center;">주문번호</th>
+								<th width="20%" style="text-align: center;">상품명</th>
+								<th width="20%" style="text-align: center;">수량</th>
+								<th width="30%" style="text-align: center;">주문일</th>
+								
+							</tr>
+							
+						</thead>
+						<tbody>
+							
+						</tbody>
+				 </table>
 			</div>
 		</div>
-		<div class="mainArea" align="center">
-			<div class="mainDiv">
-			
-			</div>
-			<div class="mainDiv">
-			
-			</div>
-		</div>                 
+		    
 	</section>
 	<%@ include file="/views/admin/common/footer.jsp" %>
 	<script type="text/javascript">
@@ -181,6 +195,39 @@
 				},
 			});
 		});
+		$.ajax({
+						url:"<%=request.getContextPath()%>/todayOrder.main",
+						data:{},
+		    			type:"get",
+						success:function(data){
+							
+							console.log(data);
+							
+		     				var $tableBody = $("#orderTable tbody");
+							
+							$tableBody.html('');
+							
+							$.each(data, function(index, value){
+								var $tr = $('<tr>');
+								var $index = $('<td style="text-align: center">').text(index+1)
+								var $o_ono = $('<td style="text-align: center">').text(value.o_ono);
+								var $p_name = $('<td style="text-align: center">').text(value.p_name);
+								var $o_amount = $('<td style="text-align: center">').text(value.o_amount);
+								var $o_orderdate = $('<td style="text-align: center">').text(value.o_orderdate);
+								
+								$tr.append($index);
+								$tr.append($o_ono);
+								$tr.append($p_name);
+								$tr.append($o_amount);
+								$tr.append($o_orderdate);
+								
+							$tableBody.append($tr);
+							});
+						},
+						error:function(data){
+							console.log("서버 전송 실패..");
+						},
+					});
 	});
 	</script>
 </body>

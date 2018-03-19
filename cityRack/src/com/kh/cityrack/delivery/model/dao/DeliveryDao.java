@@ -35,7 +35,7 @@ public class DeliveryDao {
 		
 		try{
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, "10000");
+			pstmt.setString(1, orderCode);
 			
 			rset = pstmt.executeQuery();
 			

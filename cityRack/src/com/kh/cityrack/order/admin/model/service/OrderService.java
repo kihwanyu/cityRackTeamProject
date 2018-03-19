@@ -9,6 +9,7 @@ import com.kh.cityrack.order.admin.model.dao.OrderDao;
 import com.kh.cityrack.order.admin.model.dto.Order;
 import com.kh.cityrack.order.admin.model.dto.OrderSearch;
 import com.kh.cityrack.order.admin.model.dto.Product;
+import com.kh.cityrack.order.admin.model.dto.TodayOrder;
 
 
 public class OrderService {
@@ -113,6 +114,15 @@ public class OrderService {
 		close(conn);
 		
 		return result;
+	}
+	
+	public ArrayList<TodayOrder> todayOrderGetAll() {
+		Connection conn = getConnection();
+		
+		ArrayList<TodayOrder> todayOrder = new OrderDao().todayOrderGetAll(conn);
+		
+		close(conn);
+		return todayOrder;
 	}
 
 }
