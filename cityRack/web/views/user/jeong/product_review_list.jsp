@@ -96,9 +96,6 @@
 	<%@ include file="/views/user/common/menubar_main.jsp"%>
 
 
-
-	<!-- section -->
-	<div class="section">
 		<!-- container -->
 		<div class="container">
 			<!-- row -->
@@ -213,13 +210,11 @@
 		<!-- /row -->
 	</div>
 	<!-- /container -->
-	</div>
-	<!-- /section -->
 
 
 
-	<!-- 푸터용 메뉴바 -->
-	<%@ include file="footer.jsp"%>
+	<!-- 푸터 -->
+	<%@ include file="/views/user/common/footer.jsp" %>
 
 	<!-- jQuery Plugins -->
 	<script src="<%= request.getContextPath() %>/views/user/jeong/js/jquery.min.js"></script>

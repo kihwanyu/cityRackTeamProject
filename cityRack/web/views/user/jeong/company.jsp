@@ -41,10 +41,8 @@
 
 <body>
 		<!-- 마이페이지용 메뉴바 -->
-	<%@ include file="/views/user/common/menubar_myPage.jsp" %>
+	<%@ include file="/views/user/common/menubar_main.jsp" %>
 
-	<!-- section -->
-	<div class="section">
 		<!-- container -->
 		<div class="container">
 			<!-- row -->
@@ -53,22 +51,20 @@
 					<div class="col-md-12">
 						<div class="order-summary clearfix">
 							<div class="section-title">
-								<h3 class="title">회사소개</h3>
+								<h3 class="title">경영방침</h3>
 							</div>
-							<br/>
-							<br/>
 							<br/>
 							<div align="center">
-								 <img src="./img/company1.png" width="100%">
+								 <img src="<%= request.getContextPath() %>/views/user/jeong/img/company1.png" width="100%">
 							</div>
 							<div>
-								<img src="./img/company1.png" width="100%">
+								<img src="<%= request.getContextPath() %>/views/user/jeong/img/company1.png" width="100%">
 							</div>
 							<div>
-								<img src="./img/company1.png" width="100%">
+								<img src="<%= request.getContextPath() %>/views/user/jeong/img/company1.png" width="100%">
 							</div>
 							<div>
-								<img src="./img/company1.png" width="100%">
+								<img src="<%= request.getContextPath() %>/views/user/jeong/img/company1.png" width="100%">
 							</div>
 							<br/>
 							<br/>
@@ -80,8 +76,6 @@
 			<!-- /row -->
 		</div>
 		<!-- /container -->
-	</div>
-	<!-- /section -->
 
 
 	<!-- 푸터 -->

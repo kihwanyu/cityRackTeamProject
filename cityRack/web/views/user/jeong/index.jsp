@@ -20,20 +20,20 @@
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 
 	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="views/user/jeong/css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/bootstrap.min.css" />
 
 	<!-- Slick -->
-	<link type="text/css" rel="stylesheet" href="views/user/jeong/css/slick.css" />
-	<link type="text/css" rel="stylesheet" href="views/user/jeong/css/slick-theme.css" />
+	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/slick.css" />
+	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/slick-theme.css" />
 
 	<!-- nouislider -->
-	<link type="text/css" rel="stylesheet" href="views/user/jeong/css/nouislider.min.css" />
+	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/nouislider.min.css" />
 
 	<!-- Font Awesome Icon -->
-	<link rel="stylesheet" href="views/user/jeong/css/font-awesome.min.css">
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/font-awesome.min.css">
 
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="views/user/jeong/css/style.css" />
+	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/style.css" />
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -61,7 +61,7 @@ body{
 					<!-- 로고 -->
 					<div class="header-logo">
 						<a class="logo" href="<%= request.getContextPath() %>">
-							<img src="views/user/jeong/img/logo.png" alt="">
+							<img src="<%= request.getContextPath() %>/views/user/jeong/img/logo.png" alt="">
 						</a>
 					</div>
 					<!-- /로고 -->
@@ -78,24 +78,24 @@ body{
 							</div>
 							<% if(loginUser == null){ %> 
 							<div class="loginDiv">
-								<a href="views/user/rani/login.jsp" class="text-uppercase">로그인</a> / <a href="views/user/rani/join.jsp" class="text-uppercase">회원가입</a>
+								<a href="<%= request.getContextPath() %>/views/user/rani/login.jsp" class="text-uppercase">로그인</a> / <a href="views/user/rani/join.jsp" class="text-uppercase">회원가입</a>
 							</div>
 							<%} else { %>
 								<div class="loginDiv">
-											<p> <%=loginUser.getM_name()%> 님, 환영합니다. </p>
+											<p style="font-size:12px;"> <%=loginUser.getM_name()%> 님, 환영합니다. </p>
 								</div>
 							<%} %> 
 							<%if(loginUser==null){ %>
 							<ul class="custom-menu">													
 								<li><a href="<%= request.getContextPath() %>/views/user/jeong/myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
-								<li><a href="myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>							
+								<li><a href="<%= request.getContextPath() %>/views/user/jeong/myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>							
 							</ul>
 							<%} else{ %>
 							<ul class="custom-menu">
 								<li><a id="goMyPage" href="<%= request.getContextPath() %>/views/user/jeong/myPage_info.jsp"><i class="fa fa-user-o"></i> 내 정보</a></li>							
-								<li><a href="myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
+								<li><a href="<%= request.getContextPath() %>/views/user/jeong/myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
 								<li><a href="<%=request.getContextPath()%>/userOrderGetAll.or"><i class="fa fa-check"></i> 주문배송조회</a></li>
-								<li><a href="myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>
+								<li><a href="<%= request.getContextPath() %>/views/user/jeong/myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>
 								<li><a onclick="logout();"><i class="fa fa-unlock-alt"></i> 로그아웃</a></li>
 							</ul>
 							<%} %>
@@ -107,14 +107,13 @@ body{
 							<div class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 								<div class="header-btns-icon">
 									<i class="fa fa-shopping-cart"></i>
-								
 								</div>
 								<strong class="text-uppercase">장바구니</strong>
 							</div>
 							<%if(loginUser==null){ %>
-							<a href="<%=request.getContextPath() %>/views/user/jeong/cart.jsp" class="text-uppercase">주문하러가기</a>
+							<a href="<%=request.getContextPath() %>/views/user/jeong/cart.jsp" class="text-uppercase" style="font-size:12px;">주문하러가기</a>
 							<%}else{ %>
-							<a href="<%=request.getContextPath() %>/selectCart.ct" class="text-uppercase">주문하러가기</a>
+							<a href="<%=request.getContextPath() %>/selectCart.ct" class="text-uppercase" style="font-size:12px;">주문하러가기</a>
 							<%} %>
 						</li>
 						<!-- /Cart -->
@@ -143,32 +142,32 @@ body{
 					<span class="category-header">8체질 바로가기 <i class="fa fa-list"></i></span>
 					<ul class="category-list">
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" aria-expanded="true" href="views/user/jeong/product1.jsp">목양체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" aria-expanded="true" href="<%= request.getContextPath() %>/views/user/jeong/product1.jsp">목양체질<i class="fa fa-angle-right"></i></a>
 						</li>
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" aria-expanded="true" href="views/user/jeong/product2.jsp">목음체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" aria-expanded="true" href="<%= request.getContextPath() %>/views/user/jeong/product2.jsp">목음체질<i class="fa fa-angle-right"></i></a>
 						</li>						
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" aria-expanded="true" href="views/user/jeong/product3.jsp">수양체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" aria-expanded="true" href="<%= request.getContextPath() %>/views/user/jeong/product3.jsp">수양체질<i class="fa fa-angle-right"></i></a>
 						</li>						
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" aria-expanded="true" href="views/user/jeong/product4.jsp">수음체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" aria-expanded="true" href="<%= request.getContextPath() %>/views/user/jeong/product4.jsp">수음체질<i class="fa fa-angle-right"></i></a>
 						</li>						
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" aria-expanded="true" href="views/user/rani/toyang.jsp">토양체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" aria-expanded="true" href="<%= request.getContextPath() %>/views/user/rani/toyang.jsp">토양체질<i class="fa fa-angle-right"></i></a>
 						</li>						
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" aria-expanded="true" href="views/user/rani/toeum.jsp">토음체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" aria-expanded="true" href="<%= request.getContextPath() %>/views/user/rani/toeum.jsp">토음체질<i class="fa fa-angle-right"></i></a>
 						</li>						
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" aria-expanded="true" href="views/user/rani/keumyang.jsp">금양체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" aria-expanded="true" href="<%= request.getContextPath() %>/views/user/rani/keumyang.jsp">금양체질<i class="fa fa-angle-right"></i></a>
 						</li>						
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" aria-expanded="true" href="views/user/rani/kumeum.jsp">금음체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" aria-expanded="true" href="<%= request.getContextPath() %>/views/user/rani/kumeum.jsp">금음체질<i class="fa fa-angle-right"></i></a>
 						</li>	
 						<li class="type_check">
-							<a class="dropdown-toggle" aria-expanded="true" href="views/user/rani/survey.jsp">체질확인하러가기 Go!</a>
-							<img src="views/user/jeong/img/help.png" height="135px" width="268px">
+							<a class="dropdown-toggle" aria-expanded="true" href="<%= request.getContextPath() %>/views/user/rani/survey.jsp">체질확인하러가기 Go!</a>
+							<img src="<%= request.getContextPath() %>/views/user/jeong/img/help.png" height="135px" width="268px">
 						</li>							
 					</ul>
 
@@ -182,14 +181,14 @@ body{
 						<li><a href="#">전체상품보기</a></li>
 						<li><a href="#">베스트상품</a></li>
 						<li><a href="<%=request.getContextPath() %>/getProducts.pr">시그니처 도시락</a></li>
-						<li><a href="views/user/jeong/event.jsp">이벤트</a></li>
+						<li><a href="<%= request.getContextPath() %>/views/user/jeong/event.jsp">이벤트</a></li>
 						<li class="dropdown mega-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">설문조사 <i class="fa fa-caret-down"></i></a>
 							<div class="custom-menu" width="300px">
 								<div class="row">
 									<div class="col-md-3">
 										<div class="hidden-sm hidden-xs">
 											<a class="banner banner-1">
-												<img src="views/user/jeong/img/survey1.png" alt="">
+												<img src="<%= request.getContextPath() %>/views/user/jeong/img/survey1.png" alt="">
 											</a>
 										</div>
 										<hr>
@@ -197,13 +196,13 @@ body{
 											<li><h3 class="list-links-title">간편설문조사</h3></li>
 											<li>총 20문항으로, <br/>보다 간편하게 체질을 <br/>판단합니다.</li>
 											<li><br/></li>
-											<li><a href="views/user/jeong/survey_easy.jsp">간편설문조사하기 Go!</a></li>
+											<li><a href="<%= request.getContextPath() %>/views/user/jeong/survey_easy.jsp">간편설문조사하기 Go!</a></li>
 										</ul>
 									</div>
 									<div class="col-md-3">
 										<div class="hidden-sm hidden-xs">
 											<a class="banner banner-1">
-												<img src="views/user/jeong/img/survey2.png" alt="">
+												<img src="<%= request.getContextPath() %>/views/user/jeong/img/survey2.png" alt="">
 											</a>
 										</div>
 										<hr>
@@ -211,13 +210,13 @@ body{
 										<li><h3 class="list-links-title">상세설문조사</h3></li>
 											<li>총 65문항으로, <br/>보다 확실하게 체질을 <br/>판단합니다.</li>
 											<li><br/></li>
-											<li><a href="views/user/jeong/survey_detail.jsp">상세설문조사하기 Go!</a></li>
+											<li><a href="<%= request.getContextPath() %>/views/user/jeong/survey_detail.jsp">상세설문조사하기 Go!</a></li>
 										</ul>
 									</div>
 									<div class="col-md-3">
 										<div class="hidden-sm hidden-xs">
 											<a class="banner banner-1">
-												<img src="views/user/jeong/img/survey2.png" alt="">
+												<img src="<%= request.getContextPath() %>/views/user/jeong/img/survey2.png" alt="">
 											</a>
 										</div>
 										<hr>
@@ -300,7 +299,7 @@ body{
 				<div id="home-slick">	<!--  메뉴 배너 광고 -->
 					<!-- banner -->
 					<div class="banner banner-1">
-						<img src="views/user/jeong/img/main0.png" alt="">
+						<img src="<%= request.getContextPath() %>/views/user/jeong/img/main0.png" alt="">
 						<div class="banner-caption text-center">
 							<h1 class="white-color">베스트 식단</h1>
 							<button class="primary-btn">보러가기</button>
@@ -310,7 +309,7 @@ body{
 
 					<!-- banner -->
 					<div class="banner banner-1">
-						<img src="views/user/jeong/img/main1.png" alt="">
+						<img src="<%= request.getContextPath() %>/views/user/jeong/img/main1.png" alt="">
 						<div class="banner-caption">
 							<h1 class="primary-color">HOT DEAL<br><span class="white-color font-weak">신상품</span></h1>
 							<button class="primary-btn">보러가기</button>
@@ -320,7 +319,7 @@ body{
 
 					<!-- banner -->
 					<div class="banner banner-1" align="center">
-						<img src="views/user/jeong/img/main2.png" alt="">
+						<img src="<%= request.getContextPath() %>/views/user/jeong/img/main2.png" alt="">
 						<div class="banner-caption">
 							<h1 class="primary-color">체질에 따른 <br/><span class="white-color font-weak">건강한 식단</span></h1>
 							<button class="primary-btn">체질조사하기</button>
@@ -345,7 +344,7 @@ body{
 				<!-- banner -->
 				<div class="col-md-8">
 					<div class="banner banner-1">
-						<img src="views/user/jeong/img/banner13.png" alt="">
+						<img src="<%= request.getContextPath() %>/views/user/jeong/img/banner13.png" alt="">
 						<div class="banner-caption text-center">
 							<h1 class="primary-color"><br><span class="white-color font-weak">베스트리뷰</span></h1>
 							<button class="primary-btn">보러가기</button>
@@ -357,12 +356,11 @@ body{
 				<!-- banner -->
 				<div class="col-md-4 col-sm-6">
 					<a class="banner banner-1" href="#">
-						<img src="views/user/jeong/img/banner11.png" alt="">
+						<img src="<%= request.getContextPath() %>/views/user/jeong/img/banner11.png" alt="">
 						<div class="banner-caption text-center" 
-							onclick="location.href='<%= request.getContextPath() %>/views/user/jeong/ingredient.jsp';">
+							onclick="location.href='<%= request.getContextPath() %>/views/user/jeong/ingredient.jsp'">
 							<h2 class="white-color">재료이야기</h2>
 						</div>
-						
 					</a>
 				</div>
 				<!-- /banner -->
@@ -370,7 +368,7 @@ body{
 				<!-- banner -->
 				<div class="col-md-4 col-sm-6">
 					<a class="banner banner-1" href="#">
-						<img src="views/user/jeong/img/banner12.png" alt="">
+						<img src="<%= request.getContextPath() %>/views/user/jeong/img/banner12.png" alt="">
 						<div class="banner-caption text-center">
 							<h3 class="white-color">더 맛있게 즐기기</h3>
 						</div>
