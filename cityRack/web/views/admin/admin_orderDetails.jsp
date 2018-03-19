@@ -103,12 +103,14 @@ if((com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUs
 				<%} %>
 			</table>
 			<br><br>
-			<table style="width: 40%;">
+			<table style="width: 50%;">
 				<tr>
-					<th width="25%" style="text-align: center; background: lightyellow">등급 할인율(%)</th>
-					<th width="25%" style="text-align: right; background: lightyellow"><%=o.getC_discount() %></th>
-					<th width="25%" style="text-align: center; background: lightyellow">총 가격(원)</th>
-					<th width="25%" style="text-align: right; background: lightyellow"><%=o.getPa_amount() %></th>
+					<th width="15%" style="text-align: center; background: lightyellow">등급 할인율(%)</th>
+					<th width="15%" style="text-align: right; background: lightyellow"><%=o.getC_discount() %></th>
+					<th width="15%" style="text-align: center; background: lightyellow">배송비(원)</th>
+					<th width="15%" style="text-align: right; background: lightyellow">2500</th>
+					<th width="15%" style="text-align: center; background: lightyellow">총 가격(원)</th>
+					<th width="15%" style="text-align: right; background: lightyellow"><%=o.getPa_amount() %></th>
 				</tr>
 			</table>	
 		</div>	

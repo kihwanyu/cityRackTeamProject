@@ -37,7 +37,6 @@ if((com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUs
 	if(searchBoolean){
 		if((String[])request.getAttribute("searchTypeArr") != null){
 			searchTypeArr = (String[])request.getAttribute("searchTypeArr");
-			System.out.println("View searchTypeArr[0]" + searchTypeArr[0]);
 		} 
 		if((String)request.getAttribute("orderType") != null){
 			orderType = (String)request.getAttribute("orderType");

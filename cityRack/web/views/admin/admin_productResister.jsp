@@ -109,7 +109,7 @@ if((com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUs
 							<td width="70%" style="text-align: left;">
 								<select class="form-control" name="category">
 									<%for(int i = 0; i < cList.size(); i++){ %>
-									<option value="<%=cList.get(i).getCa_code()%>"><%=cList.get(i).getCa_name() %></option>
+										<option value="<%=cList.get(i).getCa_code()%>"><%=cList.get(i).getCa_name() %></option>
 									<%} %>
 								</select>
 							</td>

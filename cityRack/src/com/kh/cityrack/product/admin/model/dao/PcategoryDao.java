@@ -80,8 +80,6 @@ public class PcategoryDao {
 			close(stmt);
 			close(rset);
 		}
-		
-		
 		return cList;
 	}
 	public int categoryUpdate(Connection conn, Pcategory pc) {
