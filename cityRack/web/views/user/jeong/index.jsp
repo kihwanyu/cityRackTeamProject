@@ -362,15 +362,7 @@ body{
 							onclick="location.href='<%= request.getContextPath() %>/views/user/jeong/ingredient.jsp';">
 							<h2 class="white-color">재료이야기</h2>
 						</div>
-						<script>
-							
-							$("#ingre").click(function(){
-								
-								location.href="<%= request.getContextPath() %>/views/user/jeong/ingredient.jsp";
-							});
-							
 						
-						</script>
 					</a>
 				</div>
 				<!-- /banner -->
@@ -400,13 +392,19 @@ body{
 		}
 	
 	</script>
-<!-- 푸터 -->
+	<!-- 푸터 -->
 	<%@ include file="/views/user/common/footer.jsp" %>
 	
 	<!--/ 푸터 -->
 
 
-
+<!-- jQuery Plugins -->
+   <script src="<%=request.getContextPath() %>/views/user/jeong/js/jquery.min.js"></script>
+   <script src="<%=request.getContextPath() %>/views/user/jeong/js/bootstrap.min.js"></script>
+   <script src="<%=request.getContextPath() %>/views/user/jeong/js/slick.min.js"></script>
+   <script src="<%=request.getContextPath() %>/views/user/jeong/js/nouislider.min.js"></script>
+   <script src="<%=request.getContextPath() %>/views/user/jeong/js/jquery.zoom.min.js"></script>
+   <script src="<%=request.getContextPath() %>/views/user/jeong/js/main.js"></script>
 
 </body>
 
