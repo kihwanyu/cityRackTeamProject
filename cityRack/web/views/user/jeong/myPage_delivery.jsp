@@ -64,41 +64,11 @@
 										<th>주문번호</th>
 										<th class="text-center">상품</th>
 										<th class="text-center">결제금액</th>
-										<th class="text-center">배송상태</th>
-										<th class="text-center">배송조회</th>
+									    <th class="text-center">배송상태</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
-										<td><a href="#">20180223000031</a></td>
-										<td class="details">
-											<a href="#">소고기 장조림 외 4건..</a>
-										</td>
-										<td class="price text-center"><strong>15,000</strong></td>
-										<td class="price text-center">배송중</td>
-										<td align="center"><button class="primary-btn">배송조회하기</button></td>
-										<td class="text-right"></td>
-									</tr>
-									<tr>
-										<td><a href="#">20180223000023</a></td>
-										<td class="details">
-											<a href="#">새송이버섯볶음 외 2건..</a>
-										</td>
-										<td class="price text-center"><strong>8,000</strong></td>
-										<td class="price text-center">배송완료</td>
-										<td align="center"><button class="primary-btn">배송조회하기</button></td>
-										<td class="text-right"></td>
-									</tr>
-									<tr>
-										<td><a href="#">20180223000001</a></td>
-										<td class="details">
-											<a href="#">땅콩조림 외 3건..</a>
-										</td>
-										<td class="price text-center"><strong>12,000</strong></td>
-										<td class="price text-center">배송완료</td>
-										<td align="center"><button class="primary-btn">배송조회하기</button></td>
-										<td class="text-right"></td>
-									</tr>									
+								<tbody id="tbody">
+																	
 								</tbody>
 							</table>
 						</div>
