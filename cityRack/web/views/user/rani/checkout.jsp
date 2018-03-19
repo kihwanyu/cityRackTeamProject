@@ -322,15 +322,9 @@ body{
 				
 				<script type="text/javascript">
 				$(function(){
-					
 					var formObj = $("form[role='order']");
-					
 					console.log(formObj);
-					/* 주문명은 상품 나열해주세요. 
-					장바구니에서 상품을 가져올 때 productStr에 상품을 누적해서 
-					productStr을 pay_name 넣어준다.
-					예) 단무지 단무지 단무지
-					*/
+
 					var total = parseInt($("#totalPrice").text());
 					var deliveryFee = 2500;
 					
@@ -347,13 +341,6 @@ body{
 						var pay_pay_method = $(":radio[name='payments']:checked").val(); 
 						var pay_amount = payThisAmount; // 만약 앞뒤로 공백이있다면 공백제거
 						var pay_name = "test1";
-						<%-- var pay_name = <%=productStr %>; --%>
-						
-						/* var pay_buyer_email = $('#buyer_email').val();
-						var pay_buyer_name = $('#buyer_name').val();
-						var pay_buyer_tel = $('#buyer_tel').val();
-						var pay_buyer_address = $('#sample6_address').val();
-						var pay_buyer_postcode = $('#sample6_postcode').val(); */
 						
 						var pay_buyer_email = "<%=loginUser.getM_email()%>";
 						var pay_buyer_name = "<%=loginUser.getM_name()%>";
@@ -372,7 +359,6 @@ body{
 						    buyer_tel : pay_buyer_tel,
 						    buyer_addr : pay_buyer_address,
 						    buyer_postcode : pay_buyer_postcode,
-						    //m_redirect_url : 'https://www.yourdomain.com/payments/complete'
 						}, function(rsp) {
 						    if ( rsp.success ) {
 						        var msg = '결제가 완료되었습니다.';

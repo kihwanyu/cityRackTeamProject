@@ -43,9 +43,7 @@ public class StockService {
 		return result;
 	}
 	static public int StockTotal(Connection conn, Stock s) {
-	//public int StockTotal(String pcode, Stock s) {
 		
-		//int result = new StockDao().stockTotal(conn, pcode);
 		int result = new StockDao().stockTotal(conn, s);
 		
 		if(s.getDivsion().equals("입고")){
