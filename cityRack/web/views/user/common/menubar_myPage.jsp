@@ -2,7 +2,6 @@
     pageEncoding="UTF-8" import="com.kh.cityrack.member.common.model.dto.Member"%>
 <% 
 	Member loginUser = (Member)session.getAttribute("loginUser"); 
-	
 %>
 <!DOCTYPE html>
 <html>
@@ -52,7 +51,7 @@
 				<div class="pull-left">
 					<!-- 로고 -->
 					<div class="header-logo">
-						<a class="logo" href="index.jsp">
+					<a class="logo" href="<%= request.getContextPath() %>">
 							<img src="./img/logo.png" alt="">
 						</a>
 					</div>
@@ -74,18 +73,30 @@
 							</div>
 							<%} else { %>
 								<div class="loginDiv">
-									<p><%=loginUser.getM_name() %>님, 환영합니다. | <a onclick="logout();" >로그아웃 </a></p>
-											
+									<p><%=loginUser.getM_name() %>님, 환영합니다. </p>
 								</div>
 							<%} %>
-							<ul class="custom-menu">
-								<li><a href="../jeong/myPage_info.jsp"><i class="fa fa-user-o"></i> 내 정보</a></li>
-								<li><a href="../jeong/myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
-								<li><a href="../jeong/myPage_delivery.jsp"><i class="fa fa-check"></i> 주문배송조회</a></li>
-								<li><a href="../jeong/myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>
-								<li><a href="#"><i class="fa fa-unlock-alt"></i> 로그아웃</a></li>
+							
+							<%if(loginUser==null){ %>
+							<ul class="custom-menu">													
+								<li><a href="myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
+								<li><a href="myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>							
 							</ul>
+							<%} else{ %>
+							<ul class="custom-menu">
+								<li><a id="goMyPage" href="myPage_info.jsp"><i class="fa fa-user-o"></i> 내 정보</a></li>							
+								<li><a href="myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
+								<li><a href="myPage_delivery.jsp"><i class="fa fa-check"></i> 주문배송조회</a></li>
+								<li><a href="myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>
+								<li><a onclick="logout();"><i class="fa fa-unlock-alt"></i> 로그아웃</a></li>
+							</ul>
+							<%} %>
+							<script type="text/javascript">
+							
+							</script>
 						</li>
+						
+						
 						<!-- /Account -->
 
 						<!-- 장바구니 -->
@@ -93,12 +104,14 @@
 							<div class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 								<div class="header-btns-icon">
 									<i class="fa fa-shopping-cart"></i>
-									<span class="qty">3</span>
+									
 								</div>
 								<strong class="text-uppercase">장바구니</strong>
 							</div>
 							<div class="loginDiv">
-								<a href="../jeong/cart.jsp" class="text-uppercase">주문하러가기</a>
+							
+								<a href="views/user/jeong/cart.jsp" class="text-uppercase">주문하러가기</a>
+							
 							</div>
 						</li>
 						<!-- /Cart -->

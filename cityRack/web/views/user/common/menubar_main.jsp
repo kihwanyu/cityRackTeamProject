@@ -76,34 +76,46 @@
 							</div>
 							<% if(loginUser == null){ %>
 							<div class="loginDiv">
-						<a href="views/user/rani/login.jsp" class="text-uppercase">로그인</a> / <a href="<%=request.getContextPath() %>/views/user/rani/join.jsp" class="text-uppercase">회원가입</a>
+						<a href="<%=request.getContextPath() %>/views/user/rani/login.jsp" class="text-uppercase">로그인</a> / <a href="<%=request.getContextPath() %>/views/user/rani/join.jsp" class="text-uppercase">회원가입</a>
 							</div>
 							<%} else { %>
 								<div class="loginDiv">
-										<p><%=loginUser.getM_name() %>님, 환영합니다. | <a onclick="logout();" >로그아웃 </a></p>								
+										<p><%=loginUser.getM_name() %>님, 환영합니다. </p>								
 								</div>
 							<%} %>
+							
+							<%if(loginUser==null){ %>
+							<ul class="custom-menu">													
+								<li><a href="myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
+								<li><a href="myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>							
+							</ul>
+							<%} else{ %>
 							<ul class="custom-menu">
-								<li><a href="myPage_info.jsp"><i class="fa fa-user-o"></i> 내 정보</a></li>
+								<li><a id="goMyPage" href="myPage_info.jsp"><i class="fa fa-user-o"></i> 내 정보</a></li>							
 								<li><a href="myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
 								<li><a href="myPage_delivery.jsp"><i class="fa fa-check"></i> 주문배송조회</a></li>
 								<li><a href="myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>
-								<li><a href="#"><i class="fa fa-unlock-alt"></i> 로그아웃</a></li>
+								<li><a onclick="logout();"><i class="fa fa-unlock-alt"></i> 로그아웃</a></li>
 							</ul>
+							<%} %>
 						</li>
+						
 						<!-- /Account -->
 
 						<!-- 장바구니 -->
 						<li class="header-cart dropdown default-dropdown">
 							<div class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 								<div class="header-btns-icon">
-									<i class="fa fa-shopping-cart"></i>
-									<span class="qty">3</span>
+									<i class="fa fa-shopping-cart"></i>									
 								</div>
 								<strong class="text-uppercase">장바구니</strong>
 							</div>
 							<div class="loginDiv">
-								<a href="<%=request.getContextPath() %>/selectCart.ct" class="text-uppercase">주문하러가기</a>
+							<%if(loginUser==null){ %>
+							<a href="<%=request.getContextPath() %>/views/user/jeong/cart.jsp" class="text-uppercase">주문하러가기</a>
+							<%}else{ %>
+							<a href="<%=request.getContextPath() %>/selectCart.ct" class="text-uppercase">주문하러가기</a>
+							<%} %>
 							</div>
 						</li>
 						<!-- /Cart -->
