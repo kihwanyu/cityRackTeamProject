@@ -4,7 +4,7 @@
 <html lang="en">
 
 <%
-	Member loginUser = (Member) session.getAttribute("loginUser");
+	//Member loginUser = (Member) session.getAttribute("loginUser");
 %>
 <!-- sdfs --><!-- asd -->
 
@@ -51,10 +51,8 @@
 
 <body>
 	<!-- 마이페이지용 메뉴바 -->
-	<%-- <%@ include file="/views/user/common/menubar_myPage.jsp"%> --%>
+	 <%@ include file="/views/user/common/menubar_myPage.jsp"%> 
 
-	<!-- section -->
-	<div class="section">
 		<!-- container -->
 		<div class="container">
 			<!-- row -->
@@ -69,9 +67,11 @@
 							</div>
 							<div align="center">
 								<br />
-								<h4 align="center">탈퇴 사유를 적어주세요.</h4>
-								<br /> <input type="text" size="100px" name="reason" id="reason"> <input
-									type="text" name="mNo" value="<%=loginUser.getM_no()%>">
+								<h4 align="center"><strong>탈퇴 사유를 적어주세요.</strong></h4>
+								<br /> 
+									회원번호 <input type="text" name="mNo" value="<%=loginUser.getM_no()%>" readonly
+										size="2px" style="text-align:center;">
+									<input type="text" size="100px" name="reason" id="reason"> 
 							</div>
 							<br /> <br /> <br /> <br />
 							<div align="center">
@@ -86,7 +86,7 @@
 
 				<script>
 					function before() {
-						location.href = "myPage_info.jsp";
+						location.href = "<%= request.getContextPath() %>/views/user/jeong/myPage_info.jsp";
 					}
 
 					function unregister() {
@@ -97,8 +97,6 @@
 			<!-- /row -->
 		</div>
 		<!-- /container -->
-	</div>
-	<!-- /section -->
 
 <!-- 푸터 -->
 	<%@ include file="/views/user/common/footer.jsp" %>

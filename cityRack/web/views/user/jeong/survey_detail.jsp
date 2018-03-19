@@ -1160,22 +1160,15 @@
 									var check7 = $("#check7").val();
 									var check8 = $("#check8").val();
 									var qResult = "";
-									
 									var arr = [check1, check2, check3, check4,
 													check5, check6, check7, check8];
-	
-									console.log(arr);
-									console.log(check1);
 									var max = 0;
 
 									for (var i = 0; i < arr.length; i++) {
-
 										if (arr[i] > max) {
 											max = arr[i];
 										}
 									}
-									console.log	("가장 큰 수는 : " + max);
-									
 									switch(max){
 									case check1 : qResult = "목양"; break;
 									case check2 : qResult = "목음"; break;
@@ -1187,10 +1180,7 @@
 									case check8 : qResult = "수음"; break;
 									}
 									
-									console.log("체질결과 : " + qResult);
-									
 									document.getElementById("qResult").value = qResult;
-									
 								});
 									/*  (↑)체질결과 담아주기 */
 								

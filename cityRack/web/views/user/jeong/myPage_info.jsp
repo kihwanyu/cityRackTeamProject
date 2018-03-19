@@ -127,13 +127,14 @@
 							
 							<script>
 							
-							
+								// 입력받은 비밀번호와 실제 비밀번호가 일치하면 수정페이지로 이동
 								function edit(form){
 									
 									var password = document.getElementById("password").value; // 입력한 비번
 									var pwd1 = "<%= loginUser.getM_password() %>"; // 진짜 비번
 									var pwd2; // 암호화된 입력한 비번
 									var userId = "<%= loginUser.getM_email() %>";
+									
 									$.ajax({
 										url: "<%= request.getContextPath() %>/equalsPwd.do",
 										type: "post",
@@ -151,7 +152,6 @@
 										error: function(msg){
 										}
 									});
-									
 								}
 								 
 								 function un1(form){
