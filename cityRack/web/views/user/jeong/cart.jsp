@@ -11,7 +11,45 @@ System.out.println("cart @cart.jsp " + c);
 <html >
 
 <head>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<style type="text/css">
+	.btns{
+		align:center;
+		width:300px;
+		background:#FF7930;
+		font-size:40px;
+		border-radius:20px;
+		font:font-family: 'Nanum Gothic', sans-serif;
+		border:none;
+		align:center;
+		color:black;
+		font-weight:bold;
+		height:80px;
+	}
+.btns:hover{
+		background:#337517;
+		color:white;
+	}
+
+
+.buttons{
+	
+	margin-left:15%;
+}
+
+.btns{
+	
+	margin-right:20px;
+	margin-bottom:100px;
+}
+
+body{
+	font-family: 'Nanum Gothic', sans-serif !important;
+}
+</style>
+
+
 </head>
 
 <body>
@@ -21,6 +59,17 @@ System.out.println("cart @cart.jsp " + c);
 	
 	<%@ include file="/views/user/common/menubar_main.jsp" %>
 	<!-- /메뉴바 -->
+
+
+	<%if(loginUser==null){%>
+	<div style="margin-top:30px;padding-bottom:50px;">
+	<h2 align="center">로그인이 필요한 서비스입니다.</h2>
+	</div>
+	<div >
+	<button align="center" class="btns" style="font-size:30px;margin-left:40%; "onclick="location.href='views/user/rani/login.jsp'">로그인 하러 가기 </button>
+	</div>
+	
+	<%} else{ %>
 
 
 	<!-- section -->
@@ -232,7 +281,7 @@ System.out.println("cart @cart.jsp " + c);
 	</div>
 	<!-- /section -->
 
-
+<%} %>
 
 
 
