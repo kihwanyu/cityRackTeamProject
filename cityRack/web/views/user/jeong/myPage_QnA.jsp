@@ -96,7 +96,7 @@
 										<th>제목</th>
 										<th class="text-center">작성자</th>
 										<th class="text-center">작성일</th>
-										<th class="text-center">답변상태</th>
+										<!-- <th class="text-center">답변상태</th> -->
 									</tr>
 								</thead>
 								<tbody id="tby">
@@ -110,7 +110,7 @@
 										</td>
 										<td class="price text-center"><%=b.getM_name() %></td>
 										<td align="center"><%=b.getBo_date() %></td>
-										<td align="center"><%=b.getBo_status() %></td>
+										<%-- <td align="center"><%=b.getBo_status() %></td> --%>
 										<td class="text-right"></td>
 									</tr>
 									<% } %>
@@ -153,8 +153,8 @@
 					<form>
 						<input class="input search-input" type="text" placeholder="키워드를 입력하세요" size="60px">
 						<select class="input search-categories">
-							<option value="0">제목</option>
-							<option value="1">제목+내용</option>
+							<option>제목</option>
+							<option>제목+내용</option>
 						</select>
 						<button class="search-btn"><i class="fa fa-search"></i></button>
 					</form>

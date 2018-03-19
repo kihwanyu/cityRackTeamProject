@@ -109,12 +109,16 @@
 		<div>
 		<% System.out.println("rb :"+ rb); %>
 		<table>
+			<%if(rb != null){ %>
+			
 			<tr>
 				<td><h4>문의하신글에 대한 답변입니다.</h4></td>
+				
 			</tr>
 			<tr>
-				<td><h5>ㄴㄱㅁ</h5></td>
+				<td><h5><%=rb.getBo_content() %></h5></td>
 			<tr>
+			<%} %>
 		</table>
 		</div>
 					
@@ -136,7 +140,7 @@
 					<button onclick="location.href='<%=request.getContextPath()%>/selectList.bo'" class="primary-btn">이전으로</button>
 					<button onclick="location.href='<%=request.getContextPath() %>/replyResult.bo?num=<%=b.getBo_no() %>'" class="primary-btn">답변확인</button>
 					<% System.out.println(m); %>
-					<%if(m.getM_no() == 10000){ %>
+					<%if(m.getM_no() == 10001){ %>
 					<button onclick="location.href='<%=request.getContextPath() %>/reList.bo?num=<%=b.getBo_no() %>'" class="primary-btn">답변작성</button>
 					<% } %>
 				</div>

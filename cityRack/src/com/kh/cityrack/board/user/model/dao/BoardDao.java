@@ -290,7 +290,7 @@ public class BoardDao {
 			
 			while(rset.next()){
 				b = new Board();
-				
+				b.setBo_pno(rset.getInt("bo_pno"));
 				b.setBo_content(rset.getString("bo_content"));
 			}
 			
