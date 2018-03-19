@@ -2,8 +2,8 @@
     pageEncoding="UTF-8" import="com.kh.cityrack.member.common.model.dto.Member" %>
 
 <%
-	Member loginUser = (Member)session.getAttribute("loginUser");
-	String[] address = loginUser.getM_address().split("/");
+	//Member loginUser = (Member)session.getAttribute("loginUser");
+	/* String[] address = loginUser.getM_address().split("/"); */
 	
 %>
 <!-- sdfs --><!-- asd -->
@@ -48,14 +48,21 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+<style>
+
+	.tableDiv {
+		background: #FFFFF0;
+	}
+	
+	
+</style>
+
 </head>
 
 <body>
 			<!-- 마이페이지용 메뉴바 -->
-<%-- 	<%@ include file="/views/user/common/menubar_myPage.jsp" %> --%>
+	<%@ include file="/views/user/common/menubar_myPage.jsp" %> 
 
-	<!-- section -->
-	<div class="section">
 		<!-- container -->
 		<div class="container">
 			<!-- row -->
@@ -68,9 +75,13 @@
 								<h3 class="title">내 정보 수정</h3>
 							</div>
 							<h2><%= loginUser.getM_name() %>님의 정보를 수정합니다.</h2>
+							<br/>
+							<br/>
+							<h5 align="center">* 정보를 변경하신후, 수정완료를 눌러주세요. <br/> 변경되지 않은 정보는 가장 최근의 정보로 자동저장됩니다.</h5>
 							
-							<h4 align="center">* 변경하ㄴ	</h4>
-							
+						<!-- 주소자르기 -->
+							<% String[] address = loginUser.getM_address().split("/"); %>
+							<div class="tableDiv">
 							<table class="infoTable" align="center" width="450px">
 									<tr>
 										<td style="font-size:12px;" align="center"><strong>이메일</strong></td>
@@ -119,6 +130,9 @@
 										</td>
 									</tr>		
 							</table>
+							<br/>
+							<br/>
+							</div>
 							<br/>
 							<br/>
 							<div align="center">
@@ -203,8 +217,6 @@
 			<!-- /row -->
 		</div>
 		<!-- /container -->
-	</div>
-	<!-- /section -->
 	
 	<!-- 도로명주소 API -->
 <!-- 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
