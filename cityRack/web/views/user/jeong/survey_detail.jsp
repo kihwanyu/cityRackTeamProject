@@ -49,8 +49,6 @@
 	<!-- 메인용 메뉴바 -->
 	<%@ include file="/views/user/common/menubar_main.jsp" %> 
 
-	<!-- section -->
-	<div class="section">
 		<!-- container -->
 		<div class="container">
 			<!-- row -->
@@ -160,7 +158,7 @@
 						
 						<!-- 1번부터 7번까지의 평균값 -->
 						<button type="button" class="survey-btn" onclick="test1();">확인</button>
-						<input type="text" id="check1" >
+						<input type="text" id="check1" hidden>
 
 						<script>
 						
@@ -265,7 +263,7 @@
 						
 						<!-- 8번부터 13번까지의 평균값 -->
 						<button type="button" class="survey-btn" onclick="test2();">확인</button>
-						<input type="text" id="check2" >
+						<input type="text" id="check2" hidden>
 
 						<script>
 						
@@ -412,7 +410,7 @@
 						
 						<!-- 14번부터 22번까지의 평균값 -->
 						<button type="button" class="survey-btn" onclick="test3();">확인</button>
-						<input type="text" id="check3" >
+						<input type="text" id="check3" hidden>
 
 						<script>
 							 function test3(){
@@ -504,7 +502,7 @@
 						
 						<!-- 23번부터 27번까지의 평균값 -->
 						<button type="button" class="survey-btn" onclick="test4();">확인</button>
-						<input type="text" id="check4" >
+						<input type="text" id="check4" hidden>
 
 						<script>
 						
@@ -676,7 +674,7 @@
 						
 						<!-- 28번부터 38번까지의 평균값 -->
 						<button type="button" class="survey-btn" onclick="test5();">확인</button>
-						<input type="text" id="check5" >
+						<input type="text" id="check5" hidden>
 
 						<script>
 						
@@ -848,7 +846,7 @@
 						
 						<!-- 39번부터 49번까지의 평균값 -->
 						<button type="button" class="survey-btn" onclick="test6();">확인</button>
-						<input type="text" id="check6" >
+						<input type="text" id="check6" hidden>
 
 						<script>
 						
@@ -969,7 +967,7 @@
 						
 						<!-- 50번부터 56번까지의 평균값 -->
 						<button type="button" class="survey-btn" onclick="test7();">확인</button>
-						<input type="text" id="check7" >
+						<input type="text" id="check7" hidden>
 
 						<script>
 						
@@ -1115,7 +1113,7 @@
 						
 						<!-- 57번부터 65번까지의 평균값 -->
 						<button type="button" class="survey-btn" onclick="test8();">확인</button>
-						<input type="text" id="check8" >
+						<input type="text" id="check8" hidden>
 
 						<script>
 						
@@ -1141,8 +1139,8 @@
 						<form id="result-form" class="clearfix"
 								action="<%=request.getContextPath()%>/qResult" method="post">
 							<div align="right">
-								<input type="text" id="mNo" name="mNo" value="<%= loginUser.getM_no() %>"/>
-								<input type="text" id="qResult" name="qResult">
+								<input type="text" id="mNo" name="mNo" value="<%= loginUser.getM_no() %>" hidden/>
+								<input type="text" id="qResult" name="qResult" hidden>
 								<button class="primary-btn" type="button" onclick="goResult();">완료</button>
 								<button class="primary-btn" type="button" onclick="goMain();">메인으로</button>
 							</div>
@@ -1218,8 +1216,6 @@
 			<!-- /row -->
 		</div>
 		<!-- /container -->
-	</div>
-	<!-- /section -->
 
 <!-- 푸터 -->
 	<%@ include file="/views/user/common/footer.jsp" %>

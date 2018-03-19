@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="com.kh.cityrack.member.common.model.dto.Member" %>
 
 <%
-	Member loginUser = (Member)session.getAttribute("loginUser");
+	//Member loginUser = (Member)session.getAttribute("loginUser");
 %>
 
 <!DOCTYPE html>
@@ -46,13 +46,8 @@
 
 <body>
 		<!-- 마이페이지용 메뉴바 -->
-	<%-- <%@ include file="/views/user/common/menubar_myPage.jsp" %> --%>
+	 <%@ include file="/views/user/common/menubar_myPage.jsp" %> 
 
-
-
-
-	<!-- section -->
-	<div class="section">
 		<!-- container -->
 		<div class="container">
 			<!-- row -->
@@ -120,8 +115,6 @@
 			<!-- /row -->
 		</div>
 		<!-- /container -->
-	</div>
-	<!-- /section -->
 
 
 

@@ -80,21 +80,21 @@
 							</div>
 							<%} else { %>
 								<div class="loginDiv">
-										<p><%=loginUser.getM_name() %>님, 환영합니다. </p>								
+										<p style="font-size:12px;"><%=loginUser.getM_name() %>님, 환영합니다. </p>								
 								</div>
 							<%} %>
 							
 							<%if(loginUser==null){ %>
 							<ul class="custom-menu">													
 								<li><a href="myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
-								<li><a href="myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>							
+								<li><a href="<%=request.getContextPath() %>/views/user/jeong/myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>							
 							</ul>
 							<%} else{ %>
 							<ul class="custom-menu">
-								<li><a id="goMyPage" href="myPage_info.jsp"><i class="fa fa-user-o"></i> 내 정보</a></li>							
-								<li><a href="myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
+								<li><a id="goMyPage" href="<%=request.getContextPath() %>/views/user/jeong/myPage_info.jsp"><i class="fa fa-user-o"></i> 내 정보</a></li>							
+								<li><a href="<%=request.getContextPath() %>/views/user/jeong/myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
 								<li><a href="<%=request.getContextPath()%>/userOrderGetAll.or"><i class="fa fa-check"></i> 주문배송조회</a></li>
-								<li><a href="myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>
+								<li><a href="<%=request.getContextPath() %>/views/user/jeong/myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>
 								<li><a onclick="logout();"><i class="fa fa-unlock-alt"></i> 로그아웃</a></li>
 							</ul>
 							<%} %>
@@ -111,9 +111,9 @@
 							</div>
 							<div class="loginDiv">
 							<%if(loginUser==null){ %>
-							<a href="<%=request.getContextPath() %>/views/user/jeong/cart.jsp" class="text-uppercase">주문하러가기</a>
+							<a href="<%=request.getContextPath() %>/views/user/jeong/cart.jsp" class="text-uppercase" style="font-size:12px;">주문하러가기</a>
 							<%}else{ %>
-							<a href="<%=request.getContextPath() %>/selectCart.ct" class="text-uppercase">주문하러가기</a>
+							<a href="<%=request.getContextPath() %>/selectCart.ct" class="text-uppercase" style="font-size:12px;">주문하러가기</a>
 							<%} %>
 							</div>
 						</li>
@@ -144,28 +144,28 @@
 					<span class="category-header">8체질 카테고리<i class="fa fa-list"></i></span>
 					<ul class="category-list">
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="product1.jsp">목양체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="<%=request.getContextPath() %>/views/user/jeong/product1.jsp">목양체질<i class="fa fa-angle-right"></i></a>
 						</li>
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="product2.jsp">목음체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="<%=request.getContextPath() %>/views/user/jeong/product2.jsp">목음체질<i class="fa fa-angle-right"></i></a>
 						</li>						
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="#">토양체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="<%=request.getContextPath() %>/views/user/rani/toyang.jsp">토양체질<i class="fa fa-angle-right"></i></a>
 						</li>						
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="#">토음체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="<%=request.getContextPath() %>/views/user/rani/toeum.jsp">토음체질<i class="fa fa-angle-right"></i></a>
 						</li>						
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="#">금양체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="<%=request.getContextPath() %>/views/user/rani/keumyang.jsp">금양체질<i class="fa fa-angle-right"></i></a>
 						</li>						
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="#">금음체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="<%=request.getContextPath() %>/views/user/rani/kumeum.jsp">금음체질<i class="fa fa-angle-right"></i></a>
 						</li>						
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="product3.jsp">수양체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="<%=request.getContextPath() %>/views/user/jeong/product3.jsp">수양체질<i class="fa fa-angle-right"></i></a>
 						</li>						
 						<li class="dropdown side-dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="product4.jsp">수음체질<i class="fa fa-angle-right"></i></a>
+							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="<%=request.getContextPath() %>/views/user/jeong/product4.jsp">수음체질<i class="fa fa-angle-right"></i></a>
 						</li>						
 						
 					</ul>
@@ -179,14 +179,14 @@
 						<li><a href="#">전체상품보기</a></li>
 						<li><a href="#">베스트상품</a></li>
 						<li><a href="<%=request.getContextPath() %>/getProducts.pr">시그니처 도시락</a></li>
-						<li><a href="views/user/jeong/event.jsp">이벤트</a></li>
+						<li><a href="<%=request.getContextPath() %>/views/user/jeong/event.jsp">이벤트</a></li>
 						<li class="dropdown mega-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">설문조사 <i class="fa fa-caret-down"></i></a>
 							<div class="custom-menu" width="300px">
 								<div class="row">
 									<div class="col-md-3">
 										<div class="hidden-sm hidden-xs">
 											<a class="banner banner-1">
-												<img src="views/user/jeong/img/survey1.png" alt="">
+												<img src="<%=request.getContextPath() %>/views/user/jeong/img/survey1.png" alt="">
 											</a>
 										</div>
 										<hr>
@@ -194,13 +194,15 @@
 											<li><h3 class="list-links-title">간편설문조사</h3></li>
 											<li>총 20문항으로, <br/>보다 간편하게 체질을 <br/>판단합니다.</li>
 											<li><br/></li>
-											<li><a href="views/user/jeong/survey_easy.jsp">간편설문조사하기 Go!</a></li>
+										<% if(loginUser == null){ %>
+											<li><a href="<%=request.getContextPath() %>/views/user/jeong/survey_easy.jsp">간편설문조사하기 Go!</a></li>
+										<% } %>
 										</ul>
 									</div>
 									<div class="col-md-3">
 										<div class="hidden-sm hidden-xs">
 											<a class="banner banner-1">
-												<img src="views/user/jeong/img/survey2.png" alt="">
+												<img src="<%=request.getContextPath() %>/views/user/jeong/img/survey2.png" alt="">
 											</a>
 										</div>
 										<hr>
@@ -208,13 +210,15 @@
 										<li><h3 class="list-links-title">상세설문조사</h3></li>
 											<li>총 65문항으로, <br/>보다 확실하게 체질을 <br/>판단합니다.</li>
 											<li><br/></li>
-											<li><a href="views/user/jeong/survey_detail.jsp">상세설문조사하기 Go!</a></li>
+										<% if(loginUser == null){ %>
+											<li><a href="<%=request.getContextPath() %>/views/user/jeong/survey_detail.jsp">상세설문조사하기 Go!</a></li>
+										<% } %>
 										</ul>
 									</div>
 									<div class="col-md-3">
 										<div class="hidden-sm hidden-xs">
 											<a class="banner banner-1">
-												<img src="views/user/jeong/img/survey2.png" alt="">
+												<img src="<%=request.getContextPath() %>/views/user/jeong/img/survey2.png" alt="">
 											</a>
 										</div>
 										<hr>
@@ -274,7 +278,13 @@
 				
 					function goReview(){
 						
-						location.href="/cityRack/selectThumbList.tn";
+						if(loginUser == null){
+							
+							alert("로그인 후 이용하실 수 있는 서비스입니다.");
+						} else {
+
+							location.href="/cityRack/selectThumbList.tn";
+						}
 					}
 				
 				</script>

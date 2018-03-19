@@ -49,8 +49,6 @@ System.out.println(str); */
 		<!-- 마이페이지용 메뉴바 -->
 	<%@ include file="/views/user/common/menubar_myPage.jsp" %>
 
-	<!-- section -->
-	<div class="section">
 		<!-- container -->
 		<div class="container">
 			<!-- row -->
@@ -74,8 +72,6 @@ System.out.println(str); */
 			<!-- /row -->
 		</div>
 		<!-- /container -->
-	</div>
-	<!-- /section -->
 
 <!-- 푸터 -->
 	<%@ include file="/views/user/common/footer.jsp" %>

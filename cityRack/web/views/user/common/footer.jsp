@@ -104,6 +104,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 					<div class="footer">
 						<h3 class="footer-header">회사소개</h3>
 						<ul class="footer-list">
+							<li><a href="<%=request.getContextPath() %>/views/user/jeong/company.jsp">경영방침</a></li>
 							<li><a href="<%=request.getContextPath() %>/views/user/rani/about.jsp">서비스소개</a></li>
 							<li><a href="#">개인정보처리방침</a></li>
 							<li><a href="#">이용약관</a></li>

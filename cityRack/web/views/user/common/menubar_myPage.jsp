@@ -17,20 +17,20 @@
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
 
 	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="../jeong/css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/bootstrap.min.css" />
 
 	<!-- Slick -->
-	<link type="text/css" rel="stylesheet" href="../jeong/css/slick.css" />
-	<link type="text/css" rel="stylesheet" href="../jeong/css/slick-theme.css" />
+	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/slick.css" />
+	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/slick-theme.css" />
 
 	<!-- nouislider -->
-	<link type="text/css" rel="stylesheet" href="../jeong/css/nouislider.min.css" />
+	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/nouislider.min.css" />
 
 	<!-- Font Awesome Icon -->
-	<link rel="stylesheet" href="../jeong/css/font-awesome.min.css">
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/font-awesome.min.css">
 
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="../jeong/css/style.css" />
+	<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/style.css" />
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -51,7 +51,7 @@
 					<!-- 로고 -->
 					<div class="header-logo">
 					<a class="logo" href="<%= request.getContextPath() %>">
-							<img src="./img/logo.png" alt="">
+							<img src="<%= request.getContextPath() %>/views/user/jeong/img/logo.png" alt="">
 						</a>
 					</div>
 					<!-- /로고 -->
@@ -68,25 +68,25 @@
 							</div>
 							<% if(loginUser == null){ %>
 							<div class="loginDiv">
-								<a href="views/user/rani/login.jsp" class="text-uppercase">로그인</a> / <a href="views/user/rani/join.jsp" class="text-uppercase">회원가입</a>
+								<a href="<%= request.getContextPath() %>/views/user/rani/login.jsp" class="text-uppercase">로그인</a> / <a href="views/user/rani/join.jsp" class="text-uppercase">회원가입</a>
 							</div>
 							<%} else { %>
 								<div class="loginDiv">
-									<p><%=loginUser.getM_name() %>님, 환영합니다. </p>
+									<p style="font-size:12px;"><%=loginUser.getM_name() %>님, 환영합니다. </p>
 								</div>
 							<%} %>
 							
 							<%if(loginUser==null){ %>
 							<ul class="custom-menu">													
-								<li><a href="myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
-								<li><a href="myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>							
+								<li><a href="<%= request.getContextPath() %>/views/user/jeong/myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
+								<li><a href="<%= request.getContextPath() %>/views/user/jeong/myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>							
 							</ul>
 							<%} else{ %>
 							<ul class="custom-menu">
-								<li><a id="goMyPage" href="myPage_info.jsp"><i class="fa fa-user-o"></i> 내 정보</a></li>							
-								<li><a href="myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
+								<li><a id="goMyPage" href="<%= request.getContextPath() %>/views/user/jeong/myPage_info.jsp"><i class="fa fa-user-o"></i> 내 정보</a></li>							
+								<li><a href="<%= request.getContextPath() %>/views/user/jeong/myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
 								<li><a href="<%=request.getContextPath()%>/userOrderGetAll.or"><i class="fa fa-check"></i> 주문배송조회</a></li>
-								<li><a href="myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>
+								<li><a href="<%= request.getContextPath() %>/views/user/jeong/myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>
 								<li><a onclick="logout();"><i class="fa fa-unlock-alt"></i> 로그아웃</a></li>
 							</ul>
 							<%} %>
@@ -109,7 +109,7 @@
 							</div>
 							<div class="loginDiv">
 							
-								<a href="views/user/jeong/cart.jsp" class="text-uppercase">주문하러가기</a>
+								<a href="<%= request.getContextPath() %>/views/user/jeong/cart.jsp" class="text-uppercase" style="font-size:12px;">주문하러가기</a>
 							
 							</div>
 						</li>
@@ -143,12 +143,12 @@
 				<!-- 메뉴 네비게이터 -->
 				<div class="menu-nav">
 					<ul class="menu-list">
-						<li><a href="../jeong/myPage_cart.jsp">장바구니</a></li>
-						<li><a href="../jeong/myPage_delivery.jsp">주문배송조회</a></li>
-						<li><a href="../jeong/myPage_QnA.jsp">체질 Q / A</a></li>
-						<li><a href="../jeong/myPage_info.jsp">내 정보</a></li>
-						<li><a href="../jeong/myPage_result.jsp">설문조사조회</a></li>
-						<li><a href="../jeong/myPage_cs.jsp">고객센터</a></li>
+						<li><a href="<%= request.getContextPath() %>/views/user/jeong/myPage_cart.jsp">장바구니</a></li>
+						<li><a href="<%= request.getContextPath() %>/views/user/jeong/myPage_delivery.jsp">주문배송조회</a></li>
+						<li><a href="<%= request.getContextPath() %>/views/user/jeong/myPage_QnA.jsp">체질 Q / A</a></li>
+						<li><a href="<%= request.getContextPath() %>/views/user/jeong/myPage_info.jsp">내 정보</a></li>
+						<li><a onclick="result();">설문조사조회</a></li>
+						<li><a href="<%= request.getContextPath() %>/views/user/jeong/myPage_cs.jsp">고객센터</a></li>
 					</ul>
 				</div>
 				<!-- 메뉴 네비게이터 -->
@@ -159,20 +159,33 @@
 	<!-- /NAVIGATION -->
 	
 	<script type="text/javascript">
-	function logout(){
-		location.href="<%= request.getContextPath()%>/Logout.em";
 		
-	}
+	
+		function result(){
+			
+			<% if(loginUser.getQ_8constitution() == null){ %>
+				alert("먼저 체질 설문조사를 진행해주세요.");
+			<% } else { %>
+				location.href="<%= request.getContextPath() %>/views/user/jeong/myPage_result.jsp";
+			<% } %>
+		}
+		
+	
+		function logout(){
+			location.href="<%= request.getContextPath()%>/Logout.em";
+			
+		}
+		
 	</script>
 
 
 <!-- jQuery Plugins -->
-   <script src="views/user/jeong/js/jquery.min.js"></script>
-   <script src="views/user/jeong/js/bootstrap.min.js"></script>
-   <script src="views/user/jeong/js/slick.min.js"></script>
-   <script src="views/user/jeong/js/nouislider.min.js"></script>
-   <script src="views/user/jeong/js/jquery.zoom.min.js"></script>
-   <script src="views/user/jeong/js/main.js"></script>
+   <script src="<%= request.getContextPath() %>/views/user/jeong/js/jquery.min.js"></script>
+   <script src="<%= request.getContextPath() %>/views/user/jeong/js/bootstrap.min.js"></script>
+   <script src="<%= request.getContextPath() %>/views/user/jeong/js/slick.min.js"></script>
+   <script src="<%= request.getContextPath() %>/views/user/jeong/js/nouislider.min.js"></script>
+   <script src="<%= request.getContextPath() %>/views/user/jeong/js/jquery.zoom.min.js"></script>
+   <script src="<%= request.getContextPath() %>/views/user/jeong/js/main.js"></script>
 
 </body>
 </html>

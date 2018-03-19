@@ -50,8 +50,13 @@
 
 <style>
 
-	.tableDiv {
+	.infoTable {
 		background: #FFFFF0;
+	}
+	
+		#password {
+		border: 2px solid orange;
+		border-radius: 10px;
 	}
 	
 	
@@ -74,7 +79,7 @@
 							<div class="section-title">
 								<h3 class="title">내 정보 수정</h3>
 							</div>
-							<h2><%= loginUser.getM_name() %>님의 정보를 수정합니다.</h2>
+							<h4><%= loginUser.getM_name() %>님의 정보를 수정합니다.</h4>
 							<br/>
 							<br/>
 							<h5 align="center">* 정보를 변경하신후, 수정완료를 눌러주세요. <br/> 변경되지 않은 정보는 가장 최근의 정보로 자동저장됩니다.</h5>
@@ -82,51 +87,51 @@
 						<!-- 주소자르기 -->
 							<% String[] address = loginUser.getM_address().split("/"); %>
 							<div class="tableDiv">
-							<table class="infoTable" align="center" width="450px">
+							<table class="infoTable" align="center"  width="600px" style="border:2px solid orange;">
 									<tr>
 										<td style="font-size:12px;" align="center"><strong>이메일</strong></td>
 										<td colspan="3" align="center">
-											<input type="text" name="email" value="<%= loginUser.getM_email() %>" readonly>
+											<input type="text" name="email" value="<%= loginUser.getM_email() %>" style="text-align:center;" readonly size="30px">
 										</td>
 									</tr>
 									<tr>
 										<td style="font-size:12px;" align="center"><strong>비밀번호</strong></td>
 										<td colspan="3" align="center">
-											<input type="text" size="12" id="password" name="password">
+											<input type="password" id="password" name="password"  size="23px" style="text-align:center;">
 										</td>
 									</tr>
 									<tr>
 										<td style="font-size:12px;" align="center"><strong>이름</strong></td>
 										<td colspan="3" align="center">
-											<input type="text" name="name" value="<%= loginUser.getM_name() %>" readonly>
+											<input type="text" name="name" value="<%= loginUser.getM_name() %>" readonly size="10px" style="text-align:center;" >
 										</td>
 									</tr>									
 									<tr >
 										<td rowspan="3" style="font-size:12px;" align="center"><strong>주소</strong></td>
 										<td colspan="3" align="center">
-											<input type="text" id="sample6_postcode" name="zipcode" value="<%= address[0] %>">
+											<input type="text" id="sample6_postcode" name="zipcode" value="<%= address[0] %>" size="10px" style="text-align:center;">
 											<button type="button" class="editBtn" onclick="sample6_execDaumPostcode(); return false;">우편번호 찾기</button><br>
 										</td>
 									<tr >	
 										<td colspan="3" style="border-bottom:1px solid white;" align="center">
-											<input type="text" id="sample6_address" name="addr1" value="<%= address[1] %>">
+											<input type="text" id="sample6_address" name="addr1" value="<%= address[1] %>" size="55px" style="text-align:center;">
 										</td>
 									</tr>
 									<tr >
 										<td colspan="3" align="center">
-											<input type="text" id="sample6_address2" name="addr2" value="<%= address[2] %>">
+											<input type="text" id="sample6_address2" name="addr2" value="<%= address[2] %>" size="30px" style="text-align:center;">
 										</td>
 									</tr>								
 									<tr>
 										<td style="font-size:12px;" align="center"><strong>휴대폰</strong></td>
 										<td colspan="3" align="center">
-											<input type="text" name="phone" value="<%= loginUser.getM_phone() %>">&nbsp;
+											<input type="text" name="phone" value="<%= loginUser.getM_phone() %>" size="20px" style="text-align:center;">&nbsp;
 										</td>
 									</tr>
 									<tr>
 										<td style="font-size:12px;" align="center"><strong>전화번호</strong></td>
 										<td colspan="3" align="center">
-											<input type="text" name="tel" value="<%= loginUser.getM_tel() %>">&nbsp;
+											<input type="text" name="tel" value="<%= loginUser.getM_tel() %>" size="20px" style="text-align:center;">&nbsp;
 										</td>
 									</tr>		
 							</table>
@@ -136,7 +141,7 @@
 							<br/>
 							<br/>
 							<div align="center">
-								<button class="primary-btn" onclick="before();">이전으로</button>
+								<button class="primary-btn" type="button" onclick="before();">이전으로</button>
 								<button class="primary-btn" id="submitBtn" type="submit" onclick="confirm();" disabled>수정완료</button>
 							
 							
@@ -203,7 +208,7 @@
 								
 								
 									function before(){
-										location.href="myPage_info.jsp";	
+										location.href="<%= request.getContextPath()%>/views/user/jeong/myPage_info.jsp";	
 									}
 								
 							</script>

@@ -43,8 +43,6 @@
 	<!-- 메인용 메뉴바 -->
 	<%@ include file="/views/user/common/menubar_main.jsp" %>
 
-	<!-- section -->
-	<div class="section">
 		<!-- container -->
 		<div class="container">
 			<!-- row -->
@@ -201,8 +199,8 @@
 						<form id="result-form" class="clearfix"
 								action="<%=request.getContextPath()%>/qResult" method="post">
 							<div align="right">
-								<input type="text" id="mNo" name="mNo" value="<%= loginUser.getM_no() %>"/>
-								<input type="text" id="qResult" name="qResult">
+								<input type="text" id="mNo" name="mNo" value="<%= loginUser.getM_no() %>" hidden/>
+								<input type="text" id="qResult" name="qResult" hidden>
 								<button class="primary-btn" type="button" onclick="goResult();">완료</button>
 								<button class="primary-btn" type="button" onclick="goMain();">메인으로</button>
 							</div>
@@ -237,8 +235,6 @@
 			<!-- /row -->
 		</div>
 		<!-- /container -->
-	</div>
-	<!-- /section -->
 	
 	<script>
 		$(function(){
