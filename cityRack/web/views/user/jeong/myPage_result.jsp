@@ -325,9 +325,10 @@
 	<!-- /section -->
  
 
-		<!-- 푸터용 메뉴바 -->
-	<%@ include file="footer.jsp" %>
-
+		<!-- 푸터 -->
+	<%@ include file="/views/user/common/footer.jsp" %>
+	
+	<!--/ 푸터 -->
 	<!-- jQuery Plugins -->
 	<script src="<%= request.getContextPath() %>/views/user/jeong/js/jquery.min.js"></script>
 	<script src="<%= request.getContextPath() %>/views/user/jeong/views/user/jeong/js/bootstrap.min.js"></script>
