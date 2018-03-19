@@ -40,10 +40,14 @@ public class SelectOneBoard extends HttpServlet {
 		Board b = new BoardService().selectOne(num);
 		System.out.println("b :"+b);
 		String page = null;
+		Board rb = new BoardService().selectReply(num); 
+		System.out.println("rb 서블릿:"+ rb);
 		if(b != null){
 			page = "views/user/jeong/myPage_QnA_View.jsp";
 			
+			
 			request.setAttribute("b", b);
+			request.setAttribute("rb", rb);
 		}else{
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시판 상세 조회 실패!");
