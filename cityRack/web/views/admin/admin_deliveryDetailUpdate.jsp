@@ -125,7 +125,7 @@ String address2 = address[2];
 				</tr>
 			</table>	
 				<input type="submit" value="저장하기">
-				<a href="javascript:void(window.open('views/common/admin_deliveryStatus.jsp?invoice=<%=d.getD_invoice_no() %>', '_blank','width=600, height=800'))">배송조회</a>
+				<a href="javascript:void(window.open('views/common/testViews.jsp?invoice=<%=d.getD_invoice_no() %>', '_blank','width=750, height=900'))">배송조회</a>
 		  </div>
 			
 		</form>
