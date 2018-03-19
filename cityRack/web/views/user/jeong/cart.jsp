@@ -283,12 +283,10 @@ body{
 
 <%} %>
 
-
-
-		<!-- 푸터용 메뉴바 -->
-	<%@ include file="footer.jsp" %>
+<!-- 푸터 -->
+	<%@ include file="/views/user/common/footer.jsp" %>
 	
-	
+	<!--/ 푸터 -->
 
 </body>
 
