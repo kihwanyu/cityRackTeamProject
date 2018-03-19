@@ -25,20 +25,20 @@
 	rel="stylesheet">
 
 <!-- Bootstrap -->
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/bootstrap.min.css" />
 
 <!-- Slick -->
-<link type="text/css" rel="stylesheet" href="css/slick.css" />
-<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/slick.css" />
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/slick-theme.css" />
 
 <!-- nouislider -->
-<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/nouislider.min.css" />
 
 <!-- Font Awesome Icon -->
-<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/font-awesome.min.css">
 
 <!-- Custom stlylesheet -->
-<link type="text/css" rel="stylesheet" href="css/style.css" />
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/style.css" />
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -105,12 +105,12 @@
 	<%@ include file="footer.jsp"%>
 
 	<!-- jQuery Plugins -->
-	<script src="views/user/jeong/js/jquery.min.js"></script>
-	<script src="views/user/jeong/js/bootstrap.min.js"></script>
-	<script src="views/user/jeong/js/slick.min.js"></script>
-	<script src="views/user/jeong/js/nouislider.min.js"></script>
-	<script src="views/user/jeong/js/jquery.zoom.min.js"></script>
-	<script src="views/user/jeong/js/main.js"></script>
+	<script src="<%= request.getContextPath() %>/views/user/jeong/js/jquery.min.js"></script>
+	<script src="<%= request.getContextPath() %>/views/user/jeong/js/bootstrap.min.js"></script>
+	<script src="<%= request.getContextPath() %>/views/user/jeong/js/slick.min.js"></script>
+	<script src="<%= request.getContextPath() %>/views/user/jeong/js/nouislider.min.js"></script>
+	<script src="<%= request.getContextPath() %>/views/user/jeong/js/jquery.zoom.min.js"></script>
+	<script src="<%= request.getContextPath() %>/views/user/jeong/js/main.js"></script>
 </body>
 
 </html>
