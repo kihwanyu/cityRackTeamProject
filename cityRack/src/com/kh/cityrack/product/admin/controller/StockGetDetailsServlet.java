@@ -52,7 +52,7 @@ public class StockGetDetailsServlet extends HttpServlet {
 		
 		// 한페이지에 보여질 목록 갯수를 지정
 		
-		limit = 3;
+		limit = 5;
 		
 		//전체 목록 갯수를 리턴 받음
 		int listCount = new StockService().getDetailListCount(pcode);

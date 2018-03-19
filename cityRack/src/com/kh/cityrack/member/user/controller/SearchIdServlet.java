@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.kh.cityrack.member.user.model.dto.Member;
+import com.kh.cityrack.member.common.model.dto.Member;
 import com.kh.cityrack.member.user.model.service.MemberService;
 
 /**
@@ -51,7 +51,7 @@ public class SearchIdServlet extends HttpServlet {
 			response.setContentType("application/json");
 			response.setCharacterEncoding("utf-8");
 			
-			new Gson().toJson(loginUser.getM_mail(), response.getWriter());
+			new Gson().toJson(loginUser.getM_email(), response.getWriter());
 			
 					
 		} else {
