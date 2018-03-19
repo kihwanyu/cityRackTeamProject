@@ -100,7 +100,6 @@
 							<%} %>
 						</li>
 						
-						<!-- /Account -->
 
 						<!-- 장바구니 -->
 						<li class="header-cart dropdown default-dropdown">

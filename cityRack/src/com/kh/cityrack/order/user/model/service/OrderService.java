@@ -74,7 +74,7 @@ public class OrderService {
 		oList = new OrderDao().orderListGetPcount(conn, mno, currentPage, limit, oList);
 		
 		close(conn);
-		
+		/**/
 		return oList;
 	}
 

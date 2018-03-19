@@ -159,7 +159,7 @@ public class Order implements Serializable{
 	public void setO_note(String o_note) {
 		this.o_note = o_note;
 	}
-
+	/**/
 	@Override
 	public String toString() {
 		return "Order [o_no=" + o_no + ", o_ono=" + o_ono + ", o_orderDate=" + o_orderDate + ", m_email=" + m_email
@@ -167,7 +167,7 @@ public class Order implements Serializable{
 				+ ", d_no=" + d_no + ", invoice_no=" + invoice_no + ", pay_no=" + pay_no + ", o_state=" + o_state
 				+ ", c_discount=" + c_discount + ", o_note=" + o_note + "]";
 	}
-
+	
 	
 	
 }

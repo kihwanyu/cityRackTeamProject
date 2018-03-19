@@ -59,7 +59,6 @@ public class userOrdersGetAllServlet extends HttpServlet {
 		//전체 목록 갯수를 리턴 받음
 		int listCount = new OrderService().orderListCount(mno);
 		
-		System.out.println("listCount : " + listCount);
 		
 		//총 페이지수 계산
 		//예를 들면, 목록 수가 123개 이면 13페이지가 필요함.
