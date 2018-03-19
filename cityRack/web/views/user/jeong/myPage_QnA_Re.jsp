@@ -71,6 +71,7 @@
 							<%
 								Member m = (Member)session.getAttribute("loginUser");
 							%>
+							<% System.out.println("b확인:" + b); %>
 							<input type="hidden" name="mno" value="<%=m.getM_no()%>">
 							<input type="hidden" name="bno" value="<%=b.getBo_no()%>">
 							<div class="tableArea" align="center">

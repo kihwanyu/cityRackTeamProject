@@ -12,19 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.cityrack.board.user.model.dto.Board;
 import com.kh.cityrack.board.user.model.service.BoardService;
 
-
-
 /**
- * Servlet implementation class SelectOneBoard
+ * Servlet implementation class ReList
  */
-@WebServlet("/selectOne.bo")
-public class SelectOneBoard extends HttpServlet {
+@WebServlet("/reList.bo")
+public class ReList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectOneBoard() {
+    public ReList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,15 +31,15 @@ public class SelectOneBoard extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		int num = Integer.parseInt(request.getParameter("num"));
 		
 		System.out.println("num :" + num);
-		
-		Board b = new BoardService().selectOne(num);
+		Board b = new BoardService().selectOne2(num);
 		System.out.println("b :"+b);
 		String page = null;
 		if(b != null){
-			page = "views/user/jeong/myPage_QnA_View.jsp";
+			page = "views/user/jeong/myPage_QnA_Re.jsp";
 			
 			request.setAttribute("b", b);
 		}else{
@@ -51,6 +49,7 @@ public class SelectOneBoard extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
