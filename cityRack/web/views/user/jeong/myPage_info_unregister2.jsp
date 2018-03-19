@@ -43,8 +43,6 @@
 		<!-- 마이페이지용 메뉴바 -->
 	<%@ include file="/views/user/common/menubar_myPage.jsp" %>
 
-	<!-- section -->
-	<div class="section">
 		<!-- container -->
 		<div class="container">
 			<!-- row -->
@@ -57,7 +55,7 @@
 								<h3 class="title">탈퇴완료</h3>
 							</div>
 							<div align="center">
-								 <img src="./img/탈퇴.png" alt="">
+								 <img src="<%= request.getContextPath() %>/views/user/jeong/img/탈퇴.png" alt="">
 							</div>
 							<br/>
 							<br/>
@@ -82,8 +80,6 @@
 			<!-- /row -->
 		</div>
 		<!-- /container -->
-	</div>
-	<!-- /section -->
 
 <!-- 푸터 -->
 	<%@ include file="/views/user/common/footer.jsp" %>
