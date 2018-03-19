@@ -61,7 +61,7 @@
 		<div class="mainArea" align="center">
 			<div class="mainDiv">
 				
-					<table id="stockTodayTable" class="table table-striped" style="margin: 5px; width: 95%;">
+					<table id="stockTodayTable" class="table table-striped" style="margin-left:10px;margin-top:20px; width: 90%;">
 						<thead>
 							<tr>
 								<td colspan="5">금일 재고 등록 현황&nbsp;&nbsp; (<%= todayStr %> 기준)</td>
@@ -90,7 +90,7 @@
 			
 			</div>
 			<div class="mainDiv">
-			   <table id="orderTable" class="table table-striped" style="margin: 5px; width: 95%;">
+			   <table id="orderTable" class="table table-striped" style="margin-left:30px;margin-top:20px; width: 100%;">
 						<thead>
 							<tr>
 								<td colspan="5">최근 주문 현황&nbsp;&nbsp;</td>

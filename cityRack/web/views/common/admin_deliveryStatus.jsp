@@ -34,7 +34,7 @@ $(document).ready(function(){
             console.log(t_code);
             console.log(t_invoice);
             
-            $.ajax({
+            $.ajax({  
                 type:"GET",
                 dataType : "json",
                 url:"http://info.sweettracker.co.kr/api/v1/trackingInfo?t_key="+myKey+"&t_code="+t_code+"&t_invoice="+t_invoice,
