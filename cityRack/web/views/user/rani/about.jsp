@@ -85,11 +85,31 @@
 	<img alt="" src="img/signature.png">
 	
 	<div>
-		<button class="btns">시그니처 도시락 <br>만들러 가기</button>&nbsp;
-		<button class="btns">내 8체질<br> 확인하러 가기</button>
+		<button class="btns" onclick="goSignature();">시그니처 도시락 <br>만들러 가기</button>&nbsp;
+		<button class="btns" onclick="check8c();">내 8체질<br> 확인하러 가기</button>
 	</div>
 	</div>
+	<script type="text/javascript">
+		function goSignature(){
+			
+		<% if (loginUser!=null) {%>
+			location.href='<%=request.getContextPath()%>/getProducts.pr';
+		<%} else {%>
+			alert('로그인이 필요한 서비스입니다.');ㅣ
+		<%}%>
+		}
+		
+		function check8c(){
+			
+			<% if (loginUser!=null) {%>
+				location.href='<%=request.getContextPath()%>/views/user/jeong/survey_easy.jsp';
+			<%} else {%>
+				alert('로그인이 필요한 서비스입니다.');ㅣ
+			<%}%>
+			}
+			
 	
+	</script>
 	
 	
 	<!--/ 페이지 -->
@@ -102,6 +122,14 @@
 	<!--/ 푸터 -->
 
 	
+<!-- jQuery Plugins -->
+  	<script src="<%=request.getContextPath() %>/views/user/jeong/js/jquery.min.js"></script>
+	<script src="<%=request.getContextPath() %>/views/user/jeong/js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath() %>/views/user/jeong/js/slick.min.js"></script>
+	<script src="<%=request.getContextPath() %>/views/user/jeong/js/nouislider.min.js"></script>
+	<script src="<%=request.getContextPath() %>/views/user/jeong/js/jquery.zoom.min.js"></script>
+	<script src="<%=request.getContextPath() %>/views/user/jeong/js/main.js"></script>  
+
 
 
 
