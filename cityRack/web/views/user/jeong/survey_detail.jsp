@@ -1139,8 +1139,8 @@
 						<form id="result-form" class="clearfix"
 								action="<%=request.getContextPath()%>/qResult" method="post">
 							<div align="right">
-								<input type="text" id="mNo" name="mNo" value="<%= loginUser.getM_no() %>" hidden/>
-								<input type="text" id="qResult" name="qResult" hidden>
+								<input type="text" id="mNo" name="mNo" value="<%= loginUser.getM_no() %>" />
+								<input type="text" id="qResult" name="qResult" >
 								<button class="primary-btn" type="button" onclick="goResult();">완료</button>
 								<button class="primary-btn" type="button" onclick="goMain();">메인으로</button>
 							</div>

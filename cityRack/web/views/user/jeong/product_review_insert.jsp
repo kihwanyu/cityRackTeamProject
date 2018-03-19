@@ -22,20 +22,20 @@
 	rel="stylesheet">
 
 <!-- Bootstrap -->
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/bootstrap.min.css" />
 
 <!-- Slick -->
-<link type="text/css" rel="stylesheet" href="css/slick.css" />
-<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/slick.css" />
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/slick-theme.css" />
 
 <!-- nouislider -->
-<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/nouislider.min.css" />
 
 <!-- Font Awesome Icon -->
-<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/font-awesome.min.css">
 
 <!-- Custom stlylesheet -->
-<link type="text/css" rel="stylesheet" href="css/style.css" />
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/views/user/jeong/css/style.css" />
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -101,8 +101,6 @@
 	<%@ include file="/views/user/common/menubar_main.jsp"%>
 
 
-	<!-- section -->
-	<div class="section">
 		<!-- container -->
 		<div class="container">
 			<!-- row -->
@@ -152,7 +150,7 @@
 									<td colspan="4">
 										<!-- 사진을 선택했을때 미리보기 공간 -->
 										<div id="titleImgArea">
-											<img id="titleImg" width="440" height="200">
+											<img id="titleImg" width="480" height="200">
 										</div>
 									</td>
 								</tr>
@@ -160,17 +158,17 @@
 									<td style="color:white;">후기사진</td>
 									<td>
 										<div id="contentImgArea1">
-											<img id="contentImg1" width="143" height="100" >
+											<img id="contentImg1" width="153" height="100" >
 										</div>
 									</td>
 									<td>
 										<div id="contentImgArea2">
-											<img id="contentImg2" width="143" height="100" >
+											<img id="contentImg2" width="153" height="100" >
 										</div>
 									</td>
 									<td>
 										<div id="contentImgArea3">
-											<img id="contentImg3" width="143" height="100">
+											<img id="contentImg3" width="153" height="100">
 										</div>
 									</td>
 								</tr>
@@ -186,7 +184,7 @@
 						<br/>
 						<br/>
 						<div align="center">
-							<button class="primary-btn" type="reset">취소하기</button>
+							<button class="primary-btn" type="reset">모두 지우기</button>
 							<button class="primary-btn" type="submit">작성완료</button>
 						</div>
 					</form>
@@ -276,12 +274,6 @@
 					}
 					
 					
-					
-					
-					
-					
-					
-					
 				</script>
 
 				<%
@@ -299,8 +291,6 @@
 			<!-- /row -->
 		</div>
 		<!-- /container -->
-	</div>
-	<!-- /section -->
 	<br/>
 	<br/>
 	<br/>
@@ -309,12 +299,12 @@
 	<%@ include file="/views/user/common/footer.jsp" %>
 
 	<!-- jQuery Plugins -->
-	<script src="views/user/jeong/js/jquery.min.js"></script>
-	<script src="views/user/jeong/js/bootstrap.min.js"></script>
-	<script src="views/user/jeong/js/slick.min.js"></script>
-	<script src="views/user/jeong/js/nouislider.min.js"></script>
-	<script src="views/user/jeong/js/jquery.zoom.min.js"></script>
-	<script src="views/user/jeong/js/main.js"></script>
+	<script src="<%= request.getContextPath() %>/views/user/jeong/js/jquery.min.js"></script>
+	<script src="<%= request.getContextPath() %>/views/user/jeong/js/bootstrap.min.js"></script>
+	<script src="<%= request.getContextPath() %>/views/user/jeong/js/slick.min.js"></script>
+	<script src="<%= request.getContextPath() %>/views/user/jeong/js/nouislider.min.js"></script>
+	<script src="<%= request.getContextPath() %>/views/user/jeong/js/jquery.zoom.min.js"></script>
+	<script src="<%= request.getContextPath() %>/views/user/jeong/js/main.js"></script>
 </body>
 
 </html>

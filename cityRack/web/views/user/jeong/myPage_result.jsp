@@ -74,8 +74,8 @@
 								
 									case "목양" : %>
 									
-										<img src="views/user/jeong/img/목양표.png" alt="" height="300px">
-										<img src="views/user/jeong/img/목양.png" alt="" height="300px">
+										<img src="<%= request.getContextPath() %>/views/user/jeong/img/목양표.png" alt="" height="300px">
+										<img src="<%= request.getContextPath() %>/views/user/jeong/img/목양.png" alt="" height="300px">
 										</div>
 							
 										<br/>
@@ -101,8 +101,8 @@
 									
 									case "목음" : %>
 									
-									<img src="views/user/jeong/img/목음표.png" alt="" height="300px">
-									<img src="views/user/jeong/img/목음.png" alt="" height="300px">
+									<img src="<%= request.getContextPath() %>/views/user/jeong/img/목음표.png" alt="" height="300px">
+									<img src="<%= request.getContextPath() %>/views/user/jeong/img/목음.png" alt="" height="300px">
 									</div>
 						
 									<br/>
@@ -127,8 +127,8 @@
 									
 									case "수양" : %>
 									
-									<img src="views/user/jeong/img/수양표.png" alt="" height="300px">
-									<img src="views/user/jeong/img/수양.png" alt="" height="300px">
+									<img src="<%= request.getContextPath() %>/views/user/jeong/img/수양표.png" alt="" height="300px">
+									<img src="<%= request.getContextPath() %>/views/user/jeong/img/수양.png" alt="" height="300px">
 									</div>
 						
 									<br/>
@@ -153,8 +153,8 @@
 								
 									case "수음" : %>
 									
-									<img src="views/user/jeong/img/수음표.png" alt="" height="300px">
-									<img src="views/user/jeong/img/수음.png" alt="" height="300px">
+									<img src="<%= request.getContextPath() %>/views/user/jeong/img/수음표.png" alt="" height="300px">
+									<img src="<%= request.getContextPath() %>/views/user/jeong/img/수음.png" alt="" height="300px">
 									</div>
 						
 									<br/>
@@ -179,8 +179,8 @@
 								
 									case "금양" : %>
 									
-									<img src="views/user/jeong/img/금양표.png" alt="" height="300px">
-									<img src="views/user/jeong/img/금양.png" alt="" height="300px">
+									<img src="<%= request.getContextPath() %>/views/user/jeong/img/금양표.png" alt="" height="300px">
+									<img src="<%= request.getContextPath() %>/views/user/jeong/img/금양.png" alt="" height="300px">
 									</div>
 						
 									<br/>
@@ -205,8 +205,8 @@
 								
 									case "금음" : %>
 									
-									<img src="views/user/jeong/img/금음표.png" alt="" height="300px">
-									<img src="views/user/jeong/img/금음.png" alt="" height="300px">
+									<img src="<%= request.getContextPath() %>/views/user/jeong/img/금음표.png" alt="" height="300px">
+									<img src="<%= request.getContextPath() %>/views/user/jeong/img/금음.png" alt="" height="300px">
 									</div>
 						
 									<br/>
@@ -232,8 +232,8 @@
 								
 									case "토양" : %>
 									
-									<img src="views/user/jeong/img/토양표.png" alt="" height="300px">
-									<img src="views/user/jeong/img/토양.png" alt="" height="300px">
+									<img src="<%= request.getContextPath() %>/views/user/jeong/img/토양표.png" alt="" height="300px">
+									<img src="<%= request.getContextPath() %>/views/user/jeong/img/토양.png" alt="" height="300px">
 									</div>
 						
 									<br/>
@@ -259,8 +259,8 @@
 								
 									case "토음" : %>
 									
-									<img src="views/user/jeong/img/토음표.png" alt="" height="300px">
-									<img src="views/user/jeong/img/토음.png" alt="" height="300px">
+									<img src="<%= request.getContextPath() %>/views/user/jeong/img/토음표.png" alt="" height="300px">
+									<img src="<%= request.getContextPath() %>/views/user/jeong/img/토음.png" alt="" height="300px">
 									</div>
 						
 									<br/>

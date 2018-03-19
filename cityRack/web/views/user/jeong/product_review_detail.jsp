@@ -231,7 +231,7 @@
 				
 				<div align="right">
 				
-					<button class="primary-btn" onclick="before();">뒤로가기</button>
+					<button class="primary-btn" onclick="before();">목록으로</button>
 				
 				<!-- 작성자와 관리자만 삭제가능 -->
 				<% 
