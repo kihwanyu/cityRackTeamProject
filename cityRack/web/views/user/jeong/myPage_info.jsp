@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.cityrack.member.common.model.dto.Member" %>
 <%
-	Member loginUser = (Member)session.getAttribute("loginUser");
+	//Member loginUser = (Member)session.getAttribute("loginUser");
 %>
 <!-- sdfsd --><!-- asd -->
 <!DOCTYPE html>
@@ -41,128 +41,25 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
+
+<style>
+
+	#password {
+		border: 2px solid orange;
+		border-radius: 10px;
+	}
+
+
+</style>
+
 </head>
 
 <body>
 
 	<!-- 마이페이지용 메뉴바 -->
-	 <%-- <%@ include file="/views/user/common/menubar_myPage.jsp" %> --%>
-	
-	
-	<!-- HEADER -->
-	<header>
-		<!-- header -->
-		<div id="header">
-			<div class="container">
-				<div class="pull-left">
-					<!-- 로고 -->
-					<div class="header-logo">
-						<a class="logo" href="index.jsp">
-							<img src="./img/logo.png" alt="">
-						</a>
-					</div>
-					<!-- /로고 -->
-				</div>
-				<div class="pull-right">
-					<ul class="header-btns">
-						<!-- Account -->
-						<li class="header-account dropdown default-dropdown">
-							<div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
-								<div class="header-btns-icon">
-									<i class="fa fa-user-o"></i>
-								</div>
-								<strong class="text-uppercase">마이페이지 <i class="fa fa-caret-down"></i></strong>
-							</div>
-							<% if(loginUser == null){ %>
-							<div class="loginDiv">
-								<a href="views/user/rani/login.jsp" class="text-uppercase">로그인</a> / <a href="views/user/rani/join.jsp" class="text-uppercase">회원가입</a>
-							</div>
-							<%} else { %>
-								<div class="loginDiv">
-									<p><%=loginUser.getM_name() %>님, 환영합니다. | <a onclick="logout();" >로그아웃 </a></p>
-											
-								</div>
-							<%} %>
-							<ul class="custom-menu">
-								<li><a href="myPage_info.jsp"><i class="fa fa-user-o"></i> 내 정보</a></li>
-								<li><a href="myPage_QnA.jsp"><i class="fa fa-heart-o"></i> 체질 Q / A</a></li>
-								<li><a href="myPage_delivery.jsp"><i class="fa fa-check"></i> 주문배송조회</a></li>
-								<li><a href="myPage_cs.jsp"><i class="fa fa-exchange"></i> 고객센터</a></li>
-								<li><a href="#"><i class="fa fa-unlock-alt"></i> 로그아웃</a></li>
-							</ul>
-						</li>
-						<!-- /Account -->
-
-						<!-- 장바구니 -->
-						<li class="header-cart dropdown default-dropdown">
-							<div class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-								<div class="header-btns-icon">
-									<i class="fa fa-shopping-cart"></i>
-									<span class="qty">3</span>
-								</div>
-								<strong class="text-uppercase">장바구니</strong>
-							</div>
-							<div class="loginDiv">
-								<a href="cart.jsp" class="text-uppercase">주문하러가기</a>
-							</div>
-						</li>
-						<!-- /Cart -->
-
-						<!-- Mobile nav toggle-->
-						<li class="nav-toggle">
-							<button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
-						</li>
-						<!-- / Mobile nav toggle -->
-					</ul>
-				</div>
-			</div>
-			<!-- header -->
-		</div>
-		<!-- container -->
-	</header>
-	<!-- /HEADER -->
-	
-	
-	
-	
-	
-		<!-- NAVIGATION -->
-	<div id="navigation">
-		<!-- container -->
-		<div class="container">
-			<div id="responsive-nav">
-				<!-- category nav -->
-				<div class="category-nav">
-					<span class="category-header">마이페이지</span>
-				</div>
-				<!-- /카테고리 메뉴바 -->
-				
-				
-				
-				
-
-				<!-- 메뉴 네비게이터 -->
-				<div class="menu-nav">
-					<ul class="menu-list">
-						<li><a href="myPage_cart.jsp">장바구니</a></li>
-						<li><a href="myPage_delivery.jsp">주문배송조회</a></li>
-						<li><a href="myPage_QnA.jsp">체질 Q / A</a></li>
-						<li><a href="myPage_info.jsp">내 정보</a></li>
-						<li><a href="myPage_result.jsp">설문조사조회</a></li>
-						<li><a href="myPage_cs.jsp">고객센터</a></li>
-					</ul>
-				</div>
-				<!-- 메뉴 네비게이터 -->
-			</div>
-		</div>
-		<!-- /container -->
-	</div>
-	<!-- /NAVIGATION -->
-	
+	  <%@ include file="/views/user/common/menubar_myPage.jsp" %> 
 	
 
-	<!-- section -->
-	<div class="section">
 		<!-- container -->
 		<div class="container">
 			<!-- row -->
@@ -175,30 +72,30 @@
 								<h3 class="title">내 정보</h3>
 							</div>
 							<h2><%= loginUser.getM_name() %>님, 환영합니다!</h2>
-							<table class="infoTable" align="center" width="400px" style="border:2px solid orange;">
+							<table class="infoTable" align="center" width="600px" style="border:2px solid orange;">
 									<tr>
 										<td style="font-size:12px;" align="center">&nbsp;&nbsp;이메일</td>
 										<td colspan="3" align="center">
-											<input type="text" name="email" value="<%= loginUser.getM_email() %>" readonly>
+											<input type="text" name="email" value="<%= loginUser.getM_email() %>" style="text-align:center;" readonly size="30px">
 										</td>
 									</tr>
 									<tr>
 										<td style="font-size:12px;" align="center">&nbsp;&nbsp;비밀번호(입력)</td>
 										<td colspan="3" align="center">
-											<input type="text" name="password" id="password">
+											<input type="password" name="password" id="password" size="22px" style="text-align:center;" >
 											
 										</td>
 									</tr>
 									<tr>
 										<td style="font-size:12px;" align="center">&nbsp;&nbsp;이름</td>
 										<td colspan="3" align="center">
-											<input type="text" name="name" value="<%= loginUser.getM_name() %>" readonly>
+											<input type="text" name="name" value="<%= loginUser.getM_name( ) %>" readonly size="10px" style="text-align:center;" >
 										</td>
 									</tr>									
 									<tr>
 										<td width="200px" style="font-size:12px;" align="center">&nbsp;&nbsp;주소</td>
 										<td colspan="3" style="border-bottom:1px solid white;" align="center">
-											<input type="text" width="500px" name="address" value="<%= loginUser.getM_address() %>" readonly>
+											<input type="text" width="500px" name="address" value="<%= loginUser.getM_address() %>" readonly size="60px" style="text-align:center;">
 										</td>
 									</tr>						
 									<!-- <tr>
@@ -208,13 +105,13 @@
 									<tr>
 										<td style="font-size:12px;" align="center">&nbsp;&nbsp;휴대폰</td>
 										<td colspan="3" align="center">
-											<input type="text" name="phone" value="<%= loginUser.getM_phone() %>" readonly>
+											<input type="text" name="phone" value="<%= loginUser.getM_phone() %>" readonly readonly size="20px" style="text-align:center;">
 										</td>
 									</tr>
 									<tr>
 										<td style="font-size:12px;" align="center">&nbsp;&nbsp;전화번호</td>
 										<td colspan="3" align="center">
-											<input type="text" name="tel" value="<%= loginUser.getM_tel() %>" readonly>
+											<input type="text" name="tel" value="<%= loginUser.getM_tel() %>" readonly readonly size="20px" style="text-align:center;">
 										</td>
 									</tr>		
 							</table>
@@ -288,8 +185,6 @@
 			<!-- /row -->
 		</div>
 		<!-- /container -->
-	</div>
-	<!-- /section -->
 
 
 		<!-- 푸터 -->
