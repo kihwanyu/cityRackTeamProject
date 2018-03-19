@@ -37,7 +37,6 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -198,11 +197,7 @@
 							<label for="q20_no">No</label> &nbsp;&nbsp; 
 							<strong>보통 량은 과식이 된다 (조금만 더 먹어도 불편하다).</strong>
 						</div>
-						<div align="right">
-							<button class="primary-btn" type="submit">완료</button>
-							<button class="primary-btn" type="reset">취소</button>
-						</div>
-						
+						<br/><br/>
 						<form id="result-form" class="clearfix"
 								action="<%=request.getContextPath()%>/qResult" method="post">
 							<div align="right">
@@ -213,18 +208,28 @@
 							</div>
 						</form>
 						<script>
+						
 							function goResult(){
 								
-								// 8개의 평균값 비교하고 해당 체질명 구해서 결과를 result에 저장
 								$(function(){
 									
+									var qResult = "수음";
+									
 									// 체질결과 담아주기
-									document.getElementById("수음").value = qResult;
+									document.getElementById("qResult").value = qResult;
 									
-									// question테이블의 Q_8CONSTITUTION에 결과저장을 위해 서블릿으로 보내기려고 submit~~
-									$("#result-form").submit();
+								});
 									
-								}
+								// question테이블의 Q_8CONSTITUTION에 결과저장을 위해 서블릿으로 보내기려고 submit~~
+								$("#result-form").submit();
+									
+								
+							}
+								
+							function goMain(){
+								
+								location.href="<%= request.getContextPath()%>";
+							}
 								
 						</script>		
 					</div>

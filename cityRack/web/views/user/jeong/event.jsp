@@ -41,7 +41,7 @@
 
 <body>
 		<!-- 마이페이지용 메뉴바 -->
-	<%@ include file="/views/user/common/menubar_myPage.jsp" %>
+	<%@ include file="/views/user/common/menubar_main.jsp" %>
 
 	<!-- section -->
 	<div class="section">

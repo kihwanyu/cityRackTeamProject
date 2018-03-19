@@ -76,7 +76,7 @@
 								
 									case "목양" : %>
 									
-										<img src="views/user/jeong/img/체질.png" alt="" height="300px">
+										<img src="views/user/jeong/img/목양표.png" alt="" height="300px">
 										<img src="views/user/jeong/img/목양.png" alt="" height="300px">
 										</div>
 							
@@ -101,12 +101,31 @@
 									
 									<% break;
 									
-									case "목음" : %>
+									case "수음" : %>
 									
-										<img src="./img/체질.png" alt="" height="300px">
-										<img src="./img/목양.png" alt="" height="300px">
-									
-									<% break;
+									<img src="views/user/jeong/img/수음표.png" alt="" height="300px">
+									<img src="views/user/jeong/img/수음.png" alt="" height="300px">
+									</div>
+						
+									<br/>
+									<br/>
+									<br/>
+									<div align="center">
+										<h3>수음체질 총 정리</h3>
+										<br/>
+										
+										<pre><br/>1. 위무력증과 위하수는 이 체질의 독점병이라 할 수 있습니다. 
+										<br/>2. 위가 작게 타고 났으므로, 음식은 정말 적게 먹어야 건강합니다. 보통량으로 먹는 것도 과식이 됩니다.
+										<br/>3. 건강은 소화와 깊은 관련이 있습니다. 냉한 음식을 섭취하게 되면 위가 더욱 차가워지기에 모든 건강의 악화와 불안의 시작이 됩니다. <br/>그러므로 보리, 돼지고기는 수음체질에 독이 됩니다. 항상 따뜻한 음식을 섭취하고 과식은 피하시길 바랍니다.
+										<br/>4. 변이 항상 무르며, 설사를 하면 힘이 빠지게 됩니다.
+										<br/>5. 땀을 많이 흘리는 것을 피하십시오.
+										<br/>6. 모든 병이 오른쪽에서부터 시작됩니다.
+										</pre>
+									</div>
+									<br/>
+									<br/>	
+								
+								<% break;
 								} 
 								
 								%>

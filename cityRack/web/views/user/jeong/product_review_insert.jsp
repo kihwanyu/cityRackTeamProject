@@ -49,6 +49,7 @@
 <style>
 .outer {
 	width: 1000px;
+	background: lightyellow;
 	color: black;
 	margin-left: auto;
 	margin-right: auto;
@@ -70,15 +71,23 @@
 	cursor: pointer;
 }
 
-#contentImgArea1, #contentImgArea2, #contentImgArea3 {
+#titleImgArea, #contentImgArea1, #contentImgArea2, #contentImgArea3 {
 	width: 145px;
 	height: 100px;
 	border: 2px solid orange;
-	border-top: none;
+	border-radius: 10px;
 	text-align: center;
 	display: table-cell;
 	vertical-align: middle;
+	background: white;
 }
+
+#contentImgArea1, #contentImgArea2, #contentImgArea3 {
+	border-top: none;
+}
+
+
+
 
 </style>
 
@@ -114,7 +123,7 @@
 
 						<div class="insertArea">
 							<div align="center">
-								<img src="<%= request.getContextPath() %>/views/user/jeong/img/review1.png" width="50%">
+								<img src="<%= request.getContextPath() %>/views/user/jeong/img/review1.png">
 							</div>
 							<br/>
 							<br/>
@@ -135,8 +144,9 @@
 										</textarea>
 									</td>
 								</tr>	
-							
-							
+								<tr>
+									<td colspan="4" align="right">* 빈 칸을 눌러 사진을 추가해주세요.</td>
+								</tr>
 								<tr>
 									<td><strong>후기<br/>사진</strong></td>
 									<td colspan="4">
@@ -147,20 +157,20 @@
 									</td>
 								</tr>
 								<tr>
-									<td>후기사진</td>
+									<td style="color:white;">후기사진</td>
 									<td>
 										<div id="contentImgArea1">
-											<img id="contentImg1" width="110" height="100" >
+											<img id="contentImg1" width="143" height="100" >
 										</div>
 									</td>
 									<td>
 										<div id="contentImgArea2">
-											<img id="contentImg2" width="110" height="100" >
+											<img id="contentImg2" width="143" height="100" >
 										</div>
 									</td>
 									<td>
 										<div id="contentImgArea3">
-											<img id="contentImg3" width="110" height="100">
+											<img id="contentImg3" width="143" height="100">
 										</div>
 									</td>
 								</tr>
@@ -181,7 +191,8 @@
 						</div>
 					</form>
 				</div>
-
+				<br/>
+				<br/>
 				<script>
 					$(function() {
 						/* 전송하기 누르면 div가 아닌 input file 태그가 전송됨 */

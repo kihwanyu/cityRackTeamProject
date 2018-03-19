@@ -177,19 +177,19 @@
 		<!-- 광고판 실제 내용 -->
 		      <div class="carousel-inner">
 		           <div class="active item" align="center">
-		              <img src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= titleImg.getBf_name() %>" style="width:60%;" class = "image">
+		              <img src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= titleImg.getBf_name() %>" style="height:100%;" class = "image">
 		           </div>
 		   
 		            <div class="item" align="center">
-		              <img src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= detailImg1.getBf_name() %>" style="width:60%;" class = "image">
+		              <img src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= detailImg1.getBf_name() %>" style="height:100%;" class = "image">
 		           </div>
 		       
 		           <div class="item" align="center">
-		              <img src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= detailImg2.getBf_name() %>" style="width:60%;" class = "image">
+		              <img src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= detailImg2.getBf_name() %>" style="height:100%;" class = "image">
 		           </div>
 		           
 		           <div class="item" align="center">
-		              <img src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= detailImg3.getBf_name() %>" style="width:60%;" class = "image">
+		              <img src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= detailImg3.getBf_name() %>" style="height:100%;" class = "image">
 		           </div>
 		       </div>
 		   
@@ -213,20 +213,30 @@
 				<br/>
 				<br/>
 				
+				
+				<div align="right">
+				
+					<button class="primary-btn" onclick="before();">뒤로가기</button>
+				
 				<!-- 작성자와 관리자만 삭제가능 -->
 				<% 
 				System.out.println(loginUser.getM_no() + "/" + b.getM_no());
 				if(loginUser.getM_name().equals("관리자") || loginUser.getM_no() == b.getM_no()){ %>
 				
-					<div align="right">
-						<button class="primary-btn" onclick="goDelete();">삭제하기</button>
-			   		</div>
+					<button class="primary-btn" onclick="goDelete();">삭제하기</button>
 			   		
 		   		<% } %>
+		   		
+		   		</div>
 		   		
 	  		</div>
 	  		
 	  		<script>
+	  		
+	  			function before(){
+	  				
+	  				location.href="<%= request.getContextPath() %>/selectThumbList.tn";
+	  			}
 	  		
 	  			function goDelete(){
 	  				
