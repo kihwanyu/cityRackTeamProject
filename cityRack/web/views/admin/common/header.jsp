@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.cityrack.member.common.model.dto.Member"%>
+<% Member m = (Member)session.getAttribute("loginUser"); %>    
 <header>
 	<div>	
 		<div id="logout" align="right">
 			<img alt="" src="../logo.jpg" style="" align="left">
-			관리자님 환영합니다.&nbsp;
+			<%= m.getM_name() %>님 환영합니다.&nbsp;
 			<a href="<%=request.getContextPath() %>/Logout.em" class="btn btn-default" role="button"><i class="fas fa-sign-out-alt"></i>&nbsp;로그아웃</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		</div>
 	</div>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.cityrack.member.admin.model.dto.Payment"%>
 <%
-if((com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUser")!=null){
+    if((com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUser")!=null){
 	  com.kh.cityrack.member.common.model.dto.Member me = (com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUser");
 	  if(!(me.getC_name().equals("관리자"))){
 		 RequestDispatcher view = request.getRequestDispatcher("/views/common/errorPage.jsp");
@@ -14,6 +14,43 @@ if((com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUs
 		  request.setAttribute("msg", "동작그만 밑장빼기냐?");
 		  view.forward(request, response);
 	}
+
+int amount = 0;
+String applyNum = "";
+String buyerAddr = "";
+String buyerEmail = "";
+String buyerName = "";
+String buyerPostcode = "";
+String buyerTel = "";
+String impUid = "";
+String merchantUid = "";
+String name = "";
+int no = 0;
+String payMethod = "";
+String pg = "";
+String status = "";
+if(request.getAttribute("p") != null){
+  Payment p = (Payment)request.getAttribute("p");
+  amount = p.getAmount();
+  applyNum = p.getApplyNum();
+  buyerAddr = p.getBuyerAddr();
+  buyerEmail = p.getBuyerEmail();
+  buyerName = p.getBuyerName();
+  buyerPostcode = p.getBuyerPostcode();
+  buyerTel = p.getBuyerTel();
+  impUid = p.getImpUid();
+  merchantUid = p.getMerchantUid();
+  name = p.getName();
+  no = p.getNo();
+  payMethod = p.getPayMethod();
+  pg = p.getPg();
+  status = p.getStatus();
+}
+
+String orderCode = "";
+if(request.getAttribute("orderCode") != null){
+	orderCode = String.valueOf(request.getAttribute("orderCode"));
+}
 %>    
 <!DOCTYPE html>
 <html>
@@ -64,7 +101,7 @@ if((com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUs
 			<table style="width: 40%;">
 				<tr>
 					<th width="50%" style="text-align: center; background: lightyellow">주문 번호</th>
-					<th width="50%" style="text-align: center; background: lightyellow">100000</th>
+					<th width="50%" style="text-align: center; background: lightyellow"><%= orderCode %></th>
 				</tr>
 			</table>
 			<br><br>
@@ -75,47 +112,47 @@ if((com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUs
 					</tr>
 					<tr>
 						<td width="30%" style="text-align: center;">결제 번호</td>
-						<td width="70%" style="text-align: left;">100001</td>
+						<td width="70%" style="text-align: left;"><%= no %></td>
 					</tr>
 					<tr>
 						<td style="text-align: center;">PG사</td>
-						<td style="text-align: left;">inicis</td>
+						<td style="text-align: left;"><%= pg %></td>
 					</tr>
 					<tr>
 						<td width="10%" style="text-align: center;">결제 수단</td>
-						<td width="22%" style="text-align: left;">card</td>
+						<td width="22%" style="text-align: left;"><%= payMethod %></td>
 					</tr>
 					<tr>			 
 						<td style="text-align: center;">상점 거래 ID</td>
-						<td colspan="2" style="text-align: left;">20180301240000000</td>
+						<td colspan="2" style="text-align: left;"><%= merchantUid %></td>
 					</tr>
 					<tr>			 
 						<td style="text-align: center;">주문명</td>
-						<td colspan="2" style="text-align: left;">주문명:결제테스트</td>
+						<td colspan="2" style="text-align: left;"><%= name %></td>
 					</tr>
 					<tr>			 
 						<td style="text-align: center;">결제 금액</td>
-						<td colspan="2" style="text-align: left;">14000</td>
+						<td colspan="2" style="text-align: left;"><%= amount %>원</td>
 					</tr>
 					<tr>			 
 						<td style="text-align: center;">구매자 이메일</td>
-						<td colspan="2" style="text-align: left;">import@sito.do</td>
+						<td colspan="2" style="text-align: left;"><%= buyerEmail %></td>
 					</tr>
 					<tr>			 
 						<td style="text-align: center;">구매자 이름</td>
-						<td colspan="2" style="text-align: left;">홍길동</td>
+						<td colspan="2" style="text-align: left;"><%= buyerName %></td>
 					</tr>
 					<tr>			 
 						<td style="text-align: center;">구매자 전화번호</td>
-						<td colspan="2" style="text-align: left;">010=1234=5678</td>
+						<td colspan="2" style="text-align: left;"><%= buyerTel %></td>
 					</tr>
 					<tr>			 
 						<td style="text-align: center;">구매자 주소</td>
-						<td colspan="2" style="text-align: left;">서울특별시 강남구 삼성동</td>
+						<td colspan="2" style="text-align: left;"><%= buyerAddr %></td>
 					</tr>
 					<tr>			 
 						<td style="text-align: center;">구매자 우편번호</td>
-						<td colspan="2" style="text-align: left;">12323</td>
+						<td colspan="2" style="text-align: left;"><%= buyerPostcode %></td>
 					</tr>
 				</table>
 			</div>
@@ -131,15 +168,15 @@ if((com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUs
 						</tr>
 						<tr>
 							<td width="30%" style="text-align: center;">상점 거래 ID</td>
-							<td width="70%" style="text-align: left;">20180301240000000</td>
+							<td width="70%" style="text-align: left;"><%= merchantUid %></td>
 						</tr>
 						<tr>
 							<td width="30%" style="text-align: center;">결제 금액</td>
-							<td width="70%" style="text-align: left;">14,000</td>
+							<td width="70%" style="text-align: left;"><%= amount %>원</td>
 						</tr>
 						<tr>
 							<td width="30%" style="text-align: center;">카드 승인 번호</td>
-							<td width="70%" style="text-align: left;">18-11111111</td>
+							<td width="70%" style="text-align: left;"><%= applyNum %></td>
 						</tr>
 					</table>
 				</div>
@@ -148,16 +185,35 @@ if((com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUs
 					<td width="30%" style="text-align: center;">결제 상태</td>
 					<td colspan="2" style="text-align: center;">
 						<select class="form-control" id="status" name="status" style="margin-bottom: 10px;">
-							<option value="finsh">결제완료</option>
-							<option value="cancle">결제취소</option>
+							<option value="결제 완료">결제완료</option>
+							<option value="결제 취소">결제취소</option>
 						</select>
-						<button class="btn btn-primary active" style="width: 100%">변경</button>
+						<button class="btn btn-primary active" style="width: 100%" onclick="changeStatus();">변경</button>
 					</td>
 				</tr>
 			</table>
 			</div>		
 		</div>
 	</section>
+	<script>
+	  $(function(){
+		 <%if(request.getAttribute("p") != null){%>
+		 <%if(status.equals("결제 완료")){%>
+		   $('#status option').eq(0).attr("selected","selected");
+		 <%}else{%>
+		 $('#status option').eq(1).attr("selected","selected");
+		 <%}
+		 }%>
+		 
+	  });
+	  
+	  function changeStatus(){
+		  $status = $('#status').val();
+		  $orderCode = '<%=orderCode%>';
+		  
+		  location.href='<%=request.getContextPath()%>' + "/PaymentUpdate.me?status=" + $status + "&orderCode=" + $orderCode;
+	  }
+	</script>
 	<%@ include file="/views/admin/common/footer.jsp" %>
 </body>
 </html>

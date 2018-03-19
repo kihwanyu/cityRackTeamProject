@@ -90,7 +90,7 @@
 			
 			</div>
 			<div class="mainDiv">
-			   <table id="orderTable" class="table table-striped" style="margin-left:30px;margin-top:20px; width: 100%;">
+			   <table id="orderTable" class="table table-striped" style="margin-left:30px;margin-top:20px; width: 90%;">
 						<thead>
 							<tr>
 								<td colspan="5">최근 주문 현황&nbsp;&nbsp;</td>

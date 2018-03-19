@@ -63,12 +63,12 @@ if((com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUs
 		<div class="searchArea" align="center">
 				<h2>결제 정보 검색</h2>
 				<div class="searchForm">
-					<form action="" method="get" >
+					<form action="<%=request.getContextPath() %>/PaymentGetAll.me" method="get" >
 						<div class="searchTest">
 							<label for="searchTest" style="margin-bottom: 10px;">주문번호 : </label>
-							<input type="search" class="form-control" id="searchTest" name="searchText" id="searchText">
+							<input type="search" class="form-control" id="searchTest" name="orderCode" id="searchText">
 						</div>	
-						<input type="button" class="btn btn-primary active" value="검색" onclick="location.href='<%=request.getContextPath() %>/views/admin/admin_paymentDetails.jsp'">
+						<input type="submit" value="검색">
 					</form>
 				</div>				
 		</div>
