@@ -43,8 +43,6 @@
 		<!-- 마이페이지용 메뉴바 -->
 	<%@ include file="/views/user/common/menubar_main.jsp" %>
 
-	<!-- section -->
-	<div class="section">
 		<!-- container -->
 		<div class="container">
 			<!-- row -->
@@ -56,8 +54,8 @@
 								<h3 class="title">이벤트</h3>
 							</div>
 							<br/>
-								 <img src="./img/ev1.png" align="middle" width="100%">
-								<img src="./img/ev2.png" align="middle" width="100%">
+								 <img src="<%= request.getContextPath() %>/views/user/jeong/img/ev1.png" align="middle" width="100%">
+								<img src="<%= request.getContextPath() %>/views/user/jeong/img/ev2.png" align="middle" width="100%">
 							<br/>
 						</div>
 					</div>
@@ -66,8 +64,6 @@
 			<!-- /row -->
 		</div>
 		<!-- /container -->
-	</div>
-	<!-- /section -->
 
 <!-- 푸터 -->
 	<%@ include file="/views/user/common/footer.jsp" %>

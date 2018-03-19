@@ -270,7 +270,7 @@
 								</div>
 							</div>
 						</li>
-						<li><a onclick="goReview(); return false;">city樂 후기</a></li>
+						<li><a onclick="goReview();">city樂 후기</a></li>
 					</ul>
 				</div>
 				
@@ -278,13 +278,13 @@
 				
 					function goReview(){
 						
-						if(loginUser == null){
+						<% if(loginUser == null){ %>
 							
 							alert("로그인 후 이용하실 수 있는 서비스입니다.");
-						} else {
+						<% } else { %>
 
-							location.href="/cityRack/selectThumbList.tn";
-						}
+							location.href="<%= request.getContextPath()%>/selectThumbList.tn";
+						<% } %>
 					}
 				
 				</script>
