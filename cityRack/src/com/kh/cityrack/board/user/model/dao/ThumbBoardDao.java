@@ -198,7 +198,7 @@ public class ThumbBoardDao {
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
 			
-			rset = pstmt.executeQuery(query);
+			rset = pstmt.executeQuery();
 
 			list = new ArrayList<HashMap<String, Object>>();
 
@@ -207,18 +207,21 @@ public class ThumbBoardDao {
 				// 해쉬맵에 put으로 get을 통해 정보가져와서 저장
 				hmap = new HashMap<String, Object>();
 
+				
+				//RNUM, BO_NO, BO_TITLE, BO_CONTENT, M_NAME, BO_HIT, BO_RECOMM, BO_DATE, BO_STATUS
+				
 				//hmap.put("bid", rset.getInt("bid"));
 				hmap.put("bo_no", rset.getInt("bo_no"));
 				hmap.put("bo_title", rset.getString("bo_title"));
 				hmap.put("bo_content", rset.getString("bo_content"));
-				hmap.put("m_no", rset.getInt("m_no"));
+				hmap.put("m_name", rset.getString("m_name"));
 				hmap.put("bo_hit", rset.getInt("bo_hit"));
 				hmap.put("bo_recomm", rset.getInt("bo_recomm"));
 				hmap.put("bo_date", rset.getDate("bo_date"));
-				hmap.put("bf_no", rset.getString("bf_no"));
+				//hmap.put("bf_no", rset.getString("bf_no"));
 				hmap.put("bf_originname", rset.getString("bf_originname"));
 				hmap.put("bf_name", rset.getString("bf_name"));
-				hmap.put("bf_kind", rset.getString("bf_kind"));
+				//hmap.put("bf_kind", rset.getString("bf_kind"));
 
 				list.add(hmap); // -> selectAll과 같지만 hmap을 사용한것뿐
 			}

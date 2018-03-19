@@ -50,8 +50,6 @@
 		<div class="container">
 			<!-- row -->
 			<div class="row">
-				<form id="survey_easy-form" class="clearfix">
-
 					<div class="col-survey">
 						<div class="section-title">
 							<h3 class="title">간편설문조사</h3>
@@ -204,14 +202,32 @@
 							<button class="primary-btn" type="submit">완료</button>
 							<button class="primary-btn" type="reset">취소</button>
 						</div>
+						
+						<form id="result-form" class="clearfix"
+								action="<%=request.getContextPath()%>/qResult" method="post">
+							<div align="right">
+								<input type="text" id="mNo" name="mNo" value="<%= loginUser.getM_no() %>"/>
+								<input type="text" id="qResult" name="qResult">
+								<button class="primary-btn" type="button" onclick="goResult();">완료</button>
+								<button class="primary-btn" type="button" onclick="goMain();">메인으로</button>
+							</div>
+						</form>
 						<script>
-						
-						
-						
-						</script>
-
+							function goResult(){
+								
+								// 8개의 평균값 비교하고 해당 체질명 구해서 결과를 result에 저장
+								$(function(){
+									
+									// 체질결과 담아주기
+									document.getElementById("수음").value = qResult;
+									
+									// question테이블의 Q_8CONSTITUTION에 결과저장을 위해 서블릿으로 보내기려고 submit~~
+									$("#result-form").submit();
+									
+								}
+								
+						</script>		
 					</div>
-				</form>
 			</div>
 			<!-- /row -->
 		</div>
