@@ -134,9 +134,9 @@ if((com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUs
 					<td id="pname" style="text-align: left;"><%=sList.get(i).getPname() %></td>
 				</tr>
 				<%} %>
-			</table>	
-		</div>	
-		<!-- 페이지 처리 -->
+			</table>
+			<br>
+			<!-- 페이지 처리 -->
 		<% 
 				double backNextPageVal = (double)currentPage/limit;
 				int backNextpage = ((int)(backNextPageVal-0.9))*limit+1;
@@ -209,7 +209,8 @@ if((com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUs
 			<%} %> 
 			<button onclick="location.href='<%= request.getContextPath()%>/StockSearch.pr?currentPage=<%=maxPage%>&order=<%=order%>&searchText=<%=searchText%>&searchCondition=<%=searchCondition%>'">>></button>
 		</div>
-		<%} %>
+		<%} %>	
+		</div>	
 	</section>
 	<script type="text/javascript">
 	$(function() {
