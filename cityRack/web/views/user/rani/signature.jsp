@@ -414,11 +414,10 @@ cursor:pointer;
                       <div class="tableArea" >
                   	<table class="foodtable"  >
                   	
-            		<% int row = 0; %> 
+            		
+            		<tr>
                   	<% for(int i = 0; i<pList.size();i++){  %>
-                  	<% if( row % 2 == 0 ){%>
-                  		 <tr>
-                  		<% if( (cList.get(0).getCa_name()).equals(pList.get(i).getCa_code()) ){ %>                   			 			
+                  		<% if( (cList.get(0).getCa_name()).equals(pList.get(i).getCa_code()) ){ %> 
 	                  		<td>
 	                  		  <img alt="" src="product_download_imgFiles/<%=pList.get(i).getP_pic1() %>" class="foodimg">
 	                  		  <br><br>
@@ -428,12 +427,10 @@ cursor:pointer;
 	                  		  <input type="hidden" name="foodname" value="<%=pList.get(i).getP_code()%>">	                  		  
 	                  		  <input type="hidden" name="foodprice" value="<%=pList.get(i).getP_price() %>">
 	                  		</td>
-                  		<%
-                  			row++; } %>
                   		<% } %>
-                  		</tr>
+                  		
                  	<% } %>
-                  		      
+                  	</tr>	      
                   	</table>
                    	
                  	<script>
@@ -471,7 +468,7 @@ cursor:pointer;
 		                  			  <input type="hidden" name="foodprice" value="<%=pList.get(i).getP_price() %>">
 		                  			</td>		                		
 	                 	<%
-                  			row++; } %>
+                  			row2++; } %>
                   		<% } %>
                   		</tr>
                  	<% } %>			          
