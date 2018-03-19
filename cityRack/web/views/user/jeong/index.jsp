@@ -107,7 +107,7 @@ body{
 							<div class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 								<div class="header-btns-icon">
 									<i class="fa fa-shopping-cart"></i>
-								</div>
+									</div>
 								<strong class="text-uppercase">장바구니</strong>
 							</div>
 							<%if(loginUser==null){ %>
