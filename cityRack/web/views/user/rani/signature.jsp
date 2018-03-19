@@ -586,7 +586,7 @@ cursor:pointer;
 					
 					   $.ajax({
 					    type: "POST",
-					    url:   $("#selectSignature").attr( 'action' ) ,
+					    url:   $("#selectSignature").attr( 'action' )  ,
 					   	data: data ,
 					   	success:function(data){
 					   		 confirm('장바구니에 담겼습니다. ');
