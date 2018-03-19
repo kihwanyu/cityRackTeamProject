@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import com.kh.cityrack.order.user.model.dao.OrderDao;
 import com.kh.cityrack.order.user.model.dto.Cart;
+import com.kh.cityrack.order.user.model.dto.Order;
 
 import static com.kh.cityrack.common.JDBCTemplet.*;
 public class OrderService {
@@ -45,6 +46,36 @@ public class OrderService {
 		close(conn);
 				
 		return result;
+	}
+
+	public ArrayList<Order> orderListGetAll(int mno, int currentPage, int limit) {
+		Connection conn = getConnection();
+		
+		ArrayList<Order> oList = new OrderDao().orderListGetAll(conn, mno, currentPage, limit);
+		
+		close(conn);
+		
+		return oList;
+	}
+
+	public int orderListCount(int mno) {
+		Connection conn = getConnection();
+		
+		int result = new OrderDao().orderListCount(conn, mno);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public ArrayList<Order> orderListGetPcount(int mno, int currentPage, int limit, ArrayList<Order> oList) {
+		Connection conn = getConnection();
+		
+		oList = new OrderDao().orderListGetPcount(conn, mno, currentPage, limit, oList);
+		
+		close(conn);
+		
+		return oList;
 	}
 
 }
