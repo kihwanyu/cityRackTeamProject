@@ -22,11 +22,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <!-- popover  연결 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- / popover 연결 -->  
-	<meta charset="utf-8">
+
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -207,8 +209,8 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
 
 .foodimg{
 border-radius:50%;
-width:50%;
-height:50%;
+width:150px;
+height:150px;
 }
 
 
@@ -275,7 +277,8 @@ overflow-y:scroll;
 }
 
 .selectFood img{
-	width:50%;height:50%;
+	width:150px;
+	height:150px;
 }
 
 .selectFood h3,a, p{
@@ -344,6 +347,10 @@ overflow-y:scroll;
 
 .footer-list a{
 	color:black;
+}
+
+.foodname:hover{
+cursor:pointer;
 }
 </style>
 
@@ -415,9 +422,9 @@ overflow-y:scroll;
 	                  		<td>
 	                  		  <img alt="" src="product_download_imgFiles/<%=pList.get(i).getP_pic1() %>" class="foodimg">
 	                  		  <br><br>
-	                  		  <p class="foodname" name="foodname" value="<%=pList.get(i).getP_name()%>"> <%=pList.get(i).getP_name() %> <a data-toggle="popover" data-content="<%=pList.get(i).getP_8constitution() %>"></a></p>
+	                  		  <p class="foodname" name="foodname" value="<%=pList.get(i).getP_name()%>"> <a data-toggle="popover" data-content="<%=pList.get(i).getP_8constitution() %>"> <%=pList.get(i).getP_name() %></a></p>
 	                  		   <p class="foodprice"><%=pList.get(i).getP_price() %> 원</p><br> 
-	                  		   <input class="input qty" name="amount" type="number" min="1" placeholder="0">
+	                  		   <input class="input qty" name="amount" type="number" min="1" placeholder="0" style="color: white;">
 	                  		  <input type="hidden" name="foodname" value="<%=pList.get(i).getP_code()%>">	                  		  
 	                  		  <input type="hidden" name="foodprice" value="<%=pList.get(i).getP_price() %>">
 	                  		</td>
@@ -429,11 +436,13 @@ overflow-y:scroll;
                   		      
                   	</table>
                    	
-                  <!-- <script>
-							$(document).ready(function(){
-							    $('[data-toggle="popover"]').popover();   
-							});
-					</script>   -->
+                 	<script>
+                 	$(document).ready(function(){
+                 	    $('[data-toggle="popover"]').popover();   
+                 	});
+                 	
+                 	
+					</script>   
                    </div>  
                   
                     
@@ -443,7 +452,9 @@ overflow-y:scroll;
 		       	<% for(int j = 1; j<cList.size();j++){%>
 		        	  <div class="select-tab-content">
 		                  <div class="tableArea" >
-		                  	<table class="foodtable"  >
+		                  	<table class="foodtable">
+		                  	<% int row2 = 0; %> 
+		                  	<% if( row2 % 2 == 0 ){%>
 		                  	<tr>
 		             <% for(int i = 0; i<pList.size();i++){ %> 
 		           		<% if(  (cList.get(j).getCa_name()).equals(pList.get(i).getCa_code()) ){ %>
@@ -451,15 +462,19 @@ overflow-y:scroll;
 		                  			<td>
 		                  			  <img src="product_download_imgFiles/<%=pList.get(i).getP_pic1() %>" class="foodimg">
 		                  			  <br><br>
-		                  			  <p class="foodname" name="foodname" value="<%=pList.get(i).getP_name() %>"><%=pList.get(i).getP_name() %><a data-toggle="popover" data-content="<%=pList.get(i).getP_8constitution() %>"></a></p>
+		                  			  <p class="foodname" name="foodname" value="<%=pList.get(i).getP_name() %>">
+		                  			  <a data-toggle="popover" data-content="<%=pList.get(i).getP_8constitution() %>">
+		                  			  <%=pList.get(i).getP_name() %></a></p>
 		                  			   <p class="foodprice"><%=pList.get(i).getP_price() %> 원</p><br> 
-		                  			     <input class="input qty" name="amount" type="number" min="1" placeholder="0">
+		                  			     <input class="input qty" name="amount" type="number" min="1" placeholder="0" style="color: white;">
 		                  			  <input type="hidden" name="foodname" value="<%=pList.get(i).getP_code() %>"> 
 		                  			  <input type="hidden" name="foodprice" value="<%=pList.get(i).getP_price() %>">
 		                  			</td>		                		
-	                 	<%} %>
-	                  	</tr> 
-	                  		<%} %>					          
+	                 	<%
+                  			row++; } %>
+                  		<% } %>
+                  		</tr>
+                 	<% } %>			          
 	                  	</table>
 				           </div>  
 				           </div>
@@ -478,10 +493,10 @@ overflow-y:scroll;
    <p style="color:black;">* 상품을 중복 선택하실 수 없으며 양을 늘리고 싶으실 경우 수량을 늘려주십시오.</p>
    <p style="color:black;">* 수량의 1의 양은 메뉴마다 다를 수 있습니다.</p>
   
-  <form id="selectSignature" action="<%=request.getContextPath() %>/insertCart.em" method="post" onsubmit="return false;" > 
+  <form id="selectSignature" name="selectSignature" action="<%=request.getContextPath() %>/insertCart.em" method="post" onsubmit="return false;" > 
   <div class="selectFood">
   	<br><h3 align="center" id="title" value="선택하신 토핑">선택하신 토핑</h3><br>
-  	<table class="selectFoodTable">
+  	<table class="selectFoodTable" name="selectFoodTable" id="selectFoodTable">
   		<tr id="thisStays"></tr>
   		
   	</table>
@@ -503,7 +518,7 @@ overflow-y:scroll;
   				//그리고 선택한 이미지의 td에 있는 내용을 전부 복사하여 붙여 넣는다.
   				
   				if(tdata==0){ 
-  					$(".selectFoodTable").find("tr:nth-last-child(1)").append("<td class='tdata'></td>");
+  					$(".selectFoodTable").find("tr:nth-last-child(1)").append("<td class='tdata' name='tdata'></td>");
   	  				$(this).parent().children().clone(true).appendTo($(".selectFoodTable").find("tr:nth-last-child(1)").find("td:nth-last-child(1)"));
   				console.log( $(".selectFoodTable").find("td").children("p").eq(0).text() );
   				console.log( $(this).parent().children("p").eq(0).text()  );
@@ -544,6 +559,12 @@ overflow-y:scroll;
   	 	 
   		
   			function confirmThis(){
+  				var cell = document.getElementById('selectFoodTable').rows[0].cells;
+  				console.log(cell.length);
+  			if(cell.length==0){
+  				alert('토핑을 선택해주시기 바랍니다.');
+  			}else{
+  				
     			var answer = confirm('고르신 토핑으로 만든 시그니처 도시락을 장바구니에 담으시겠습니까?');
     			// '예'를 클릭하면 form을 submit한다.
     			if(answer == true){
@@ -574,9 +595,10 @@ overflow-y:scroll;
 						});  
 					
 					} 
+  			}
 					   	   
 			   
-		    	} 
+		  } 
   			
   			
   		
