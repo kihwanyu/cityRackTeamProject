@@ -60,7 +60,7 @@
 	.detail td {
 		text-align:center;
 		width:1000px;
-		border:1px solid black;
+		border:3px solid orange;
 		padding:15px;
 	}
 		
@@ -69,6 +69,7 @@
 		height:100px;
 		text-indent: 20px;
 		font-size: 21px;
+		background-color: 	#FFEFD5;
 	}
 		
 	
@@ -85,26 +86,40 @@
 	#myCarousel{
 		width: 1000px;
 		margin: 0 auto;
+		border: 3px solid orange;
 	}
 	
 	/* 광고/공지판 버튼크기 */
 	.carousel-control {
-	   margin-top: 30%;
-	   position: absolute;
+	   margin-top: 28%;
 	   width: 5%;
 	   height: 60px; 
 	   font-size : 20px;
 	   color: #fff;
-	   text-align: center;
-	   text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
-	   background-color: rgba(0, 0, 0, 0);
-	   filter: alpha(opacity = 50);
 	   opacity: .2;
 	   font-size: 20px;
 	}		
 	
+	.carousel-inner {
+		border: 2px solid orange;
+	}
+	
+	.item {
+		width: 994px;
+		height: 360px;
+	}
+	
 	#like {
 	 display: block;
+	}
+	
+	.lift, .right {
+		width: 20px;
+		background: white;
+	}
+	
+	.glyphicon {
+		background: orange;
 	}
 	
 </style>
@@ -177,28 +192,28 @@
 		<!-- 광고판 실제 내용 -->
 		      <div class="carousel-inner">
 		           <div class="active item" align="center">
-		              <img src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= titleImg.getBf_name() %>" style="height:100%;" class = "image">
+		              <img src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= titleImg.getBf_name() %>" style="height:80%;" class = "image">
 		           </div>
 		   
 		            <div class="item" align="center">
-		              <img src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= detailImg1.getBf_name() %>" style="height:100%;" class = "image">
+		              <img src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= detailImg1.getBf_name() %>" style="height:80%;" class = "image">
 		           </div>
 		       
 		           <div class="item" align="center">
-		              <img src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= detailImg2.getBf_name() %>" style="height:100%;" class = "image">
+		              <img src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= detailImg2.getBf_name() %>" style="height:80%;" class = "image">
 		           </div>
 		           
 		           <div class="item" align="center">
-		              <img src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= detailImg3.getBf_name() %>" style="height:100%;" class = "image">
+		              <img src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= detailImg3.getBf_name() %>" style="height:80%;" class = "image">
 		           </div>
 		       </div>
 		   
 		<!-- 좌우 버튼 -->
-		       <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+		       <a class="left carousel-control" href="#myCarousel" data-slide="prev" style="width:40px;">
 		            <span class="glyphicon glyphicon-chevron-left"></span>
 		            <span class="sr-only">Previous</span>
 		       </a>
-		       <a class="right carousel-control" href="#myCarousel" data-slide="next">
+		       <a class="right carousel-control" href="#myCarousel" data-slide="next" style="width:40px;">
 		            <span class="glyphicon glyphicon-chevron-right"></span>
 		            <span class="sr-only">Next</span>
 		       </a>

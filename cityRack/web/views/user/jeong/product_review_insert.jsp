@@ -215,7 +215,8 @@
 
 						});
 					});
-
+					
+					
 					/* 전달하고싶은 this에 대한 value값을 전달 */
 					function LoadImg1(value) {
 						/* 브라우저가 임시로 파일정보를 가지고있을때 (업로드가 되기 전) */
@@ -273,6 +274,14 @@
 							reader.readAsDataURL(value.files[0]);
 						}
 					}
+					
+					
+					
+					
+					
+					
+					
+					
 				</script>
 
 				<%
