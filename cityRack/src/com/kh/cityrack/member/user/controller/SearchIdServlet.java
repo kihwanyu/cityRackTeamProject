@@ -47,11 +47,11 @@ public class SearchIdServlet extends HttpServlet {
 		System.out.println("searchId : "+loginUser);
 		if(loginUser !=null) {
 			
-					
+			String email = loginUser.getM_email();
 			response.setContentType("application/json");
 			response.setCharacterEncoding("utf-8");
 			
-			new Gson().toJson(loginUser.getM_email(), response.getWriter());
+			new Gson().toJson(email, response.getWriter());
 			
 					
 		} else {

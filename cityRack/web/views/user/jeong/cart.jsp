@@ -142,7 +142,7 @@ body{
 								</tbody>
 								<tfoot>
 									<tr>
-										<th class="empty" colspan="3"></th>
+										<th class="empty" colspan="3"  style="border-top-style: none;"></th>
 										<th>총 금액</th>
 										<th colspan="2" class="sub-total" id="totalPrice">
 										 <script type="text/javascript">
@@ -164,7 +164,7 @@ body{
 										</th>
 									</tr>
 									<tr>
-										<th class="empty" colspan="3"></th>
+										<th class="empty" colspan="3"  style="border-top-style: none;"></th>
 										<th>할인</th>
 										<th colspan="2" class="sub-total" id="dcAmount">
 										<script type="text/javascript">
@@ -185,12 +185,12 @@ body{
 										</th>
 									</tr>									
 									<tr>
-										<th class="empty" colspan="3"></th>
+										<th class="empty" colspan="3" style="border-top-style: none;"></th>
 										<th>배송비</th>
 										<td colspan="2">2,500</td>
 									</tr>
 									<tr>
-										<th class="empty" colspan="3"></th>
+										<th class="empty" colspan="3"  style="border-top-style: none;"></th>
 										<th>결제금액</th>
 										<th colspan="2" class="total" id="payThis">									
 										
