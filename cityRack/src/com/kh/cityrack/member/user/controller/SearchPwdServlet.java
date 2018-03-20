@@ -73,28 +73,26 @@ public class SearchPwdServlet extends HttpServlet {
 		//loginUser의 메일과 일치하다면 메일을 보낸다.
 		if(loginUser.getM_email().equals(email)) {
 		
-		String newpd = connectEmail(email); //아래 메일 보내는 메소드 실행
-		System.out.println("newpd : " + newpd);
-		int mno = loginUser.getM_no();	
+				String newpd = connectEmail(email); //아래 메일 보내는 메소드 실행
+				System.out.println("newpd : " + newpd);
+				int mno = loginUser.getM_no();	
+				
 		
-
-		String encPwd = "";
-		try {
-			MessageDigest md = MessageDigest.getInstance("SHA-512");
-			
-			byte[] bytes = newpd.getBytes(Charset.forName("UTF-8"));
-			
-			md.update(bytes);
-			
-			encPwd = Base64.getEncoder().encodeToString(md.digest());
-			
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		
-		
-		
-		
+				String encPwd = "";
+				try {
+					MessageDigest md = MessageDigest.getInstance("SHA-512");
+					
+					byte[] bytes = newpd.getBytes(Charset.forName("UTF-8"));
+					
+					md.update(bytes);
+					
+					encPwd = Base64.getEncoder().encodeToString(md.digest());
+					
+				} catch (NoSuchAlgorithmException e) {
+					e.printStackTrace();
+				}
+				
+				
 		
 		//비밀번호 새로 만든 것을 수정 서비스, DAO를 통해 수정.
 		int result = new MemberService().updateMemberPwd(encPwd, mno);
@@ -105,9 +103,8 @@ public class SearchPwdServlet extends HttpServlet {
 				alert="수정 실패";
 			}
 			
-			
 		} else {
-			alert = "해당하는 회원 정보가 없습니다.";			
+			alert = "해당하는 회원 정보가 없습니다!";			
 		}	
 		
 		response.setContentType("application/json");

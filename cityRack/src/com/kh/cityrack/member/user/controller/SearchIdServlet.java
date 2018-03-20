@@ -41,7 +41,7 @@ public class SearchIdServlet extends HttpServlet {
 		System.out.println(phone);
 		
 		//멤버 객체 로그인 유저 생성		
-		Member loginUser = new MemberService().checkLoginUser(name, phone, key);
+		com.kh.cityrack.member.common.model.dto.Member loginUser = new MemberService().checkLoginUser(name, phone, key);
 		
 		//받아온 loginUser의 값에 따라 보낼 alert 메세지 설정
 		System.out.println("searchId : "+loginUser);
