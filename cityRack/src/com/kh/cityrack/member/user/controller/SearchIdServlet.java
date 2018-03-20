@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.kh.cityrack.member.user.model.dto.Member;
+import com.kh.cityrack.member.common.model.dto.Member;
 import com.kh.cityrack.member.user.model.service.MemberService;
 
 /**
@@ -41,7 +41,7 @@ public class SearchIdServlet extends HttpServlet {
 		System.out.println(phone);
 		
 		//멤버 객체 로그인 유저 생성		
-		Member loginUser = new MemberService().checkLoginUser(name, phone, key);
+		com.kh.cityrack.member.common.model.dto.Member loginUser = new MemberService().checkLoginUser(name, phone, key);
 		
 		//받아온 loginUser의 값에 따라 보낼 alert 메세지 설정
 		System.out.println("searchId : "+loginUser);
@@ -51,7 +51,7 @@ public class SearchIdServlet extends HttpServlet {
 			response.setContentType("application/json");
 			response.setCharacterEncoding("utf-8");
 			
-			new Gson().toJson(loginUser.getM_mail(), response.getWriter());
+			new Gson().toJson(loginUser.getM_email(), response.getWriter());
 			
 					
 		} else {

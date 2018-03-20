@@ -38,14 +38,19 @@ public class RepeatIdCheckServlet extends HttpServlet {
 		
 		System.out.println(emailCheck);
 		System.out.println(takenId);
+		String message= "";
 		
-		
+		if(takenId!=null){
+			message = takenId.getM_email();
+		} else{
+			message = "해당하는 회원 정보가 없습니다.";
+		}
 		
 		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
 		
-		new Gson().toJson(takenId.getM_email(), response.getWriter());
+		new Gson().toJson(message, response.getWriter());
 	}
 
 	/**

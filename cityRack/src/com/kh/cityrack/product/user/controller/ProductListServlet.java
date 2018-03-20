@@ -56,7 +56,7 @@ public class ProductListServlet extends HttpServlet {
 			
 		} else {
 			page="/views/common/errorPage.jsp";
-			request.setAttribute("msg", "공지사항 조회 실패");
+			request.setAttribute("msg", "상품 리스트 조회 실패");
 		}
 		
 		RequestDispatcher view = request.getRequestDispatcher(page);
