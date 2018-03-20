@@ -82,6 +82,13 @@ public class userOrdersGetAllServlet extends HttpServlet {
 						
 		 ArrayList<Order> oList = new OrderService().orderListGetAll(mno ,currentPage, limit);
 		
+		 int no = 0;
+		 if(request.getParameter("no")!=null){
+			 no = Integer.parseInt(request.getParameter("no"));
+		 }
+		 
+		 String invoice = oList.get(no).getInvoice_no();
+		 
 		System.out.println("oListServlet : " + oList);
 		String page = "";
 		
@@ -93,6 +100,7 @@ public class userOrdersGetAllServlet extends HttpServlet {
 			
 			request.setAttribute("oList", oList);
 			request.setAttribute("pi", pi);
+			request.setAttribute("invoice", invoice);
 			page = "views/user/jeong/myPage_delivery.jsp";
 		} else {
 			request.setAttribute("msg", "주문 목록 조회 실패");

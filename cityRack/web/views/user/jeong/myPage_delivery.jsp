@@ -5,8 +5,8 @@
     pageEncoding="UTF-8"%>
     
 <%
-	ArrayList<Order> oList = (ArrayList<Order>)request.getAttribute("oList");
-
+    ArrayList<Order> oList = (ArrayList<Order>)request.getAttribute("oList");
+  
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
@@ -14,6 +14,13 @@
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 	int limit = pi.getLimit();
+	
+	int j = 0;
+	String invoice[] = new String[30];
+	for(Order o : oList){
+		invoice[j++] = o.getInvoice_no();
+	}
+	
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +29,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 	<title>cityRack_myPage_delivery</title>
 
@@ -94,10 +102,11 @@
 										</td>
 										<td class="price text-center"><strong><%=oList.get(i).getPa_amount() %></strong></td>
 										<td class="price text-center"><%=oList.get(i).getO_state() %></td>
-										<td align="center"><button class="primary-btn">배송조회하기</button></td>
-										<td class="text-right"><input type="hidden" name="invoice_no" value="<%=oList.get(i).getInvoice_no()%>"></td>
+										<td align="center"><button type="button" class="delivery" value="<%= i%>"onclick="delivery();" >배송조회</button></td>
+										<td class="text-right" ><input type="hidden" name="invoice_no" value="<%=oList.get(i).getInvoice_no()%>"></td>
 									</tr>
 									<%} %>
+									
 								</tbody>
 							</table>
 							
@@ -165,5 +174,34 @@
 	<script src="<%=request.getContextPath() %>/views/user/jeong/js/jquery.zoom.min.js"></script>
 	<script src="<%=request.getContextPath() %>/views/user/jeong/js/main.js"></script>
 </body>
+<script>
+									function delivery(){
+									var no = $('.delivery').attr('value');
+									
+								    $.ajax({
+								    url:"<%=request.getContextPath()%>/UserDeliveryStatus.me",
+									data:{"no":no},
+									type:"get",
+									success:function(data){
+										
+										location.href="javascript:void(window.open('views/common/testViews.jsp?invoice=" + data + "','_blank','width=750, height=900'))";
+											
+										
+									},
+									error:function(data){
+										console.log("서버 전송 실패..");
+									},
+								  });
+								}
+										 
+								    <%-- location.href="javascript:void(window.open('views/common/testViews.jsp?invoice=<%=invoice%>', '_blank','width=750, height=900'))";
+										  $('.delivery').on('click', (e) => {
+												  no = e.target.value;
+												  location.href='<%=request.getContextPath()%>'  + "/userOrdersGetAllServlet.me?no=" + no + "&currentPage=" + 1;
+												  
+											 }) --%>
+										   
+												  
+										</script>
 
 </html>

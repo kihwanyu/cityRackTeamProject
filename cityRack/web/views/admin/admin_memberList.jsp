@@ -2,21 +2,21 @@
     pageEncoding="UTF-8" import="java.util.*,com.kh.cityrack.member.admin.model.dto.*"%>
 <%
 if((com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUser")!=null){
-  com.kh.cityrack.member.common.model.dto.Member me = (com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUser");
-  if(!(me.getC_name().equals("관리자"))){
-	 RequestDispatcher view = request.getRequestDispatcher("/views/common/errorPage.jsp");
-	 request.setAttribute("msg", "동작그만 밑장빼기냐?");
-	 view.forward(request, response);
-  }
-}else{
-	System.out.println("bye");
-	RequestDispatcher view = request.getRequestDispatcher("/views/common/errorPage.jsp");
-	  request.setAttribute("msg", "동작그만 밑장빼기냐?");
-	  view.forward(request, response);
-}
+	  com.kh.cityrack.member.common.model.dto.Member me = (com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUser");
+	  if(!(me.getC_name().equals("관리자"))){
+		 RequestDispatcher view = request.getRequestDispatcher("/views/common/errorPage.jsp");
+		 request.setAttribute("msg", "잘못된 요청입니다.");
+		 view.forward(request, response);
+	  }
+	}else{
+		System.out.println("bye");
+		RequestDispatcher view = request.getRequestDispatcher("/views/common/errorPage.jsp");
+		  request.setAttribute("msg", "잘못된 요청입니다.");
+		  view.forward(request, response);
+	}
 
 
-ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+ArrayList<com.kh.cityrack.member.admin.model.dto.Member> list = (ArrayList<com.kh.cityrack.member.admin.model.dto.Member>)request.getAttribute("list");
 int currentPage = Integer.parseInt((String)request.getAttribute("currentPage"));
 int startPage = Integer.parseInt((String)request.getAttribute("startPage"));
 int endPage = Integer.parseInt((String)request.getAttribute("endPage"));
@@ -265,14 +265,14 @@ searchWord = "&gender=" + gender + "&searchCondition=" + searchCondition + "&sea
 			var $memberTable = $('#memberTable');
 			document.getElementById('serachDate').style.display='none';
 			
-			<% for(Member m : list){%>
+			<% for(com.kh.cityrack.member.admin.model.dto.Member me : list){%>
 			  $tr = $('<tr>');
 			  
-			  $memberCode = $('<td>').text(<%= m.getM_no()%>);
-			  $gradeName = $('<td>').text('<%= m.getC_name()%>');
-			  $memberName = $('<td>').text('<%= m.getM_name()%>');
-			  $memberGender = $('<td>').text('<%= m.getM_gender()%>');
-			  $memberState = $('<td>').text('<%= m.getM_status()%>');
+			  $memberCode = $('<td>').text(<%= me.getM_no()%>);
+			  $gradeName = $('<td>').text('<%= me.getC_name()%>');
+			  $memberName = $('<td>').text('<%= me.getM_name()%>');
+			  $memberGender = $('<td>').text('<%= me.getM_gender()%>');
+			  $memberState = $('<td>').text('<%= me.getM_status()%>');
 			  
 			  $tr.append($memberCode);
 			  $tr.append($gradeName);
