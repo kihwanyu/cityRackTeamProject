@@ -9,13 +9,13 @@ if((com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUs
 	  com.kh.cityrack.member.common.model.dto.Member me = (com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUser");
 	  if(!(me.getC_name().equals("관리자"))){
 		 RequestDispatcher view = request.getRequestDispatcher("/views/common/errorPage.jsp");
-		 request.setAttribute("msg", "동작그만 밑장빼기냐?");
+		 request.setAttribute("msg", "잘못된 요청입니다.");
 		 view.forward(request, response);
 	  }
 	}else{
 		System.out.println("bye");
 		RequestDispatcher view = request.getRequestDispatcher("/views/common/errorPage.jsp");
-		  request.setAttribute("msg", "동작그만 밑장빼기냐?");
+		  request.setAttribute("msg", "잘못된 요청입니다.");
 		  view.forward(request, response);
 	}
 	ArrayList<Stock> sList = (ArrayList<Stock>)request.getAttribute("sList");

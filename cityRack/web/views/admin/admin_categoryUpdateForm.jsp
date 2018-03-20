@@ -3,6 +3,20 @@
     pageEncoding="UTF-8"%>
     
 <%
+if((com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUser")!=null){
+	  com.kh.cityrack.member.common.model.dto.Member me = (com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUser");
+	  if(!(me.getC_name().equals("관리자"))){
+		 RequestDispatcher view = request.getRequestDispatcher("/views/common/errorPage.jsp");
+		 request.setAttribute("msg", "잘못된 요청입니다.");
+		 view.forward(request, response);
+	  }
+	}else{
+		System.out.println("bye");
+		RequestDispatcher view = request.getRequestDispatcher("/views/common/errorPage.jsp");
+		  request.setAttribute("msg", "잘못된 요청입니다.");
+		  view.forward(request, response);
+	}
+
 	Pcategory pc = new Pcategory();
 	pc.setCa_code(request.getParameter("num"));
 	pc.setCa_name(request.getParameter("name"));

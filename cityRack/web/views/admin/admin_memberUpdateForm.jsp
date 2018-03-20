@@ -2,19 +2,19 @@
     pageEncoding="UTF-8" import="com.kh.cityrack.member.admin.model.dto.*"%>
 <%
 if((com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUser")!=null){
-	  com.kh.cityrack.member.common.model.dto.Member me = (com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUser");
-	  if(!(me.getC_name().equals("관리자"))){
+	  com.kh.cityrack.member.common.model.dto.Member m = (com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUser");
+	  if(!(m.getC_name().equals("관리자"))){
 		 RequestDispatcher view = request.getRequestDispatcher("/views/common/errorPage.jsp");
-		 request.setAttribute("msg", "동작그만 밑장빼기냐?");
+		 request.setAttribute("msg", "잘못된 요청입니다.");
 		 view.forward(request, response);
 	  }
 	}else{
 		System.out.println("bye");
 		RequestDispatcher view = request.getRequestDispatcher("/views/common/errorPage.jsp");
-		  request.setAttribute("msg", "동작그만 밑장빼기냐?");
+		  request.setAttribute("msg", "잘못된 요청입니다.");
 		  view.forward(request, response);
 	}
-Member m = (Member)request.getAttribute("m"); 
+com.kh.cityrack.member.admin.model.dto.Member me = (com.kh.cityrack.member.admin.model.dto.Member)request.getAttribute("m"); 
 %>    
 <!DOCTYPE html>
 <html>
@@ -150,21 +150,21 @@ Member m = (Member)request.getAttribute("m");
 	$(function(){ 
 		var $memberTable = $('#memberTable');
 		
-		<% if(m != null){%>
+		<% if(me != null){%>
 		  $tr = $('<tr>');
 		  
-		  $memberCode = $('<td>').text(<%= m.getM_no()%>);
-		  $memberEmail = $('<td>').text('<%= m.getM_email()%>');
-		  $gradeName = $('<td>').text('<%= m.getC_name()%>');
+		  $memberCode = $('<td>').text(<%= me.getM_no()%>);
+		  $memberEmail = $('<td>').text('<%= me.getM_email()%>');
+		  $gradeName = $('<td>').text('<%= me.getC_name()%>');
 		
-		  $memberName = $('<td>').text('<%= m.getM_name()%>');
-		  $memberGender = $('<td>').text('<%= m.getM_gender()%>');
-		  $memberBirthday = $('<td>').text('<%= m.getM_birthDay()%>');
-		  $memberAddress = $('<td>').text('<%= m.getM_address()%>');
-		  $memberTel = $('<td>').text('<%= m.getM_tel()%>');
-		  $memberPhone = $('<td>').text('<%= m.getM_phone()%>');
-		  $memberEnrollDate = $('<td>').text('<%= m.getM_enorll_date()%>');
-		  $memberState = $('<td>').text('<%= m.getM_status()%>');
+		  $memberName = $('<td>').text('<%= me.getM_name()%>');
+		  $memberGender = $('<td>').text('<%= me.getM_gender()%>');
+		  $memberBirthday = $('<td>').text('<%= me.getM_birthDay()%>');
+		  $memberAddress = $('<td>').text('<%= me.getM_address()%>');
+		  $memberTel = $('<td>').text('<%= me.getM_tel()%>');
+		  $memberPhone = $('<td>').text('<%= me.getM_phone()%>');
+		  $memberEnrollDate = $('<td>').text('<%= me.getM_enorll_date()%>');
+		  $memberState = $('<td>').text('<%= me.getM_status()%>');
 		  
 		  $tr.append($memberCode);
 		  $tr.append($memberEmail);
@@ -183,7 +183,7 @@ Member m = (Member)request.getAttribute("m");
 		  
 		<%}%>
 		
-		var $memberState = '<%= m.getM_status()%>';
+		var $memberState = '<%= me.getM_status()%>';
 		
 		if($memberState === "Y"){
 			$('#signout').attr('disabled','disabled');
@@ -197,7 +197,7 @@ Member m = (Member)request.getAttribute("m");
 			
 			$withdrawReason = $('#withdrawReasonArea').val();
 			$memberCode = '<%= m.getM_no()%>';
-			$memberState = '<%= m.getM_status()%>';
+			$memberState = '<%= me	.getM_status()%>';
 			location.href="<%= request.getContextPath()%>/MemberUpdate.me?memberCode=" + $memberCode + "&memberState=" + $memberState + "&withdrawReason=" + $withdrawReason;
 		}
 	
