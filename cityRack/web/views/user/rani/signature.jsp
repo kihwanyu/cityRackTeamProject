@@ -530,7 +530,7 @@ cursor:pointer;
   					
   					for(var j = 0; j<tdata;j++){
 						if($(this).parent().children("p").eq(0).text() !=  $(".selectFoodTable").find("td").eq(j).children("p").eq(0).text()){
-							alert('붙임');
+							
 							$(".selectFoodTable").find("tr:nth-last-child(1)").append("<td class='tdata' name='tdata'></td>");
 	  	  	  				$(this).parent().children().clone(true).appendTo($(".selectFoodTable").find("tr:nth-last-child(1)").find("td:nth-last-child(1)"));
 	  	  					tdata++; break;

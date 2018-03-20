@@ -66,8 +66,8 @@ public class SearchPwdServlet extends HttpServlet {
 		
 		//멤버 객체 로그인 유저 생성		
 		Member loginUser = new MemberService().checkLoginUser(name, email, key);
-		System.out.println("가져온 메일 : " + loginUser.getM_email());
-		System.out.println("이메일 : " + email);
+		/*System.out.println("가져온 메일 : " + loginUser.getM_email());
+		System.out.println("이메일 : " + email);*/
 		
 		//받아온 loginUser의 값에 따라 보낼 alert 메세지 설정
 		//loginUser의 메일과 일치하다면 메일을 보낸다.

@@ -85,12 +85,9 @@ button:hover {
 	    
 	      /* Alerts the results */
 	      posting.done(function( email ) {
-	    	   var findthis = $("nameId").val();
-	    	  if(email == findthis ){
+	    	  
 	    		  alert("회원님의 아이디는 "+email+"입니다.");
-	    	  } else{
-	    		  alert('해당하는 정보가 없습니다.');
-	    	  }
+	    	
 	    	 
 	      });
 	      
