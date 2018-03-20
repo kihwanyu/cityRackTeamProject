@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
     
 <%
+String pcode = (String)request.getParameter("pcode");
+System.out.println("pcode  : " + pcode);
 if((com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUser")!=null){
 	  com.kh.cityrack.member.common.model.dto.Member me = (com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUser");
 	  if(!(me.getC_name().equals("관리자"))){

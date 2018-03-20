@@ -277,7 +277,7 @@ if((com.kh.cityrack.member.common.model.dto.Member)session.getAttribute("loginUs
 				
 				<td>
 					<div class="statusButton">
-						<input type="button" style="font-size: 13px;" value="입고" onclick="warehousing(<%=pList.get(i).getP_code()%>);">
+						<input type="button" style="font-size: 13px;" value="입고" onclick="warehousing(<%=pList.get(i).getP_code() %>);">
 					</div>
 					<div class="statusButton">
 						<input type="button" style="font-size: 13px;" value="출고" onclick="release(<%=pList.get(i).getP_code()%>);">
