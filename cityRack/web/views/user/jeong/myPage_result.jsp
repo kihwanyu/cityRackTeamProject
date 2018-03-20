@@ -70,7 +70,9 @@
 							
 								<% 
 								
-								switch(qResult){ 
+								String qqResult = "목양";
+								
+								switch(qqResult){ 
 								
 									case "목양" : %>
 									

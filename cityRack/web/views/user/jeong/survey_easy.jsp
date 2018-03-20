@@ -197,7 +197,7 @@
 						</div>
 						<br/><br/>
 						<form id="result-form" class="clearfix"
-								action="<%=request.getContextPath()%>/qResult" method="post">
+								action="<%=request.getContextPath()%>/qResult.tn" method="post">
 							<div align="right">
 								<input type="text" id="mNo" name="mNo" value="<%= loginUser.getM_no() %>" />
 								<input type="text" id="qResult" name="qResult" >
