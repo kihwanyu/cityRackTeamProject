@@ -250,11 +250,11 @@ body{
 										<!-- 단가 * 수량 -->
 										<td class="total text-center">
 										<% if(c.get(i).getDiscount() != 0)  {%>
-										<strong class=" primary-color"  ><%=(c.get(i).getDiscount()*0.01 )* c.get(i).getPrice() %> </strong>
-										<input type="hidden" class="eachTotalPrice" name="totalPrice"  value=<%=(c.get(i).getDiscount()*0.01 )* c.get(i).getPrice() %>>
+										<strong class=" primary-color"  ><%=(c.get(i).getDiscount()*0.01 )* c.get(i).getPrice()* c.get(i).getCart_amount()%> </strong>
+										<input type="hidden" class="eachTotalPrice" name="totalPrice"  value=<%=(c.get(i).getDiscount()*0.01 )* c.get(i).getPrice()* c.get(i).getCart_amount() %>>
 										<% } else {%>
-										<strong class=" primary-color" ><%=c.get(i).getPrice() %></strong>
-										<input type="hidden" class="eachTotalPrice" name="totalPrice" value=<%=c.get(i).getPrice() %>>
+										<strong class=" primary-color" ><%=c.get(i).getPrice()* c.get(i).getCart_amount() %></strong>
+										<input type="hidden" class="eachTotalPrice" name="totalPrice" value=<%=c.get(i).getPrice()* c.get(i).getCart_amount() %>>
 										<%} %>
 										</td>
 									</tr>
