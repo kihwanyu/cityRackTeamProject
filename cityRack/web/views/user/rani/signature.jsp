@@ -416,7 +416,7 @@ cursor:pointer;
                   	
             		
             		<tr>
-                  	<% for(int i = 0; i<pList.size();i++){  %>
+                  	<% for(int i = 1; i<pList.size();i++){  %>
                   		<% if( (cList.get(0).getCa_name()).equals(pList.get(i).getCa_code()) ){ %> 
 	                  		<td>
 	                  		  <img alt="" src="product_download_imgFiles/<%=pList.get(i).getP_pic1() %>" class="foodimg">
@@ -507,7 +507,7 @@ cursor:pointer;
     </div>
     
     <script type="text/javascript">
-  		var tdata="";
+  		var tdata=$(".tdata").length;
   		
   				
   			$(".foodimg").click(function(){
@@ -517,27 +517,32 @@ cursor:pointer;
   				if(tdata==0){ 
   					$(".selectFoodTable").find("tr:nth-last-child(1)").append("<td class='tdata' name='tdata'></td>");
   	  				$(this).parent().children().clone(true).appendTo($(".selectFoodTable").find("tr:nth-last-child(1)").find("td:nth-last-child(1)"));
-  				console.log( $(".selectFoodTable").find("td").children("p").eq(0).text() );
-  				console.log( $(this).parent().children("p").eq(0).text()  );
-  				} else {
-  				
-					for(var i = 0; i<tdata;i++){
+  					tdata++;
+	  	  			console.log( $(".selectFoodTable").find("td").children("p").eq(0).text() );
+	  				console.log( $(this).parent().children("p").eq(0).text()  );
+  					console.log("tdata : " + tdata);
+  				} else {	
+  					for(var i = 0; i<tdata;i++){
 						if($(this).parent().children("p").eq(0).text() ==  $(".selectFoodTable").find("td").eq(i).children("p").eq(0).text()){
-							alert("중복된 상품입니다.");
-						} else {
-							$(".selectFoodTable").find("tr:nth-last-child(1)").append("<td class='tdata'></td>");
-		  	  				$(this).parent().children().clone(true).appendTo($(".selectFoodTable").find("tr:nth-last-child(1)").find("td:nth-last-child(1)"));
-		  	  				break;
-						}
-					}  				
+							alert("중복된 상품입니다."); return;
+						} 
+  					}
+  					
+  					for(var j = 0; j<tdata;j++){
+						if($(this).parent().children("p").eq(0).text() !=  $(".selectFoodTable").find("td").eq(j).children("p").eq(0).text()){
+							alert('붙임');
+							$(".selectFoodTable").find("tr:nth-last-child(1)").append("<td class='tdata' name='tdata'></td>");
+	  	  	  				$(this).parent().children().clone(true).appendTo($(".selectFoodTable").find("tr:nth-last-child(1)").find("td:nth-last-child(1)"));
+	  	  					tdata++; break;
+						} 
+  					}
   					
   					
-  				}	
+  				}
   				
+					
 	  		
-  				//tdata에 td의 개수를 담는다.
-	  			tdata = $(".tdata").length;
-	  			//console.log("얍 : " + tdata);
+	  			console.log("얍 : " + tdata);
 	  			
 	  			//td가 4개 배수 단위로 넘어가면 tr을 새로 생성한다.
 	  			if(tdata % 4 == 0){
