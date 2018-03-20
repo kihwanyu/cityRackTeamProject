@@ -42,9 +42,6 @@
 <body>
 		<!-- 메인페이지용 메뉴바 -->
 	<%@ include file="/views/user/common/menubar_main.jsp" %> 
-
-	<!-- section -->
-	<div class="section">
 		<!-- container -->
 		<div class="container">
 			<!-- row -->
@@ -56,9 +53,12 @@
 							<div class="section-title">
 								<h3 class="title">게시글 삭제완료</h3>
 							</div>
+							<br/>
+							<br/>
 							<div align="center">
-								 <img src="views/user/jeong/img/탈퇴.png" alt="">
+								 <img src="views/user/jeong/img/삭제.png" alt="">
 							</div>
+							<div align="center"><h2><strong>정상적으로 삭제되었습니다.</strong></h2></div>
 							<br/>
 							<br/>
 							<div align="center">
@@ -82,8 +82,6 @@
 			<!-- /row -->
 		</div>
 		<!-- /container -->
-	</div>
-	<!-- /section -->
 
 
 	<!-- 푸터 -->

@@ -14,7 +14,7 @@ import com.kh.cityrack.member.common.model.dto.Member;
 import com.kh.cityrack.question.user.model.dto.Question;
 import com.kh.cityrack.question.user.model.service.QuestionService;
 /*sdf*//*sdf*/
-@WebServlet("/qResult")
+@WebServlet("/qResult.tn")
 public class ConstitutionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
